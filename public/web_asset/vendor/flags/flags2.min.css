@@ -1,0 +1,2421 @@
+.flag.flag-15x15-AW, .flag.flag-15x15-AF, .flag.flag-15x15-AO, .flag.flag-15x15-AHO, .flag.flag-15x15-AL, .flag.flag-15x15-ALG, .flag.flag-15x15-AND, .flag.flag-15x15-ANG, .flag.flag-15x15-AG, .flag.flag-15x15-AE, .flag.flag-15x15-AR, .flag.flag-15x15-AM, .flag.flag-15x15-ARU, .flag.flag-15x15-ASA, .flag.flag-15x15-ASM, .flag.flag-15x15-AST, .flag.flag-15x15-ATG, .flag.flag-15x15-AU, .flag.flag-15x15-AT, .flag.flag-15x15-AZ, .flag.flag-15x15-BS, .flag.flag-15x15-BD, .flag.flag-15x15-BAR, .flag.flag-15x15-BI, .flag.flag-15x15-BE, .flag.flag-15x15-BJ, .flag.flag-15x15-BER, .flag.flag-15x15-BF, .flag.flag-15x15-BGD, .flag.flag-15x15-BGR, .flag.flag-15x15-BH, .flag.flag-15x15-BHS, .flag.flag-15x15-BHU, .flag.flag-15x15-BA, .flag.flag-15x15-BZ, .flag.flag-15x15-BY, .flag.flag-15x15-BLZ, .flag.flag-15x15-BMU, .flag.flag-15x15-BO, .flag.flag-15x15-BW, .flag.flag-15x15-BR, .flag.flag-15x15-BB, .flag.flag-15x15-BRN, .flag.flag-15x15-BN, .flag.flag-15x15-BRZ, .flag.flag-15x15-BT, .flag.flag-15x15-BG, .flag.flag-15x15-BF, .flag.flag-15x15-BWA, .flag.flag-15x15-CAM, .flag.flag-15x15-CA, .flag.flag-15x15-CAY, .flag.flag-15x15-CGO, .flag.flag-15x15-CHA, .flag.flag-15x15-CHI, .flag.flag-15x15-CL, .flag.flag-15x15-CN, .flag.flag-15x15-CZ, .flag.flag-15x15-CM, .flag.flag-15x15-CG , .flag.flag-15x15-CK, .flag.flag-15x15-CO, .flag.flag-15x15-KM, .flag.flag-15x15-CV, .flag.flag-15x15-CRC, .flag.flag-15x15-CRI, .flag.flag-15x15-CRO, .flag.flag-15x15-CU, .flag.flag-15x15-CYM, .flag.flag-15x15-CY, .flag.flag-15x15-DK, .flag.flag-15x15-DE, .flag.flag-15x15-DJ, .flag.flag-15x15-DM, .flag.flag-15x15-DO, .flag.flag-15x15-DZ, .flag.flag-15x15-EC, .flag.flag-15x15-EG, .flag.flag-15x15-ENG, .flag.flag-15x15-ERI, .flag.flag-15x15-ES, .flag.flag-15x15-EST, .flag.flag-15x15-ET, .flag.flag-15x15-EUR, .flag.flag-15x15-FJ, .flag.flag-15x15-FI, .flag.flag-15x15-FR, .flag.flag-15x15-FRN, .flag.flag-15x15-FM, .flag.flag-15x15-GA, .flag.flag-15x15-GEO, .flag.flag-15x15-GER, .flag.flag-15x15-GH, .flag.flag-15x15-GN, .flag.flag-15x15-GM, .flag.flag-15x15-GW, .flag.flag-15x15-GR, .flag.flag-15x15-GD, .flag.flag-15x15-GT, .flag.flag-15x15-GUA, .flag.flag-15x15-GUM, .flag.flag-15x15-GY, .flag.flag-15x15-HK, .flag.flag-15x15-HN, .flag.flag-15x15-HOL, .flag.flag-15x15-HR, .flag.flag-15x15-HT, .flag.flag-15x15-HU, .flag.flag-15x15-ICE, .flag.flag-15x15-IN, .flag.flag-15x15-INT, .flag.flag-15x15-IQ, .flag.flag-15x15-IE, .flag.flag-15x15-IT, .flag.flag-15x15-IR, .flag.flag-15x15-ID, .flag.flag-15x15-IS, .flag.flag-15x15-IL, .flag.flag-15x15-IT, .flag.flag-15x15-ITY, .flag.flag-15x15-JM, .flag.flag-15x15-JO, .flag.flag-15x15-JP, .flag.flag-15x15-KZ, .flag.flag-15x15-KE, .flag.flag-15x15-KG, .flag.flag-15x15-KH, .flag.flag-15x15-KI, .flag.flag-15x15-KN, .flag.flag-15x15-KR, .flag.flag-15x15-KW, .flag.flag-15x15-LA, .flag.flag-15x15-LB, .flag.flag-15x15-LR, .flag.flag-15x15-LI, .flag.flag-15x15-LK, .flag.flag-15x15-LS, .flag.flag-15x15-LT, .flag.flag-15x15-LU, .flag.flag-15x15-LV, .flag.flag-15x15-LYB, .flag.flag-15x15-MY, .flag.flag-15x15-MAS, .flag.flag-15x15-MG, .flag.flag-15x15-MV, .flag.flag-15x15-MX, .flag.flag-15x15-MK, .flag.flag-15x15-ML, .flag.flag-15x15-MT, .flag.flag-15x15-MN, .flag.flag-15x15-MC, .flag.flag-15x15-MZ, .flag.flag-15x15-MR, .flag.flag-15x15-MTN, .flag.flag-15x15-MU, .flag.flag-15x15-MW, .flag.flag-15x15-TW, .flag.flag-15x15-NA, .flag.flag-15x15-NL, .flag.flag-15x15-NE, .flag.flag-15x15-NET, .flag.flag-15x15-NG, .flag.flag-15x15-NI, .flag.flag-15x15-NIR, .flag.flag-15x15-KP, .flag.flag-15x15-NO, .flag.flag-15x15-NP, .flag.flag-15x15-NR, .flag.flag-15x15-NZ, .flag.flag-15x15-OM, .flag.flag-15x15-PK, .flag.flag-15x15-PA, .flag.flag-15x15-PAR, .flag.flag-15x15-PE, .flag.flag-15x15-PH, .flag.flag-15x15-PKA, .flag.flag-15x15-PLS, .flag.flag-15x15-PW, .flag.flag-15x15-PG, .flag.flag-15x15-PL, .flag.flag-15x15-PT, .flag.flag-15x15-PR, .flag.flag-15x15-PUE, .flag.flag-15x15-PUR, .flag.flag-15x15-QA, .flag.flag-15x15-RO, .flag.flag-15x15-RSA, .flag.flag-15x15-RU, .flag.flag-15x15-RW, .flag.flag-15x15-ZA, .flag.flag-15x15-SA, .flag.flag-15x15-SCO, .flag.flag-15x15-SD, .flag.flag-15x15-SN, .flag.flag-15x15-SIN, .flag.flag-15x15-SB, .flag.flag-15x15-SL, .flag.flag-15x15-SV, .flag.flag-15x15-SM, .flag.flag-15x15-SO, .flag.flag-15x15-SPN, .flag.flag-15x15-ST, .flag.flag-15x15-SUI, .flag.flag-15x15-SR, .flag.flag-15x15-SK, .flag.flag-15x15-SI, .flag.flag-15x15-SE, .flag.flag-15x15-SWM, .flag.flag-15x15-SZ, .flag.flag-15x15-SC, .flag.flag-15x15-SY, .flag.flag-15x15-TAH, .flag.flag-15x15-TD, .flag.flag-15x15-TG, .flag.flag-15x15-TH, .flag.flag-15x15-TJ, .flag.flag-15x15-TM, .flag.flag-15x15-TR, .flag.flag-15x15-TT, .flag.flag-15x15-TO, .flag.flag-15x15-TPE, .flag.flag-15x15-TN, .flag.flag-15x15-TWN, .flag.flag-15x15-TZ, .flag.flag-15x15-UG, .flag.flag-15x15-UA, .flag.flag-15x15-UNKNOWN, .flag.flag-15x15-UY, .flag.flag-15x15-US, .flag.flag-15x15-UZ, .flag.flag-15x15-VC, .flag.flag-15x15-VE, .flag.flag-15x15-VGB, .flag.flag-15x15-VIR, .flag.flag-15x15-VN, .flag.flag-15x15-VU, .flag.flag-15x15-WAL, .flag.flag-15x15-YE, .flag.flag-15x15-YUG, .flag.flag-15x15-ZM, .flag.flag-15x15-ZIM {
+    width: 15px;
+    height: 15px
+}
+
+.flag {
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.flag.flag-15x15-AW {
+    background: url(country-flags.png) 0 -15px no-repeat
+}
+
+.flag.flag-15x15-AF {
+    background: url(country-flags.png) 0 -3585px no-repeat
+}
+
+.flag.flag-15x15-AO {
+    background: url(country-flags.png) 0 -30px no-repeat
+}
+
+.flag.flag-15x15-AHO {
+    background: url(country-flags.png) 0 -45px no-repeat
+}
+
+.flag.flag-15x15-AL {
+    background: url(country-flags.png) 0 -60px no-repeat
+}
+
+.flag.flag-15x15-ALG {
+    background: url(country-flags.png) 0 -75px no-repeat
+}
+
+.flag.flag-15x15-AND {
+    background: url(country-flags.png) 0 -90px no-repeat
+}
+
+.flag.flag-15x15-ANG {
+    background: url(country-flags.png) 0 -105px no-repeat
+}
+
+.flag.flag-15x15-AG {
+    background: url(country-flags.png) 0 -120px no-repeat
+}
+
+.flag.flag-15x15-AE {
+    background: url(country-flags.png) 0 -135px no-repeat
+}
+
+.flag.flag-15x15-AR {
+    background: url(country-flags.png) 0 -150px no-repeat
+}
+
+.flag.flag-15x15-AM {
+    background: url(country-flags.png) 0 -165px no-repeat
+}
+
+.flag.flag-15x15-ARU {
+    background: url(country-flags.png) 0 -180px no-repeat
+}
+
+.flag.flag-15x15-ASA {
+    background: url(country-flags.png) 0 -195px no-repeat
+}
+
+.flag.flag-15x15-ASM {
+    background: url(country-flags.png) 0 -210px no-repeat
+}
+
+.flag.flag-15x15-AST {
+    background: url(country-flags.png) 0 -225px no-repeat
+}
+
+.flag.flag-15x15-ATG {
+    background: url(country-flags.png) 0 -240px no-repeat
+}
+
+.flag.flag-15x15-AU {
+    background: url(country-flags.png) 0 -255px no-repeat
+}
+
+.flag.flag-15x15-AT {
+    background: url(country-flags.png) 0 -270px no-repeat
+}
+
+.flag.flag-15x15-AZ {
+    background: url(country-flags.png) 0 -285px no-repeat
+}
+
+.flag.flag-15x15-BS {
+    background: url(country-flags.png) 0 -300px no-repeat
+}
+
+.flag.flag-15x15-BD {
+    background: url(country-flags.png) 0 -315px no-repeat
+}
+
+.flag.flag-15x15-BAR {
+    background: url(country-flags.png) 0 -330px no-repeat
+}
+
+.flag.flag-15x15-BI {
+    background: url(country-flags.png) 0 -345px no-repeat
+}
+
+.flag.flag-15x15-BE {
+    background: url(country-flags.png) 0 -360px no-repeat
+}
+
+.flag.flag-15x15-BJ {
+    background: url(country-flags.png) 0 -375px no-repeat
+}
+
+.flag.flag-15x15-BER {
+    background: url(country-flags.png) 0 -390px no-repeat
+}
+
+.flag.flag-15x15-BF {
+    background: url(country-flags.png) 0 -405px no-repeat
+}
+
+.flag.flag-15x15-BGD {
+    background: url(country-flags.png) 0 -420px no-repeat
+}
+
+.flag.flag-15x15-BGR {
+    background: url(country-flags.png) 0 -435px no-repeat
+}
+
+.flag.flag-15x15-BH {
+    background: url(country-flags.png) 0 -450px no-repeat
+}
+
+.flag.flag-15x15-BHS {
+    background: url(country-flags.png) 0 -465px no-repeat
+}
+
+.flag.flag-15x15-BHU {
+    background: url(country-flags.png) 0 -480px no-repeat
+}
+
+.flag.flag-15x15-BA {
+    background: url(country-flags.png) 0 -495px no-repeat
+}
+
+.flag.flag-15x15-BZ {
+    background: url(country-flags.png) 0 -510px no-repeat
+}
+
+.flag.flag-15x15-BY {
+    background: url(country-flags.png) 0 -525px no-repeat
+}
+
+.flag.flag-15x15-BLZ {
+    background: url(country-flags.png) 0 -540px no-repeat
+}
+
+.flag.flag-15x15-BMU {
+    background: url(country-flags.png) 0 -555px no-repeat
+}
+
+.flag.flag-15x15-BO {
+    background: url(country-flags.png) 0 -570px no-repeat
+}
+
+.flag.flag-15x15-BW {
+    background: url(country-flags.png) 0 -585px no-repeat
+}
+
+.flag.flag-15x15-BR {
+    background: url(country-flags.png) 0 -600px no-repeat
+}
+
+.flag.flag-15x15-BB {
+    background: url(country-flags.png) 0 -615px no-repeat
+}
+
+.flag.flag-15x15-BRN {
+    background: url(country-flags.png) 0 -630px no-repeat
+}
+
+.flag.flag-15x15-BN {
+    background: url(country-flags.png) 0 -645px no-repeat
+}
+
+.flag.flag-15x15-BRZ {
+    background: url(country-flags.png) 0 -660px no-repeat
+}
+
+.flag.flag-15x15-BT {
+    background: url(country-flags.png) 0 -675px no-repeat
+}
+
+.flag.flag-15x15-BG {
+    background: url(country-flags.png) 0 -690px no-repeat
+}
+
+.flag.flag-15x15-BF {
+    background: url(country-flags.png) 0 -705px no-repeat
+}
+
+.flag.flag-15x15-BWA {
+    background: url(country-flags.png) 0 -720px no-repeat
+}
+
+.flag.flag-15x15-CAM {
+    background: url(country-flags.png) 0 -735px no-repeat
+}
+
+.flag.flag-15x15-CA {
+    background: url(country-flags.png) 0 -750px no-repeat
+}
+
+.flag.flag-15x15-CAY {
+    background: url(country-flags.png) 0 -765px no-repeat
+}
+
+.flag.flag-15x15-CGO {
+    background: url(country-flags.png) 0 -780px no-repeat
+}
+
+.flag.flag-15x15-CHA {
+    background: url(country-flags.png) 0 -795px no-repeat
+}
+
+.flag.flag-15x15-CHI {
+    background: url(country-flags.png) 0 -810px no-repeat
+}
+
+.flag.flag-15x15-CL {
+    background: url(country-flags.png) 0 -825px no-repeat
+}
+
+.flag.flag-15x15-CN {
+    background: url(country-flags.png) 0 -840px no-repeat
+}
+
+.flag.flag-15x15-CZ {
+    background: url(country-flags.png) 0 -855px no-repeat
+}
+
+.flag.flag-15x15-CM {
+    background: url(country-flags.png) 0 -870px no-repeat
+}
+
+.flag.flag-15x15-CG {
+    background: url(country-flags.png) 0 -885px no-repeat
+}
+
+.flag.flag-15x15-CK {
+    background: url(country-flags.png) 0 -900px no-repeat
+}
+
+.flag.flag-15x15-CO {
+    background: url(country-flags.png) 0 -915px no-repeat
+}
+
+.flag.flag-15x15-KM {
+    background: url(country-flags.png) 0 -930px no-repeat
+}
+
+.flag.flag-15x15-CV {
+    background: url(country-flags.png) 0 -945px no-repeat
+}
+
+.flag.flag-15x15-CRC {
+    background: url(country-flags.png) 0 -960px no-repeat
+}
+
+.flag.flag-15x15-CRI {
+    background: url(country-flags.png) 0 -975px no-repeat
+}
+
+.flag.flag-15x15-CRO {
+    background: url(country-flags.png) 0 -990px no-repeat
+}
+
+.flag.flag-15x15-CU {
+    background: url(country-flags.png) 0 -1005px no-repeat
+}
+
+.flag.flag-15x15-CYM {
+    background: url(country-flags.png) 0 -1020px no-repeat
+}
+
+.flag.flag-15x15-CY {
+    background: url(country-flags.png) 0 -1035px no-repeat
+}
+
+.flag.flag-15x15-DK {
+    background: url(country-flags.png) 0 -1050px no-repeat
+}
+
+.flag.flag-15x15-DE {
+    background: url(country-flags.png) 0 -1065px no-repeat
+}
+
+.flag.flag-15x15-DJ {
+    background: url(country-flags.png) 0 -1080px no-repeat
+}
+
+.flag.flag-15x15-DM {
+    background: url(country-flags.png) 0 -1095px no-repeat
+}
+
+.flag.flag-15x15-DO {
+    background: url(country-flags.png) 0 -1110px no-repeat
+}
+
+.flag.flag-15x15-DZ {
+    background: url(country-flags.png) 0 -1125px no-repeat
+}
+
+.flag.flag-15x15-EC {
+    background: url(country-flags.png) 0 -1140px no-repeat
+}
+
+.flag.flag-15x15-EG {
+    background: url(country-flags.png) 0 -1155px no-repeat
+}
+
+.flag.flag-15x15-ENG {
+    background: url(country-flags.png) 0 -1170px no-repeat
+}
+
+.flag.flag-15x15-ERI {
+    background: url(country-flags.png) 0 -1185px no-repeat
+}
+
+.flag.flag-15x15-ES {
+    background: url(country-flags.png) 0 -1200px no-repeat
+}
+
+.flag.flag-15x15-EST {
+    background: url(country-flags.png) 0 -1215px no-repeat
+}
+
+.flag.flag-15x15-ET {
+    background: url(country-flags.png) 0 -1230px no-repeat
+}
+
+.flag.flag-15x15-EUR {
+    background: url(country-flags.png) 0 -1245px no-repeat
+}
+
+.flag.flag-15x15-FJ {
+    background: url(country-flags.png) 0 -1260px no-repeat
+}
+
+.flag.flag-15x15-FI {
+    background: url(country-flags.png) 0 -1275px no-repeat
+}
+
+.flag.flag-15x15-FR {
+    background: url(country-flags.png) 0 -1290px no-repeat
+}
+
+.flag.flag-15x15-FRN {
+    background: url(country-flags.png) 0 -1305px no-repeat
+}
+
+.flag.flag-15x15-FM {
+    background: url(country-flags.png) 0 -1320px no-repeat
+}
+
+.flag.flag-15x15-GA {
+    background: url(country-flags.png) 0 -1335px no-repeat
+}
+
+.flag.flag-15x15-GEO {
+    background: url(country-flags.png) 0 -1350px no-repeat
+}
+
+.flag.flag-15x15-GER {
+    background: url(country-flags.png) 0 -1365px no-repeat
+}
+
+.flag.flag-15x15-GH {
+    background: url(country-flags.png) 0 -1380px no-repeat
+}
+
+.flag.flag-15x15-GN {
+    background: url(country-flags.png) 0 -1395px no-repeat
+}
+
+.flag.flag-15x15-GM {
+    background: url(country-flags.png) 0 -1410px no-repeat
+}
+
+.flag.flag-15x15-GW {
+    background: url(country-flags.png) 0 -1425px no-repeat
+}
+
+.flag.flag-15x15-GR {
+    background: url(country-flags.png) 0 -1440px no-repeat
+}
+
+.flag.flag-15x15-GD {
+    background: url(country-flags.png) 0 -1455px no-repeat
+}
+
+.flag.flag-15x15-GT {
+    background: url(country-flags.png) 0 -1470px no-repeat
+}
+
+.flag.flag-15x15-GUA {
+    background: url(country-flags.png) 0 -1485px no-repeat
+}
+
+.flag.flag-15x15-GUM {
+    background: url(country-flags.png) 0 -1500px no-repeat
+}
+
+.flag.flag-15x15-GY {
+    background: url(country-flags.png) 0 -1515px no-repeat
+}
+
+.flag.flag-15x15-HK {
+    background: url(country-flags.png) 0 -1530px no-repeat
+}
+
+.flag.flag-15x15-HN {
+    background: url(country-flags.png) 0 -1545px no-repeat
+}
+
+.flag.flag-15x15-HOL {
+    background: url(country-flags.png) 0 -1560px no-repeat
+}
+
+.flag.flag-15x15-HR {
+    background: url(country-flags.png) 0 -1575px no-repeat
+}
+
+.flag.flag-15x15-HT {
+    background: url(country-flags.png) 0 -1590px no-repeat
+}
+
+.flag.flag-15x15-HU {
+    background: url(country-flags.png) 0 -1605px no-repeat
+}
+
+.flag.flag-15x15-ICE {
+    background: url(country-flags.png) 0 -1620px no-repeat
+}
+
+.flag.flag-15x15-IN {
+    background: url(country-flags.png) 0 -1635px no-repeat
+}
+
+.flag.flag-15x15-INT {
+    background: url(country-flags.png) 0 -1650px no-repeat
+}
+
+.flag.flag-15x15-IQ {
+    background: url(country-flags.png) 0 -1665px no-repeat
+}
+
+.flag.flag-15x15-IE {
+    background: url(country-flags.png) 0 -1680px no-repeat
+}
+
+.flag.flag-15x15-IT {
+    background: url(country-flags.png) 0 -1695px no-repeat
+}
+
+.flag.flag-15x15-IR {
+    background: url(country-flags.png) 0 -1710px no-repeat
+}
+
+.flag.flag-15x15-ID {
+    background: url(country-flags.png) 0 -1725px no-repeat
+}
+
+.flag.flag-15x15-IS {
+    background: url(country-flags.png) 0 -1740px no-repeat
+}
+
+.flag.flag-15x15-IL {
+    background: url(country-flags.png) 0 -1755px no-repeat
+}
+
+.flag.flag-15x15-IT {
+    background: url(country-flags.png) 0 -1770px no-repeat
+}
+
+.flag.flag-15x15-ITY {
+    background: url(country-flags.png) 0 -1785px no-repeat
+}
+
+.flag.flag-15x15-JM {
+    background: url(country-flags.png) 0 -1800px no-repeat
+}
+
+.flag.flag-24x24-AF, .flag.flag-24x24-AHO, .flag.flag-24x24-AI, .flag.flag-24x24-AL, .flag.flag-24x24-DZ, .flag.flag-24x24-AD, .flag.flag-24x24-AO, .flag.flag-24x24-AG, .flag.flag-24x24-AR, .flag.flag-24x24-AM, .flag.flag-24x24-AW, .flag.flag-24x24-ASA, .flag.flag-24x24-ASEAN, .flag.flag-24x24-AQ, .flag.flag-24x24-AU, .flag.flag-24x24-AT, .flag.flag-24x24-AZ, .flag.flag-24x24-BS, .flag.flag-24x24-BD, .flag.flag-24x24-BB, .flag.flag-24x24-BI, .flag.flag-24x24-BE, .flag.flag-24x24-BJ, .flag.flag-24x24-BM, .flag.flag-24x24-BT, .flag.flag-24x24-BA, .flag.flag-24x24-BZ, .flag.flag-24x24-BY, .flag.flag-24x24-BO, .flag.flag-24x24-BW, .flag.flag-24x24-BR, .flag.flag-24x24-BH, .flag.flag-24x24-BN, .flag.flag-24x24-BG, .flag.flag-24x24-BF, .flag.flag-24x24-CF, .flag.flag-24x24-KH, .flag.flag-24x24-CA, .flag.flag-24x24-KY, .flag.flag-24x24-CG, .flag.flag-24x24-TD, .flag.flag-24x24-CL, .flag.flag-24x24-CN, .flag.flag-24x24-CI, .flag.flag-24x24-CM, .flag.flag-24x24-CD, .flag.flag-24x24-CK, .flag.flag-24x24-CO, .flag.flag-24x24-KM, .flag.flag-24x24-CV, .flag.flag-24x24-CR, .flag.flag-24x24-HR, .flag.flag-24x24-CU, .flag.flag-24x24-CY, .flag.flag-24x24-CZ, .flag.flag-24x24-DK, .flag.flag-24x24-DE, .flag.flag-24x24-DJ, .flag.flag-24x24-DM, .flag.flag-24x24-DO, .flag.flag-24x24-EC, .flag.flag-24x24-EG, .flag.flag-24x24-ENG, .flag.flag-24x24-ER, .flag.flag-24x24-SV, .flag.flag-24x24-EH, .flag.flag-24x24-ES, .flag.flag-24x24-EE, .flag.flag-24x24-ET, .flag.flag-24x24-EUR, .flag.flag-24x24-FJ, .flag.flag-24x24-FI, .flag.flag-24x24-FR, .flag.flag-24x24-FO, .flag.flag-24x24-FM, .flag.flag-24x24-GA, .flag.flag-24x24-GM, .flag.flag-24x24-GB, .flag.flag-24x24-GE, .flag.flag-24x24-GEQ, .flag.flag-24x24-DE, .flag.flag-24x24-GG, .flag.flag-24x24-GH, .flag.flag-24x24-GI, .flag.flag-24x24-GP, .flag.flag-24x24-GW, .flag.flag-24x24-GR, .flag.flag-24x24-GL, .flag.flag-24x24-GD, .flag.flag-24x24-GT, .flag.flag-24x24-GN, .flag.flag-24x24-GU, .flag.flag-24x24-GY, .flag.flag-24x24-HT, .flag.flag-24x24-HK, .flag.flag-24x24-HN, .flag.flag-24x24-HU, .flag.flag-24x24-IM, .flag.flag-24x24-ID, .flag.flag-24x24-IN, .flag.flag-24x24-INT, .flag.flag-24x24-IR, .flag.flag-24x24-IE, .flag.flag-24x24-IQ, .flag.flag-24x24-IS, .flag.flag-24x24-IL, .flag.flag-24x24-ISV, .flag.flag-24x24-IT, .flag.flag-24x24-IVB, .flag.flag-24x24-JM, .flag.flag-24x24-JE, .flag.flag-24x24-JO, .flag.flag-24x24-JP, .flag.flag-24x24-KZ, .flag.flag-24x24-KE, .flag.flag-24x24-KG, .flag.flag-24x24-KI, .flag.flag-24x24-KR, .flag.flag-24x24-SA, .flag.flag-24x24-KW, .flag.flag-24x24-LA, .flag.flag-24x24-LV, .flag.flag-24x24-LBA, .flag.flag-24x24-LR, .flag.flag-24x24-LC, .flag.flag-24x24-LS, .flag.flag-24x24-LB, .flag.flag-24x24-LI, .flag.flag-24x24-LT, .flag.flag-24x24-LU, .flag.flag-24x24-MO, .flag.flag-24x24-MG, .flag.flag-24x24-MA, .flag.flag-24x24-MY, .flag.flag-24x24-MW, .flag.flag-24x24-MD, .flag.flag-24x24-MV, .flag.flag-24x24-MX, .flag.flag-24x24-MN, .flag.flag-24x24-MH, .flag.flag-24x24-MK, .flag.flag-24x24-ML, .flag.flag-24x24-MT, .flag.flag-24x24-ME, .flag.flag-24x24-MC, .flag.flag-24x24-MZ, .flag.flag-24x24-MU, .flag.flag-24x24-MS, .flag.flag-24x24-MR, .flag.flag-24x24-MQ {
+    width: 24px;
+    height: 24px
+}
+
+.flag.flag-15x15-JO {
+    background: url(country-flags.png) 0 -1815px no-repeat
+}
+
+.flag.flag-15x15-JP {
+    background: url(country-flags.png) 0 -1830px no-repeat
+}
+
+.flag.flag-15x15-KZ {
+    background: url(country-flags.png) 0 -1845px no-repeat
+}
+
+.flag.flag-15x15-KE {
+    background: url(country-flags.png) 0 -1860px no-repeat
+}
+
+.flag.flag-15x15-KG {
+    background: url(country-flags.png) 0 -1875px no-repeat
+}
+
+.flag.flag-15x15-KH {
+    background: url(country-flags.png) 0 -1890px no-repeat
+}
+
+.flag.flag-15x15-KI {
+    background: url(country-flags.png) 0 -1905px no-repeat
+}
+
+.flag.flag-15x15-KN {
+    background: url(country-flags.png) 0 -1920px no-repeat
+}
+
+.flag.flag-15x15-KR {
+    background: url(country-flags.png) 0 -1935px no-repeat
+}
+
+.flag.flag-15x15-KW {
+    background: url(country-flags.png) 0 -1950px no-repeat
+}
+
+.flag.flag-15x15-LA {
+    background: url(country-flags.png) 0 -1965px no-repeat
+}
+
+.flag.flag-15x15-LB {
+    background: url(country-flags.png) 0 -1980px no-repeat
+}
+
+.flag.flag-15x15-LR {
+    background: url(country-flags.png) 0 -1995px no-repeat
+}
+
+.flag.flag-15x15-LI {
+    background: url(country-flags.png) 0 -2010px no-repeat
+}
+
+.flag.flag-15x15-LK {
+    background: url(country-flags.png) 0 -2025px no-repeat
+}
+
+.flag.flag-15x15-LS {
+    background: url(country-flags.png) 0 -2040px no-repeat
+}
+
+.flag.flag-15x15-LT {
+    background: url(country-flags.png) 0 -2055px no-repeat
+}
+
+.flag.flag-15x15-LU {
+    background: url(country-flags.png) 0 -2070px no-repeat
+}
+
+.flag.flag-15x15-LV {
+    background: url(country-flags.png) 0 -2085px no-repeat
+}
+
+.flag.flag-15x15-LYB {
+    background: url(country-flags.png) 0 -2100px no-repeat
+}
+
+.flag.flag-15x15-MY {
+    background: url(country-flags.png) 0 -2115px no-repeat
+}
+
+.flag.flag-15x15-MAS {
+    background: url(country-flags.png) 0 -2130px no-repeat
+}
+
+.flag.flag-15x15-MG {
+    background: url(country-flags.png) 0 -2145px no-repeat
+}
+
+.flag.flag-15x15-MV {
+    background: url(country-flags.png) 0 -2160px no-repeat
+}
+
+.flag.flag-15x15-MX {
+    background: url(country-flags.png) 0 -2175px no-repeat
+}
+
+.flag.flag-15x15-MK {
+    background: url(country-flags.png) 0 -2190px no-repeat
+}
+
+.flag.flag-15x15-ML {
+    background: url(country-flags.png) 0 -2205px no-repeat
+}
+
+.flag.flag-15x15-MT {
+    background: url(country-flags.png) 0 -2220px no-repeat
+}
+
+.flag.flag-15x15-MN {
+    background: url(country-flags.png) 0 -2235px no-repeat
+}
+
+.flag.flag-15x15-MC {
+    background: url(country-flags.png) 0 -2250px no-repeat
+}
+
+.flag.flag-15x15-MZ {
+    background: url(country-flags.png) 0 -2265px no-repeat
+}
+
+.flag.flag-15x15-MR {
+    background: url(country-flags.png) 0 -2280px no-repeat
+}
+
+.flag.flag-15x15-MTN {
+    background: url(country-flags.png) 0 -2295px no-repeat
+}
+
+.flag.flag-15x15-MU {
+    background: url(country-flags.png) 0 -2310px no-repeat
+}
+
+.flag.flag-15x15-MW {
+    background: url(country-flags.png) 0 -2325px no-repeat
+}
+
+.flag.flag-15x15-TW {
+    background: url(country-flags.png) 0 -2340px no-repeat
+}
+
+.flag.flag-15x15-NA {
+    background: url(country-flags.png) 0 -2355px no-repeat
+}
+
+.flag.flag-15x15-NL {
+    background: url(country-flags.png) 0 -2370px no-repeat
+}
+
+.flag.flag-15x15-NE {
+    background: url(country-flags.png) 0 -2385px no-repeat
+}
+
+.flag.flag-15x15-NET {
+    background: url(country-flags.png) 0 -2400px no-repeat
+}
+
+.flag.flag-15x15-NG {
+    background: url(country-flags.png) 0 -2415px no-repeat
+}
+
+.flag.flag-15x15-NI {
+    background: url(country-flags.png) 0 -2430px no-repeat
+}
+
+.flag.flag-15x15-NIR {
+    background: url(country-flags.png) 0 -2445px no-repeat
+}
+
+.flag.flag-15x15-KP {
+    background: url(country-flags.png) 0 -2460px no-repeat
+}
+
+.flag.flag-15x15-NO {
+    background: url(country-flags.png) 0 -2475px no-repeat
+}
+
+.flag.flag-15x15-NP {
+    background: url(country-flags.png) 0 -2490px no-repeat
+}
+
+.flag.flag-15x15-NR {
+    background: url(country-flags.png) 0 -2505px no-repeat
+}
+
+.flag.flag-15x15-NZ {
+    background: url(country-flags.png) 0 -2520px no-repeat
+}
+
+.flag.flag-15x15-OM {
+    background: url(country-flags.png) 0 -2535px no-repeat
+}
+
+.flag.flag-15x15-PK {
+    background: url(country-flags.png) 0 -2550px no-repeat
+}
+
+.flag.flag-15x15-PA {
+    background: url(country-flags.png) 0 -2565px no-repeat
+}
+
+.flag.flag-15x15-PAR {
+    background: url(country-flags.png) 0 -2580px no-repeat
+}
+
+.flag.flag-15x15-PE {
+    background: url(country-flags.png) 0 -2595px no-repeat
+}
+
+.flag.flag-15x15-PH {
+    background: url(country-flags.png) 0 -2610px no-repeat
+}
+
+.flag.flag-15x15-PKA {
+    background: url(country-flags.png) 0 -2625px no-repeat
+}
+
+.flag.flag-15x15-PLS {
+    background: url(country-flags.png) 0 -2640px no-repeat
+}
+
+.flag.flag-15x15-PW {
+    background: url(country-flags.png) 0 -2655px no-repeat
+}
+
+.flag.flag-15x15-PG {
+    background: url(country-flags.png) 0 -2670px no-repeat
+}
+
+.flag.flag-15x15-PL {
+    background: url(country-flags.png) 0 -2685px no-repeat
+}
+
+.flag.flag-15x15-PT {
+    background: url(country-flags.png) 0 -2700px no-repeat
+}
+
+.flag.flag-15x15-PR {
+    background: url(country-flags.png) 0 -2715px no-repeat
+}
+
+.flag.flag-15x15-PUE {
+    background: url(country-flags.png) 0 -2730px no-repeat
+}
+
+.flag.flag-15x15-PUR {
+    background: url(country-flags.png) 0 -2745px no-repeat
+}
+
+.flag.flag-15x15-QA {
+    background: url(country-flags.png) 0 -2760px no-repeat
+}
+
+.flag.flag-15x15-RO {
+    background: url(country-flags.png) 0 -2775px no-repeat
+}
+
+.flag.flag-15x15-RSA {
+    background: url(country-flags.png) 0 -2790px no-repeat
+}
+
+.flag.flag-15x15-RU {
+    background: url(country-flags.png) 0 -2805px no-repeat
+}
+
+.flag.flag-15x15-RW {
+    background: url(country-flags.png) 0 -2820px no-repeat
+}
+
+.flag.flag-15x15-ZA {
+    background: url(country-flags.png) 0 -2835px no-repeat
+}
+
+.flag.flag-15x15-SA {
+    background: url(country-flags.png) 0 -2850px no-repeat
+}
+
+.flag.flag-15x15-SCO {
+    background: url(country-flags.png) 0 -2865px no-repeat
+}
+
+.flag.flag-15x15-SD {
+    background: url(country-flags.png) 0 -2880px no-repeat
+}
+
+.flag.flag-15x15-SN {
+    background: url(country-flags.png) 0 -2895px no-repeat
+}
+
+.flag.flag-15x15-SIN {
+    background: url(country-flags.png) 0 -2910px no-repeat
+}
+
+.flag.flag-15x15-SB {
+    background: url(country-flags.png) 0 -2925px no-repeat
+}
+
+.flag.flag-15x15-SL {
+    background: url(country-flags.png) 0 -2940px no-repeat
+}
+
+.flag.flag-15x15-SV {
+    background: url(country-flags.png) 0 -2955px no-repeat
+}
+
+.flag.flag-15x15-SM {
+    background: url(country-flags.png) 0 -2970px no-repeat
+}
+
+.flag.flag-15x15-SO {
+    background: url(country-flags.png) 0 -2985px no-repeat
+}
+
+.flag.flag-15x15-SPN {
+    background: url(country-flags.png) 0 -3000px no-repeat
+}
+
+.flag.flag-15x15-ST {
+    background: url(country-flags.png) 0 -3015px no-repeat
+}
+
+.flag.flag-15x15-SUI {
+    background: url(country-flags.png) 0 -3030px no-repeat
+}
+
+.flag.flag-15x15-SR {
+    background: url(country-flags.png) 0 -3045px no-repeat
+}
+
+.flag.flag-15x15-SK {
+    background: url(country-flags.png) 0 -3060px no-repeat
+}
+
+.flag.flag-15x15-SI {
+    background: url(country-flags.png) 0 -3075px no-repeat
+}
+
+.flag.flag-15x15-SE {
+    background: url(country-flags.png) 0 -3090px no-repeat
+}
+
+.flag.flag-15x15-SWM {
+    background: url(country-flags.png) 0 -3105px no-repeat
+}
+
+.flag.flag-15x15-SZ {
+    background: url(country-flags.png) 0 -3120px no-repeat
+}
+
+.flag.flag-15x15-SC {
+    background: url(country-flags.png) 0 -3135px no-repeat
+}
+
+.flag.flag-15x15-SY {
+    background: url(country-flags.png) 0 -3150px no-repeat
+}
+
+.flag.flag-15x15-TAH {
+    background: url(country-flags.png) 0 -3165px no-repeat
+}
+
+.flag.flag-15x15-TD {
+    background: url(country-flags.png) 0 -3180px no-repeat
+}
+
+.flag.flag-15x15-TG {
+    background: url(country-flags.png) 0 -3195px no-repeat
+}
+
+.flag.flag-15x15-TH {
+    background: url(country-flags.png) 0 -3210px no-repeat
+}
+
+.flag.flag-15x15-TJ {
+    background: url(country-flags.png) 0 -3225px no-repeat
+}
+
+.flag.flag-15x15-TM {
+    background: url(country-flags.png) 0 -3240px no-repeat
+}
+
+.flag.flag-15x15-TR {
+    background: url(country-flags.png) 0 -3255px no-repeat
+}
+
+.flag.flag-15x15-TT {
+    background: url(country-flags.png) 0 -3270px no-repeat
+}
+
+.flag.flag-15x15-TO {
+    background: url(country-flags.png) 0 -3285px no-repeat
+}
+
+.flag.flag-15x15-TPE {
+    background: url(country-flags.png) 0 -3300px no-repeat
+}
+
+.flag.flag-15x15-TN {
+    background: url(country-flags.png) 0 -3315px no-repeat
+}
+
+.flag.flag-15x15-TWN {
+    background: url(country-flags.png) 0 -3330px no-repeat
+}
+
+.flag.flag-15x15-TZ {
+    background: url(country-flags.png) 0 -3345px no-repeat
+}
+
+.flag.flag-15x15-UG {
+    background: url(country-flags.png) 0 -3360px no-repeat
+}
+
+.flag.flag-15x15-UA {
+    background: url(country-flags.png) 0 -3375px no-repeat
+}
+
+.flag.flag-15x15-UNKNOWN {
+    background: url(country-flags.png) 0 -3390px no-repeat
+}
+
+.flag.flag-15x15-UY {
+    background: url(country-flags.png) 0 -3405px no-repeat
+}
+
+.flag.flag-15x15-US {
+    background: url(country-flags.png) 0 -3420px no-repeat
+}
+
+.flag.flag-15x15-UZ {
+    background: url(country-flags.png) 0 -3435px no-repeat
+}
+
+.flag.flag-15x15-VC {
+    background: url(country-flags.png) 0 -3450px no-repeat
+}
+
+.flag.flag-15x15-VE {
+    background: url(country-flags.png) 0 -3465px no-repeat
+}
+
+.flag.flag-15x15-VGB {
+    background: url(country-flags.png) 0 -3480px no-repeat
+}
+
+.flag.flag-15x15-VIR {
+    background: url(country-flags.png) 0 -3495px no-repeat
+}
+
+.flag.flag-15x15-VN {
+    background: url(country-flags.png) 0 -3510px no-repeat
+}
+
+.flag.flag-15x15-VU {
+    background: url(country-flags.png) 0 -3525px no-repeat
+}
+
+.flag.flag-15x15-WAL {
+    background: url(country-flags.png) 0 -3540px no-repeat
+}
+
+.flag.flag-15x15-YE {
+    background: url(country-flags.png) 0 -3555px no-repeat
+}
+
+.flag.flag-15x15-YUG {
+    background: url(country-flags.png) 0 -3570px no-repeat
+}
+
+.flag.flag-15x15-ZM {
+    background: url(country-flags.png) no-repeat
+}
+
+.flag.flag-15x15-ZIM {
+    background: url(country-flags.png) 0 -3600px no-repeat
+}
+.flag.flag-24x24-AF, .flag.flag-24x24-AHO, .flag.flag-24x24-AI, .flag.flag-24x24-AL, .flag.flag-24x24-DZ, .flag.flag-24x24-AD, .flag.flag-24x24-AO, .flag.flag-24x24-AG, .flag.flag-24x24-AR, .flag.flag-24x24-AM, .flag.flag-24x24-AW, .flag.flag-24x24-ASA, .flag.flag-24x24-ASEAN, .flag.flag-24x24-AQ, .flag.flag-24x24-AU, .flag.flag-24x24-AT, .flag.flag-24x24-AZ, .flag.flag-24x24-BS, .flag.flag-24x24-BD, .flag.flag-24x24-BB, .flag.flag-24x24-BI, .flag.flag-24x24-BE, .flag.flag-24x24-BJ, .flag.flag-24x24-BM, .flag.flag-24x24-BT, .flag.flag-24x24-BA, .flag.flag-24x24-BZ, .flag.flag-24x24-BY, .flag.flag-24x24-BO, .flag.flag-24x24-BW, .flag.flag-24x24-BR, .flag.flag-24x24-BH, .flag.flag-24x24-BN, .flag.flag-24x24-BG, .flag.flag-24x24-BF, .flag.flag-24x24-CF, .flag.flag-24x24-KH, .flag.flag-24x24-CA, .flag.flag-24x24-KY, .flag.flag-24x24-CG, .flag.flag-24x24-TD, .flag.flag-24x24-CL, .flag.flag-24x24-CN, .flag.flag-24x24-CI, .flag.flag-24x24-CM, .flag.flag-24x24-CD, .flag.flag-24x24-CK, .flag.flag-24x24-CO, .flag.flag-24x24-KM, .flag.flag-24x24-CV, .flag.flag-24x24-CR, .flag.flag-24x24-HR, .flag.flag-24x24-CU, .flag.flag-24x24-CY, .flag.flag-24x24-CZ, .flag.flag-24x24-DK, .flag.flag-24x24-DE, .flag.flag-24x24-DJ, .flag.flag-24x24-DM, .flag.flag-24x24-DO, .flag.flag-24x24-EC, .flag.flag-24x24-EG, .flag.flag-24x24-ENG, .flag.flag-24x24-ER, .flag.flag-24x24-SV, .flag.flag-24x24-EH, .flag.flag-24x24-ES, .flag.flag-24x24-EE, .flag.flag-24x24-ET, .flag.flag-24x24-EUR, .flag.flag-24x24-FJ, .flag.flag-24x24-FI, .flag.flag-24x24-FR, .flag.flag-24x24-FO, .flag.flag-24x24-FM, .flag.flag-24x24-GA, .flag.flag-24x24-GM, .flag.flag-24x24-GB, .flag.flag-24x24-GE, .flag.flag-24x24-GEQ, .flag.flag-24x24-DE, .flag.flag-24x24-GG, .flag.flag-24x24-GH, .flag.flag-24x24-GI, .flag.flag-24x24-GP, .flag.flag-24x24-GW, .flag.flag-24x24-GR, .flag.flag-24x24-GL, .flag.flag-24x24-GD, .flag.flag-24x24-GT, .flag.flag-24x24-GN, .flag.flag-24x24-GU, .flag.flag-24x24-GY, .flag.flag-24x24-HT, .flag.flag-24x24-HK, .flag.flag-24x24-HN, .flag.flag-24x24-HU, .flag.flag-24x24-IM, .flag.flag-24x24-ID, .flag.flag-24x24-IN, .flag.flag-24x24-INT, .flag.flag-24x24-IR, .flag.flag-24x24-IE, .flag.flag-24x24-IQ, .flag.flag-24x24-IS, .flag.flag-24x24-IL, .flag.flag-24x24-ISV, .flag.flag-24x24-IT, .flag.flag-24x24-IVB, .flag.flag-24x24-JM, .flag.flag-24x24-JE, .flag.flag-24x24-JO, .flag.flag-24x24-JP, .flag.flag-24x24-KZ, .flag.flag-24x24-KE, .flag.flag-24x24-KG, .flag.flag-24x24-KI, .flag.flag-24x24-KR, .flag.flag-24x24-SA, .flag.flag-24x24-KW, .flag.flag-24x24-LA, .flag.flag-24x24-LV, .flag.flag-24x24-LBA, .flag.flag-24x24-LR, .flag.flag-24x24-LC, .flag.flag-24x24-LS, .flag.flag-24x24-LB, .flag.flag-24x24-LI, .flag.flag-24x24-LT, .flag.flag-24x24-LU, .flag.flag-24x24-MO, .flag.flag-24x24-MG, .flag.flag-24x24-MA, .flag.flag-24x24-MY, .flag.flag-24x24-MW, .flag.flag-24x24-MD, .flag.flag-24x24-MV, .flag.flag-24x24-MX, .flag.flag-24x24-MN, .flag.flag-24x24-MH, .flag.flag-24x24-MK, .flag.flag-24x24-ML, .flag.flag-24x24-MT, .flag.flag-24x24-ME, .flag.flag-24x24-MC, .flag.flag-24x24-MZ, .flag.flag-24x24-MU, .flag.flag-24x24-MS, .flag.flag-24x24-MR, .flag.flag-24x24-MQ {
+    width: 24px;
+    height: 24px
+}
+
+.flag.flag-15x15-JOR {
+    background: url(country-flags.png) 0 -1815px no-repeat
+}
+
+.flag.flag-15x15-JPN {
+    background: url(country-flags.png) 0 -1830px no-repeat
+}
+
+.flag.flag-15x15-KAZ {
+    background: url(country-flags.png) 0 -1845px no-repeat
+}
+
+.flag.flag-15x15-KEN {
+    background: url(country-flags.png) 0 -1860px no-repeat
+}
+
+.flag.flag-15x15-KGZ {
+    background: url(country-flags.png) 0 -1875px no-repeat
+}
+
+.flag.flag-15x15-KHM {
+    background: url(country-flags.png) 0 -1890px no-repeat
+}
+
+.flag.flag-15x15-KIR {
+    background: url(country-flags.png) 0 -1905px no-repeat
+}
+
+.flag.flag-15x15-KNA {
+    background: url(country-flags.png) 0 -1920px no-repeat
+}
+
+.flag.flag-15x15-KOR {
+    background: url(country-flags.png) 0 -1935px no-repeat
+}
+
+.flag.flag-15x15-KWT {
+    background: url(country-flags.png) 0 -1950px no-repeat
+}
+
+.flag.flag-15x15-LAS {
+    background: url(country-flags.png) 0 -1965px no-repeat
+}
+
+.flag.flag-15x15-LBN {
+    background: url(country-flags.png) 0 -1980px no-repeat
+}
+
+.flag.flag-15x15-LBR {
+    background: url(country-flags.png) 0 -1995px no-repeat
+}
+
+.flag.flag-15x15-LIE {
+    background: url(country-flags.png) 0 -2010px no-repeat
+}
+
+.flag.flag-15x15-LKA {
+    background: url(country-flags.png) 0 -2025px no-repeat
+}
+
+.flag.flag-15x15-LSO {
+    background: url(country-flags.png) 0 -2040px no-repeat
+}
+
+.flag.flag-15x15-LTU {
+    background: url(country-flags.png) 0 -2055px no-repeat
+}
+
+.flag.flag-15x15-LUX {
+    background: url(country-flags.png) 0 -2070px no-repeat
+}
+
+.flag.flag-15x15-LVA {
+    background: url(country-flags.png) 0 -2085px no-repeat
+}
+
+.flag.flag-15x15-LYB {
+    background: url(country-flags.png) 0 -2100px no-repeat
+}
+
+.flag.flag-15x15-MAI {
+    background: url(country-flags.png) 0 -2115px no-repeat
+}
+
+.flag.flag-15x15-MAS {
+    background: url(country-flags.png) 0 -2130px no-repeat
+}
+
+.flag.flag-15x15-MDG {
+    background: url(country-flags.png) 0 -2145px no-repeat
+}
+
+.flag.flag-15x15-MDV {
+    background: url(country-flags.png) 0 -2160px no-repeat
+}
+
+.flag.flag-15x15-MEX {
+    background: url(country-flags.png) 0 -2175px no-repeat
+}
+
+.flag.flag-15x15-MKD {
+    background: url(country-flags.png) 0 -2190px no-repeat
+}
+
+.flag.flag-15x15-MLI {
+    background: url(country-flags.png) 0 -2205px no-repeat
+}
+
+.flag.flag-15x15-MLT {
+    background: url(country-flags.png) 0 -2220px no-repeat
+}
+
+.flag.flag-15x15-MNG {
+    background: url(country-flags.png) 0 -2235px no-repeat
+}
+
+.flag.flag-15x15-MON {
+    background: url(country-flags.png) 0 -2250px no-repeat
+}
+
+.flag.flag-15x15-MOZ {
+    background: url(country-flags.png) 0 -2265px no-repeat
+}
+
+.flag.flag-15x15-MRT {
+    background: url(country-flags.png) 0 -2280px no-repeat
+}
+
+.flag.flag-15x15-MTN {
+    background: url(country-flags.png) 0 -2295px no-repeat
+}
+
+.flag.flag-15x15-MUS {
+    background: url(country-flags.png) 0 -2310px no-repeat
+}
+
+.flag.flag-15x15-MWI {
+    background: url(country-flags.png) 0 -2325px no-repeat
+}
+
+.flag.flag-15x15-MYA {
+    background: url(country-flags.png) 0 -2340px no-repeat
+}
+
+.flag.flag-15x15-NAM {
+    background: url(country-flags.png) 0 -2355px no-repeat
+}
+
+.flag.flag-15x15-NED {
+    background: url(country-flags.png) 0 -2370px no-repeat
+}
+
+.flag.flag-15x15-NER {
+    background: url(country-flags.png) 0 -2385px no-repeat
+}
+
+.flag.flag-15x15-NET {
+    background: url(country-flags.png) 0 -2400px no-repeat
+}
+
+.flag.flag-15x15-NGA {
+    background: url(country-flags.png) 0 -2415px no-repeat
+}
+
+.flag.flag-15x15-NIC {
+    background: url(country-flags.png) 0 -2430px no-repeat
+}
+
+.flag.flag-15x15-NIR {
+    background: url(country-flags.png) 0 -2445px no-repeat
+}
+
+.flag.flag-15x15-NKR {
+    background: url(country-flags.png) 0 -2460px no-repeat
+}
+
+.flag.flag-15x15-NOR {
+    background: url(country-flags.png) 0 -2475px no-repeat
+}
+
+.flag.flag-15x15-NPL {
+    background: url(country-flags.png) 0 -2490px no-repeat
+}
+
+.flag.flag-15x15-NRU {
+    background: url(country-flags.png) 0 -2505px no-repeat
+}
+
+.flag.flag-15x15-NZL {
+    background: url(country-flags.png) 0 -2520px no-repeat
+}
+
+.flag.flag-15x15-OMN {
+    background: url(country-flags.png) 0 -2535px no-repeat
+}
+
+.flag.flag-15x15-PK {
+    background: url(country-flags.png) 0 -2550px no-repeat
+}
+
+.flag.flag-15x15-PAN {
+    background: url(country-flags.png) 0 -2565px no-repeat
+}
+
+.flag.flag-15x15-PAR {
+    background: url(country-flags.png) 0 -2580px no-repeat
+}
+
+.flag.flag-15x15-PER {
+    background: url(country-flags.png) 0 -2595px no-repeat
+}
+
+.flag.flag-15x15-PHI {
+    background: url(country-flags.png) 0 -2610px no-repeat
+}
+
+.flag.flag-15x15-PKA {
+    background: url(country-flags.png) 0 -2625px no-repeat
+}
+
+.flag.flag-15x15-PLS {
+    background: url(country-flags.png) 0 -2640px no-repeat
+}
+
+.flag.flag-15x15-PLW {
+    background: url(country-flags.png) 0 -2655px no-repeat
+}
+
+.flag.flag-15x15-PNG {
+    background: url(country-flags.png) 0 -2670px no-repeat
+}
+
+.flag.flag-15x15-POL {
+    background: url(country-flags.png) 0 -2685px no-repeat
+}
+
+.flag.flag-15x15-POR {
+    background: url(country-flags.png) 0 -2700px no-repeat
+}
+
+.flag.flag-15x15-PR {
+    background: url(country-flags.png) 0 -2715px no-repeat
+}
+
+.flag.flag-15x15-PUE {
+    background: url(country-flags.png) 0 -2730px no-repeat
+}
+
+.flag.flag-15x15-PUR {
+    background: url(country-flags.png) 0 -2745px no-repeat
+}
+
+.flag.flag-15x15-QAT {
+    background: url(country-flags.png) 0 -2760px no-repeat
+}
+
+.flag.flag-15x15-ROU {
+    background: url(country-flags.png) 0 -2775px no-repeat
+}
+
+.flag.flag-15x15-RSA {
+    background: url(country-flags.png) 0 -2790px no-repeat
+}
+
+.flag.flag-15x15-RUS {
+    background: url(country-flags.png) 0 -2805px no-repeat
+}
+
+.flag.flag-15x15-RWA {
+    background: url(country-flags.png) 0 -2820px no-repeat
+}
+
+.flag.flag-15x15-SAF {
+    background: url(country-flags.png) 0 -2835px no-repeat
+}
+
+.flag.flag-15x15-SAU {
+    background: url(country-flags.png) 0 -2850px no-repeat
+}
+
+.flag.flag-15x15-SCO {
+    background: url(country-flags.png) 0 -2865px no-repeat
+}
+
+.flag.flag-15x15-SDN {
+    background: url(country-flags.png) 0 -2880px no-repeat
+}
+
+.flag.flag-15x15-SEN {
+    background: url(country-flags.png) 0 -2895px no-repeat
+}
+
+.flag.flag-15x15-SIN {
+    background: url(country-flags.png) 0 -2910px no-repeat
+}
+
+.flag.flag-15x15-SLB {
+    background: url(country-flags.png) 0 -2925px no-repeat
+}
+
+.flag.flag-15x15-SLE {
+    background: url(country-flags.png) 0 -2940px no-repeat
+}
+
+.flag.flag-15x15-SLV {
+    background: url(country-flags.png) 0 -2955px no-repeat
+}
+
+.flag.flag-15x15-SMR {
+    background: url(country-flags.png) 0 -2970px no-repeat
+}
+
+.flag.flag-15x15-SOM {
+    background: url(country-flags.png) 0 -2985px no-repeat
+}
+
+.flag.flag-15x15-SPN {
+    background: url(country-flags.png) 0 -3000px no-repeat
+}
+
+.flag.flag-15x15-STP {
+    background: url(country-flags.png) 0 -3015px no-repeat
+}
+
+.flag.flag-15x15-SUI {
+    background: url(country-flags.png) 0 -3030px no-repeat
+}
+
+.flag.flag-15x15-SUR {
+    background: url(country-flags.png) 0 -3045px no-repeat
+}
+
+.flag.flag-15x15-SVK {
+    background: url(country-flags.png) 0 -3060px no-repeat
+}
+
+.flag.flag-15x15-SVN {
+    background: url(country-flags.png) 0 -3075px no-repeat
+}
+
+.flag.flag-15x15-SWE {
+    background: url(country-flags.png) 0 -3090px no-repeat
+}
+
+.flag.flag-15x15-SWM {
+    background: url(country-flags.png) 0 -3105px no-repeat
+}
+
+.flag.flag-15x15-SWZ {
+    background: url(country-flags.png) 0 -3120px no-repeat
+}
+
+.flag.flag-15x15-SYC {
+    background: url(country-flags.png) 0 -3135px no-repeat
+}
+
+.flag.flag-15x15-SYR {
+    background: url(country-flags.png) 0 -3150px no-repeat
+}
+
+.flag.flag-15x15-TAH {
+    background: url(country-flags.png) 0 -3165px no-repeat
+}
+
+.flag.flag-15x15-TCD {
+    background: url(country-flags.png) 0 -3180px no-repeat
+}
+
+.flag.flag-15x15-TGO {
+    background: url(country-flags.png) 0 -3195px no-repeat
+}
+
+.flag.flag-15x15-THA {
+    background: url(country-flags.png) 0 -3210px no-repeat
+}
+
+.flag.flag-15x15-TJK {
+    background: url(country-flags.png) 0 -3225px no-repeat
+}
+
+.flag.flag-15x15-TKM {
+    background: url(country-flags.png) 0 -3240px no-repeat
+}
+
+.flag.flag-15x15-TKY {
+    background: url(country-flags.png) 0 -3255px no-repeat
+}
+
+.flag.flag-15x15-TNT {
+    background: url(country-flags.png) 0 -3270px no-repeat
+}
+
+.flag.flag-15x15-TON {
+    background: url(country-flags.png) 0 -3285px no-repeat
+}
+
+.flag.flag-15x15-TPE {
+    background: url(country-flags.png) 0 -3300px no-repeat
+}
+
+.flag.flag-15x15-TUN {
+    background: url(country-flags.png) 0 -3315px no-repeat
+}
+
+.flag.flag-15x15-TWN {
+    background: url(country-flags.png) 0 -3330px no-repeat
+}
+
+.flag.flag-15x15-TZA {
+    background: url(country-flags.png) 0 -3345px no-repeat
+}
+
+.flag.flag-15x15-UGA {
+    background: url(country-flags.png) 0 -3360px no-repeat
+}
+
+.flag.flag-15x15-UKR {
+    background: url(country-flags.png) 0 -3375px no-repeat
+}
+
+.flag.flag-15x15-UNKNOWN {
+    background: url(country-flags.png) 0 -3390px no-repeat
+}
+
+.flag.flag-15x15-URU {
+    background: url(country-flags.png) 0 -3405px no-repeat
+}
+
+.flag.flag-15x15-USA {
+    background: url(country-flags.png) 0 -3420px no-repeat
+}
+
+.flag.flag-15x15-UZB {
+    background: url(country-flags.png) 0 -3435px no-repeat
+}
+
+.flag.flag-15x15-VCT {
+    background: url(country-flags.png) 0 -3450px no-repeat
+}
+
+.flag.flag-15x15-VEN {
+    background: url(country-flags.png) 0 -3465px no-repeat
+}
+
+.flag.flag-15x15-VGB {
+    background: url(country-flags.png) 0 -3480px no-repeat
+}
+
+.flag.flag-15x15-VIR {
+    background: url(country-flags.png) 0 -3495px no-repeat
+}
+
+.flag.flag-15x15-VNM {
+    background: url(country-flags.png) 0 -3510px no-repeat
+}
+
+.flag.flag-15x15-VUT {
+    background: url(country-flags.png) 0 -3525px no-repeat
+}
+
+.flag.flag-15x15-WAL {
+    background: url(country-flags.png) 0 -3540px no-repeat
+}
+
+.flag.flag-15x15-YEM {
+    background: url(country-flags.png) 0 -3555px no-repeat
+}
+
+.flag.flag-15x15-YUG {
+    background: url(country-flags.png) 0 -3570px no-repeat
+}
+
+.flag.flag-15x15-ZAM {
+    background: url(country-flags.png) no-repeat
+}
+
+.flag.flag-15x15-ZIM {
+    background: url(country-flags.png) 0 -3600px no-repeat
+}
+
+.flag.flag-24x24-AF {
+    background: url(country-flags.png) 0 -7206px no-repeat
+}
+
+.flag.flag-24x24-AHO {
+    background: url(country-flags.png) 0 -3654px no-repeat
+}
+
+.flag.flag-24x24-AI {
+    background: url(country-flags.png) 0 -6462px no-repeat
+}
+
+.flag.flag-24x24-AL {
+    background: url(country-flags.png) 0 -3678px no-repeat
+}
+
+.flag.flag-24x24-DZ {
+    background: url(country-flags.png) 0 -3702px no-repeat
+}
+
+.flag.flag-24x24-AD {
+    background: url(country-flags.png) 0 -3726px no-repeat
+}
+
+.flag.flag-24x24-AO {
+    background: url(country-flags.png) 0 -3750px no-repeat
+}
+
+.flag.flag-24x24-AG {
+    background: url(country-flags.png) 0 -3774px no-repeat
+}
+
+.flag.flag-24x24-AR {
+    background: url(country-flags.png) 0 -3798px no-repeat
+}
+
+.flag.flag-24x24-AM {
+    background: url(country-flags.png) 0 -3822px no-repeat
+}
+
+.flag.flag-24x24-AW {
+    background: url(country-flags.png) 0 -3846px no-repeat
+}
+
+.flag.flag-24x24-ASA {
+    background: url(country-flags.png) 0 -3870px no-repeat
+}
+
+.flag.flag-24x24-ASEAN {
+    background: url(country-flags.png) 0 -3894px no-repeat
+}
+
+.flag.flag-24x24-AQ {
+    background: url(country-flags.png) 0 -3918px no-repeat
+}
+
+.flag.flag-24x24-AU {
+    background: url(country-flags.png) 0 -3942px no-repeat
+}
+
+.flag.flag-24x24-AT {
+    background: url(country-flags.png) 0 -3966px no-repeat
+}
+
+.flag.flag-24x24-AZ {
+    background: url(country-flags.png) 0 -3990px no-repeat
+}
+
+.flag.flag-24x24-BS {
+    background: url(country-flags.png) 0 -4014px no-repeat
+}
+
+.flag.flag-24x24-BD {
+    background: url(country-flags.png) 0 -4038px no-repeat
+}
+
+.flag.flag-24x24-BB {
+    background: url(country-flags.png) 0 -4062px no-repeat
+}
+
+.flag.flag-24x24-BI {
+    background: url(country-flags.png) 0 -4086px no-repeat
+}
+
+.flag.flag-24x24-BE {
+    background: url(country-flags.png) 0 -4110px no-repeat
+}
+
+.flag.flag-24x24-BJ {
+    background: url(country-flags.png) 0 -4134px no-repeat
+}
+
+.flag.flag-24x24-BM {
+    background: url(country-flags.png) 0 -4158px no-repeat
+}
+
+.flag.flag-24x24-BT {
+    background: url(country-flags.png) 0 -4182px no-repeat
+}
+
+.flag.flag-24x24-BA {
+    background: url(country-flags.png) 0 -4206px no-repeat
+}
+
+.flag.flag-24x24-BZ {
+    background: url(country-flags.png) 0 -4230px no-repeat
+}
+
+.flag.flag-24x24-BY {
+    background: url(country-flags.png) 0 -4254px no-repeat
+}
+
+.flag.flag-24x24-BO {
+    background: url(country-flags.png) 0 -4278px no-repeat
+}
+
+.flag.flag-24x24-BW {
+    background: url(country-flags.png) 0 -4302px no-repeat
+}
+
+.flag.flag-24x24-BR {
+    background: url(country-flags.png) 0 -4326px no-repeat
+}
+
+.flag.flag-24x24-BH {
+    background: url(country-flags.png) 0 -4350px no-repeat
+}
+
+.flag.flag-24x24-BN {
+    background: url(country-flags.png) 0 -4374px no-repeat
+}
+
+.flag.flag-24x24-BG {
+    background: url(country-flags.png) 0 -4398px no-repeat
+}
+
+.flag.flag-24x24-BF {
+    background: url(country-flags.png) 0 -4422px no-repeat
+}
+
+.flag.flag-24x24-CF {
+    background: url(country-flags.png) 0 -4446px no-repeat
+}
+
+.flag.flag-24x24-KH {
+    background: url(country-flags.png) 0 -4470px no-repeat
+}
+
+.flag.flag-24x24-CA {
+    background: url(country-flags.png) 0 -4494px no-repeat
+}
+
+.flag.flag-24x24-KY {
+    background: url(country-flags.png) 0 -4518px no-repeat
+}
+
+.flag.flag-24x24-CG {
+    background: url(country-flags.png) 0 -4542px no-repeat
+}
+
+.flag.flag-24x24-TD {
+    background: url(country-flags.png) 0 -4566px no-repeat
+}
+
+.flag.flag-24x24-CL {
+    background: url(country-flags.png) 0 -4590px no-repeat
+}
+
+.flag.flag-24x24-CN {
+    background: url(country-flags.png) 0 -4614px no-repeat
+}
+
+.flag.flag-24x24-CI {
+    background: url(country-flags.png) 0 -4638px no-repeat
+}
+
+.flag.flag-24x24-CM {
+    background: url(country-flags.png) 0 -4662px no-repeat
+}
+
+.flag.flag-24x24-CD {
+    background: url(country-flags.png) 0 -4686px no-repeat
+}
+
+.flag.flag-24x24-CK {
+    background: url(country-flags.png) 0 -4710px no-repeat
+}
+
+.flag.flag-24x24-CO {
+    background: url(country-flags.png) 0 -4734px no-repeat
+}
+
+.flag.flag-24x24-KM {
+    background: url(country-flags.png) 0 -4758px no-repeat
+}
+
+.flag.flag-24x24-CV {
+    background: url(country-flags.png) 0 -4782px no-repeat
+}
+
+.flag.flag-24x24-CR {
+    background: url(country-flags.png) 0 -4806px no-repeat
+}
+
+.flag.flag-24x24-HR {
+    background: url(country-flags.png) 0 -4830px no-repeat
+}
+
+.flag.flag-24x24-CU {
+    background: url(country-flags.png) 0 -4854px no-repeat
+}
+
+.flag.flag-24x24-CY {
+    background: url(country-flags.png) 0 -4878px no-repeat
+}
+
+.flag.flag-24x24-CZ {
+    background: url(country-flags.png) 0 -4902px no-repeat
+}
+
+.flag.flag-24x24-DK {
+    background: url(country-flags.png) 0 -4926px no-repeat
+}
+
+.flag.flag-24x24-DE {
+    background: url(country-flags.png) 0 -4950px no-repeat
+}
+
+.flag.flag-24x24-DJ {
+    background: url(country-flags.png) 0 -4974px no-repeat
+}
+
+.flag.flag-24x24-DM {
+    background: url(country-flags.png) 0 -4998px no-repeat
+}
+
+.flag.flag-24x24-DO {
+    background: url(country-flags.png) 0 -5022px no-repeat
+}
+
+.flag.flag-24x24-EC {
+    background: url(country-flags.png) 0 -5046px no-repeat
+}
+
+.flag.flag-24x24-EG {
+    background: url(country-flags.png) 0 -5070px no-repeat
+}
+
+.flag.flag-24x24-ENG {
+    background: url(country-flags.png) 0 -5094px no-repeat
+}
+
+.flag.flag-24x24-ER {
+    background: url(country-flags.png) 0 -5118px no-repeat
+}
+
+.flag.flag-24x24-SV {
+    background: url(country-flags.png) 0 -5142px no-repeat
+}
+
+.flag.flag-24x24-EH {
+    background: url(country-flags.png) 0 -5166px no-repeat
+}
+
+.flag.flag-24x24-ES {
+    background: url(country-flags.png) 0 -5190px no-repeat
+}
+
+.flag.flag-24x24-EE {
+    background: url(country-flags.png) 0 -5214px no-repeat
+}
+
+.flag.flag-24x24-ET {
+    background: url(country-flags.png) 0 -5238px no-repeat
+}
+
+.flag.flag-24x24-EUR {
+    background: url(country-flags.png) 0 -5262px no-repeat
+}
+
+.flag.flag-24x24-FJ {
+    background: url(country-flags.png) 0 -5286px no-repeat
+}
+
+.flag.flag-24x24-FI {
+    background: url(country-flags.png) 0 -5310px no-repeat
+}
+
+.flag.flag-24x24-FR {
+    background: url(country-flags.png) 0 -5334px no-repeat
+}
+
+.flag.flag-24x24-FO {
+    background: url(country-flags.png) 0 -5358px no-repeat
+}
+
+.flag.flag-24x24-FM {
+    background: url(country-flags.png) 0 -5382px no-repeat
+}
+
+.flag.flag-24x24-GA {
+    background: url(country-flags.png) 0 -5406px no-repeat
+}
+
+.flag.flag-24x24-GM {
+    background: url(country-flags.png) 0 -5430px no-repeat
+}
+
+.flag.flag-24x24-GB {
+    background: url(country-flags.png) 0 -5454px no-repeat
+}
+
+.flag.flag-24x24-GE {
+    background: url(country-flags.png) 0 -5478px no-repeat
+}
+
+.flag.flag-24x24-GEQ {
+    background: url(country-flags.png) 0 -5502px no-repeat
+}
+
+.flag.flag-24x24-DE {
+    background: url(country-flags.png) 0 -5526px no-repeat
+}
+
+.flag.flag-24x24-GG {
+    background: url(country-flags.png) 0 -5550px no-repeat
+}
+
+.flag.flag-24x24-GH {
+    background: url(country-flags.png) 0 -5574px no-repeat
+}
+
+.flag.flag-24x24-GI {
+    background: url(country-flags.png) 0 -5598px no-repeat
+}
+
+.flag.flag-24x24-GP {
+    background: url(country-flags.png) 0 -5622px no-repeat
+}
+
+.flag.flag-24x24-GW {
+    background: url(country-flags.png) 0 -5646px no-repeat
+}
+
+.flag.flag-24x24-GR {
+    background: url(country-flags.png) 0 -5670px no-repeat
+}
+
+.flag.flag-24x24-GL {
+    background: url(country-flags.png) 0 -5694px no-repeat
+}
+
+.flag.flag-24x24-GD {
+    background: url(country-flags.png) 0 -5718px no-repeat
+}
+
+.flag.flag-24x24-GT {
+    background: url(country-flags.png) 0 -5742px no-repeat
+}
+
+.flag.flag-24x24-GN {
+    background: url(country-flags.png) 0 -5766px no-repeat
+}
+
+.flag.flag-24x24-GU {
+    background: url(country-flags.png) 0 -5790px no-repeat
+}
+
+.flag.flag-24x24-GY {
+    background: url(country-flags.png) 0 -5814px no-repeat
+}
+
+.flag.flag-24x24-HT {
+    background: url(country-flags.png) 0 -5838px no-repeat
+}
+
+.flag.flag-24x24-HK {
+    background: url(country-flags.png) 0 -5862px no-repeat
+}
+
+.flag.flag-24x24-HN {
+    background: url(country-flags.png) 0 -5886px no-repeat
+}
+
+.flag.flag-24x24-HU {
+    background: url(country-flags.png) 0 -5910px no-repeat
+}
+
+.flag.flag-24x24-IM {
+    background: url(country-flags.png) 0 -5934px no-repeat
+}
+
+.flag.flag-24x24-ID {
+    background: url(country-flags.png) 0 -5958px no-repeat
+}
+
+.flag.flag-24x24-IN {
+    background: url(country-flags.png) 0 -5982px no-repeat
+}
+
+.flag.flag-24x24-INT {
+    background: url(country-flags.png) 0 -6006px no-repeat
+}
+
+.flag.flag-24x24-IR {
+    background: url(country-flags.png) 0 -6030px no-repeat
+}
+
+.flag.flag-24x24-IE {
+    background: url(country-flags.png) 0 -6054px no-repeat
+}
+
+.flag.flag-24x24-IQ {
+    background: url(country-flags.png) 0 -6078px no-repeat
+}
+
+.flag.flag-24x24-IS {
+    background: url(country-flags.png) 0 -6102px no-repeat
+}
+
+.flag.flag-24x24-IL {
+    background: url(country-flags.png) 0 -6126px no-repeat
+}
+
+.flag.flag-24x24-ISV {
+    background: url(country-flags.png) 0 -6150px no-repeat
+}
+
+.flag.flag-24x24-IT {
+    background: url(country-flags.png) 0 -6174px no-repeat
+}
+
+.flag.flag-24x24-IVB {
+    background: url(country-flags.png) 0 -6198px no-repeat
+}
+
+.flag.flag-24x24-JM {
+    background: url(country-flags.png) 0 -6222px no-repeat
+}
+
+.flag.flag-24x24-JE {
+    background: url(country-flags.png) 0 -6246px no-repeat
+}
+
+.flag.flag-24x24-JO {
+    background: url(country-flags.png) 0 -6270px no-repeat
+}
+
+.flag.flag-24x24-JP {
+    background: url(country-flags.png) 0 -6294px no-repeat
+}
+
+.flag.flag-24x24-KZ {
+    background: url(country-flags.png) 0 -6318px no-repeat
+}
+
+.flag.flag-24x24-KE {
+    background: url(country-flags.png) 0 -6342px no-repeat
+}
+
+.flag.flag-24x24-KG {
+    background: url(country-flags.png) 0 -6366px no-repeat
+}
+
+.flag.flag-24x24-KI {
+    background: url(country-flags.png) 0 -6390px no-repeat
+}
+
+.flag.flag-24x24-KR {
+    background: url(country-flags.png) 0 -6414px no-repeat
+}
+
+.flag.flag-24x24-SA {
+    background: url(country-flags.png) 0 -6438px no-repeat
+}
+
+.flag.flag-24x24-KW {
+    background: url(country-flags.png) 0 -3630px no-repeat
+}
+
+.flag.flag-24x24-LA {
+    background: url(country-flags.png) 0 -6486px no-repeat
+}
+
+.flag.flag-24x24-LV {
+    background: url(country-flags.png) 0 -6510px no-repeat
+}
+
+.flag.flag-24x24-LBA {
+    background: url(country-flags.png) 0 -6534px no-repeat
+}
+
+.flag.flag-24x24-LR {
+    background: url(country-flags.png) 0 -6558px no-repeat
+}
+
+.flag.flag-24x24-LC {
+    background: url(country-flags.png) 0 -6582px no-repeat
+}
+
+.flag.flag-24x24-LS {
+    background: url(country-flags.png) 0 -6606px no-repeat
+}
+
+.flag.flag-24x24-LB {
+    background: url(country-flags.png) 0 -6630px no-repeat
+}
+
+.flag.flag-24x24-LI {
+    background: url(country-flags.png) 0 -6654px no-repeat
+}
+
+.flag.flag-24x24-LT {
+    background: url(country-flags.png) 0 -6678px no-repeat
+}
+
+.flag.flag-24x24-LU {
+    background: url(country-flags.png) 0 -6702px no-repeat
+}
+
+.flag.flag-24x24-MO {
+    background: url(country-flags.png) 0 -6726px no-repeat
+}
+
+.flag.flag-24x24-MG {
+    background: url(country-flags.png) 0 -6750px no-repeat
+}
+
+.flag.flag-24x24-MA {
+    background: url(country-flags.png) 0 -6774px no-repeat
+}
+
+.flag.flag-24x24-MY {
+    background: url(country-flags.png) 0 -6798px no-repeat
+}
+
+.flag.flag-24x24-MW {
+    background: url(country-flags.png) 0 -6822px no-repeat
+}
+
+.flag.flag-24x24-MD {
+    background: url(country-flags.png) 0 -6846px no-repeat
+}
+
+.flag.flag-24x24-MV {
+    background: url(country-flags.png) 0 -6870px no-repeat
+}
+
+.flag.flag-24x24-MX {
+    background: url(country-flags.png) 0 -6894px no-repeat
+}
+
+.flag.flag-24x24-MN {
+    background: url(country-flags.png) 0 -6918px no-repeat
+}
+
+.flag.flag-24x24-MH {
+    background: url(country-flags.png) 0 -6942px no-repeat
+}
+
+.flag.flag-24x24-MK {
+    background: url(country-flags.png) 0 -6966px no-repeat
+}
+
+.flag.flag-24x24-ML {
+    background: url(country-flags.png) 0 -6990px no-repeat
+}
+
+.flag.flag-24x24-MT {
+    background: url(country-flags.png) 0 -7014px no-repeat
+}
+
+.flag.flag-24x24-ME {
+    background: url(country-flags.png) 0 -7038px no-repeat
+}
+
+.flag.flag-24x24-MC {
+    background: url(country-flags.png) 0 -7062px no-repeat
+}
+
+.flag.flag-24x24-MZ {
+    background: url(country-flags.png) 0 -7086px no-repeat
+}
+
+.flag.flag-24x24-MU {
+    background: url(country-flags.png) 0 -7110px no-repeat
+}
+
+.flag.flag-24x24-MS {
+    background: url(country-flags.png) 0 -7134px no-repeat
+}
+
+.flag.flag-24x24-MR {
+    background: url(country-flags.png) 0 -7158px no-repeat
+}
+
+.flag.flag-24x24-MQ {
+    background: url(country-flags.png) 0 -7182px no-repeat
+}
+
+.flag.flag-24x24-MM {
+    background: url(country-flags.png) 0 -3613px no-repeat;
+    width: 24px;
+    height: 20px
+}
+
+.flag.flag-24x24-NA, .flag.flag-24x24-NI, .flag.flag-24x24-NC, .flag.flag-24x24-NL, .flag.flag-24x24-NP, .flag.flag-24x24-NG, .flag.flag-24x24-NE, .flag.flag-24x24-NIR, .flag.flag-24x24-NO, .flag.flag-24x24-NR, .flag.flag-24x24-NZ, .flag.flag-24x24-OM, .flag.flag-24x24-PK, .flag.flag-24x24-PA, .flag.flag-24x24-PY, .flag.flag-24x24-PE, .flag.flag-24x24-PH, .flag.flag-24x24-PLE, .flag.flag-24x24-PW, .flag.flag-24x24-PG, .flag.flag-24x24-PL, .flag.flag-24x24-PT, .flag.flag-24x24-KP, .flag.flag-24x24-PUE, .flag.flag-24x24-PR, .flag.flag-24x24-PF, .flag.flag-24x24-QA, .flag.flag-24x24-RNC, .flag.flag-24x24-TW, .flag.flag-24x24-RO, .flag.flag-24x24-ZA, .flag.flag-24x24-RU, .flag.flag-24x24-RW, .flag.flag-24x24-WS, .flag.flag-24x24-SCO, .flag.flag-24x24-SN, .flag.flag-24x24-SC, .flag.flag-24x24-SG, .flag.flag-24x24-KN, .flag.flag-24x24-SL, .flag.flag-24x24-SI, .flag.flag-24x24-SM, .flag.flag-24x24-SB, .flag.flag-24x24-SO, .flag.flag-24x24-SOS, .flag.flag-24x24-RS, .flag.flag-24x24-LK, .flag.flag-24x24-ST, .flag.flag-24x24-SD, .flag.flag-24x24-CH, .flag.flag-24x24-SR, .flag.flag-24x24-SK, .flag.flag-24x24-SE, .flag.flag-24x24-SZ, .flag.flag-24x24-SY, .flag.flag-24x24-TZ, .flag.flag-24x24-TC, .flag.flag-24x24-TO, .flag.flag-24x24-TH, .flag.flag-24x24-TJ, .flag.flag-24x24-TM, .flag.flag-24x24-TL, .flag.flag-24x24-TG, .flag.flag-24x24-TPE, .flag.flag-24x24-TT, .flag.flag-24x24-TN, .flag.flag-24x24-TR, .flag.flag-24x24-TV, .flag.flag-24x24-TWN, .flag.flag-24x24-AE, .flag.flag-24x24-UG, .flag.flag-24x24-UA, .flag.flag-24x24-UNKNOWN, .flag.flag-24x24-UNX, .flag.flag-24x24-UY, .flag.flag-24x24-US, .flag.flag-24x24-UZ, .flag.flag-24x24-VU, .flag.flag-24x24-VA, .flag.flag-24x24-VE, .flag.flag-24x24-VN, .flag.flag-24x24-VC, .flag.flag-24x24-WAL, .flag.flag-24x24-XKV, .flag.flag-24x24-YE, .flag.flag-24x24-ZM, .flag.flag-24x24-ZW {
+    width: 24px;
+    height: 24px
+}
+
+.flag.flag-24x24-NA {
+    background: url(country-flags.png) 0 -7230px no-repeat
+}
+
+.flag.flag-24x24-NI {
+    background: url(country-flags.png) 0 -7254px no-repeat
+}
+
+.flag.flag-24x24-NC {
+    background: url(country-flags.png) 0 -7278px no-repeat
+}
+
+.flag.flag-24x24-NL {
+    background: url(country-flags.png) 0 -7302px no-repeat
+}
+
+.flag.flag-24x24-NP {
+    background: url(country-flags.png) 0 -7326px no-repeat
+}
+
+.flag.flag-24x24-NG {
+    background: url(country-flags.png) 0 -7350px no-repeat
+}
+
+.flag.flag-24x24-NE {
+    background: url(country-flags.png) 0 -7374px no-repeat
+}
+
+.flag.flag-24x24-NIR {
+    background: url(country-flags.png) 0 -7398px no-repeat
+}
+
+.flag.flag-24x24-NO {
+    background: url(country-flags.png) 0 -7422px no-repeat
+}
+
+.flag.flag-24x24-NR {
+    background: url(country-flags.png) 0 -7446px no-repeat
+}
+
+.flag.flag-24x24-NZ {
+    background: url(country-flags.png) 0 -7470px no-repeat
+}
+
+.flag.flag-24x24-OM {
+    background: url(country-flags.png) 0 -7494px no-repeat
+}
+
+.flag.flag-24x24-PK {
+    background: url(country-flags.png) 0 -7518px no-repeat
+}
+
+.flag.flag-24x24-PA {
+    background: url(country-flags.png) 0 -7542px no-repeat
+}
+
+.flag.flag-24x24-PY {
+    background: url(country-flags.png) 0 -7566px no-repeat
+}
+
+.flag.flag-24x24-PE {
+    background: url(country-flags.png) 0 -7590px no-repeat
+}
+
+.flag.flag-24x24-PH {
+    background: url(country-flags.png) 0 -7614px no-repeat
+}
+
+.flag.flag-24x24-PLE {
+    background: url(country-flags.png) 0 -7638px no-repeat
+}
+
+.flag.flag-24x24-PW {
+    background: url(country-flags.png) 0 -7662px no-repeat
+}
+
+.flag.flag-24x24-PG {
+    background: url(country-flags.png) 0 -7686px no-repeat
+}
+
+.flag.flag-24x24-PL {
+    background: url(country-flags.png) 0 -7710px no-repeat
+}
+
+.flag.flag-24x24-PT {
+    background: url(country-flags.png) 0 -7734px no-repeat
+}
+
+.flag.flag-24x24-KP {
+    background: url(country-flags.png) 0 -7758px no-repeat
+}
+
+.flag.flag-24x24-PUE {
+    background: url(country-flags.png) 0 -7782px no-repeat
+}
+
+.flag.flag-24x24-PR {
+    background: url(country-flags.png) 0 -7806px no-repeat
+}
+
+.flag.flag-24x24-PF {
+    background: url(country-flags.png) 0 -7830px no-repeat
+}
+
+.flag.flag-24x24-QA {
+    background: url(country-flags.png) 0 -7854px no-repeat
+}
+
+.flag.flag-24x24-RNC {
+    background: url(country-flags.png) 0 -7878px no-repeat
+}
+
+.flag.flag-24x24-TW {
+    background: url(country-flags.png) 0 -7902px no-repeat
+}
+
+.flag.flag-24x24-RO {
+    background: url(country-flags.png) 0 -7926px no-repeat
+}
+
+.flag.flag-24x24-ZA {
+    background: url(country-flags.png) 0 -7950px no-repeat
+}
+
+.flag.flag-24x24-RU {
+    background: url(country-flags.png) 0 -7974px no-repeat
+}
+
+.flag.flag-24x24-RW {
+    background: url(country-flags.png) 0 -7998px no-repeat
+}
+
+.flag.flag-24x24-WS {
+    background: url(country-flags.png) 0 -8022px no-repeat
+}
+
+.flag.flag-24x24-SCO {
+    background: url(country-flags.png) 0 -8046px no-repeat
+}
+
+.flag.flag-24x24-SN {
+    background: url(country-flags.png) 0 -8070px no-repeat
+}
+
+.flag.flag-24x24-SC {
+    background: url(country-flags.png) 0 -8094px no-repeat
+}
+
+.flag.flag-24x24-SG {
+    background: url(country-flags.png) 0 -8118px no-repeat
+}
+
+.flag.flag-24x24-KN {
+    background: url(country-flags.png) 0 -8142px no-repeat
+}
+
+.flag.flag-24x24-SL {
+    background: url(country-flags.png) 0 -8166px no-repeat
+}
+
+.flag.flag-24x24-SI {
+    background: url(country-flags.png) 0 -8190px no-repeat
+}
+
+.flag.flag-24x24-SM {
+    background: url(country-flags.png) 0 -8214px no-repeat
+}
+
+.flag.flag-24x24-SB {
+    background: url(country-flags.png) 0 -8238px no-repeat
+}
+
+.flag.flag-24x24-SO {
+    background: url(country-flags.png) 0 -8262px no-repeat
+}
+
+.flag.flag-24x24-SOS {
+    background: url(country-flags.png) 0 -8286px no-repeat
+}
+
+.flag.flag-24x24-RS {
+    background: url(country-flags.png) 0 -8310px no-repeat
+}
+
+.flag.flag-24x24-LK {
+    background: url(country-flags.png) 0 -8334px no-repeat
+}
+
+.flag.flag-24x24-ST {
+    background: url(country-flags.png) 0 -8358px no-repeat
+}
+
+.flag.flag-24x24-SD {
+    background: url(country-flags.png) 0 -8382px no-repeat
+}
+
+.flag.flag-24x24-CH {
+    background: url(country-flags.png) 0 -8406px no-repeat
+}
+
+.flag.flag-24x24-SR {
+    background: url(country-flags.png) 0 -8430px no-repeat
+}
+
+.flag.flag-24x24-SK {
+    background: url(country-flags.png) 0 -8454px no-repeat
+}
+
+.flag.flag-24x24-SE {
+    background: url(country-flags.png) 0 -8478px no-repeat
+}
+
+.flag.flag-24x24-SZ {
+    background: url(country-flags.png) 0 -8502px no-repeat
+}
+
+.flag.flag-24x24-SY {
+    background: url(country-flags.png) 0 -8526px no-repeat
+}
+
+.flag.flag-24x24-TZ {
+    background: url(country-flags.png) 0 -8550px no-repeat
+}
+
+.flag.flag-24x24-TC {
+    background: url(country-flags.png) 0 -8574px no-repeat
+}
+
+.flag.flag-24x24-TO {
+    background: url(country-flags.png) 0 -8598px no-repeat
+}
+
+.flag.flag-24x24-TH {
+    background: url(country-flags.png) 0 -8622px no-repeat
+}
+
+.flag.flag-24x24-TJ {
+    background: url(country-flags.png) 0 -8646px no-repeat
+}
+
+.flag.flag-24x24-TM {
+    background: url(country-flags.png) 0 -8670px no-repeat
+}
+
+.flag.flag-24x24-TL {
+    background: url(country-flags.png) 0 -8694px no-repeat
+}
+
+.flag.flag-24x24-TG {
+    background: url(country-flags.png) 0 -8718px no-repeat
+}
+
+.flag.flag-24x24-TPE {
+    background: url(country-flags.png) 0 -8742px no-repeat
+}
+
+.flag.flag-24x24-TT {
+    background: url(country-flags.png) 0 -8766px no-repeat
+}
+
+.flag.flag-24x24-TN {
+    background: url(country-flags.png) 0 -8790px no-repeat
+}
+
+.flag.flag-24x24-TR {
+    background: url(country-flags.png) 0 -8814px no-repeat
+}
+
+.flag.flag-24x24-TV {
+    background: url(country-flags.png) 0 -8838px no-repeat
+}
+
+.flag.flag-24x24-TWN {
+    background: url(country-flags.png) 0 -8862px no-repeat
+}
+
+.flag.flag-24x24-AE {
+    background: url(country-flags.png) 0 -8886px no-repeat
+}
+
+.flag.flag-24x24-UG {
+    background: url(country-flags.png) 0 -8910px no-repeat
+}
+
+.flag.flag-24x24-UA {
+    background: url(country-flags.png) 0 -8934px no-repeat
+}
+
+.flag.flag-24x24-UNKNOWN {
+    background: url(country-flags.png) 0 -8958px no-repeat
+}
+
+.flag.flag-24x24-UNX {
+    background: url(country-flags.png) 0 -8982px no-repeat
+}
+
+.flag.flag-24x24-UY {
+    background: url(country-flags.png) 0 -9006px no-repeat
+}
+
+.flag.flag-24x24-US {
+    background: url(country-flags.png) 0 -9030px no-repeat
+}
+
+.flag.flag-24x24-UZ {
+    background: url(country-flags.png) 0 -9054px no-repeat
+}
+
+.flag.flag-24x24-VU {
+    background: url(country-flags.png) 0 -9078px no-repeat
+}
+
+.flag.flag-24x24-VA {
+    background: url(country-flags.png) 0 -9102px no-repeat
+}
+
+.flag.flag-24x24-VE {
+    background: url(country-flags.png) 0 -9126px no-repeat
+}
+
+.flag.flag-24x24-VN {
+    background: url(country-flags.png) 0 -9150px no-repeat
+}
+
+.flag.flag-24x24-VC {
+    background: url(country-flags.png) 0 -9174px no-repeat
+}
+
+.flag.flag-24x24-WAL {
+    background: url(country-flags.png) 0 -9198px no-repeat
+}
+
+.flag.flag-24x24-XKV {
+    background: url(country-flags.png) 0 -9222px no-repeat
+}
+
+.flag.flag-24x24-YE {
+    background: url(country-flags.png) 0 -9246px no-repeat
+}
+
+.flag.flag-24x24-ZM {
+    background: url(country-flags.png) 0 -9270px no-repeat
+}
+
+.flag.flag-24x24-ZW {
+    background: url(country-flags.png) 0 -9294px no-repeat
+}
