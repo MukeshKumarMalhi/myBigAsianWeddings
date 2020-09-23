@@ -16,6 +16,11 @@ use App\Business;
 use App\BusinessGallery;
 use App\BusinessHour;
 use App\BusinessFeature;
+use App\DataQuestion;
+use App\DataAnswer;
+use App\DataSection;
+use App\SectionBusinessCategory;
+use App\DataType;
 
 class BusinessController extends Controller
 {
@@ -23,6 +28,33 @@ class BusinessController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('admin');
+    }
+
+    public function show_section($id)
+    {
+      $section = DB::table('data_sections')
+      ->select('data_sections.*')
+      ->where('data_sections.id', $id)
+      ->first();
+
+      $data_types = DataType::all();
+      $questions = DB::table('data_questions')
+      ->leftjoin('data_types', 'data_types.id', '=', 'data_questions.data_type_id')
+      ->leftjoin('data_sections', 'data_sections.id', '=', 'data_questions.data_section_id')
+      ->select('data_questions.*', 'data_types.type', 'data_sections.section_name')
+      ->where('data_questions.data_section_id', '=', $id)
+      ->orderBy('updated_at', 'desc')
+      ->get();
+
+      foreach ($questions as $key => $value) {
+        $answers = DB::table('data_answers')
+        ->select('data_answers.id as answer_id', 'data_answers.answer_name')
+        ->where('data_answers.data_question_id', '=', $value->id)
+        ->get()->toArray();
+        $value->answers = $answers;
+      }
+
+      return view('admins.show_data_section', ['section' => $section, 'questions' => $questions, 'data_types' => $data_types]);
     }
 
     public function view_countries()
@@ -569,5 +601,286 @@ class BusinessController extends Controller
     {
       $business = Business::find($request->id)->delete();
       return response()->json("Business Deleted Succssfully", 200);
+    }
+
+    public function view_data_section(){
+      $cats = Category::where('parent_category_id', '=', null)->get();
+      $sections = DB::table('data_sections')
+      ->select('data_sections.*')
+      ->orderBy('updated_at', 'DESC')
+      ->get();
+
+      foreach ($sections as $key => $value) {
+        $categories = DB::table('section_business_categories')
+        ->leftjoin('categories', 'categories.id', '=', 'section_business_categories.category_id')
+        ->select('categories.id as category_id', 'categories.category_name')
+        ->where('section_business_categories.data_section_id', '=', $value->id)
+        ->get()->toArray();
+        $value->categories = $categories;
+      }
+      return view('admins.data_section', ['cats' => $cats, 'sections' => $sections]);
+    }
+
+    public function store_data_section(Request $request){
+      $rules = array(
+        'section_name' => 'required',
+        'categories' => 'required',
+        'section_order' => 'required'
+      );
+
+      $error = Validator::make($request->all(), $rules);
+      if($error->fails()){
+        return response()->json(['errors' => $error->errors()->all()]);
+      }else{
+        if(isset($request->section_basic_search)){
+          $section_basic_search = true;
+        }else {
+          $section_basic_search = false;
+        }
+
+        if(isset($request->section_advance_search)){
+          $section_advance_search = true;
+        }else {
+          $section_advance_search = false;
+        }
+
+        $id = uniqid();
+        $form_data = array(
+          'id' => $id,
+          'section_name' => $request->section_name,
+          'section_order' => $request->section_order,
+          'section_status' => true,
+          'section_basic_search' => $section_basic_search,
+          'section_advance_search' => $section_advance_search
+        );
+        $section_id = DataSection::create($form_data);
+        foreach ($request->categories as $key => $cate) {
+          if($cate != null){
+            $u_id = uniqid();
+            $section_category_data = array(
+              'id' => $u_id,
+              'data_section_id' => $id,
+              'category_id' => $cate
+            );
+            $section_cat = SectionBusinessCategory::create($section_category_data);
+          }
+        }
+        return response()->json(['success' => 'Data section added successfully'], 200);
+      }
+    }
+
+    public function store_data_question(Request $request){
+      $rules = array(
+        'question_name' => 'required',
+        'data_type_id' => 'required',
+        'question_order' => 'required'
+      );
+
+      $error = Validator::make($request->all(), $rules);
+      if($error->fails()){
+        return response()->json(['errors' => $error->errors()->all()]);
+      }else{
+        if(isset($request->question_basic_search)){
+          $question_basic_search = true;
+        }else {
+          $question_basic_search = false;
+        }
+
+        if(isset($request->question_advance_search)){
+          $question_advance_search = true;
+        }else {
+          $question_advance_search = false;
+        }
+
+        $id = uniqid();
+        $form_data = array(
+          'id' => $id,
+          'data_type_id' => $request->data_type_id,
+          'data_section_id' => $request->data_section_id,
+          'question_name' => $request->question_name,
+          'question_order' => $request->question_order,
+          'question_status' => true,
+          'question_basic_search' => $question_basic_search,
+          'question_advance_search' => $question_advance_search
+        );
+        $data_question_id = DataQuestion::create($form_data);
+        foreach ($request->answer_name as $key => $cate) {
+          if($cate != null){
+            $u_id = uniqid();
+            $data_answer = array(
+              'id' => $u_id,
+              'data_question_id' => $id,
+              'answer_name' => $cate
+            );
+            $section_cat = DataAnswer::create($data_answer);
+          }
+        }
+        return response()->json(['success' => 'Data question added successfully'], 200);
+      }
+    }
+
+    public function update_data_section(Request $request){
+      $rules = array(
+        'edit_section_name' => 'required',
+        'categories' => 'required',
+        'edit_section_order' => 'required'
+      );
+
+      $error = Validator::make($request->all(), $rules);
+      if($error->fails()){
+        return response()->json(['errors' => $error->errors()->all()]);
+      }else{
+        if(isset($request->edit_section_basic_search)){
+          $edit_section_basic_search = true;
+        }else {
+          $edit_section_basic_search = false;
+        }
+
+        if(isset($request->edit_section_status)){
+          $edit_section_status = true;
+        }else {
+          $edit_section_status = false;
+        }
+
+        if(isset($request->edit_section_advance_search)){
+          $edit_section_advance_search = true;
+        }else {
+          $edit_section_advance_search = false;
+        }
+
+        $data_section_id = DataSection::find($request->edit_fid);
+        $data_section_id->section_name = $request->edit_section_name;
+        $data_section_id->section_order = $request->edit_section_order;
+        $data_section_id->section_status = $edit_section_status;
+        $data_section_id->section_basic_search = $edit_section_basic_search;
+        $data_section_id->section_advance_search = $edit_section_advance_search;
+        $data_section_id->save();
+
+        $deleted = SectionBusinessCategory::where('data_section_id',$request->edit_fid)->delete();
+
+        foreach ($request->categories as $key => $cate) {
+          if($cate != null){
+            $u_id = uniqid();
+            $section_category_data = array(
+              'id' => $u_id,
+              'data_section_id' => $request->edit_fid,
+              'category_id' => $cate
+            );
+            $section_cat = SectionBusinessCategory::create($section_category_data);
+          }
+        }
+        return response()->json(['success' => 'Data section updated successfully'], 200);
+      }
+    }
+
+    public function update_data_question(Request $request){
+      $rules = array(
+        'edit_question_name' => 'required',
+        'edit_question_order' => 'required'
+      );
+
+      $error = Validator::make($request->all(), $rules);
+      if($error->fails()){
+        return response()->json(['errors' => $error->errors()->all()]);
+      }else{
+        if(isset($request->edit_question_basic_search)){
+          $edit_question_basic_search = true;
+        }else {
+          $edit_question_basic_search = false;
+        }
+
+        if(isset($request->edit_question_status)){
+          $edit_question_status = true;
+        }else {
+          $edit_question_status = false;
+        }
+
+        if(isset($request->edit_question_advance_search)){
+          $edit_question_advance_search = true;
+        }else {
+          $edit_question_advance_search = false;
+        }
+
+        $data_question_id = DataQuestion::find($request->edit_fid);
+        $data_question_id->question_name = $request->edit_question_name;
+        $data_question_id->question_order = $request->edit_question_order;
+        $data_question_id->question_status = $edit_question_status;
+        $data_question_id->question_basic_search = $edit_question_basic_search;
+        $data_question_id->question_advance_search = $edit_question_advance_search;
+        $data_question_id->save();
+
+        $deleted = DataAnswer::where('data_question_id',$request->edit_fid)->delete();
+
+        foreach ($request->answer_name as $key => $cate) {
+          if($cate != null){
+            $u_id = uniqid();
+            $section_category_data = array(
+              'id' => $u_id,
+              'data_question_id' => $request->edit_fid,
+              'answer_name' => $cate
+            );
+            $section_cat = DataAnswer::create($section_category_data);
+          }
+        }
+        return response()->json(['success' => 'Data question updated successfully'], 200);
+      }
+    }
+
+    public function delete_section_data(Request $request)
+    {
+      $data_section_delete = DataSection::find($request->id)->delete();
+      return response()->json("Data Section Deleted Succssfully", 200);
+    }
+
+    public function delete_question_data(Request $request)
+    {
+      $data_question_delete = DataQuestion::find($request->id)->delete();
+      return response()->json("Data Question Deleted Succssfully", 200);
+    }
+
+    public function store_data_type(){
+      $id = uniqid();
+      $form_data = array(
+        'id' => $id,
+        'type' => "file",
+        'html_tag' => "<input type='file' class='form-control'>"
+      );
+      $data_type_id = DataType::create($form_data);
+      return "done";
+    }
+
+    public function fill_section($id, $uid = "5e4401d23d861"){
+      //5e44094fd0f38
+      //5e4401d23d861
+      $sections = DB::table('section_business_categories')
+      ->leftJoin('data_sections', 'data_sections.id', '=', 'section_business_categories.data_section_id')
+      ->leftJoin('categories', 'categories.id', '=', 'section_business_categories.category_id')
+      ->select('section_business_categories.*', 'categories.category_name', 'data_sections.section_name')
+      ->where('categories.id', '=', $uid)
+      ->orderBy('data_sections.section_order', 'asc')
+      ->get();
+
+      foreach ($sections as $key => $value) {
+        $questions = DB::table('data_questions')
+        ->leftJoin('data_sections', 'data_sections.id', '=', 'data_questions.data_section_id')
+        ->leftJoin('data_types', 'data_types.id', '=', 'data_questions.data_type_id')
+        ->select('data_questions.*', 'data_types.type', 'data_types.html_tag')
+        ->where('data_questions.data_section_id', '=', $value->data_section_id)
+        ->orderBy('data_questions.question_name', 'asc')
+        ->get()->toArray();
+
+        foreach ($questions as $key => $val) {
+          $answers = DB::table('data_answers')
+          ->select('data_answers.id as answer_id', 'data_answers.answer_name')
+          ->where('data_answers.data_question_id', '=', $val->id)
+          ->get()->toArray();
+          $val->answers = $answers;
+        }
+
+        $value->questions = $questions;
+      }
+
+      $structure = "<>";
+      return view('admins.fill_data_section', ['sections' => $sections]);
     }
 }

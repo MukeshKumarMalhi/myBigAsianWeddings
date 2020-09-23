@@ -21,6 +21,8 @@ Route::get('/','WebController@index');
 
 
 Auth::routes();
+Route::get('/show_section/{id}', 'Admin\BusinessController@show_section');
+Route::get('/fill_section/{id}', 'Admin\BusinessController@fill_section');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/signup', 'WebController@signup');
@@ -91,6 +93,17 @@ Route::get('/view_business', 'Admin\BusinessController@create_new_business');
 Route::post('/store_business', 'Admin\BusinessController@store_business');
 Route::get('/show_business/{id}', 'Admin\BusinessController@show_business');
 Route::post('/delete_business', 'Admin\BusinessController@delete_business');
+
+
+Route::get('/view_data_section', 'Admin\BusinessController@view_data_section');
+Route::post('/store_data_section', 'Admin\BusinessController@store_data_section');
+Route::post('/update_data_section', 'Admin\BusinessController@update_data_section');
+Route::post('/delete_section_data', 'Admin\BusinessController@delete_section_data');
+Route::get('/store_data_type', 'Admin\BusinessController@store_data_type');
+Route::post('/store_data_question', 'Admin\BusinessController@store_data_question');
+Route::post('/update_data_question', 'Admin\BusinessController@update_data_question');
+Route::post('/delete_question_data', 'Admin\BusinessController@delete_question_data');
+
 
 Auth::routes();
 

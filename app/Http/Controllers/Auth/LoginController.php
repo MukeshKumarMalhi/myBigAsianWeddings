@@ -61,7 +61,6 @@ class LoginController extends Controller
       $validator = Validator::make($Input, $rules);
 
       if ($validator->fails()) {
-        // dd($validator);
         return Redirect::back()->withInput()->withErrors($validator);
       }
       else {

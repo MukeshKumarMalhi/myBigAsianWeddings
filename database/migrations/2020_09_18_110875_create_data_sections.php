@@ -16,8 +16,6 @@ class CreateDataSections extends Migration
         Schema::create('data_sections', function (Blueprint $table) {
           $table->engine="InnoDB";
           $table->string('id')->primary();
-          $table->string('data_question_id')->nullable();
-          $table->foreign('data_question_id')->references('id')->on('data_questions')->onDelete('cascade')->onUpdate('cascade');
           $table->string('section_name')->nullable();
           $table->boolean('section_status')->nullable();
           $table->integer('section_order')->nullable();

@@ -19,7 +19,7 @@ class CreateSectionBusinessCategories extends Migration
           $table->string('data_section_id')->nullable();
           $table->foreign('data_section_id')->references('id')->on('data_sections')->onDelete('cascade')->onUpdate('cascade');
           $table->string('category_id')->nullable();
-          $table->foreign('category_id')->references('id')->on('data_sections')->onDelete('cascade')->onUpdate('cascade');
+          $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
           $table->timestamps();
         });
     }

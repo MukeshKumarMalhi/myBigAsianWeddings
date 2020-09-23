@@ -120,7 +120,6 @@ class HomeController extends Controller
           }
         }
       }
-      // dd($businesses);
 
 
       $count = count($businesses);
@@ -151,7 +150,6 @@ class HomeController extends Controller
     }
 
     public function show_detail_page(Request $request, $type, $name){
-      dd($name);
     }
 
     public function store_shortlist(Request $request)
@@ -208,7 +206,6 @@ class HomeController extends Controller
      if($error->fails()){
        return response()->json(['errors' => $error->errors()->all()]);
      }else{
-       // dd($request->all());
        // $start_date = date('Y-m-d H:i:s', strtotime($request->edit_datepicker));
        // $diffrence_date = date('Y-m-d H:i:s', strtotime("$request->edit_datepicker +$request->edit_batch_month_duration week"));
        // $end_date = date('Y-m-d H:i:s', strtotime("$diffrence_date -1 day"));
@@ -268,7 +265,6 @@ class HomeController extends Controller
     public function update_user_info(Request $request)
     {
       try {
-        // dd($request[0]['user_id']);
           $user = User::find($request[0]['user_id']);
           if($request[0]['type'] == 'name'){
             $user->name = $request[0]['value'];
