@@ -17,6 +17,6 @@ class DataSection extends Model
   */
 
  protected $fillable = [
-     'id', 'data_question_id', 'section_name', 'section_status', 'section_order', 'section_basic_search', 'section_advance_search'
+     'id', 'section_name', 'section_sub_heading', 'section_status', 'section_order', 'section_basic_search', 'section_advance_search'
  ];
 }

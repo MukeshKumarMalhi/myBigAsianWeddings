@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_asset/css/datepicker.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_asset/css/image-uploader.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_asset/css/daterangepicker.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_asset/css/custom.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_asset/css/bootstrap-timepicker.min.css') }}" />
@@ -29,6 +30,7 @@
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('admin_asset/js/moment.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('admin_asset/js/datepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin_asset/js/image-uploader.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('admin_asset/js/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('admin_asset/js/daterangepicker.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('admin_asset/js/bootstrap-timepicker.min.js') }}"></script>

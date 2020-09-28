@@ -25,14 +25,26 @@
               <div class="form-group row add">
                 <label for="question_name" class="control-label col-sm-3" style="font-weight: 600;">Question Name :</label>
                 <div class="col-sm-9">
-                  <input type="text" name="question_name" id="question_name" style="border-radius: 5px;" class="form-control" placeholder="Enter Section Name" autocomplete="off" autofocus required/>
+                  <input type="text" name="question_name" id="question_name" style="border-radius: 5px;" class="form-control" placeholder="Enter Question Name" autocomplete="off" autofocus required/>
                   <input type="hidden" name="data_section_id" value="{{ $section->id }}">
                 </div>
               </div>
               <div class="form-group row add">
-                <label for="data_type_id" class="control-label col-sm-3" style="font-weight: 600;">Data Type :</label>
+                <label for="question_label" class="control-label col-sm-3" style="font-weight: 600;">Question Label :</label>
                 <div class="col-sm-9">
-                  <select class="form-control data_type_id" id="data_type_id" style="border-radius: 5px;" name="data_type_id">
+                  <input type="text" name="question_label" id="question_label" style="border-radius: 5px;" class="form-control" placeholder="Enter Question Label" autocomplete="off"/>
+                </div>
+              </div>
+              <div class="form-group row add">
+                <label for="question_placeholder" class="control-label col-sm-3" style="font-weight: 600;">Question Placeholder :</label>
+                <div class="col-sm-9">
+                  <input type="text" name="question_placeholder" id="question_placeholder" style="border-radius: 5px;" class="form-control" placeholder="Enter Question Placeholder" autocomplete="off"/>
+                </div>
+              </div>
+              <div class="form-group row add">
+                <label for="data_type_id" class="control-label col-sm-3" style="font-weight: 600;">Question's Data Type :</label>
+                <div class="col-sm-9">
+                  <select class="form-control data_type_id_add" id="data_type_id" style="border-radius: 5px;" name="data_type_id">
                     <option value="">Select Data Type</option>
                     <?php if(isset($data_types) && count($data_types) > 0){ ?>
                       @foreach($data_types as $data_ty)
@@ -45,7 +57,13 @@
               <div class="form-group row add">
                 <label for="question_order" class="control-label col-sm-3" style="font-weight: 600;">Question Order :</label>
                 <div class="col-sm-9">
-                  <input type="text" name="question_order" id="question_order" style="border-radius: 5px;" class="form-control" placeholder="Enter Section Order e.g. 1, 2 or 3" autocomplete="off" required/>
+                  <input type="text" name="question_order" id="question_order" style="border-radius: 5px;" class="form-control" placeholder="Enter Question Order e.g. 1, 2 or 3" autocomplete="off" required/>
+                </div>
+              </div>
+              <div class="form-group row add">
+                <label for="question_mandatory" class="control-label col-sm-3" style="font-weight: 600;">Question Mandatory :</label>
+                <div class="col-sm-9">
+                  <input type="checkbox" name="question_mandatory" id="question_mandatory" value="true" style="border-radius: 5px;" class="form-control"/>
                 </div>
               </div>
               <div class="form-group row add">
@@ -60,9 +78,9 @@
                   <input type="checkbox" name="question_advance_search" id="question_advance_search" value="true" style="border-radius: 5px;" class="form-control"/>
                 </div>
               </div>
-              <div class="form-group row add choices_div" style="display:none;">
+              <div class="form-group row add choices_div_add" style="display:none;">
                 <label for="answer_name" class="control-label col-sm-3" style="font-weight: 600;">Choice Answers :</label>
-                <div class="col-sm-6 append_choices">
+                <div class="col-sm-6 append_choices_add">
                   <input type="text" name="answer_name[]" style="border-radius: 5px;" class="form-control" placeholder="Enter value" autocomplete="off"/>
                   <br>
                   <input type="text" name="answer_name[]" style="border-radius: 5px;" class="form-control" placeholder="Enter value" autocomplete="off"/>
@@ -73,7 +91,7 @@
                   <br>
                 </div>
                 <div class="col-sm-3">
-                  <button type="button" class="btn btn-sm btn-danger form-control add_more" name="button">Add <i class="fas fa-plus-circle"></i></button>
+                  <button type="button" class="btn btn-sm btn-danger form-control add_more_add" name="button">Add <i class="fas fa-plus-circle"></i></button>
                 </div>
               </div>
             <div class="modal-footer">
@@ -115,13 +133,25 @@
                 <div class="form-group row add">
                   <label for="edit_question_name" class="control-label col-sm-3" style="font-weight: 600;">Question Name :</label>
                   <div class="col-sm-9">
-                    <input type="text" name="edit_question_name" id="edit_question_name" style="border-radius: 5px;" class="form-control" placeholder="Enter Question Name" autocomplete="off" autofocus required/>
+                    <input type="text" name="edit_question_name" id="edit_question_name" style="border-radius: 5px;" class="form-control" placeholder="Enter Question Name e.g. brief_description, venue_type" autocomplete="off" autofocus required/>
                   </div>
                 </div>
                 <div class="form-group row add">
-                  <label for="edit_data_type_id" class="control-label col-sm-3" style="font-weight: 600;">Data Type :</label>
+                  <label for="edit_question_label" class="control-label col-sm-3" style="font-weight: 600;">Question Label :</label>
                   <div class="col-sm-9">
-                    <select class="form-control data_type_id" id="edit_data_type_id" style="border-radius: 5px;" name="edit_data_type_id">
+                    <input type="text" name="edit_question_label" id="edit_question_label" style="border-radius: 5px;" class="form-control" placeholder="Enter Question Label" autocomplete="off"/>
+                  </div>
+                </div>
+                <div class="form-group row add">
+                  <label for="edit_question_placeholder" class="control-label col-sm-3" style="font-weight: 600;">Question Placeholder :</label>
+                  <div class="col-sm-9">
+                    <input type="text" name="edit_question_placeholder" id="edit_question_placeholder" style="border-radius: 5px;" class="form-control" placeholder="Enter Question Placeholder" autocomplete="off"/>
+                  </div>
+                </div>
+                <div class="form-group row add">
+                  <label for="edit_data_type_id" class="control-label col-sm-3" style="font-weight: 600;">Question's Data Type :</label>
+                  <div class="col-sm-9">
+                    <select class="form-control data_type_id_edit" id="edit_data_type_id" style="border-radius: 5px;" name="edit_data_type_id">
                       <option value="">Select Data Type</option>
                       <?php if(isset($data_types) && count($data_types) > 0){ ?>
                         @foreach($data_types as $data_ty)
@@ -138,7 +168,13 @@
                   </div>
                 </div>
                 <div class="form-group row add">
-                  <label for="edit_question_status" class="control-label col-sm-3" style="font-weight: 600;">Question Search :</label>
+                  <label for="edit_question_mandatory" class="control-label col-sm-3" style="font-weight: 600;">Question Mandatory :</label>
+                  <div class="col-sm-9">
+                    <input type="checkbox" name="edit_question_mandatory" id="edit_question_mandatory" value="true" style="border-radius: 5px;" class="form-control"/>
+                  </div>
+                </div>
+                <div class="form-group row add">
+                  <label for="edit_question_status" class="control-label col-sm-3" style="font-weight: 600;">Question Status :</label>
                   <div class="col-sm-9">
                     <input type="checkbox" name="edit_question_status" id="edit_question_status" value="true" style="border-radius: 5px;" class="form-control"/>
                   </div>
@@ -155,9 +191,9 @@
                     <input type="checkbox" name="edit_question_advance_search" id="edit_question_advance_search" value="true" style="border-radius: 5px;" class="form-control"/>
                   </div>
                 </div>
-                <div class="form-group row add choices_div" style="display:none;">
+                <div class="form-group row add choices_div_edit" style="display:none;">
                   <label for="answer_name" class="control-label col-sm-3" style="font-weight: 600;">Choice Answers :</label>
-                  <div class="col-sm-6 append_choices">
+                  <div class="col-sm-6 append_choices_edit">
                     <input type="text" name="answer_name[]" style="border-radius: 5px;" class="form-control" placeholder="Enter value" autocomplete="off"/>
                     <br>
                     <input type="text" name="answer_name[]" style="border-radius: 5px;" class="form-control" placeholder="Enter value" autocomplete="off"/>
@@ -168,7 +204,7 @@
                     <br>
                   </div>
                   <div class="col-sm-3">
-                    <button type="button" class="btn btn-sm btn-danger form-control add_more" name="button">Add <i class="fas fa-plus-circle"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger form-control add_more_edit" name="button">Add <i class="fas fa-plus-circle"></i></button>
                   </div>
                 </div>
       				</div>
@@ -224,6 +260,8 @@
                         <tr>
                             <th><span>ID</span></th>
                             <th><span>Question Name</span></th>
+                            <th><span>Question Label</span></th>
+                            <th><span>Question Placeholder</span></th>
                             <th><span>Order no#</span></th>
                             <th><span>Data Type</span></th>
                             <th><span>Section</span></th>
@@ -240,6 +278,8 @@
                              <tr class="Question{{$question->id}}">
                                <td>{{ $question->id }}</td>
                                <td>{{ $question->question_name }}</td>
+                               <td>{{ $question->question_label }}</td>
+                               <td>{{ $question->question_placeholder }}</td>
                                <td>{{ $question->question_order }}</td>
                                <td>{{ $question->type }}</td>
                                <td>{{ $question->section_name }}</td>
@@ -252,7 +292,7 @@
                                </td>
                                <td><?php echo date('d M Y',strtotime($question->created_at)); ?></td>
                                <td class="px-2 text-nowrap">
-                                 <a href="#" class="edit_modal btn btn-sm btn-save" data-id="{{ $question->id }}" data-question_name="{{ $question->question_name }}" data-question_order="{{ $question->question_order }}" data-question_status="{{ $question->question_status }}" data-question_basic_search="{{ $question->question_basic_search }}" data-question_advance_search="{{ $question->question_advance_search }}" data-data_type_id="{{ $question->data_type_id }}" data-answers="<?php echo htmlspecialchars(json_encode($question->answers), ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#EditQuestionModal" data-whatever="@mdo"><i class='fa fa-pencil'></i></a>
+                                 <a href="#" class="edit_modal btn btn-sm btn-save" data-id="{{ $question->id }}" data-question_name="{{ $question->question_name }}" data-question_label="{{ $question->question_label }}" data-question_placeholder="{{ $question->question_placeholder }}" data-question_order="{{ $question->question_order }}" data-question_mandatory="{{ $question->question_mandatory }}" data-question_status="{{ $question->question_status }}" data-question_basic_search="{{ $question->question_basic_search }}" data-question_advance_search="{{ $question->question_advance_search }}" data-data_type_id="{{ $question->data_type_id }}" data-answers="<?php echo htmlspecialchars(json_encode($question->answers), ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#EditQuestionModal" data-whatever="@mdo"><i class='fa fa-pencil'></i></a>
                                  <a href="#" class="delete_modal btn btn-sm btn-danger" data-id="{{ $question->id }}" data-question_name="{{ $question->question_name }}" data-toggle="modal" data-target="#DeleteQuestionModal" data-whatever="@mdo"><i class='fa fa-trash'></i></a>
                                </td>
                              </tr>
@@ -285,16 +325,30 @@
       }
     });
 
-    $(".data_type_id").on('change', function(){
+    $(".data_type_id_add").on('change', function(){
       if($(this).val() == "5f68a1b5b923a" || $(this).val() == "5f68a1c980149" || $(this).val() == "5f68a1ed98c6c"){
-        $('.choices_div').show();
+        $('.choices_div_add').show();
       }else {
-        $('.choices_div').hide();
+        $('.choices_div_add').hide();
       }
     });
 
-    $(".add_more").on('click', function(){
-      $('.append_choices').append('<input type="text" name="answer_name[]" style="border-radius: 5px;" class="form-control" placeholder="Enter value" autocomplete="off"/><br/>')
+    $(".data_type_id_edit").on('change', function(){
+      if($(this).val() == "5f68a1b5b923a" || $(this).val() == "5f68a1c980149" || $(this).val() == "5f68a1ed98c6c"){
+        $('.choices_div_edit').show();
+      }else {
+        $('.choices_div_edit').hide();
+      }
+    });
+
+    $(".add_more_add").on('click', function(){
+      $('.append_choices_add').append('<input type="text" name="answer_name[]" style="border-radius: 5px;" class="form-control appended" placeholder="Enter value" autofocus autocomplete="off"/><br/>')
+      $('.appended').focus();
+    });
+
+    $(".add_more_edit").on('click', function(){
+      $('.append_choices_edit').append('<input type="text" name="answer_name[]" style="border-radius: 5px;" class="form-control appended" placeholder="Enter value" autofocus autocomplete="off"/><br/>')
+      $('.appended').focus();
     });
 
     $(".select_all").change(function(){
@@ -314,8 +368,9 @@
     	}
     });
 
-    $('#SectionModal').on('shown.bs.modal', function () {
-      $('#section_name').focus();
+    $('#QuestionModal').on('shown.bs.modal', function () {
+      $('#QuestionModal').find('#question_form')[0].reset();
+      $('#question_name').focus();
     });
 
   $('#question_form').on('submit', function(event){
@@ -373,22 +428,29 @@
 		$('#fid').val($(this).data('id'));
 		$('#edit_fid').val($(this).data('id'));
 		$('#edit_question_name').val($(this).data('question_name'));
+		$('#edit_question_label').val($(this).data('question_label'));
+		$('#edit_question_placeholder').val($(this).data('question_placeholder'));
 		$('#edit_question_order').val($(this).data('question_order'));
     $("#edit_data_type_id option[value='"+$(this).data('data_type_id')+"']").prop('selected', true);
     if($(this).data('data_type_id') == '5f68a1b5b923a' || $(this).data('data_type_id') == '5f68a1c980149' || $(this).data('data_type_id') == '5f68a1ed98c6c'){
-      $('.choices_div').show();
-      $('.append_choices').html('');
+      $('.choices_div_edit').show();
+      $('.append_choices_edit').html('');
       $.each($(this).data('answers'), function(index, value){
-        $('.append_choices').append('<input type="text" name="answer_name[]" style="border-radius: 5px;" value="'+value.answer_name+'" class="form-control" autocomplete="off"/><br/>');
+        $('.append_choices_edit').append('<input type="text" name="answer_name[]" style="border-radius: 5px;" value="'+value.answer_name+'" class="form-control" autocomplete="off"/><br/>');
       });
     }else {
-      $('.choices_div').hide();
+      $('.choices_div_edit').hide();
     }
 
     if($(this).data('question_status') == true){
       $('#edit_question_status').prop('checked', true);
     }else {
       $('#edit_question_status').prop('checked', false);
+    }
+    if($(this).data('question_mandatory') == true){
+      $('#edit_question_mandatory').prop('checked', true);
+    }else {
+      $('#edit_question_mandatory').prop('checked', false);
     }
     if($(this).data('question_basic_search') == true){
       $('#edit_question_basic_search').prop('checked', true);

@@ -182,6 +182,9 @@
                                  <td class="px-2 text-nowrap">
                                    <a href="#" class="edit_modal btn btn-sm btn-save" data-id="{{ $category->id }}" data-category_name="{{ $category->category_name }}" data-category_icon="{{ $category->category_icon }}" data-parent_category_id="{{ $category->parent_category_id }}" data-toggle="modal" data-target="#EditCategoryModal" data-whatever="@mdo"><i class='fa fa-pencil'></i> Edit</a>
                                    <a href="#" class="delete_modal btn btn-sm btn-danger" data-id="{{ $category->id }}" data-category_name="{{ $category->category_name }}" data-category_icon="{{ $category->category_icon }}" data-toggle="modal" data-target="#DeleteCategoryModal" data-whatever="@mdo"><i class='fa fa-trash'></i> Delete</a>
+                                   @if($category->parent_category_id == NULL)
+                                    <a href="{{ url('/fill_section') }}/{{ $category->id }}" class="btn btn-sm btn-warning"><i class='fas fa-edit'></i> Fill Section</a>
+                                   @endif
                                  </td>
                                </tr>
                              @endforeach

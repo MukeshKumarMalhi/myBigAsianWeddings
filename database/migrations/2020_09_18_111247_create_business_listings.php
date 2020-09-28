@@ -17,7 +17,7 @@ class CreateBusinessListings extends Migration
           $table->engine="InnoDB";
           $table->string('id')->primary();
           $table->string('category_id')->nullable();
-          $table->foreign('category_id')->references('id')->on('data_sections')->onDelete('cascade')->onUpdate('cascade');
+          $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
           $table->string('name')->nullable();
           $table->string('email')->nullable();
           $table->string('password')->nullable();

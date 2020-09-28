@@ -23,6 +23,7 @@ Route::get('/','WebController@index');
 Auth::routes();
 Route::get('/show_section/{id}', 'Admin\BusinessController@show_section');
 Route::get('/fill_section/{id}', 'Admin\BusinessController@fill_section');
+Route::get('/edit_data_submission/{id}/{cat_id}', 'Admin\BusinessController@edit_data_submission');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/signup', 'WebController@signup');
@@ -103,6 +104,10 @@ Route::get('/store_data_type', 'Admin\BusinessController@store_data_type');
 Route::post('/store_data_question', 'Admin\BusinessController@store_data_question');
 Route::post('/update_data_question', 'Admin\BusinessController@update_data_question');
 Route::post('/delete_question_data', 'Admin\BusinessController@delete_question_data');
+
+Route::get('/view_data_submissions', 'Admin\BusinessController@view_data_submissions');
+
+Route::post('/store_fill_section_form', 'Admin\BusinessController@store_fill_section_form');
 
 
 Auth::routes();

@@ -17,6 +17,7 @@ class CreateDataSections extends Migration
           $table->engine="InnoDB";
           $table->string('id')->primary();
           $table->string('section_name')->nullable();
+          $table->string('section_sub_heading')->nullable();
           $table->boolean('section_status')->nullable();
           $table->integer('section_order')->nullable();
           $table->boolean('section_basic_search')->nullable();

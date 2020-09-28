@@ -29,6 +29,12 @@
                 </div>
               </div>
               <div class="form-group row add">
+                <label for="section_sub_heading" class="control-label col-sm-3" style="font-weight: 600;">Section Sub Heading :</label>
+                <div class="col-sm-9">
+                  <input type="text" name="section_sub_heading" id="section_sub_heading" style="border-radius: 5px;" class="form-control" placeholder="Enter Section Sub Heading" autocomplete="off"/>
+                </div>
+              </div>
+              <div class="form-group row add">
                 <label for="categories" class="control-label col-sm-3" style="font-weight: 600;">Select Categories :</label>
                 <div class="col-sm-9">
                   <input type="checkbox" class="select_all"> Select All
@@ -105,6 +111,12 @@
                   <label for="edit_section_name" class="control-label col-sm-3" style="font-weight: 600;">Section Name :</label>
                   <div class="col-sm-9">
                     <input type="text" name="edit_section_name" id="edit_section_name" style="border-radius: 5px;" class="form-control" placeholder="Enter Section Name" autocomplete="off" autofocus required/>
+                  </div>
+                </div>
+                <div class="form-group row add">
+                  <label for="edit_section_sub_heading" class="control-label col-sm-3" style="font-weight: 600;">Section Sub Heading :</label>
+                  <div class="col-sm-9">
+                    <input type="text" name="edit_section_sub_heading" id="edit_section_sub_heading" style="border-radius: 5px;" class="form-control" placeholder="Enter Section Sub Heading" autocomplete="off" required/>
                   </div>
                 </div>
                 <div class="form-group row add">
@@ -232,7 +244,7 @@
                                  <a href="#" class="edit_modal btn btn-sm btn-save" data-id="{{ $section->id }}" data-section_name="{{ $section->section_name }}" data-section_order="{{ $section->section_order }}" data-section_status="{{ $section->section_status }}" data-section_basic_search="{{ $section->section_basic_search }}" data-section_advance_search="{{ $section->section_advance_search }}" data-section_advance_search="{{ $section->section_advance_search }}" data-categories="<?php echo htmlspecialchars(json_encode($cat_ids), ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#EditSectionModal" data-whatever="@mdo"><i class='fa fa-pencil'></i></a>
                                  <a href="#" class="delete_modal btn btn-sm btn-danger" data-id="{{ $section->id }}" data-section_name="{{ $section->section_name }}" data-toggle="modal" data-target="#DeleteSectionModal" data-whatever="@mdo"><i class='fa fa-trash'></i></a>
                                  <a href="{{ url('/show_section') }}/{{ $section->id }}" class="btn btn-sm btn-warning"><i class='fa fa-eye'></i></a>
-                                 <a href="{{ url('/fill_section') }}/{{ $section->id }}" class="btn btn-sm btn-success"><i class="fas fa-edit" aria-hidden="true"></i> Fill </a>
+                                 <!-- <a href="{{ url('/fill_section') }}/{{ $section->id }}" class="btn btn-sm btn-success"><i class="fas fa-edit" aria-hidden="true"></i> Fill </a> -->
                                </td>
                              </tr>
                            @endforeach
@@ -343,6 +355,7 @@
 		$('#fid').val($(this).data('id'));
 		$('#edit_fid').val($(this).data('id'));
 		$('#edit_section_name').val($(this).data('section_name'));
+		$('#edit_section_sub_heading').val($(this).data('section_sub_heading'));
 		$('#edit_section_order').val($(this).data('section_order'));
     var values = $(this).data('categories');
     $(".all_checks").find('[value=' + values.join('], [value=') + ']').prop("checked", true);

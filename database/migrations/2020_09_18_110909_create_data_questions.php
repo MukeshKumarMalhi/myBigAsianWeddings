@@ -21,6 +21,9 @@ class CreateDataQuestions extends Migration
           $table->string('data_section_id')->nullable();
           $table->foreign('data_section_id')->references('id')->on('data_sections')->onDelete('cascade')->onUpdate('cascade');
           $table->string('question_name')->nullable();
+          $table->string('question_label')->nullable();
+          $table->string('question_placeholder')->nullable();
+          $table->boolean('question_mandatory')->nullable();
           $table->boolean('question_status')->nullable();
           $table->integer('question_order')->nullable();
           $table->boolean('question_basic_search')->nullable();

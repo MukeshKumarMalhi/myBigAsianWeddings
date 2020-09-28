@@ -10,7 +10,7 @@
             <div class="card-header bg-blue text-light">
               <div class="row">
                 <div class="col-sm-6">
-                  <h4 class="mb-0">Fill Section - <?php echo "Category : ". $sections[0]->category_name."<br/>"; ?></h4>
+                  <h4 class="mb-0">Edit Submission - <?php echo "Category : ". $sections[0]->category_name."<br/>"; ?></h4>
                 </div>
               </div>
             </div>
@@ -29,39 +29,43 @@
                   echo "<p style='font-weight: 500; font-size: 18px;'>$value->section_sub_heading</p>";
                   $arr_names = array();
                   foreach ($value->questions as $key => $val) {
-                    array_push($arr_names, $val->question_name);
-                    echo "$val->question_label"."<br/>";
-                    $question_mandatory = '';
-                    if($val->question_mandatory == true){
-                      $question_mandatory = 'required';
-                    }
-                    $select = "";
-                    if($val->type == "text"){
-                      echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control' placeholder='$val->question_placeholder' $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
-                    }
-                    if($val->type == "file"){
-                      echo "<input type='$val->type' name='$val->question_name"."_answer_text[]' class='form-control' accept='image/*' multiple $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
-                    }
-                    if($val->type == "textarea"){
-                      echo "<textarea name='$val->question_name"."_answer_text' class='form-control' placeholder='$val->question_placeholder' rows='3' $question_mandatory></textarea><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
-                    }
-                    if($val->type == "select"){
-                      $select .= "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><select name='$val->question_name"."_answer_id' class='form-control appended_select' $question_mandatory><option value=''>Select $val->question_label</option>"."<br/>";
-                    }
-                    $options = "";
-                    foreach ($val->answers as $key => $answer) {
-                      if($val->type == "checkbox"){
-                        echo "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id[]' value='$answer->answer_id' class='form-control' style='display: inline-block;'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> "."$answer->answer_name"."<br/>";
+                    foreach ($value->listings_questions as $key => $va) {
+                      array_push($arr_names, $val->question_name);
+                      echo "$val->question_label"."<br/>";
+                      $question_mandatory = '';
+                      if($val->question_mandatory == true){
+                        $question_mandatory = 'required';
                       }
-                      if($val->type == "radio"){
-                        echo "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id' value='$answer->answer_id' class='form-control' style='display: inline-block;' $question_mandatory><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> "."$answer->answer_name"."<br/>";
+                      $select = "";
+                      if($val->type == "text"){
+                        echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control' placeholder='$val->question_placeholder' value='$va->business_listing_attribute_data_answer_text' $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
+                      }
+                      if($val->type == "file"){
+                        echo "<input type='$val->type' name='$val->question_name"."_answer_text[]' class='form-control' accept='image/*' multiple $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
+                        echo "<div class='image-uploader'><div class='uploaded'><div class='uploaded-image' id='remove_image_$va->business_listing_attribute_business_listing_id;'><img src='image url'>";
+                        echo "<button title='Delete image' class='delete-image' data-id='$va->business_listing_attribute_business_listing_id'><i class='fas fa-times'></i></button></div></div></div>";
+                      }
+                      if($val->type == "textarea"){
+                        echo "<textarea name='$val->question_name"."_answer_text' class='form-control' placeholder='$val->question_placeholder' rows='3' $question_mandatory>".$va->business_listing_attribute_data_answer_text."</textarea><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
                       }
                       if($val->type == "select"){
-                        $options .= "<option value='$answer->answer_id'>"."$answer->answer_name"."</option>";
+                        $select .= "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><select name='$val->question_name"."_answer_id' class='form-control appended_select' $question_mandatory><option value=''>Select $val->question_label</option>"."<br/>";
                       }
+                      $options = "";
+                      foreach ($val->answers as $key => $answer) {
+                        if($val->type == "checkbox"){
+                          echo "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id[]' value='$answer->answer_id' class='form-control' style='display: inline-block;'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> "."$answer->answer_name"."<br/>";
+                        }
+                        if($val->type == "radio"){
+                          echo "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id' value='$answer->answer_id' class='form-control' style='display: inline-block;' $question_mandatory><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> "."$answer->answer_name"."<br/>";
+                        }
+                        if($val->type == "select"){
+                          $options .= "<option value='$answer->answer_id'>"."$answer->answer_name"."</option>";
+                        }
+                      }
+                      $select .= $options;
+                      echo "$select"."</select>"."<br/>";
                     }
-                    $select .= $options;
-                    echo "$select"."</select>"."<br/>";
                   }
                   foreach($arr_names as $nname)
                   {
