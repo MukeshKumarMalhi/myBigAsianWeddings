@@ -108,6 +108,8 @@ Route::post('/delete_question_data', 'Admin\BusinessController@delete_question_d
 Route::get('/view_data_submissions', 'Admin\BusinessController@view_data_submissions');
 
 Route::post('/store_fill_section_form', 'Admin\BusinessController@store_fill_section_form');
+Route::post('/update_fill_section_form', 'Admin\BusinessController@update_fill_section_form');
+Route::post('/delete_single_submission_image', 'Admin\BusinessController@delete_single_submission_image');
 
 
 Auth::routes();

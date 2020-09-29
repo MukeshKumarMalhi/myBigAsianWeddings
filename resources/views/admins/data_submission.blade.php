@@ -19,9 +19,9 @@
                     <thead>
                         <tr>
                             <th><span>ID</span></th>
-                            <th><span>Category Name</span></th>
                             <th><span>Business Name</span></th>
-                            <th><span>Email</span></th>
+                            <th><span>Category Name</span></th>
+                            <!-- <th><span>Email</span></th> -->
                             <th><span>Created at</span></th>
                             <th class="text-center" style="width:110px">Action</th>
                         </tr>
@@ -35,7 +35,7 @@
                                <td>{{ $submission->id }}</td>
                                <td class="px-2 text-nowrap"><a href="{{ url('/edit_data_submission') }}/{{ $submission->id }}/{{ $submission->category_id }}" style="text-decoration: underline;">{{ $submission->name }}</a></td>
                                <td>{{ $submission->category_name }}</td>
-                               <td>{{ $submission->email }}</td>
+                               <!-- <td>{{ $submission->email }}</td> -->
                                <td><?php echo date('d M Y',strtotime($submission->created_at)); ?></td>
                                <td class="px-2 text-nowrap">
                                  <a href="{{ url('/edit_data_submission') }}/{{ $submission->id }}/{{ $submission->category_id }}" class="btn btn-sm btn-warning"><i class='fa fa-eye'></i> Edit Submission</a>

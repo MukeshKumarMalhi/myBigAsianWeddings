@@ -140,7 +140,7 @@
 					$('#append_success').show();
 					$('#append_success ul').append("<li>"+data.success+"</li>");
 					setTimeout(function(){ $('#append_success').hide(); },2000);
-          location.reload();
+          window.location = "/view_data_submissions";
 	      }
       },
     });

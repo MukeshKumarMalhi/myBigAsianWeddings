@@ -116,7 +116,7 @@
                 <div class="form-group row add">
                   <label for="edit_section_sub_heading" class="control-label col-sm-3" style="font-weight: 600;">Section Sub Heading :</label>
                   <div class="col-sm-9">
-                    <input type="text" name="edit_section_sub_heading" id="edit_section_sub_heading" style="border-radius: 5px;" class="form-control" placeholder="Enter Section Sub Heading" autocomplete="off" required/>
+                    <input type="text" name="edit_section_sub_heading" id="edit_section_sub_heading" style="border-radius: 5px;" class="form-control" placeholder="Enter Section Sub Heading" autocomplete="off"/>
                   </div>
                 </div>
                 <div class="form-group row add">
@@ -241,7 +241,7 @@
                                </td>
                                <td><?php echo date('d M Y',strtotime($section->created_at)); ?></td>
                                <td class="px-2 text-nowrap">
-                                 <a href="#" class="edit_modal btn btn-sm btn-save" data-id="{{ $section->id }}" data-section_name="{{ $section->section_name }}" data-section_order="{{ $section->section_order }}" data-section_status="{{ $section->section_status }}" data-section_basic_search="{{ $section->section_basic_search }}" data-section_advance_search="{{ $section->section_advance_search }}" data-section_advance_search="{{ $section->section_advance_search }}" data-categories="<?php echo htmlspecialchars(json_encode($cat_ids), ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#EditSectionModal" data-whatever="@mdo"><i class='fa fa-pencil'></i></a>
+                                 <a href="#" class="edit_modal btn btn-sm btn-save" data-id="{{ $section->id }}" data-section_name="{{ $section->section_name }}" data-section_sub_heading="{{ $section->section_sub_heading }}" data-section_order="{{ $section->section_order }}" data-section_status="{{ $section->section_status }}" data-section_basic_search="{{ $section->section_basic_search }}" data-section_advance_search="{{ $section->section_advance_search }}" data-section_advance_search="{{ $section->section_advance_search }}" data-categories="<?php echo htmlspecialchars(json_encode($cat_ids), ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#EditSectionModal" data-whatever="@mdo"><i class='fa fa-pencil'></i></a>
                                  <a href="#" class="delete_modal btn btn-sm btn-danger" data-id="{{ $section->id }}" data-section_name="{{ $section->section_name }}" data-toggle="modal" data-target="#DeleteSectionModal" data-whatever="@mdo"><i class='fa fa-trash'></i></a>
                                  <a href="{{ url('/show_section') }}/{{ $section->id }}" class="btn btn-sm btn-warning"><i class='fa fa-eye'></i></a>
                                  <!-- <a href="{{ url('/fill_section') }}/{{ $section->id }}" class="btn btn-sm btn-success"><i class="fas fa-edit" aria-hidden="true"></i> Fill </a> -->
