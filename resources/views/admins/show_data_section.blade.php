@@ -436,7 +436,7 @@
       $('.choices_div_edit').show();
       $('.append_choices_edit').html('');
       $.each($(this).data('answers'), function(index, value){
-        $('.append_choices_edit').append('<input type="text" name="answer_name[]" style="border-radius: 5px;" value="'+value.answer_name+'" class="form-control" autocomplete="off"/><br/>');
+        $('.append_choices_edit').append('<input type="text" name="answer_name[]" style="border-radius: 5px;" value="'+value.answer_name+'" class="form-control" autocomplete="off"/><input type="hidden" name="answer_id[]" style="border-radius: 5px;" value="'+value.answer_id+'"/><br/>');
       });
     }else {
       $('.choices_div_edit').hide();

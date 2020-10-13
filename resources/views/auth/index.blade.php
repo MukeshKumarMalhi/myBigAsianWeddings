@@ -7,23 +7,32 @@
 <div class="pt-r10 bg-center-url" style="background-image: url('web_asset/images/bg-home.png');">
     <div class="container bs-search-form text-center link-light text-light py-80 mb-5">
         <h2 class="font-weight-bold mb-4 font-playfairdisplay">FREE Wedding Planning App</h2>
-        <h5>Search over 14,000 local professionals with reviews, pricing, availability, and more</h5>
-        <form class="text-center" action="wedding-suppliers-search.html" method="post">
-            <div class="mx-auto" style="max-width: 700px;">
-                <div class="row no-gutters form-group m-3">
-                    <div class="form-group col-md-5">
-                        <input type="text" name="search" placeholder="Search For" class="form-control form-control-lg">
-                    </div>
-                    <div class="form-group  col-md-5">
-                        <input type="text" name="search" placeholder="Where" class="form-control form-control-lg">
-                    </div>
-                    <div class="form-group col-md-2">
-                        <button type="submit" class="btn btn-lg btn-dark btn-purple btn-block">Search</button>
-                    </div>
+        <!-- <h5>Search over 14,000 local professionals with reviews, pricing, availability, and more</h5> -->
+        <form class="text-center sub_header_search_form" method="get">
+          @csrf
+          <div class="mx-auto text-left">
+            <div class="row pt-3 no-gutters">
+              <div class="col-md-3">
+              </div>
+              <div class="form-group col-md-4">
+                <div class="d-md-table align-middle">
+                  <div class="d-md-table-cell pt-1 pr-2 text-white text-nowrap">We’re looking for </div>
+                  <div class="d-md-table-cell w-100 disabled_custom">
+                    <select name="category_id_searched" class="form-control category_search_form" style="border-radius: 5px;">
+                      <?php foreach ($categories as $key => $value): ?>
+                        <option value="{{ $value->id }}" <?php if($value->category_name == "Venues") echo "selected"; ?>>{{ $value->category_name }}</option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
                 </div>
+              </div>
+              <div class="form-group col-md-1 pl-md-3">
+                  <button type="submit" class="btn btn-dark btn-block btn-purple rounded">Search</button>
+              </div>
+            </div>
             </div>
         </form>
-        <p>Wedding Venues, Wedding Photography, Wedding Music, Wedding Transportation, Wedding Invitations, Wedding Dresses, Wedding Flowers</p>
+        <!-- <p>Wedding Venues, Wedding Photography, Wedding Music, Wedding Transportation, Wedding Invitations, Wedding Dresses, Wedding Flowers</p> -->
     </div>
     <div class="bg-purple-b">
         <div class="container">

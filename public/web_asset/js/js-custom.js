@@ -673,22 +673,23 @@ jQuery(document).ready(function($){
                         selected_cat_id = showCat[1];
                       }
 
-                      var selected_location = $(".location_name_searched").val();
-                      if(selected_location == ""){
-                        selected_location = "UK"
-                      }
-                      var selected_business = $(".business_name_searched").val();
-                      if(selected_business == ""){
-                        selected_business = "venue-name"
-                      }
+                      // var selected_location = $(".location_name_searched").val();
+                      // if(selected_location == ""){
+                      //   selected_location = "UK"
+                      // }
+                      // var selected_business = $(".business_name_searched").val();
+                      // if(selected_business == ""){
+                      //   selected_business = "venue-name"
+                      // }
 
                       var sel_cat = spaceByhyphen(selected_category);
-                      var sel_loc = spaceByhyphen(selected_location);
-                      var sel_bus = spaceByhyphen(selected_business);
+                      // var sel_loc = spaceByhyphen(selected_location);
+                      // var sel_bus = spaceByhyphen(selected_business);
 
 
 
-                      window.location.href="/search/weeding-"+sel_cat+"/"+sel_loc;
+                      // window.location.href="/search/weeding-"+sel_cat+"/"+sel_loc;
+                      window.location.href="/search/weeding-"+sel_cat;
                     });
 
                     $('input:radio[name="selectyear"]').on('change', function() {

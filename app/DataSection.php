@@ -10,6 +10,14 @@ class DataSection extends Model
   public $incrementing = false;
   protected $keyType = 'string';
 
+  public function data_question(){
+    return $this->hasMany('App\DataQuestion','data_section_id');
+  }
+
+  public function section_business_category(){
+    return $this->hasMany('App\SectionBusinessCategory','data_section_id');
+  }
+
   /**
   * The attributes that are mass assignable.
   *

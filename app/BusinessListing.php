@@ -10,6 +10,14 @@ class BusinessListing extends Model
   public $incrementing = false;
   protected $keyType = 'string';
 
+  public function category(){
+    return $this->belongsTo('App\Category','category_id');
+  }
+
+  public function business_listing_attribute(){
+    return $this->hasMany('App\BusinessListingAttribute','business_listing_id');
+  }
+
   /**
   * The attributes that are mass assignable.
   *

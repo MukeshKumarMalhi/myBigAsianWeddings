@@ -10,6 +10,13 @@ class SectionBusinessCategory extends Model
   public $incrementing = false;
   protected $keyType = 'string';
 
+  public function category(){
+    return $this->belongsTo('App\Category','category_id');
+  }
+  public function data_section(){
+    return $this->belongsTo('App\DataSection','data_section_id');
+  }
+
   /**
   * The attributes that are mass assignable.
   *

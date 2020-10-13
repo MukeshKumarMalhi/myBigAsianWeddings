@@ -831,19 +831,40 @@ class BusinessController extends Controller
         $data_question_id->question_advance_search = $edit_question_advance_search;
         $data_question_id->save();
 
-        $deleted = DataAnswer::where('data_question_id',$request->edit_fid)->delete();
 
-        foreach ($request->answer_name as $key => $cate) {
-          if($cate != null){
-            $u_id = uniqid();
-            $section_category_data = array(
-              'id' => $u_id,
-              'data_question_id' => $request->edit_fid,
-              'answer_name' => $cate
-            );
-            $section_cat = DataAnswer::create($section_category_data);
+        if(isset($request->answer_id)){
+          $refNumbers = $request->answer_name;
+          $partIds    = $request->answer_id;
+          $combined = array();
+          foreach($refNumbers as $index => $refNumber) {
+              if(!array_key_exists($index, $partIds)) {
+                $partIds[$index] = null;
+              }
+              $combined[] = array(
+                  'answer_name'  => $refNumber,
+                  'answer_id' => $partIds[$index]
+              );
+          }
+
+          foreach ($combined as $key => $value) {
+            if($value['answer_name'] == null && $value['answer_id'] != null){
+              $data_answer_delete = DataAnswer::find($value['answer_id'])->delete();
+            }elseif ($value['answer_id'] == null && $value['answer_name'] != null) {
+              $u_id = uniqid();
+              $new_answer = array(
+                'id' => $u_id,
+                'data_question_id' => $request->edit_fid,
+                'answer_name' => $value['answer_name']
+              );
+              $new_answer_data = DataAnswer::create($new_answer);
+            }elseif ($value['answer_id'] != null && $value['answer_name'] != null) {
+              $update_answer = DataAnswer::find($value['answer_id']);
+              $update_answer->answer_name = $value['answer_name'];
+              $update_answer->save();
+            }
           }
         }
+
         return response()->json(['success' => 'Data question updated successfully'], 200);
       }
     }
@@ -1045,16 +1066,6 @@ class BusinessController extends Controller
       if($error->fails()){
         return response()->json(['errors' => $error->errors()->all()]);
       }else{
-        // dd($request->all());
-
-        // $business_liting_deleted = BusinessListing::find($request->business_listing_id)->delete();
-        // $id = uniqid();
-        // $form_data = array(
-        //   'id' => $id,
-        //   'category_id' => $request->category_id,
-        //   'name' => $request->name_answer_text,
-        // );
-        // $business_liting = BusinessListing::create($form_data);
 
         foreach ($request->all_names as $key => $name) {
           $items = $this->preg_array_key_exists('/^'.$name.'/i',$request->all());
@@ -1175,24 +1186,6 @@ class BusinessController extends Controller
                   $business_liting_attributes = BusinessListingAttribute::create($data_attributes_checks);
                 }
               }
-              // elseif(is_array($data_attributes['data_answer_text'])) {
-              //   foreach ($data_attributes['data_answer_text'] as $file) {
-              //     $file1=$file->store('public');
-              //     $image=Storage::get($file1);
-              //     Storage::put($file1,$image);
-              //     $image_path=explode('/', $file1);
-              //     $image_path=$image_path[1];
-              //     $up_id = uniqid();
-              //     $data_attributes_photos = array(
-              //       'id' => $up_id,
-              //       'business_listing_id' => $id,
-              //       'data_question_id' => $data_attributes['data_question_id'],
-              //       'data_answer_id' => $data_attributes['data_answer_id'],
-              //       'data_answer_text' => $image_path
-              //     );
-              //     $business_liting_attributes = BusinessListingAttribute::create($data_attributes_photos);
-              //   }
-              // }
               else {
                 $business_liting_attributes = BusinessListingAttribute::find($data_attributes['id']);
                 $business_liting_attributes->data_answer_text = $data_attributes['data_answer_text'];

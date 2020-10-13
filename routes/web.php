@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +14,16 @@
 //     return view('welcome');
 // });
 
+use Illuminate\Support\Str;
 use App\User;
 
 Route::get('/','WebController@index');
+Route::get('/mazy', function ()
+{
+  $string = " hello moto moto";
+  $newString = Str::random(40);
+  dd($newString);
+});
 
 
 Auth::routes();
@@ -61,7 +67,8 @@ Route::get('/search_location', 'HomeController@get_locations');
 Route::get('/search_business', 'HomeController@get_businesses');
 
 Route::get('/settings', 'HomeController@user_settings');
-Route::get('/search/{type}/{city}', 'HomeController@search_categories_values');
+// Route::get('/search/{type}/{city}', 'HomeController@search_categories_values');
+Route::get('/search/{slug?}', 'WebController@search_categories_values')->where('slug', '(.*)');
 Route::get('/{type}/{name}', 'HomeController@show_detail_page');
 
 Route::post('/store_shortlist', 'HomeController@store_shortlist');

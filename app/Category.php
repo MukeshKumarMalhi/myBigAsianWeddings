@@ -16,6 +16,12 @@ class Category extends Model
   public function shortlist(){
     return $this->hasMany('App\Shortlist','category_id');
   }
+  public function business_listing(){
+    return $this->hasMany('App\BusinessListing','category_id');
+  }
+  public function section_business_category(){
+    return $this->hasMany('App\SectionBusinessCategory','category_id');
+  }
 
   /**
   * The attributes that are mass assignable.
