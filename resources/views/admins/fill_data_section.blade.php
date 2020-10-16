@@ -32,12 +32,16 @@
                     array_push($arr_names, $val->question_name);
                     echo "$val->question_label"."<br/>";
                     $question_mandatory = '';
+                    $question_class = '';
                     if($val->question_mandatory == true){
                       $question_mandatory = 'required';
                     }
+                    if($val->question_name == 'location'){
+                      $question_class = 'areaofuk';
+                    }
                     $select = "";
                     if($val->type == "text"){
-                      echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control' placeholder='$val->question_placeholder' $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
+                      echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control $question_class' placeholder='$val->question_placeholder' $question_mandatory autocomplete='off'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
                     }
                     if($val->type == "file"){
                       echo "<input type='$val->type' name='$val->question_name"."_answer_text[]' class='form-control' accept='image/*' multiple $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
@@ -69,7 +73,9 @@
                   }
                   echo "<hr/>";
                 }
+
               ?>
+              <input type="hidden" name="location_id" id="location_id" value="">
               <button type="submit" class="btn btn-lg btn-primary" name="button">Save</button>
               </form>
             </div>
@@ -88,6 +94,27 @@
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
+    });
+
+    var path_l = "{{ url('/search_location') }}";
+    var locations = $('.areaofuk').typeahead({
+      source: function (query, process)
+      {
+        return $.get(path_l, {query: query}, function(locations){
+          return process(locations);
+        });
+      },
+      displayText: function (location)
+      {
+        return location['location_name']+', '+location['country_name'];
+      }
+    });
+
+    $(".areaofuk").change(function()
+    {
+      var location_id = $(".areaofuk").typeahead("getActive");
+      $("#location_id").val(location_id.location_id);
+      $(".areaofuk").val(location_id.location_name);
     });
 
     //select all checkboxes

@@ -25,7 +25,7 @@
               <div class="form-group row add">
                 <label for="question_name" class="control-label col-sm-3" style="font-weight: 600;">Question Name :</label>
                 <div class="col-sm-9">
-                  <input type="text" name="question_name" id="question_name" style="border-radius: 5px;" class="form-control" placeholder="Enter Question Name" autocomplete="off" autofocus required/>
+                  <input type="text" name="question_name" id="question_name" style="border-radius: 5px;" class="form-control check_question_name" placeholder="Enter Question Name" autocomplete="off" autofocus required/>
                   <input type="hidden" name="data_section_id" value="{{ $section->id }}">
                 </div>
               </div>
@@ -95,7 +95,7 @@
                 </div>
               </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-save" id="add">Save</button>
+              <button type="submit" class="btn btn-save class_check" id="add">Save</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </form>
@@ -133,7 +133,7 @@
                 <div class="form-group row add">
                   <label for="edit_question_name" class="control-label col-sm-3" style="font-weight: 600;">Question Name :</label>
                   <div class="col-sm-9">
-                    <input type="text" name="edit_question_name" id="edit_question_name" style="border-radius: 5px;" class="form-control" placeholder="Enter Question Name e.g. brief_description, venue_type" autocomplete="off" autofocus required/>
+                    <input type="text" name="edit_question_name" id="edit_question_name" style="border-radius: 5px;" class="form-control check_question_name" placeholder="Enter Question Name e.g. brief_description, venue_type" autocomplete="off" autofocus required/>
                   </div>
                 </div>
                 <div class="form-group row add">
@@ -209,7 +209,7 @@
                 </div>
       				</div>
       				<div class="modal-footer">
-      					<button type="submit" class="edit btn btn-save">Update</button>
+      					<button type="submit" class="edit btn btn-save class_check">Update</button>
       					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       				</div>
       			</form>
@@ -370,7 +370,42 @@
 
     $('#QuestionModal').on('shown.bs.modal', function () {
       $('#QuestionModal').find('#question_form')[0].reset();
+      $('#append_errors').hide();
+      $('#append_success').hide();
       $('#question_name').focus();
+    });
+
+
+    var question_name_state = false;
+    $('.check_question_name').on('blur', function(){
+      var question_name = $(this).val();
+      var data = {
+  			'question_name' : $(this).val(),
+  			'question_name_check' : 1
+  		};
+      if (question_name == '') {
+      	question_name_state = false;
+      	return;
+      }
+      $.ajax({
+        url:"{{ url('check_question_name_exists') }}",
+        type:"post",
+        data: data,
+        success: function(response){
+          $('#append_errors ul').text('');
+  				$('#append_success ul').text('');
+          if (response == 'taken') {
+          	question_name_state = false;
+            $('#append_errors').show();
+            $('#append_errors ul').append("<li> Sorry... Question name already taken.</li>");
+            $('.class_check').prop('disabled', true);
+          }else {
+          	question_name_state = true;
+            $('#append_errors').hide();
+            $('.class_check').prop('disabled', false);
+          }
+        }
+      });
     });
 
   $('#question_form').on('submit', function(event){

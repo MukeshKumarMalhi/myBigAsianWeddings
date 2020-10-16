@@ -30,6 +30,7 @@ Auth::routes();
 Route::get('/show_section/{id}', 'Admin\BusinessController@show_section');
 Route::get('/fill_section/{id}', 'Admin\BusinessController@fill_section');
 Route::get('/edit_data_submission/{id}/{cat_id}', 'Admin\BusinessController@edit_data_submission');
+Route::post('check_question_name_exists', 'Admin\BusinessController@check_question_name_exists');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/signup', 'WebController@signup');
@@ -68,7 +69,7 @@ Route::get('/search_business', 'HomeController@get_businesses');
 
 Route::get('/settings', 'HomeController@user_settings');
 // Route::get('/search/{type}/{city}', 'HomeController@search_categories_values');
-Route::get('/search/{slug?}', 'WebController@search_categories_values')->where('slug', '(.*)');
+Route::get('/search/{slug?}', 'WebController@search_categories_values_listing')->where('slug', '(.*)');
 Route::get('/{type}/{name}', 'HomeController@show_detail_page');
 
 Route::post('/store_shortlist', 'HomeController@store_shortlist');

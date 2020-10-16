@@ -37,7 +37,7 @@ class WebController extends Controller
     return view('auth.index', ['categories' => $categories]);
   }
 
-  public function search_categories_values(Request $request, $slug = null)
+  public function search_categories_values_listing(Request $request, $slug = null)
   {
     $values = explode("/", $slug);
     $get_cat = explode("-", $values[0]);

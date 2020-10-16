@@ -25,6 +25,6 @@ class BusinessListing extends Model
   */
 
  protected $fillable = [
-     'id', 'category_id', 'name'
+     'id', 'category_id', 'location_id', 'name'
  ];
 }

@@ -881,6 +881,16 @@ class BusinessController extends Controller
       return response()->json("Data Question Deleted Succssfully", 200);
     }
 
+    public function check_question_name_exists(Request $request)
+    {
+      $data_question_exists = DB::table('data_questions')->where('question_name', '=', $request->question_name)->get();
+      if(count($data_question_exists) > 0){
+        return response()->json('taken', 200);
+      }else {
+        return response()->json('not taken', 200);
+      }
+    }
+
     public function store_data_type(){
       $id = uniqid();
       $form_data = array(
@@ -907,7 +917,7 @@ class BusinessController extends Controller
         ->leftJoin('data_types', 'data_types.id', '=', 'data_questions.data_type_id')
         ->select('data_questions.*', 'data_types.type', 'data_types.html_tag')
         ->where('data_questions.data_section_id', '=', $value->data_section_id)
-        ->orderBy('data_questions.question_name', 'asc')
+        ->orderBy('data_questions.question_order', 'asc')
         ->get()->toArray();
 
         foreach ($questions as $key => $val) {
@@ -920,6 +930,7 @@ class BusinessController extends Controller
 
         $value->questions = $questions;
       }
+      // dd($sections);
       return view('admins.fill_data_section', ['sections' => $sections]);
     }
 
@@ -939,7 +950,7 @@ class BusinessController extends Controller
         ->leftJoin('data_types', 'data_types.id', '=', 'data_questions.data_type_id')
         ->select('data_questions.*', 'data_types.type', 'data_types.html_tag')
         ->where('data_questions.data_section_id', '=', $value->data_section_id)
-        ->orderBy('data_questions.question_name', 'asc')
+        ->orderBy('data_questions.question_order', 'asc')
         ->get()->toArray();
 
         foreach ($questions as $key => $val) {
@@ -959,9 +970,11 @@ class BusinessController extends Controller
           $valu->listings = $listings;
         }
 
+        $business_listing = BusinessListing::find($id);
+        $value->location_id = $business_listing->location_id;
         $value->questions = $questions;
+
       }
-      // dd($sections);
       return view('admins.edit_data_submission', ['sections' => $sections, 'business_listing_id' => $id]);
     }
 
@@ -977,6 +990,8 @@ class BusinessController extends Controller
         'category_id' => 'required'
       );
 
+      // dd($request->all());
+
       $error = Validator::make($request->all(), $rules);
       if($error->fails()){
         return response()->json(['errors' => $error->errors()->all()]);
@@ -986,6 +1001,7 @@ class BusinessController extends Controller
         $form_data = array(
           'id' => $id,
           'category_id' => $request->category_id,
+          'location_id' => $request->location_id,
           'name' => $request->name_answer_text,
         );
         $business_liting = BusinessListing::create($form_data);
@@ -1066,6 +1082,11 @@ class BusinessController extends Controller
       if($error->fails()){
         return response()->json(['errors' => $error->errors()->all()]);
       }else{
+
+        $business_liting_update = BusinessListing::find($request->business_listing_id);
+        $business_liting_update->name = $request->updated_name_answer_text_updated;
+        $business_liting_update->location_id = $request->location_id;
+        $business_liting_update->save();
 
         foreach ($request->all_names as $key => $name) {
           $items = $this->preg_array_key_exists('/^'.$name.'/i',$request->all());

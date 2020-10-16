@@ -23,6 +23,7 @@
             <div class="table-responsive small p-4" style="font-weight: 500; font-size: 16px;">
               <form method="post" role="form" class="form-horizontal" id="edit_fill_section_form" enctype="multipart/form-data">
                 <input type="hidden" name="category_id" value="{{ $sections[0]->category_id }}">
+                <input type="hidden" name="location_id" id=location_id value="{{ $sections[0]->location_id }}">
                 <input type="hidden" name="business_listing_id" value="{{ $business_listing_id }}">
               <?php
                 foreach ($sections as $key => $value) {
@@ -34,16 +35,20 @@
                     array_push($arr_names, $val->question_name);
                     echo "$val->question_label"."<br/>";
                     $question_mandatory = '';
+                    $question_class = '';
                     if($val->question_mandatory == true){
                       $question_mandatory = 'required';
                     }
+                    if($val->question_name == 'location'){
+                      $question_class = 'areaofuk';
+                    }
                     $select = "";
                     if($val->type == "text" && count($val->listings) == 0){
-                      echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control' placeholder='$val->question_placeholder' $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
+                      echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control $question_class' placeholder='$val->question_placeholder' $question_mandatory autocomplete='off'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
                     }elseif ($val->type == "text" && count($val->listings) > 0) {
                       array_push($arr_name_updated, "updated_".$val->question_name);
                       foreach ($val->listings as $key => $list_name) {
-                        echo "<input type='$val->type' name='updated_"."$val->question_name"."_answer_text_updated' class='form-control' placeholder='$val->question_placeholder' value='$list_name->business_listing_attribute_data_answer_text' $question_mandatory><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><input type='hidden' name='updated_"."$val->question_name"."_answer_id_updated'><input type='hidden' name='updated_"."$val->question_name"."_$val->type"."_updated' value='$val->type'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$list_name->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$list_name->business_listing_attribute_id'>"."<br/>";
+                        echo "<input type='$val->type' name='updated_"."$val->question_name"."_answer_text_updated' class='form-control $question_class' placeholder='$val->question_placeholder' value='$list_name->business_listing_attribute_data_answer_text' $question_mandatory autocomplete='off'><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><input type='hidden' name='updated_"."$val->question_name"."_answer_id_updated'><input type='hidden' name='updated_"."$val->question_name"."_$val->type"."_updated' value='$val->type'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$list_name->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$list_name->business_listing_attribute_id'>"."<br/>";
                       }
                     }
                     if($val->type == "file" && count($val->listings) == 0){
@@ -143,6 +148,27 @@
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
+    });
+
+    var path_l = "{{ url('/search_location') }}";
+    var locations = $('.areaofuk').typeahead({
+      source: function (query, process)
+      {
+        return $.get(path_l, {query: query}, function(locations){
+          return process(locations);
+        });
+      },
+      displayText: function (location)
+      {
+        return location['location_name']+', '+location['country_name'];
+      }
+    });
+
+    $(".areaofuk").change(function()
+    {
+      var location_id = $(".areaofuk").typeahead("getActive");
+      $("#location_id").val(location_id.location_id);
+      $(".areaofuk").val(location_id.location_name);
     });
 
     $('#edit_fill_section_form').on('submit', function(event){
