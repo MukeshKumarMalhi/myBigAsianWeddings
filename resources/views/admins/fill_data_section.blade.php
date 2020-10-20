@@ -275,7 +275,7 @@
 					setTimeout(function(){ $('#DeleteSectionModal').modal('hide'); },2000);
 					setTimeout(function(){ $('body').removeClass('modal-open'); },2000);
 					setTimeout(function(){ $('.modal-backdrop').remove(); },2000);
-          locatoin.reload();
+          location.reload();
         }
     });
   });

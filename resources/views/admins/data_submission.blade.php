@@ -34,7 +34,22 @@
                              <tr class="Submission{{$submission->id}}">
                                <td>{{ $submission->id }}</td>
                                <td class="px-2 text-nowrap"><a href="{{ url('/edit_data_submission') }}/{{ $submission->id }}/{{ $submission->category_id }}" style="text-decoration: underline;">{{ $submission->name }}</a></td>
+                               @if($submission->category_id == NULL)
+                               <td>
+                                 <div class="form-group add">
+                                   <select class="form-control" id="parent_category_id" data-business_listing_id="{{ $submission->id }}" style="border-radius: 5px; width: 60%;" name="parent_category_id">
+                                     <option value="">Select Category</option>
+                                     <?php if(isset($cats) && count($cats) > 0){ ?>
+                                       @foreach($cats as $cat)
+                                       <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
+                                       @endforeach
+                                     <?php } ?>
+                                   </select>
+                                 </div>
+                               </td>
+                               @else
                                <td>{{ $submission->category_name }}</td>
+                               @endif
                                <!-- <td>{{ $submission->email }}</td> -->
                                <td><?php echo date('d M Y',strtotime($submission->created_at)); ?></td>
                                <td class="px-2 text-nowrap">
@@ -56,6 +71,7 @@
           </div>
           <div style="margin-top: 10px;margin-left: 440px;">
 		         <ul class="pagination-for-submission justify-content-center">
+               {{ $submissions->links() }}
 		         </ul>
 		      </div>
         </div>
@@ -67,6 +83,25 @@
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
+    });
+
+    $('#parent_category_id').on('change', function(){
+  		event.preventDefault();
+  		var data = {
+  			'business_listing_id' : $(this).data('business_listing_id'),
+  			'category_id' : $(this).val()
+  		};
+
+      $.ajax({
+          type:'POST',
+          url:"{{ url('update_category_data_submission') }}",
+  				data:data,
+  				dataType:"json",
+          success:function(data){
+  					alert(data);
+            location.reload();
+          }
+      });
     });
 });
 </script>

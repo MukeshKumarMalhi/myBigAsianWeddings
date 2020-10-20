@@ -114,6 +114,7 @@ Route::post('/update_data_question', 'Admin\BusinessController@update_data_quest
 Route::post('/delete_question_data', 'Admin\BusinessController@delete_question_data');
 
 Route::get('/view_data_submissions', 'Admin\BusinessController@view_data_submissions');
+Route::post('/update_category_data_submission', 'Admin\BusinessController@update_category_data_submission');
 
 Route::post('/store_fill_section_form', 'Admin\BusinessController@store_fill_section_form');
 Route::post('/update_fill_section_form', 'Admin\BusinessController@update_fill_section_form');

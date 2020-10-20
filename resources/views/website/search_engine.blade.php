@@ -19,8 +19,9 @@
               foreach ($value->questions as $key => $val) {
                 array_push($arr_names, $val->question_name);
                 echo "<h5>$val->question_label</h5>";
+                $select = "";
                 if(($val->type == "text" && count($val->listings) == 0)){
-                  echo "<input type='$val->type' name='$val->question_name' class='form-control filters' placeholder='Search..'>"."<br/>";
+                  echo "<input type='$val->type' name='$val->question_name' class='form-control filters' placeholder='$val->question_placeholder'>";
                 }
                 elseif (($val->type == "text" && isset($val->listings) && count($val->listings) > 0)) {
                   $check = "";
@@ -29,10 +30,20 @@
                   }
                   echo "<input type='$val->type' name='$val->question_name' class='form-control filters' value='$check'>"."<br/>";
                 }
+                if($val->type == "select" && count($val->listings) == 0){
+                  $select .= "<select name='$val->question_name' class='form-control appended_select filters'><option value=''>Select $val->question_label</option>"."<br/>";
+                }
+                elseif ($val->type == "select" && count($val->listings) > 0) {
+                  // array_push($arr_name_updated, "updated_".$val->question_name);
+                  // foreach ($val->listings as $key => $list_selectbox) {
+                    $select .= "<select name='$val->question_name' class='form-control appended_select filters'><option value=''>Select $val->question_label</option>"."<br/>";
+                  // }
+                }
+                $options = "";
                 foreach ($val->answers as $key => $answer) {
-                  if(($val->type == "checkbox" && count($val->listings) == 0) || ($val->type == "radio" && count($val->listings) == 0) || ($val->type == "select" && count($val->listings) == 0)){
+                  if(($val->type == "checkbox" && count($val->listings) == 0) || ($val->type == "radio" && count($val->listings) == 0)){
                     echo "<input type='checkbox' name='$val->question_name' value='$answer->answer_name' class='form-control filters' style='display: inline-block;'> "."$answer->answer_name"."<br/>";
-                  }elseif (($val->type == "checkbox" && isset($val->listings) && count($val->listings) > 0) || ($val->type == "radio" && isset($val->listings) && count($val->listings) > 0) || ($val->type == "select" && isset($val->listings) && count($val->listings) > 0)) {
+                  }elseif (($val->type == "checkbox" && isset($val->listings) && count($val->listings) > 0) || ($val->type == "radio" && isset($val->listings) && count($val->listings) > 0)) {
                     $check = "";
                     foreach ($val->listings as $key => $chk) {
                       if($chk == $answer->answer_name){
@@ -41,7 +52,20 @@
                     }
                     echo "<input type='checkbox' name='$val->question_name' value='$answer->answer_name' class='form-control filters' style='display: inline-block;' $check> "."$answer->answer_name"."<br/>";
                   }
+                  if($val->type == "select" && count($val->listings) == 0){
+                    $options .= "<option value='$answer->answer_name'>"."$answer->answer_name"."</option>";
+                  }elseif ($val->type == "select" && count($val->listings) > 0) {
+                    $selected = "";
+                    foreach ($val->listings as $key => $selecte) {
+                      if($selecte == $answer->answer_name){
+                        $selected = "selected";
+                      }
+                    }
+                    $options .= "<option value='$answer->answer_name' $selected>"."$answer->answer_name"."</option>";
+                  }
                 }
+                $select .= $options;
+                echo "$select"."</select>"."<br/>";
               }
               echo "<hr/>";
             }
@@ -96,13 +120,19 @@
             loc = $('<a>', { href: window.location })[0];
 
         $('input').each(function (i){
-            if(this.checked && this.type == 'checkbox'){
-              arr.push(this.value);
-            }
-            else if(this.type == "text" && this.value != ""){
-              box[this.name] = this.value;
-            }
+          if(this.checked && this.type == 'checkbox'){
+            arr.push(this.value);
+          }
+          else if(this.type == "text" && this.value != ""){
+            box[this.name] = this.value;
+          }
         });
+        $('select').each(function (i){
+          if(this.value != ""){
+            arr.push(this.value);
+          }
+        });
+
         req_arr.push(box);
         var size = Object.keys(box).length;
 

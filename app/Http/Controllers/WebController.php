@@ -57,9 +57,9 @@ class WebController extends Controller
     $date = new DateTime();
     unset($array_values[0]);
     $array_values = array_values($array_values);
-    // dd($request->all());
 
-    // $text = preg_replace('/(?<!\s)-(?!\s)/', ' ', $request->name);
+    // $text = preg_replace('/(?<!\s)-(?!\s)/', ' ', $array_values[0]);
+    // dd($text);
     // $text2 = preg_replace('/(?<!\s)-(?!\s)/', ' ', $request->venue_type);
 
     $business_listings = DB::table('business_listings')
@@ -71,19 +71,20 @@ class WebController extends Controller
     // ->where('business_listing_attributes.data_answer_text', 'LIKE', '%'.$text.'%')
     // ->where('data_answers.answer_name', 'LIKE', '%'.$text2.'%');
     if(count($array_values) > 0){
-      $business_listings->where('data_answers.answer_name', 'LIKE', "%{$array_values[0]}%")
-      ->where(function($query) use ($array_values){
+      // $business_listings->where('data_answers.answer_name', '=', $array_values[0]);
+      $business_listings->where(function($query) use ($array_values){
         foreach($array_values as $item){
-          $query->orWhere('data_answers.answer_name','LIKE',"%{$item}%");
+          $text = preg_replace('/(?<!\s)-(?!\s)/', ' ', $item);
+          $query->orWhere('data_answers.answer_name','=', $text);
         }
       });
     }
-    if(count($request->all()) > 0){
-      foreach ($request->all() as $key => $req) {
-        $text = preg_replace('/(?<!\s)-(?!\s)/', ' ', $req);
-        $business_listings->where('business_listing_attributes.data_answer_text', 'LIKE', '%'.$text.'%');
-      }
-    }
+    // if(count($request->all()) > 0){
+    //   foreach ($request->all() as $key => $req) {
+    //     $text = preg_replace('/(?<!\s)-(?!\s)/', ' ', $req);
+    //     $business_listings->where('business_listing_attributes.data_answer_text', 'LIKE', '%'.$text.'%');
+    //   }
+    // }
     $business_listings = $business_listings->orderBy('business_listings.updated_at', 'desc')
     ->groupBy('business_listings.id')
     ->get();

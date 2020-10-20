@@ -895,8 +895,8 @@ class BusinessController extends Controller
       $id = uniqid();
       $form_data = array(
         'id' => $id,
-        'type' => "file",
-        'html_tag' => "<input type='file' class='form-control'>"
+        'type' => "slider",
+        'html_tag' => "<div id='slider-range'></div>"
       );
       $data_type_id = DataType::create($form_data);
       return "done";
@@ -1229,8 +1229,17 @@ class BusinessController extends Controller
       ->leftJoin('categories', 'categories.id', '=', 'business_listings.category_id')
       ->select('business_listings.*', 'categories.category_name')
       ->orderBy('business_listings.updated_at', 'desc')
-      ->get();
+      ->paginate(10);
 
-      return view('admins.data_submission', ['submissions' => $submissions]);
+      $cats = DB::table('categories')->where('parent_category_id', null)->get();
+
+      return view('admins.data_submission', ['submissions' => $submissions, 'cats' => $cats]);
+    }
+
+    public function update_category_data_submission(Request $request){
+      $update_category_business_listing = BusinessListing::find($request->business_listing_id);
+      $update_category_business_listing->category_id = $request->category_id;
+      $update_category_business_listing->save();
+      return response()->json("Category Updated Succssfully", 200);
     }
 }

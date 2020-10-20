@@ -18,6 +18,8 @@ class CreateBusinessListings extends Migration
           $table->string('id')->primary();
           $table->string('category_id')->nullable();
           $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+          $table->string('location_id')->nullable();
+          $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade')->onUpdate('cascade');
           $table->string('name')->nullable();
           $table->string('email')->nullable();
           $table->string('password')->nullable();
