@@ -33,6 +33,7 @@
                   $arr_name_updated = array();
                   foreach ($value->questions as $key => $val) {
                     array_push($arr_names, $val->question_name);
+                    echo "<div class='form-group'>";
                     echo "$val->question_label"."<br/>";
                     $question_mandatory = '';
                     $question_class = '';
@@ -44,45 +45,50 @@
                     }
                     $select = "";
                     if($val->type == "text" && count($val->listings) == 0){
-                      echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control $question_class' placeholder='$val->question_placeholder' $question_mandatory autocomplete='off'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
+                      echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control $question_class' placeholder='$val->question_placeholder' $question_mandatory autocomplete='off'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
                     }elseif ($val->type == "text" && count($val->listings) > 0) {
                       array_push($arr_name_updated, "updated_".$val->question_name);
                       foreach ($val->listings as $key => $list_name) {
-                        echo "<input type='$val->type' name='updated_"."$val->question_name"."_answer_text_updated' class='form-control $question_class' placeholder='$val->question_placeholder' value='$list_name->business_listing_attribute_data_answer_text' $question_mandatory autocomplete='off'><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><input type='hidden' name='updated_"."$val->question_name"."_answer_id_updated'><input type='hidden' name='updated_"."$val->question_name"."_$val->type"."_updated' value='$val->type'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$list_name->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$list_name->business_listing_attribute_id'>"."<br/>";
+                        echo "<input type='$val->type' name='updated_"."$val->question_name"."_answer_text_updated' class='form-control $question_class' placeholder='$val->question_placeholder' value='$list_name->business_listing_attribute_data_answer_text' $question_mandatory autocomplete='off'><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><input type='hidden' name='updated_"."$val->question_name"."_answer_id_updated'><input type='hidden' name='updated_"."$val->question_name"."_$val->type"."_updated' value='$val->type'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$list_name->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$list_name->business_listing_attribute_id'>";
                       }
                     }
                     if($val->type == "file" && count($val->listings) == 0){
-                      echo "<input type='$val->type' name='$val->question_name"."_answer_text[]' class='form-control' accept='image/*' multiple $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
+                      echo "<input type='$val->type' name='$val->question_name"."_answer_text[]' class='form-control' accept='image/*' multiple $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
                     }elseif ($val->type == "file" && count($val->listings) >0) {
-                      echo "<input type='$val->type' name='$val->question_name"."_answer_text[]' class='form-control' accept='image/*' multiple $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
+                      echo "<input type='$val->type' name='$val->question_name"."_answer_text[]' class='form-control' accept='image/*' multiple $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
                       echo "<div class='image-uploader'><div class='uploaded'>";
                       foreach ($val->listings as $key => $pic) {
-                        $image = asset('storage/'.$pic->business_listing_attribute_data_answer_text);
+                        if(strpos($pic->business_listing_attribute_data_answer_text, 'http') === 0) {
+                          $image = $pic->business_listing_attribute_data_answer_text;
+                        }else{
+                          $image = asset('/storage/'.$pic->business_listing_attribute_data_answer_text);
+                        }
+                        // $image = asset('storage/'.$pic->business_listing_attribute_data_answer_text);
                         echo "<div class='uploaded-image' id='remove_image_$pic->business_listing_attribute_id'><img src='$image'>";
                         echo "<button type='button' title='Delete image' class='delete-image' data-id='$pic->business_listing_attribute_id'><i class='fas fa-times'></i></button></div>";
                       }
                       echo "</div></div>";
                     }
                     if($val->type == "textarea" && count($val->listings) == 0){
-                      echo "<textarea name='$val->question_name"."_answer_text' class='form-control' placeholder='$val->question_placeholder' rows='3' $question_mandatory></textarea><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
+                      echo "<textarea name='$val->question_name"."_answer_text' class='form-control' placeholder='$val->question_placeholder' rows='3' $question_mandatory></textarea><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
                     }elseif ($val->type == "textarea" && count($val->listings) > 0) {
                       array_push($arr_name_updated, "updated_".$val->question_name);
                       foreach ($val->listings as $key => $list_textarea) {
-                        echo "<textarea name='updated_"."$val->question_name"."_answer_text_updated' class='form-control' placeholder='$val->question_placeholder' rows='3' $question_mandatory>".$list_textarea->business_listing_attribute_data_answer_text."</textarea><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><input type='hidden' name='updated_"."$val->question_name"."_answer_id_updated'><input type='hidden' name='updated_"."$val->question_name"."_$val->type"."_updated' value='$val->type'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$list_textarea->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$list_textarea->business_listing_attribute_id'>"."<br/>";
+                        echo "<textarea name='updated_"."$val->question_name"."_answer_text_updated' class='form-control' placeholder='$val->question_placeholder' rows='3' $question_mandatory>".$list_textarea->business_listing_attribute_data_answer_text."</textarea><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><input type='hidden' name='updated_"."$val->question_name"."_answer_id_updated'><input type='hidden' name='updated_"."$val->question_name"."_$val->type"."_updated' value='$val->type'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$list_textarea->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$list_textarea->business_listing_attribute_id'>";
                       }
                     }
                     if($val->type == "select" && count($val->listings) == 0){
-                      $select .= "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><select name='$val->question_name"."_answer_id' class='form-control appended_select' $question_mandatory><option value=''>Select $val->question_label</option>"."<br/>";
+                      $select .= "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><select name='$val->question_name"."_answer_id' class='form-control appended_select' $question_mandatory><option value=''>Select $val->question_label</option>";
                     }elseif ($val->type == "select" && count($val->listings) > 0) {
                       array_push($arr_name_updated, "updated_".$val->question_name);
                       foreach ($val->listings as $key => $list_selectbox) {
-                        $select .= "<input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$list_selectbox->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$list_selectbox->business_listing_attribute_id'><input type='hidden' name='updated_"."$val->question_name"."_answer_text_updated'><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><select name='updated_"."$val->question_name"."_answer_id_updated' class='form-control appended_select' $question_mandatory><option value=''>Select $val->question_label</option>"."<br/>";
+                        $select .= "<input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$list_selectbox->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$list_selectbox->business_listing_attribute_id'><input type='hidden' name='updated_"."$val->question_name"."_answer_text_updated'><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><select name='updated_"."$val->question_name"."_answer_id_updated' class='form-control appended_select' $question_mandatory><option value=''>Select $val->question_label</option>";
                       }
                     }
                     $options = "";
                     foreach ($val->answers as $key => $answer) {
                       if($val->type == "checkbox" && count($val->listings) == 0){
-                        echo "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id[]' value='$answer->answer_id' class='form-control' style='display: inline-block;'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> "."$answer->answer_name"."<br/>";
+                        echo "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id[]' value='$answer->answer_id' class='form-control' style='display: inline-block;'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> "."$answer->answer_name"."&nbsp;&nbsp;";
                       }elseif ($val->type == "checkbox" && count($val->listings) > 0) {
                         array_push($arr_name_updated, "updated_".$val->question_name);
                         $check = "";
@@ -91,10 +97,10 @@
                             $check = "checked";
                           }
                         }
-                        echo "<input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$chk->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$chk->business_listing_attribute_id'><input type='hidden' name='updated_"."$val->question_name"."_answer_text_updated'><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><input type='$val->type' name='updated_"."$val->question_name"."_answer_id_updated[]' value='$answer->answer_id' class='form-control' style='display: inline-block;' $check><input type='hidden' name='updated_"."$val->question_name"."_$val->type"."_updated' value='$val->type'> "."$answer->answer_name"."<br/>";
+                        echo "<input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$chk->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$chk->business_listing_attribute_id'><input type='hidden' name='updated_"."$val->question_name"."_answer_text_updated'><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><input type='$val->type' name='updated_"."$val->question_name"."_answer_id_updated[]' value='$answer->answer_id' class='form-control' style='display: inline-block;' $check><input type='hidden' name='updated_"."$val->question_name"."_$val->type"."_updated' value='$val->type'> "."$answer->answer_name"."&nbsp;&nbsp;";
                       }
                       if($val->type == "radio" && count($val->listings) == 0){
-                        echo "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id' value='$answer->answer_id' class='form-control' style='display: inline-block;' $question_mandatory><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> "."$answer->answer_name"."<br/>";
+                        echo "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id' value='$answer->answer_id' class='form-control' style='display: inline-block;' $question_mandatory><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> "."$answer->answer_name"."&nbsp;&nbsp;";
                       }elseif ($val->type == "radio" && count($val->listings) > 0) {
                         array_push($arr_name_updated, "updated_".$val->question_name);
                         $check = "";
@@ -103,7 +109,7 @@
                             $check = "checked";
                           }
                         }
-                        echo "<input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$rad->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$rad->business_listing_attribute_id'><input type='hidden' name='updated_"."$val->question_name"."_answer_text_updated'><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><input type='$val->type' name='updated_"."$val->question_name"."_answer_id_updated[]' value='$answer->answer_id' class='form-control' style='display: inline-block;' $check><input type='hidden' name='updated_"."$val->question_name"."_$val->type"."_updated' value='$val->type'> "."$answer->answer_name"."<br/>";
+                        echo "<input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$rad->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$rad->business_listing_attribute_id'><input type='hidden' name='updated_"."$val->question_name"."_answer_text_updated'><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><input type='$val->type' name='updated_"."$val->question_name"."_answer_id_updated[]' value='$answer->answer_id' class='form-control' style='display: inline-block;' $check><input type='hidden' name='updated_"."$val->question_name"."_$val->type"."_updated' value='$val->type'> "."$answer->answer_name"."&nbsp;&nbsp;";
                       }
                       if($val->type == "select" && count($val->listings) == 0){
                         $options .= "<option value='$answer->answer_id'>"."$answer->answer_name"."</option>";
@@ -118,7 +124,8 @@
                       }
                     }
                     $select .= $options;
-                    echo "$select"."</select>"."<br/>";
+                    echo "$select"."</select>";
+                    echo "</div>";
                   }
                   foreach($arr_names as $nname)
                   {

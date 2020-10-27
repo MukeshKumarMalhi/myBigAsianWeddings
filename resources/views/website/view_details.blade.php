@@ -109,73 +109,33 @@
         <!-- columns 2 -->
         <div class="row no-gutters-10 py-5">
             <div class="col-md-8 col-lg-9">
-              @if(count($business_listing_details->photos) == 1)
-                <div class="bs-gallery-box bs-g1 mb-4 pt-2">
-                    <span style="background-image: url('{{ $business_listing_details->photos[0] }}');" data-src="{{ $business_listing_details->photos[0] }}" data-thumb="{{ $business_listing_details->photos[0] }}"  data-fancybox="gallery">
-                    </span>
+              <?php
+              $photos_array = array();
+                if(isset($business_listing_details->photos)){
+                  foreach ($business_listing_details->photos as $key => $value) {
+                    if (strpos($value, 'http') === 0) {
+                      $featured_image = $value;
+                      array_push($photos_array, $featured_image);
+                    }else{
+                      $featured_image = asset('/storage/'.$value);
+                      array_push($photos_array, $featured_image);
+                    }
+                  }
+                }else {
+                  $featured_image = asset('web_asset/images/products/venues-home-block.jpg');
+                }
+                $count_photos = count($photos_array);
+              ?>
+              @if($count_photos > 0)
+                <div class="bs-gallery-box bs-g{{ $count_photos }} mb-4 pt-2">
+                  @foreach($photos_array as $photo_s)
+                    <span style="background-image: url('{{ $photo_s }}');" data-src="{{ $photo_s }}" data-thumb="{{ $photo_s }}" data-fancybox="gallery"></span>
+                  @endforeach
                 </div>
-              @endif
-              @if(count($business_listing_details->photos) == 2)
-                <div class="bs-gallery-box bs-g2 mb-4 pt-2">
-                    <span style="background-image: url('{{ $business_listing_details->photos[0] }}');" data-src="{{ $business_listing_details->photos[0] }}" data-thumb="{{ $business_listing_details->photos[0] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[1] }}');" data-src="{{ $business_listing_details->photos[1] }}" data-thumb="{{ $business_listing_details->photos[1] }}"  data-fancybox="gallery">
-                    </span>
-                </div>
-              @endif
-              @if(count($business_listing_details->photos) == 3)
-                <div class="bs-gallery-box bs-g3 mb-4 pt-2">
-                    <span style="background-image: url('{{ $business_listing_details->photos[0] }}');" data-src="{{ $business_listing_details->photos[0] }}" data-thumb="{{ $business_listing_details->photos[0] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[1] }}');" data-src="{{ $business_listing_details->photos[1] }}" data-thumb="{{ $business_listing_details->photos[1] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[2] }}');" data-src="{{ $business_listing_details->photos[2] }}" data-thumb="{{ $business_listing_details->photos[2] }}"  data-fancybox="gallery">
-                    </span>
-                </div>
-              @endif
-              @if(count($business_listing_details->photos) == 4)
-                <div class="bs-gallery-box bs-g4 mb-4 pt-2">
-                    <span style="background-image: url('{{ $business_listing_details->photos[0] }}');" data-src="{{ $business_listing_details->photos[0] }}" data-thumb="{{ $business_listing_details->photos[0] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[1] }}');" data-src="{{ $business_listing_details->photos[1] }}" data-thumb="{{ $business_listing_details->photos[1] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[2] }}');" data-src="{{ $business_listing_details->photos[2] }}" data-thumb="{{ $business_listing_details->photos[2] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[3] }}');" data-src="{{ $business_listing_details->photos[3] }}" data-thumb="{{ $business_listing_details->photos[3] }}"  data-fancybox="gallery">
-                    </span>
-                </div>
-              @endif
-              @if(count($business_listing_details->photos) == 5)
-                <div class="bs-gallery-box bs-g5 mb-4 pt-2">
-                    <span style="background-image: url('{{ $business_listing_details->photos[0] }}');" data-src="{{ $business_listing_details->photos[0] }}" data-thumb="{{ $business_listing_details->photos[0] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[1] }}');" data-src="{{ $business_listing_details->photos[1] }}" data-thumb="{{ $business_listing_details->photos[1] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[2] }}');" data-src="{{ $business_listing_details->photos[2] }}" data-thumb="{{ $business_listing_details->photos[2] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[3] }}');" data-src="{{ $business_listing_details->photos[3] }}" data-thumb="{{ $business_listing_details->photos[3] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[4] }}');" data-src="{{ $business_listing_details->photos[4] }}" data-thumb="{{ $business_listing_details->photos[4] }}"  data-fancybox="gallery">
-                    </span>
-                </div>
-              @endif
-              @if(count($business_listing_details->photos) > 5)
-                <div class="bs-gallery-box bs-g6 mb-4 pt-2">
-                    <span style="background-image: url('{{ $business_listing_details->photos[0] }}');" data-src="{{ $business_listing_details->photos[0] }}" data-thumb="{{ $business_listing_details->photos[0] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[1] }}');" data-src="{{ $business_listing_details->photos[1] }}" data-thumb="{{ $business_listing_details->photos[1] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[2] }}');" data-src="{{ $business_listing_details->photos[2] }}" data-thumb="{{ $business_listing_details->photos[2] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[3] }}');" data-src="{{ $business_listing_details->photos[3] }}" data-thumb="{{ $business_listing_details->photos[3] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[4] }}');" data-src="{{ $business_listing_details->photos[4] }}" data-thumb="{{ $business_listing_details->photos[4] }}"  data-fancybox="gallery">
-                    </span>
-                    <span style="background-image: url('{{ $business_listing_details->photos[5] }}');" data-src="{{ $business_listing_details->photos[5] }}" data-thumb="{{ $business_listing_details->photos[5] }}"  data-fancybox="gallery">
-                    </span>
-                    <!-- <span style="background-image: url('{{ asset('web_asset/images/products/venues-home-block.jpg') }}');" data-src="{{ asset('web_asset/images/products/venues-home-block.jpg') }}" data-thumb="web_asset/images/products/venues-home-block.jpg"  data-fancybox="gallery">
-                    </span> -->
-                </div>
+                @else
+                  <div class="bs-gallery-box bs-g1 mb-4 pt-2">
+                    <span style="background-image: url('{{ $featured_image }}');" data-src="{{ $featured_image }}" data-thumb="{{ $featured_image }}" data-fancybox="gallery"></span>
+                  </div>
               @endif
                 <h3 class="font-weight-bold text-purple-d2-d2">About This Vendor</h3>
                 <div>

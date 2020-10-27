@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBusinessListingDetailsTable extends Migration
+class CreateBusinessListingDetails extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBusinessListingDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::table('business_listing_details', function (Blueprint $table) {
+        Schema::create('business_listing_details', function (Blueprint $table) {
           $table->engine="InnoDB";
           $table->string('id')->primary();
           $table->string('business_listing_id')->nullable();
@@ -35,8 +35,6 @@ class CreateBusinessListingDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::table('business_listing_details', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('business_listing_details');
     }
 }

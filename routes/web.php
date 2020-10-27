@@ -31,6 +31,9 @@ Route::get('/show_section/{id}', 'Admin\BusinessController@show_section');
 Route::get('/fill_section/{id}', 'Admin\BusinessController@fill_section');
 Route::get('/edit_data_submission/{id}/{cat_id}', 'Admin\BusinessController@edit_data_submission');
 Route::post('check_question_name_exists', 'Admin\BusinessController@check_question_name_exists');
+Route::post('check_business_name_exists', 'Admin\BusinessController@check_business_name_exists');
+Route::post('check_business_slug_exists', 'Admin\BusinessController@check_business_slug_exists');
+Route::post('/delete_business_listing', 'Admin\BusinessController@delete_business_listing');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/signup', 'WebController@signup');

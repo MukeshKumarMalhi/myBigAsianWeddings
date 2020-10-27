@@ -30,42 +30,48 @@
                   $arr_names = array();
                   foreach ($value->questions as $key => $val) {
                     array_push($arr_names, $val->question_name);
+                    echo "<div class='form-group'>";
                     echo "$val->question_label"."<br/>";
                     $question_mandatory = '';
                     $question_class = '';
+                    $exists_business_name = '';
                     if($val->question_mandatory == true){
                       $question_mandatory = 'required';
                     }
                     if($val->question_name == 'location'){
                       $question_class = 'areaofuk';
                     }
+                    if($val->question_name == 'business_name'){
+                      $exists_business_name = 'business_name_exists';
+                    }
                     $select = "";
                     if($val->type == "text"){
-                      echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control $question_class' placeholder='$val->question_placeholder' $question_mandatory autocomplete='off'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
+                      echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control $question_class $exists_business_name' placeholder='$val->question_placeholder' $question_mandatory autocomplete='off'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
                     }
                     if($val->type == "file"){
-                      echo "<input type='$val->type' name='$val->question_name"."_answer_text[]' class='form-control' accept='image/*' multiple $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
+                      echo "<input type='$val->type' name='$val->question_name"."_answer_text[]' class='form-control' accept='image/*' multiple $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
                     }
                     if($val->type == "textarea"){
-                      echo "<textarea name='$val->question_name"."_answer_text' class='form-control' placeholder='$val->question_placeholder' rows='3' $question_mandatory></textarea><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>"."<br/>";
+                      echo "<textarea name='$val->question_name"."_answer_text' class='form-control' placeholder='$val->question_placeholder' rows='3' $question_mandatory></textarea><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
                     }
                     if($val->type == "select"){
-                      $select .= "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><select name='$val->question_name"."_answer_id' class='form-control appended_select' $question_mandatory><option value=''>Select $val->question_label</option>"."<br/>";
+                      $select .= "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><select name='$val->question_name"."_answer_id' class='form-control appended_select' $question_mandatory><option value=''>Select $val->question_label</option>";
                     }
                     $options = "";
                     foreach ($val->answers as $key => $answer) {
                       if($val->type == "checkbox"){
-                        echo "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id[]' value='$answer->answer_id' class='form-control' style='display: inline-block;'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> "."$answer->answer_name"."<br/>";
+                        echo "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id[]' value='$answer->answer_id' class='form-control' style='display: inline-block;'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> "."$answer->answer_name"."&nbsp;&nbsp;";
                       }
                       if($val->type == "radio"){
-                        echo "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id' value='$answer->answer_id' class='form-control' style='display: inline-block;' $question_mandatory><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> "."$answer->answer_name"."<br/>";
+                        echo "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id' value='$answer->answer_id' class='form-control' style='display: inline-block;' $question_mandatory><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> "."$answer->answer_name"."&nbsp;&nbsp;";
                       }
                       if($val->type == "select"){
                         $options .= "<option value='$answer->answer_id'>"."$answer->answer_name"."</option>";
                       }
                     }
                     $select .= $options;
-                    echo "$select"."</select>"."<br/>";
+                    echo "$select"."</select>";
+                    echo "</div>";
                   }
                   foreach($arr_names as $nname)
                   {
@@ -76,7 +82,7 @@
 
               ?>
               <input type="hidden" name="location_id" id="location_id">
-              <button type="submit" class="btn btn-lg btn-primary" name="button">Save</button>
+              <button type="submit" class="btn btn-lg btn-primary class_check" name="button">Save</button>
               </form>
             </div>
           </div>
@@ -139,6 +145,38 @@
 
     $('#SectionModal').on('shown.bs.modal', function () {
       $('#section_name').focus();
+    });
+
+    var question_name_state = false;
+    $('.business_name_exists').on('blur', function(){
+      var question_name = $(this).val();
+      var data = {
+        'question_name' : $(this).val(),
+        'question_name_check' : 1
+      };
+      if (question_name == '') {
+        question_name_state = false;
+        return;
+      }
+      $.ajax({
+        url:"{{ url('check_business_name_exists') }}",
+        type:"post",
+        data: data,
+        success: function(response){
+          $('#append_errors ul').text('');
+          $('#append_success ul').text('');
+          if (response == 'taken') {
+            question_name_state = false;
+            $('#append_errors').show();
+            $('#append_errors ul').append("<li> Sorry... Name already taken.</li>");
+            $('.class_check').prop('disabled', true);
+          }else {
+            question_name_state = true;
+            $('#append_errors').hide();
+            $('.class_check').prop('disabled', false);
+          }
+        }
+      });
     });
 
   $('#fill_section_form').on('submit', function(event){

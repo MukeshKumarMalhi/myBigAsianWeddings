@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use DB;
 use Excel;
 use App\Country;
@@ -18,6 +19,7 @@ use App\BusinessHour;
 use App\BusinessFeature;
 use App\BusinessListing;
 use App\BusinessListingAttribute;
+use App\BusinessListingDetail;
 use App\DataQuestion;
 use App\DataAnswer;
 use App\DataSection;
@@ -900,6 +902,12 @@ class BusinessController extends Controller
       return response()->json("Data Question Deleted Succssfully", 200);
     }
 
+    public function delete_business_listing(Request $request)
+    {
+      $data_question_delete = BusinessListing::find($request->id)->delete();
+      return response()->json("Business Listing Deleted Succssfully", 200);
+    }
+
     public function check_question_name_exists(Request $request)
     {
       $data_question_exists = DB::table('data_questions')->where('question_name', '=', $request->question_name)->get();
@@ -909,6 +917,18 @@ class BusinessController extends Controller
         return response()->json('not taken', 200);
       }
     }
+
+    public function check_business_name_exists(Request $request)
+    {
+      $data_question_exists = DB::table('business_listings')->where('business_listings.name', '=', $request->question_name)->get();
+      if(count($data_question_exists) > 0){
+        return response()->json('taken', 200);
+      }else {
+        return response()->json('not taken', 200);
+      }
+    }
+
+
 
     public function store_data_type(){
       $id = uniqid();
@@ -1021,6 +1041,7 @@ class BusinessController extends Controller
           'location_id' => $request->location_id,
           'name' => $request->business_name_answer_text,
         );
+
         $business_liting = BusinessListing::create($form_data);
 
         foreach ($request->all_names as $key => $name) {
@@ -1085,6 +1106,17 @@ class BusinessController extends Controller
             }
           }
         }
+        $details_id = uniqid();
+        $details_form_data = array(
+          'id' => $details_id,
+          'business_listing_id' => $id,
+          'created_user_id' => Auth::user()->id,
+          'updated_user_id' => null,
+          'created_by_user' => Auth::user()->name,
+          'updated_by_user' => null
+        );
+
+        $business_listing_details = BusinessListingDetail::create($details_form_data);
         return response()->json(['success' => 'Business listing attributes added successfully'], 200);
       }
     }
@@ -1232,6 +1264,25 @@ class BusinessController extends Controller
             }
           }
         }
+
+        $update_details_check = DB::table('business_listing_details')->where('business_listing_id', $request->business_listing_id)->first();
+        if($update_details_check != null){
+          $update_details = DB::table('business_listing_details')->where('business_listing_id', $request->business_listing_id)->update(['updated_user_id' => Auth::user()->id, 'updated_by_user' => Auth::user()->name]);
+        }else {
+          $details_id = uniqid();
+          $details_form_data = array(
+            'id' => $details_id,
+            'business_listing_id' => $request->business_listing_id,
+            'created_user_id' => null,
+            'updated_user_id' => Auth::user()->id,
+            'created_by_user' => null,
+            'updated_by_user' => Auth::user()->name
+          );
+
+          $business_listing_details = BusinessListingDetail::create($details_form_data);
+        }
+
+
         return response()->json(['success' => 'Business listing attributes updated successfully'], 200);
       }
     }
@@ -1244,7 +1295,8 @@ class BusinessController extends Controller
     public function view_data_submissions(){
       $submissions = DB::table('business_listings')
       ->leftJoin('categories', 'categories.id', '=', 'business_listings.category_id')
-      ->select('business_listings.*', 'categories.category_name')
+      ->leftJoin('business_listing_details', 'business_listing_details.business_listing_id', '=', 'business_listings.id')
+      ->select('business_listings.*', 'categories.category_name', 'business_listing_details.created_by_user', 'business_listing_details.updated_by_user')
       ->orderBy('business_listings.updated_at', 'desc')
       ->paginate(10);
 

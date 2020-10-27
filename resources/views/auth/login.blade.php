@@ -3,7 +3,7 @@
 @section('content')
 <!-- section 1 signup-->
 <div class="pt-r10 bg-center-url" style="background-image: url('web_asset/images/bb-background-crop@2x.png');">
-    <div class="container bs-search-form text-left py-80">
+    <div class="container text-left py-80">
         <div class="signup-box px-3" style="max-width: 500px;">
             <form action="{{ route('login') }}" method="POST">
               @csrf

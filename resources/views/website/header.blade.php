@@ -247,8 +247,8 @@
                     </ul>
                     <ul class="nav bs-menu  navbar-nav justify-content-lg-end">
                         <li class="nav-item">
-                            <a class="btn btn-warning" href="signup-login.html">Sign up</a>
-                            <a class="btn btn-warning" href="login.html">Log in</a>
+                            <a class="btn btn-warning" href="{{ url('/signup') }}">Sign up</a>
+                            <a class="btn btn-warning" href="{{ url('/login') }}">Log in</a>
                         </li>
                     </ul>
                 </div>

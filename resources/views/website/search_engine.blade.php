@@ -138,8 +138,19 @@
           <div class="col-md-6 col-lg-4">
               <!-- product-box -->
               <div class="card bs-product-box mb-4">
+                <?php
+                  if(isset($value->featured_image)){
+                    if (strpos($value->featured_image, 'http') === 0) {
+                      $featured_image = $value->featured_image;
+                    }else{
+                      $featured_image = asset('/storage/'.$value->featured_image);
+                    }
+                  }else {
+                    $featured_image = asset('web_asset/images/products/venues-home-block.jpg');
+                  }
+                ?>
                   <!-- product image -->
-                  <div class="card-img-top bg-center-url" style="background-image: url('{{ asset('web_asset/images/products/venues-home-block.jpg') }}');">
+                  <div class="card-img-top bg-center-url" style="background-image: url('<?php echo $featured_image; ?>');">
                       <!-- heart icon -->
                       <div class="bs-product-heart text-white">
                           <div class="save-to-shortlist" id="short_5efdb4b9d2d29">
