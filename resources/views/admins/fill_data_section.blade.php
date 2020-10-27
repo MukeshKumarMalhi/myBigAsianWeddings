@@ -75,7 +75,7 @@
                 }
 
               ?>
-              <input type="hidden" name="location_id" id="location_id" value="">
+              <input type="hidden" name="location_id" id="location_id">
               <button type="submit" class="btn btn-lg btn-primary" name="button">Save</button>
               </form>
             </div>
@@ -96,7 +96,7 @@
       }
     });
 
-    var path_l = "{{ url('/search_location') }}";
+    var path_l = "{{ url('/search_location_admin') }}";
     var locations = $('.areaofuk').typeahead({
       source: function (query, process)
       {

@@ -59,7 +59,7 @@
                       foreach ($val->listings as $key => $pic) {
                         $image = asset('storage/'.$pic->business_listing_attribute_data_answer_text);
                         echo "<div class='uploaded-image' id='remove_image_$pic->business_listing_attribute_id'><img src='$image'>";
-                        echo "<button title='Delete image' class='delete-image' data-id='$pic->business_listing_attribute_id'><i class='fas fa-times'></i></button></div>";
+                        echo "<button type='button' title='Delete image' class='delete-image' data-id='$pic->business_listing_attribute_id'><i class='fas fa-times'></i></button></div>";
                       }
                       echo "</div></div>";
                     }
@@ -150,7 +150,7 @@
       }
     });
 
-    var path_l = "{{ url('/search_location') }}";
+    var path_l = "{{ url('/search_location_admin') }}";
     var locations = $('.areaofuk').typeahead({
       source: function (query, process)
       {
@@ -202,9 +202,9 @@
       });
     });
     $('.delete-image').on('click',function(event){
+      event.preventDefault();
       var r = confirm("Are you sure want to delete this image?");
       if (r == true) {
-        event.preventDefault();
     		var data = {
     			'_token' : $('input[name=_token]').val(),
     			'id' : $(this).data('id')

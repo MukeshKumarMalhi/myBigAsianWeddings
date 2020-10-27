@@ -149,9 +149,6 @@ class HomeController extends Controller
       return view('website.search',['businesses' => $paginatedItems, 'paginator' => $paginator, 'user' => $user, 'categories' => $categories, 'count' => $count, 'shortlist_count' => $shortlist_count, 'category_id' => $category_id, 'location_id' => $location_id]);
     }
 
-    public function show_detail_page(Request $request, $type, $name){
-    }
-
     public function store_shortlist(Request $request)
     {
       try {
@@ -384,25 +381,6 @@ class HomeController extends Controller
               ->get();
 
             return response()->json($venues, 200);
-        }
-        catch(Exception $e)
-        {
-            return response()->json(['error' => 'Something is wrong'], 500);
-        }
-    }
-
-    public function get_locations(Request $request)
-    {
-      try {
-          $locations = DB::table('locations')
-              ->leftJoin('countries', 'countries.id', '=', 'locations.country_id')
-              ->select('locations.id as location_id', 'locations.location_name', 'countries.id as country_id', 'countries.country_name')
-              ->where('locations.location_name','like',"%{$request->input('query')}%")
-              ->orderBy('locations.location_name', 'asc')
-              ->take(5)
-              ->get();
-
-            return response()->json($locations, 200);
         }
         catch(Exception $e)
         {

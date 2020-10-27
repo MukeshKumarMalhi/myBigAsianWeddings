@@ -1,116 +1,585 @@
 @extends('layouts.app')
-@section('title','Wedding planner')
 
 @section('content')
-
-<!-- section 1 free wedding planning app-->
-<div class="pt-r10 bg-center-url" style="background-image: url('web_asset/images/bg-home.png');">
-    <div class="container bs-search-form text-center link-light text-light py-80 mb-5">
-        <h2 class="font-weight-bold mb-4 font-playfairdisplay">FREE Wedding Planning App</h2>
-        <!-- <h5>Search over 14,000 local professionals with reviews, pricing, availability, and more</h5> -->
+<div class="container pt-80">
+    <div class="text-center link-light text-light">
+        <h2 class="mb-4 font-poppins">UK's Free Online <span class="text-warning font-weight-bold">Pakistani</span> Wedding Planning Tool</h2>
+        <h5 class="mb-4">Let's find the reliable local wedding suppliers nearest to you from <span class="text-warning">18,589</span> verified wedding suppliers.</h5>
+    </div>
+    <div class="bs-search-form py-5 px-5 mx-auto" style="max-width: 800px;">
         <form class="text-center sub_header_search_form" method="get">
-          @csrf
-          <div class="mx-auto text-left">
-            <div class="row pt-3 no-gutters">
-              <div class="col-md-3">
-              </div>
-              <div class="form-group col-md-4">
-                <div class="d-md-table align-middle">
-                  <div class="d-md-table-cell pt-1 pr-2 text-white text-nowrap">We’re looking for </div>
-                  <div class="d-md-table-cell w-100 disabled_custom">
-                    <select name="category_id_searched" class="form-control category_search_form" style="border-radius: 5px;">
-                      <?php foreach ($categories as $key => $value): ?>
-                        <option value="{{ $value->id }}" <?php if($value->category_name == "Venues") echo "selected"; ?>>{{ $value->category_name }}</option>
-                      <?php endforeach; ?>
-                    </select>
-                  </div>
+            <div class="mx-auto" style="max-width: 700px;">
+                <div class="row no-gutters form-group m-3">
+                    <div class="form-group col-md-5">
+                        <input type="text" name="location_name_searched" placeholder="Search location" class="form-control areaofuk" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <select name='category_id_searched' class="form-control category_search_form">
+                          <?php foreach ($categories as $key => $value): ?>
+                            <option value="{{ $value->id }}" <?php if($value->category_name == "Venues") echo "selected"; ?>>{{ $value->category_name }}</option>
+                          <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <button type="submit" class="btn btn-warning btn-block">Search</button>
+                    </div>
                 </div>
-              </div>
-              <div class="form-group col-md-1 pl-md-3">
-                  <button type="submit" class="btn btn-dark btn-block btn-purple rounded">Search</button>
-              </div>
-            </div>
             </div>
         </form>
-        <!-- <p>Wedding Venues, Wedding Photography, Wedding Music, Wedding Transportation, Wedding Invitations, Wedding Dresses, Wedding Flowers</p> -->
     </div>
-    <div class="bg-purple-b">
-        <div class="container">
-            <div class="row no-gutters-10 text-center">
-                <div class="col-6 col-md-4 col-lg">
-                    <div class="bs-white-box bg-light p-3 mb-3">
-                        <img src="{{ asset('web_asset/images/checklist-icon.png') }}" class="img-fluid m-auto">
-                        <h3 class="font-weight-bold font-playfairdisplay">Checklist.</h3>
-                        <p>Organise your wedding with a complete step-wise guide for every arrangement.</p>
-                        <div class="bs-white-box-button"><a href="#">Learn More <i class="far fa-chevron-double-right"></i></i></a></div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg">
-                    <div class="bs-white-box bg-light p-3 mb-3">
-                        <img src="{{ asset('web_asset/images/budget-icon.png') }}" class="img-fluid m-auto">
-                        <h3 class="font-weight-bold font-playfairdisplay">Budget.</h3>
-                        <p>Plan and manage your expenses with the right budgeting.</p>
-
-                        <div class="bs-white-box-button"><a href="#">Learn More <i class="far fa-long-arrow-right"></i></a></div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg">
-                    <div class="bs-white-box bg-light p-3 mb-3">
-                        <img src="{{ asset('web_asset/images/guest-list-icon.png') }}" class="img-fluid m-auto">
-                        <h3 class="font-weight-bold font-playfairdisplay">Guest list.</h3>
-                        <p>Easily track your guests for every event.</p>
-                        <div class="bs-white-box-button"><a href="#">Learn More <i class="far fa-long-arrow-right"></i></a></div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg offset-md-2 offset-lg-0">
-                    <div class="bs-white-box bg-light p-3 mb-3">
-                        <img src="{{ asset('web_asset/images/shortlist-icon.png') }}" class="img-fluid m-auto">
-                        <h3 class="font-weight-bold font-playfairdisplay">Shortlist.</h3>
-                        <p>Bookmark your favorite wedding suppliers to the best deals.</p>
-                        <div class="bs-white-box-button"><a href="#">Learn More <i class="far fa-long-arrow-right"></i></a></div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg">
-                    <div class="bs-white-box bg-light p-3 mb-3">
-                        <img src="{{ asset('web_asset/images/gift-lists-icon.png') }}" class="img-fluid m-auto">
-                        <h3 class="font-weight-bold font-playfairdisplay">Gift Lists.</h3>
-                        <p>Please everyone with the best gift options at your tips.</p>
-                        <div class="bs-white-box-button"><a href="#">Learn More <i class="far fa-long-arrow-right"></i></a></div>
-                    </div>
-                </div>
+    <div class="row no-gutters-5 text-center bottom-negative-70 text-light link-light">
+        <div class="col-4 col-md-3 col-lg mb-3">
+            <div class="h-100 bg-danger p-3 rounded">
+                <img src="web_asset/images/icons/search.png" class="img-fluid m-auto">
+                <p class="mb-0">Search</p>
+            </div>
+        </div>
+        <div class="col-4 col-md-3 col-lg mb-3">
+            <div class="h-100 bg-danger p-3 rounded">
+                <img src="web_asset/images/icons/planning-tools.png" class="img-fluid m-auto">
+                <p class="mb-0">Planning Tools</p>
+            </div>
+        </div>
+        <div class="col-4 col-md-3 col-lg mb-3">
+            <div class="h-100 bg-danger p-3 rounded">
+                <img src="web_asset/images/icons/guestlist.png" class="img-fluid m-auto">
+                <p class="mb-0">Guestlist</p>
+            </div>
+        </div>
+        <div class="col-4 col-md-3 col-lg mb-3">
+            <div class="h-100 bg-danger p-3 rounded">
+                <img src="web_asset/images/icons/checklist.png" class="img-fluid m-auto">
+                <p class="mb-0">Checklist</p>
+            </div>
+        </div>
+        <div class="col-4 col-md-3 col-lg mb-3">
+            <div class="h-100 bg-danger p-3 rounded">
+                <img src="web_asset/images/icons/budget.png" class="img-fluid m-auto">
+                <p class="mb-0">Budget</p>
+            </div>
+        </div>
+        <div class="col-4 col-md-3 col-lg mb-3">
+            <div class="h-100 bg-danger p-3 rounded">
+                <img src="web_asset/images/icons/shortlist.png" class="img-fluid m-auto">
+                <p class="mb-0">Shortlist</p>
+            </div>
+        </div>
+        <div class="col-4 offset-2 offset-md-0 col-md-3 col-lg mb-3">
+            <div class="h-100 bg-danger p-3 rounded">
+                <img src="web_asset/images/icons/advice.png" class="img-fluid m-auto">
+                <p class="mb-0">Advice</p>
+            </div>
+        </div>
+        <div class="col-4 col-md-3 col-lg mb-3">
+            <div class="h-100 bg-danger p-3 rounded">
+                <img src="web_asset/images/icons/gift-lists.png" class="img-fluid m-auto">
+                <p class="mb-0">Gift Lists</p>
             </div>
         </div>
     </div>
 </div>
-<div class="bg-purple pt-5">
+</div>
+<div class="pt-100 pb-50">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 align-self-center">
-                <div class="link-light text-light">
-                    <h2 class="font-weight-bold">The easiest way to plan <span class="font-playfairdisplay">your wedding</span></h2>
-                    <p>"When I first started my wedding planning, I had no idea where to begin! But by using Bridebook I have been able to search for all of my suppliers, as well as organise my guestlist, checklist and budget. I now feel so much more relaxed about the wedding!"</p>
+            <div class="col-md-8 col-lg-7">
+                <h2>Popular Categories</h2>
+                <p>Just looking around? Let us suggest you something hot & happening!</p>
+                <div class="row no-gutters mb-3">
+                    <div class="col-md-6">
+                        <div class="row no-gutters bs-masonry-cols">
+                            <div class="col-6">
+                                <div class="bs-image-with-text text-light text-center">
+                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-319@2x.png');"></div>
+                                    <div class="text-light p-2 " style="background-color: #23919B;">Bridal Dresses</div>
+                                </div>
+                                <div class="bs-image-with-text text-light text-center">
+                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-335@2x.png');"></div>
+                                    <div class="text-light p-2" style="background-color: #F6992D;">Groom Dresses</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="bs-image-with-text text-light text-center">
+                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-332@2x.png');"></div>
+                                    <div class="text-light p-2" style="background-color: #F6992D;">Accessories</div>
+                                </div>
+                                <div class="bs-image-with-text text-light text-center">
+                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-333@2x.png');"></div>
+                                    <div class="text-light p-2 text-center" style="background-color: #381C1C;">Wedding Cards</div>
+                                </div>
+                                <div class="bs-image-with-text text-light text-center">
+                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-334@2x.png');"></div>
+                                    <div class="text-light p-2 text-center" style="background-color: #A03977;">Hair & Makeup</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row no-gutters bs-masonry-cols">
+                            <div class="col-6">
+                                <div class="bs-image-with-text text-light text-center">
+                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-337@2x.png');"></div>
+                                    <div class="text-light p-2 text-center" style="background-color: #23919B;">Venues</div>
+                                </div>
+                                <div class="bs-image-with-text text-light text-center">
+                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-336@2x.png');"></div>
+                                    <div class="text-light p-2 text-center" style="background-color: #F6992D;">Photographer</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="bs-image-with-text text-light text-center">
+                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-348@2x.png');"></div>
+                                    <div class="" style="background-color: #381C1C;">Catering</div>
+                                </div>
+                                <div class="bs-image-with-text text-light text-center">
+                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/03/Group-349@2x.png');"></div>
+                                    <div class="text-light p-2 text-center" style="background-color: #E41F25;">Giveaways</div>
+                                </div>
+                                <div class="bs-image-with-text text-light text-center">
+                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-350@2x.png');"></div>
+                                    <div class="text-light p-2 text-center" style="background-color: #23919B;">Honey Moon Package</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <a href="#" class="btn btn-light text-purple">Click Here</a>
+                <div class="text-center mb-3">
+                    <a href="#view-all-categories" data-toggle="bs-collapse" data-target="#view-all-categories">View All Categories <i class="fal fa-chevron-down"></i></a>
+                </div>
+                <div class="collapse" id="view-all-categories">
+                    <div class="row no-gutters-5">
+                        <div class="col-lg-4">
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/accessories/">Accessories</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/accommodation/">Accommodation</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/bridal-and-womens-wear/">Bridal Dresses</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/car-hire/">Car Hire</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/decoration/">Decoration</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/entertainment/">Entertainment</a></p>
+                        </div>
+                        <div class="col-lg-4">
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/hair-and-beauty/">Hair And Beauty</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/featured-2/">Featured</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/florists/">Florists</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/groom-dresses/">Groom Dresses</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/catering-2/">Catering</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/home-decor/">Home Decor</a></p>
+                        </div>
+                        <div class="col-lg-4">
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/travel/honeymoon/">Honeymoon</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/miscellaneous/">Miscellaneous</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/photographer/">Photographers</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/wedding-cards/">Wedding Cards</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/wedding-planners/">Weddings Planners</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/listing-category/featured/">Wedding Gifts</a></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 align-self-center">
-                <img src="https://via.placeholder.com/700x400" class="img-fluid" alt="" />
+            <div class="col-md-4 col-lg-5">
+                <h2>Happening Cities</h2>
+                <p>Cities You Must Explore This Summer</p>
+                <div class="bs-mapspin mb-3">
+                    <svg enable-background="new 0 0 329.2 592.9" overflow="visible" version="1.1" viewBox="0 0 329.2 592.9" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><path d="m269.2 528.9v1.8h-1.3s-1 1.2-1.1 1.2v-1.3l-1.8 2.3-0.4-1.5-3.9-0.9s-0.2 0.8-0.3 0.8-1.6 0.3-1.6 0.3l0.4 0.4 1.7-0.1 0.2-0.6 2.4 0.8 0.6 1-0.7 0.5 1 1.2-0.1 0.8h-1.2v0.6l-0.5-0.1-0.6 0.6v2.4l-0.7-0.7 0.1 2.6-0.7 0.5h-0.6l-1.1 2.9h-1.8s-1.7-2.2-1.7-2.3v-0.7l-1.1-0.6-0.6 1.2h-1.2l-0.5 1.2-1.3 0.6-1.1-0.6v-1.9l-0.5-0.3 0.1-0.8-0.8 0.1-1.1 0.7 0.2-1 0.5-0.7-0.6-0.6-0.7 0.1v-0.7l-1.1 0.1 0.1 0.7-0.9 0.7-0.1 0.8-0.7 0.7-0.7-0.6 0.3-0.6 0.1-0.4 0.8-0.7v-0.7l0.6-0.5-0.6-0.6-0.7 0.1 0.1-0.7-0.5-0.6h-1.3l0.1-1.3s-0.6 0.1-0.7 0.1-0.5-0.6-0.5-0.6l-0.7 0.1-0.5-0.6 0.1-1.2h-0.7l-1.1-0.6 0.6-1.7 0.7-0.7v-2.3h0.6v-1.8l-0.8-1.6 0.7-1 0.1-1 1.1 1.2h1.9l-0.1 0.7h1.2l0.6-0.7 0.6 0.1 0.5-0.7 3 0.1v-0.7h1.2l0.9-0.5h0.7l0.6-0.6v-0.6h2.5l1 0.7 1.2-0.1 0.6 0.6h0.5v1.2l-0.6 0.6 1.8 1.1-0.7 0.7 0.6 0.6 0.8-0.1 0.5 0.8 1.1-0.1 1.1-0.7 3.6 0.1 1.5 2.6 1.4 1z" fill="#FBD8AE"/><path d="m327.1 482-0.8 1 0.2 1.7-2 4.6-1.6 1.2-2 6.3-0.1 1.4-1.5 3.9-0.7 1.1-3.2 1-2 2.1-0.2 0.9-1.3 0.1-1.4-6.8-1.1 0.6-0.9 1.2 1.3 0.8 1.3 4.6-0.7 1.7-2.1 1.1-0.9-3.8-3.2-1.4h-0.4l0.4 0.3-0.2 0.5 2.5 1.6 0.5 1.8-2.4-0.1-1.8-1.2-1.9 0.4h-1.8l0.7 1.3 6.7 0.2 0.8 0.8-1.1 1.6-1.7 0.9 0.5 2 2.2-0.9v1l-1.6 1.6-1.9 1.2-0.5 0.5-3.6 1-1.6-2.1 0.6-1.6-1.2 0.3-0.9-1.3-1.3-1-1.1 2.5 1.8 1.2-1.7 0.9-0.6-1.1-1.7-0.1-1.4 0.8 1.5 0.8-3.3 1.3h-4.5l0.3 1.4 1.2 1.6h1.9l5.6-3 0.4 4.7-0.9 1.5-4 0.6 0.7 1.6 3.7-0.3-3.9 3.3v-1.3l0.3-0.8-4.4-0.2 0.3 0.8 2.2 0.6 0.2 1.2-1.8 0.8-2.6-0.8-2.6-0.3-2.3-1 1.3 1.7-0.1 1.1c-0.4-0.1-0.8-0.3-1.2-0.5l-0.3-1.9-1.2 0.1 0.8 1.4h-3l-3.1 2.5-2.5-0.5-0.7-1.3-2.8-0.3-0.2-0.7 1.8-2.3v1.3l1.1-1.2h1.3v-1.8l-1.3-1.4-1.5-2.6-3.6-0.1-1.1 0.7-1.1 0.1-0.5-0.8-0.8 0.1-0.6-0.6 0.7-0.7-1.8-1.1 0.6-0.6v-1.2h-0.5l-0.6-0.6-1.2 0.1-1-0.7h-2.5v0.6l-0.6 0.6h-0.7l-0.9 0.5h-1.2v0.7l-3-0.1-0.5 0.7-0.6-0.1-0.6 0.7h-1.2l0.1-0.7h-1.9l-1.1-1.2-0.1 1-0.7 1-0.5-0.1v-2.3h-0.8l1.8-1.8-0.5-0.6h-1.9l-0.5-0.6-0.1-1.2 0.7-0.6-1.2-0.5v-1.8h-0.5l-1.2-1.1v-0.8l-2.7-3.8 2.2-0.8 0.7 2 0.9 1 0.6-0.6 1.7 1.2 1.2-1.1-0.5-1.9-3.6-3.5-0.6 0.6v-1.3l0.6-0.4v-0.7l1.2-1.6v-2l1.2-2.2-0.5-0.7c0.9-1.1 1.6-2.2 2.2-3.4 0.2 0 0.4 0 0.6-0.1l-0.5-4.1-1.3-1.2 1.3-2.3-0.6-1.8 1.7-0.6 1.8 1.9v-0.8l2.4-2.6-0.7-0.2 2.4-0.5v-0.6l-0.7-0.8-0.5-1 3.4-2.3h0.8l1.6-3h0.7v-2.3l-1.4-2.7-0.3-2-1.9 0.1-1.2-1.2 1.3-1.8-0.6-1.1h0.6l1-0.6h3.7l1.7-0.6 1.7 1.9 1.1-1.3h0.8l2.2 1.9 1.7-1.3h1.9l-0.1 0.7 3.5-0.6 1.7-2.4 2.7-0.5 3.2-1.2 1-2.1 3.6 1 3.7-3.5 1-4.4 2.3-1.8 9.9-0.2 3.5 2.3 4.4-0.1 4.8 1.9 2.8-0.5 3 1.9 5.9 5.5 2.4 3.8 1-0.4 2.1 2.8 0.7 2.9 1 0.8-0.3 2.6 0.8 0.3-0.2 1.5-0.7 0.5-0.2 2.5-0.3 0.8 0.5 1v1.9l1 1.2-1.8 0.9-0.3 1.8z" fill="#FBD8AE"/><path d="m270.3 446.5s-2.3-1.6-2.4-1.6l1 2.6-3.1 1.6 0.2 0.9 1.9-0.3 4.4 0.8 2.2 2.5 0.1 1.2 1.5 1.2-1 2.1-3.2 1.2-2.7 0.5-1.7 2.4-3.5 0.6 0.1-0.7h-1.9l-1.7 1.3-2.2-1.9h-0.8l-1.1 1.3-1.7-1.9-1.7 0.6h-3.7l-1 0.6h-0.6l0.6 1.1-1.3 1.8 1.2 1.2 1.9-0.1 0.3 2 1.4 2.7v2.3h-0.7l-1.6 3h-0.8l-3.4 2.3 0.5 1 0.7 0.8v0.6l-2.4 0.5 0.7 0.2-2.4 2.6v0.8l-1.8-1.9-1.7 0.6 0.6 1.8-1.3 2.3h-1.8l-2.2 0.6-1.2 1.2h-0.7s0 0.7-0.1 0.7-2.1 0.5-2.1 0.5v1.9l1.2 1.8-1.9 1.1v0.6l-1.1 0.6-1.2-3.1-3-0.6 0.1 0.6-4.7 1.1v1.2l0.6-0.1-2.9 2.4 0.1-0.7-3-0.5 0.1-3.6h-0.6v-0.8l0.6-1.5-0.7-0.7 2.3-0.5-2.3-4.1 0.5-1.3h1.9l1.5-3.4 1.3-0.5 0.6-3-1.8-1.1v-0.6h2.4l0.5-0.6h0.7v-0.6l-1.2-1.7c0-0.4-0.1-0.8-0.2-1.2-0.2-0.6-0.3-1.2-0.3-1.8-0.8-0.8-1.5-1.8-2-2.8-0.9-1.1-1.9-2-3.1-2.8-0.8-0.6-1.5-1.3-2.1-2.1l-0.8-0.3-1.5-1.4-1.1-3 1.1-2.2c-0.9-0.6-1.2-2.3-1.2-2.3l-2.5-1.9-1.5-0.4 1.7-2.4 0.9-0.5 0.8-0.1 0.6 0.6v-0.5l0.6-0.7-0.7-1.2 1.3-0.5-2.3-2.3h-1.4l-1.7-0.7 0.1-0.5-2.9-1.3-0.6-1-0.1-1.9 1.3-0.5 0.6-1.9c0.8-0.5 1.6-1 2.3-1.7v-1.8l-0.6-0.5 0.1-5.5-0.6-2.1-1.8-1.8-3.5-1.2v-3.3l0.6-3.2v-2.2l-0.7-1.2 1.8-2.4h-0.6v-1.1h-0.6l1.7-0.7v-0.6l0.6-0.6 0.5-2.1 2.5-1.9 2.9 1.7c0.3 0.8 0.5 1.6 0.7 2.5l4.1 6.3-0.7 1.2 2.4 3.5 0.6-0.7 1.7 1.2 1.9-0.8-0.1 0.9 1.1-1.3h1.9l-0.1 1.1 1.6 0.7 0.5-0.7h0.8l1.7 1.8 2.4-0.6 0.4-0.5h0.8l0.5-0.7-0.6-0.6 1.2-1.2s1.1-2.1 1.6-2.8h3.1l3.4-4.1 0.6 3 4.1 0.5c0.9-1.1 1.6-2.3 2.3-3.5l4.1 2.4-0.7 1.8 3.2 0.6 2.8-0.7-0.7-1.8 3-1.2-3-1.7 3-1.2 2.2 1.2 2.5-2.9 3.5 3-1.2 2.2 0.6 3 1.7 2.9 1.9-0.6 1.1-4.2 0.6 0.7 2.4-0.6 0.5 0.4 2.3 2.7 2.2 4.4 2.1 2.6 2.4 10.5-1.2 4.5 0.1 2.2-7.7 3.8-3 4.7z" fill="#FBD8AE"/><path d="m278.2 407.4-1 1.2c-0.4 0-0.8-0.1-1.2-0.1l0.9-2.1-3.9-2.5-1 1.1-0.6 0.1-2.7-1.5-3.5-5.6-2.2-1.2c-1.1 0.4-2.2 0.7-3.3 0.8-1.7 0.1-4.6 0.2-4.6 0.2l-2-1.2h-2.1l-2.1 0.9v1.1l2.7-1 2.7 2.8 3.3-1.4 1.8 0.9 2.3-0.7 2.3 1.2 1.7 3.6s2.5 2.9 2.6 2.9l3.3 2.2-0.2 1.2 1.4 1.2-2.4 0.6-0.6-0.7-1.1 4.2-1.9 0.6-1.7-2.9-0.6-3 1.2-2.2-3.5-3-2.5 2.9-2.2-1.2-3 1.2 3 1.7-3 1.2 0.7 1.8-2.8 0.7-3.2-0.6 0.7-1.8-4.1-2.4c-0.7 1.2-1.5 2.4-2.3 3.5l-4.1-0.5-0.6-3-3.4 4.1h-3.1c-0.5 0.7-1.6 2.8-1.6 2.8l-1.2 1.2 0.6 0.6-0.5 0.7h-0.8l-0.4 0.5-2.4 0.6-1.7-1.8h-0.8l-0.5 0.7-1.6-0.7 0.1-1.1h-1.9l-1.1 1.3 0.1-0.9-1.9 0.8-1.7-1.2-0.6 0.7-2.4-3.5 0.7-1.2-4.1-6.3c-0.1-0.9-0.3-1.7-0.7-2.5l-2.9-1.7-0.9-1.1-0.9-1.9c-0.5-0.8-1.1-1.5-1.7-2.2v-3.6h-2.5l-1-0.6c0.1-1-0.1-2-0.7-2.9l1.9-1.1s0.3-2.6 1-2.9 2.4-1.2 2.4-1.2l0.6-1.2-1.7-2.8v-1.3l-2.3-1.6v-1.3l-1.2-1.7h-2l-2.3-4.8-3.5-0.5 0.1-1.9-2.5-4.1 4.2-4.7 5.3-1.2-0.6-5.9 3-1.2s0.4-3.5 0.5-3.5 4.1-0.6 4.1-0.6h2.3l2.5-0.6 2.6 2.4h0.4l8.3-3.6 0.4-0.7 0.6 0.8s3.3 0.7 3.8 2 3.2 3 3.2 3l0.5-1h1.3v0.5l0.7-1.1h0.6v0.7l0.6-0.7v1.9l4.2-0.7 1-1.1 0.6-0.1 0.5 0.7h2.2l1.6 0.6h1.1l0.5 0.6s4.2 0.1 6.3 1.2l2.3-3.5 3.1 1.6-0.5 0.8 1.6 0.4 3.8 3.8 1.1 3.6 0.8 2.7 1.3 2.6 0.7 3.2 2.8 2.7 0.6 3 1.7 1.7 1.4-0.1 0.8 1.3 1.3-0.1 0.2 1.3-4.1 2.9 0.2 6.9 0.7 0.8-0.6 2.4 5.6 9.9-0.2 1.2 1.1 0.8 2.4 6.8z" fill="#FBD8AE"/><path d="m252.6 346.3-0.6 0.6-2.3 3.5c-2.1-1-6.3-1.2-6.3-1.2l-0.5-0.6h-1.1l-1.6-0.6h-2.2l-0.5-0.7-0.6 0.1-1 1.1-4.2 0.7v-1.9l-0.6 0.7v-0.7h-0.6l-0.7 1.1v-0.5h-1.3l-0.5 1s-2.7-1.7-3.2-3-3.8-2-3.8-2l-0.6-0.8-0.4 0.7-8.3 3.6h-0.4l-2.6-2.4-2.5 0.6h-2.3l0.7-0.5 0.1-3.1-0.6-1.2-3.5-3.8-0.1-2.5 1.3-0.5-1.9-3 1.3-1.9 1.2-3.9-2.4-3-5.2 0.7-1.1-2.3v-2.6l1.7-3.8 0.6-3.7 3-0.5 0.6-3-3.5-1.2-2.5-5.9 5.4-5.8 1.3-0.7 2-2h4.9v-1.8l6.4-3.6-4.1-10.5 1.7-0.7 1.7 0.7 1.2-1.8 3.1-2.7 2.5-2.3 1.5-2v0.1l1.2 2.1-0.2 1.9 5.1 8.9 3.5 1.4 1.4 1.4 0.3 2.6 0.5 0.8-0.8 1 0.7 2.5-0.7 4.1-0.8 1.8 1.6 3.8-0.8 0.1-0.1 3.5 0.4 1.9 1.1 0.2v2.1l-2.1 1.7 1.4 1 0.1 1.7 1 1.4-0.2 2.2 1.2 1.1-0.1 1.3 1 1.1 0.3 2.3-0.3 1.7-1 0.3 1 1v2.9l0.5 0.7 0.2 4.4 1.7 2.9 2.4 2.1-1.1 0.5 0.4 1-1.1 2.8 1.3 0.7 0.8-1.9 2.8 1.6 0.7 1.8 2 1.1 1.1-0.3 1.2 1.5 3.8 0.8z" fill="#FBD8AE"/><path d="m92.5 324.1-1.2-5.9-0.1-2.5 0.5-0.5-1.2-1.8-2-0.5-1.5 0.1-2.3-1.3-3.5 1-0.5 0.8-0.7-0.8-1.1-0.4 0.6-1.8h1.3l2.8-1.8 1.6-0.2 1.9-0.8 0.7-1.2-0.1-4.7-2.3-0.4-0.6-1.1v-0.8l-0.8-1-2.9-5.8 0.6-4.9-2.4-1.7v-0.7l1.2-2.9-2.5-5.9-3.4 0.8-0.7-0.9-3.4-2.1-4.9-0.7-3 1.3-3.7-0.2-0.6 0.7h-4.3l-4-0.6-2.6 3.8-1.4 1.4-3.6 0.1-2.1-0.7h-1.3v-1l-2.4 0.6c-0.2-0.3-0.3-0.5-0.5-0.7-0.1 0-0.9 0.4-0.9 0.4l-2 1.9-0.5 3.5-1.8 0.1-0.5 2.3-0.2 1.3-0.9 2.3h-0.9c-0.2 0.2-0.3 0.4-0.5 0.6l-1.7 1.1-1.5 1.4-1.5 1.5v-0.6l-3.3 0.1-3.7 0.6-1.1-1.8s-2.9 1.1-3 1.1-0.5 2.4-0.5 2.4c0.2 0.2 0.5 0.3 0.7 0.5l0.9 1.7 1.4-0.1 3.5 1.3v1.9l-3.7 0.5-2.3 2.4-5.1-1.8-1.7 1.8-2.5 1.1-0.5 0.6-2.3-0.6v0.6l1.4 2.9 1.4 4.1 1.8 2.2 0.5 1.8 1.6 0.5 0.8 0.8-0.5 4.6 1.8 1.3 3.9 1.5 1.9 1.2-0.1 1.3 2.1 1.6 0.7 0.8 1.2 0.5s1.4-0.6 1.9-0.8c0.4-0.1 0.7-0.3 1.1-0.4l-0.5 0.8 1.2 1.1 0.8 0.3 0.7 0.7 0.7-0.6 0.2-1.4 0.4-1v2.3l1.6-1.1 1.1-3 2.3-0.5h1.3v-2.9l-1.3-1.7 1.4-2.4 1.1 0.6 2.5-1.6 1.1-1.3 1.9-1.1 2.5 2 1 1.5v1.2l0.7 0.6 0.5 1.1-1.1 2.1-0.1 1.3 1.2 0.6-0.1 2.4 2.4 3.4 0.6-0.6 1.2-0.5 1.2 1.8v1.8l-1.7 2.8v2l0.5 2.1 1.1-0.6 0.5-0.6 3 0.7 1.3-1.3 1.7 1.8 1.2-0.4 1.2-2.6 1.2 1.9 1.1-1.3 1.2 1.3h1.9l5.1 5.4 1.1-1.2h1.4l2.3-1.9 2.2-4.6 0.1-1.9 1.8-1.5 1.1-2c0 0.1-0.4 1.7-0.5 1.9s5.2 2.3 5.2 2.3l1.6-1.7 3.6-2.4h0.7l-0.6-3.4-0.6-1.3-3 0.7-0.6-0.6 1.8-1.6 1.2-2.5-0.8-0.9v-1l0.8-2.2-1.2-1-0.1-1.8 0.7-0.7 0.8 0.1 2.8 2.8 0.7 3.5 0.1 1.9-0.7 1.1h-0.7l0.1 4.7 0.5 1.2 2.4-3.5-0.2-2.6 1.2-3.3zm-27.1-13.5 0.6 2.4-3.1 2.8-1.5 2.4-1.2-1.5-2-0.8-1.9 0.5-1.9-1 0.9-3.2 3.3-3.1 2.5-4.6 0.3-2.2 1.2 1.3 0.5 2.2 2.6-0.9 2.7 0.3c0.1 0.2-3 5.4-3 5.4z" fill="#FBD8AE"/><g transform="translate(30.901 486.76)" fill="#FBD8AE">    <path d="m174.9 6.4-0.5 1.8-3.4 1.7-1.8-1.7v5.4l-1.9 2.2-1.6 7.5 1.1 2.5-1.1-0.6 0.5 3.7-1.9 2.8 1.9 0.6 1.1 3.5 0.7 0.1v2.4l1.3 1.7-1.9 2.2 2.4 5.3-2.4 4.7h-1.3v-0.7l-4.6 1.8-0.6 1.3 1.2 1-0.1 3h-0.6l0.7 2.4v3.5l1.2 1.1-1.3 3.6h-2.3l-2.3-1.9h-0.8l-2.3-2.4c-1.4 0.7-3 1.2-4.6 1.3 0.3 0.9 1 1.7 1.8 2.1 1.2 0.7 2 1.8 2.3 3.1l-1.3 0.6-0.5 1.9c0.8 0.5 1.6 1.1 2.3 1.7l-1.1 1.1v0.6h0.5c-0.1 0.2-0.3 0.4-0.4 0.6l0.4 1.7h0.8l1 1.2 2.5-0.1-0.8 0.5 0.1 0.6-3 0.2 0.6 1.1-1.7-0.5-0.9-0.7-2.8-0.2-0.7 0.9-1.6 0.1-0.7-1.5-1.4-1.1h-1.4l0.1 1.1-2.3 0.5-0.5 1 6.1 1.4 0.3 2-1.2 1.1v1.1l-0.9 0.9-2.8-0.1-0.4-1-1.8-0.2-1.3-1.5-3.7-0.5-3.8-1.3-1.3-1.1h-1.8l-1 1.8 0.1 1.4 0.5 0.8 0.3 1.8-1 0.6-1.3-0.1 1.2-1.7-0.4-1.4-1-0.1-0.7-1.6-2.9-3.4-2.2-1.7-1.7-1.2-1.8-1.9-1.7-0.4-2.6-1.2-2.4 0.6-5.2-0.3-0.6 0.7-6.1 0.1-0.9 0.8v1l-0.9 0.8h-1.9l-0.2 1.2-2-0.6 0.2-1.7-0.8-0.9-0.2-1.9-0.8-0.8-0.1 1.6 0.3 3.1 0.6 0.3-1.1 0.7-0.1 1.1-1.1 1.1-3.4 0.2v0.7h1.5l0.6 3.2c-0.5 0.2-1 0.6-1.4 1-0.3 0.5-1.7 1.8-1.7 1.8l0.1 1.6 1.5 0.3 0.9 1.2-1.2 0.3-0.1 1.5-1.3 0.5-1.2-1.1 0.4 1.5-1.4 0.3-1.1-0.2-1.4 2.2-0.5 3.5-1.2-0.5-1.7 1.4-1.7-2.5-0.1 1.4h-1.3l-0.8-1.3-1.2-1 1.1-3-3.1-0.5-1.8-1.2-1.8 0.3-1.5-0.7 0.1-1-1.4-0.1s-0.5-1.5-0.5-1.6 0.3-1 0.3-1l-1.8-0.9-0.3-1.4-0.5-0.5-1.1 0.5-2-0.7-0.6-0.8-0.8 0.9 3.6 1.7-0.5 0.7 1.1 0.8h1.1v0.8h-0.8v1.6l-1.7-0.4v-1.8l-2-1.7-5.3-0.4-1.8-1.5-0.4 0.9 0.7 1-0.3 1.2-3.7-1-2.2-0.1-1.6 0.6-0.1-2.5-2.9 1.1-0.1 1.4s-1 0.5-1 0.6-0.6 1.6-0.6 1.6l0.6 0.7-1.1 1.3-2.8-0.9-2.4 1.9h-2.1l-1 2-1.5 0.5 0.6-4-1.6-0.5-0.8 0.5 0.9 0.7-0.5 1.7 0.4 1-0.9 0.2-1.1 2.2-1.8-0.6 0.1 0.9 1.9 1 0.8 2.2-2.4 2.5-2.3-0.6-1.8 2.4-1.6-0.9-0.7-2 0.5-1.7-0.7-3-1.3-1.5h-1.6l-0.6-1-1.9-0.4s-0.5-1.2-0.5-1.3-2-0.9-2-0.9l-1.1 0.9 0.5 1.3-1.2 1.7-4.6 0.9-0.8-1.4-0.6-0.3v-1.2l1-0.6 0.3-1.4-0.8-0.6 2.2-1.9h2.4l1.6-1.7 2.1-0.9 1.2 0.2 0.4 1.6 1.8 0.6s2.1-3.1 2.2-3.1 2.1 0.7 2.1 0.7 1.6-1.4 1.7-1.4 1.4-0.5 1.4-0.5l1.3-1.7 2.3-0.4 2.1-2.9-0.6-1.1 1.3-0.6 1.3 0.5 2.3-2.5 0.3-2.4 1-0.4v-2.1l0.8-0.6 0.2 0.8 2.1-0.9 0.8 0.7 0.1-2.2 2 0.6 1.3-1.1 0.8 1.6s2.1-1.5 2.1-1.6 0.4-2.7 0.5-2.7 2-0.9 2-0.9h1.2l1.9-1.6v-1.1l3.8-2.5 1.3-3.3c-0.1-1.4-0.1-2.8 0-4.2 0.4-0.2 0.8-0.5 1.1-0.7 0 0 0.7-4 0.7-4.1s1-0.8 1-0.8l2.6 1.2 1.3-0.1 1.5 1.7 1.9-0.1 2.4-2.2s1.4-0.5 1.6-0.4 0.6 0.6 0.6 0.6l-0.9 2 0.9-0.4 1.5-2.9 4 0.1-1-0.8h-3.9l-1.3-2.8-0.1-1.4 1.1 0.3 1-2.9 3.3-0.2 2.3 0.8 0.8-0.8 4.7 0.4 1.3 0.8 0.4-0.9 4 0.2 1.3 0.9 5.5 1.2 0.1-0.8 3.2 1v1.1l1.4 0.5 0.5 1.7 4.8 0.7 0.9 0.7 1.9-0.7s6.3-0.1 6.5-0.1c0.3-0.1 0.7-0.3 1-0.5l-0.8 3.6 1.1 1.4 0.7-1-0.4-2.5 1.1-0.7s-0.9-1.5-0.8-1.5 0.7-0.6 0.7-0.6l-0.8-1.4 0.6-2.5 0.8 0.6 0.3-2.7 1.7-1.4-0.5-1.3 3.7 0.8 0.6-2.3 4.6-3.6 1.4 0.2 0.8 1.5h1.2l-0.9-2.4 2.6-4.3 6.9-5.8 4.5-2-2.3-2.8-0.2 1.4 0.7 0.6-2.6 1.2-1.9 1.9-3 1.2-2.3 3.3-0.4-0.6v-0.6l0.1-0.5h-0.7v-0.7l0.6-0.6-0.6 0.1v-0.7l0.5-0.5v-1.1h0.6l-0.7-0.5v-1.3l1.2-1.1-0.1-2.4 1.3-1.7 1.7-1.8 1.2 0.7v-0.7l2.3 0.1 1.6-1.2 1.6 0.1c-0.5-1.2-0.7-2.4-0.8-3.7l-0.6-1 1.7-3.7 0.5 1.2 1.3 1.3 0.6-0.6v-1.2l1.9 0.1s0.8 3 1 3.5h1.3l3.1-1.1h1l-0.6-1.6 0.5-1.4 1.7 0.6-1.1 1.7 0.6 0.7 1.2-0.6 1.7 0.7h0.7l0.9-0.6 3.6-1.2 2.4 2.9 0.6-1.1-1.2-3h1.4l2.1-1.1 0.6-0.6 0.5 1.1 0.9 0.8 0.8 2.3 0.7 1.1h2l4.5 1z"/>    <path d="m51 36.2 0.3 2.6-0.9 0.4v-2.4l0.6-0.6z"/></g><g transform="translate(66.474 393.66)" fill="#FBD8AE">    <path d="m20.8 103.5c-0.2 0.3-0.3 0.5-0.4 0.8h-0.8l-0.1-0.9 1.3 0.1z"/>    <path d="m104.3 37.8-0.6 0.7 0.1 1.3c-1.1 0.2-2.1 0.6-3 1.2l-1.6-3-3.6-1.7v-0.8l-1.7 0.7-0.1 0.6-1.7 0.6-1.2-0.1-1.4 1.4-0.8 0.3s-0.6 4.3-1.3 5.5l1.2 1.2 1.1-0.7 2.7 3.7 1 1-1.8-0.1-1.2 3.7-1.8 1.1 0.6 0.5-3.5 2.3 0.6 2.3-0.6 1.2 4.8-1.7 0.6 1.1-0.6 1.2-5.9 1.8-3.1 1.9 5.2 7.1 3.7 0.5-2.4 1.1-0.5 2.4 1.2 1.7-1.9-0.6-1.6 1.8-3.5 5.3 1.2 1.2-1.2 2.1v1l1.3 1.5-0.2 3.5s4.1 4.8 4.2 4.8l3.6 1.2 2.8 4.6 1.3-0.6 0.4 1.2 1.4 0.6-1.3 1.7 0.1 2.4-1.2 1.1v1.3l0.7 0.5h-0.6v1.1l-0.5 0.5v0.7l0.6-0.1-0.6 0.6v0.7h0.7l-0.1 0.5-2.7 3.1-2.8-0.2-1 0.7-6.3-0.3-4.7 2.4-1.1-0.9-0.4 1.3-2.5 0.2-0.1 1 0.5 0.2 0.5 2.9-3.3-0.1-0.2 0.8-4.2-0.8-1.3-1.3-1.3 1.1-3-1.5-2.6-2.7-0.4-2.5-1.2-0.7-1.3 0.5-0.8-1.8-1.1-0.4 0.6-1.7-2-2.6 0.8-0.9-1.2-0.9v-3.1l-1.5 1.4-1.8 0.8v-1.7s-0.1 1.1-0.8 1.2-2.1 0.4-2.2 1.1c0 0.3 0 0.5-0.1 0.8l-1.3 0.6-2.4-0.2-0.3-1.4-1.8 1.5-3.5-0.3-1.7-1.5 0.5-1.2-0.5-1.6 2.5-1s5.8-0.6 5.9-0.6 1 0.6 1 0.6l-0.3-1.1 1.1-1.3-1.6-0.4-0.2 1.3-0.9 0.5c-0.7-0.1-1.5-0.4-2.1-0.7-0.8-0.4-1.4-0.8-1.4-0.8-0.5 0.3-1 0.4-1.5 0.3l-2.9-3.1 1.4-0.4-1.1-1.9-0.5-1.9-2.7 0.4 0.6 1.5-5.1-0.6-3.9 0.1-1.4 0.7 0.9 0.9c-0.7 0.7-1.3 1.5-1.8 2.4l-1.9-0.7v1h-2.2l-0.3-0.9h-2l-2.1 2.4-1.5-1.1-1.8 0.1-1.8-1.7 0.7-1.8-1.4-1.7 0.7-0.8 1.4 0.7c0.3-0.2 0.6-0.5 0.9-0.7 0.1 0 3.4 2.8 3.4 2.8l0.3-1.2-0.7-0.9 1.1 0.1v-0.6l-0.9-1.4-0.8 1-1.9 0.6-0.2-0.9-1.8 0.1-0.6-0.5 0.3-1.5-0.7 0.1-0.3 0.9-1.9 0.4v1.6h-1.3v-1.5l-1.5-1.8 0.5-0.9c0.3 0.2 0.5 0.4 0.8 0.6l0.7-1.2 2.9-0.3 0.8-1.3 0.1-3.9-2.6-0.8-0.2-0.9h-3.1l-0.9 0.5 0.1-2.5 1.8-0.7h2.4s0.7-1.2 0.8-1.2 1.6 0.1 1.6 0.1l0.4 0.6 1-1.1 1.4-0.3 0.5-2.6 1-0.8 2 1.1 0.9-0.1-1 1s1.6 0.1 1.7 0 1.2-0.4 1.2-0.4l0.7-1.1 0.6 1.3 1.9 0.5-0.2-1.6 1.8-0.7 1.3-0.3 1.1-2.2 1.6-0.2 0.9 0.6v-1.3l1.6-0.4 1.8 0.8 1.4-0.4v1l2.5-0.5 0.8-1.3 3.1-2.3 2.5 0.3 5.3-2.3 1.6-2.3 2.3-1.6 1.6-3.9 0.9-3.1 1.6-2.6 4.1-1.9h-2.2l-2.9-1.1 0.4-1.7 0.8-1.2-1.7-0.5 3.7-4.1 3.5-2.1-3.5 0.5-1-2.8-1.6-2.5 1.4-2.1v-3l5-2.1-4.2 0.2-0.5 0.9-4.1-0.6-2.6-0.9-0.2 1.3-3.2-0.7-1.4 1.7-1.6 0.6-0.7 2v1.1l-1.8 0.5-0.2-1.7-1.1-1.6-1.9 1.6-3-0.6-0.8 0.9-0.9-1.3 0.9-1.5h0.8l0.4-1.8 6.5-3.9c0.1 0 2.8 0.5 2.8 0.5l1.1-2.2 2.3-0.8 2.6-1.7 1.9-3.3 0.1-1.9 1.9-0.3 2-2.1 0.4-0.8 3.7-1.5c0.3 0.3 0.7 0.5 1 0.7 0.1 0 3-0.6 3-0.6l3.1-1.4 1.8-0.1c0.6 0.2 1.2 0.5 1.7 0.8 0 0.2-0.1 1.2-0.1 1.2l1.1-0.4v-1.5l-1.2-1.2-0.3-2.1 0.8-0.5 0.4 1.6 1.7-0.2 1.3 1.9-0.4 0.8 9.1 0.5 0.6-1.5 1.9 0.2 2-0.9 5.6 3.8 0.1 1.8 3.7 3.1 0.5-0.9h1.1l2.8 3.4 0.1-0.5 0.6 0.6-0.6 0.5 0.6 0.6-1.2 1.3h-1.7l0.7 1.7 2.3 1.7-0.6 0.7 1.1 2.4 0.6 2.8 3.6 2.3-0.2 1.7z"/>    <path d="m41.2 9.7 0.5-2.9 0.6-0.6-0.7-0.8-0.9 1-0.5-1.4-1.2-0.2-0.6 2.3h1.2c0.4 1 0.9 1.9 1.6 2.6z"/>    <path d="m44.1 1.7h-1l0.6-1.2 3.8 0.1 1.7-0.6 2.3 1.4 2.3 0.4-1.1 2.9 1.7 0.5 0.8 1.2-0.2 2.2 1.6 0.1 1.2-0.7 2.6 0.5 0.9 1-3 2.9s-1.8 0.2-1.9 0.2-0.7 1.1-0.7 1.1l-1 0.1-1.3 1.1-3.2 2.4-1.8 0.7-2-1.2-0.9-2.2-0.9 0.1-1.3-1.2 0.8-0.6 0.3-2.5-2-1.7v-1.6l1.6-0.8-1.4-1.9 1.5-2.7z"/></g><g transform="translate(109.77 299.96)" fill="#FBD8AE">    <path d="m89.8 49.7-3 1.2 0.6 5.9-5.2 1.2-4.2 4.7 2.5 4.1-0.1 1.9 3.5 0.5 2.3 4.8h1.8l1.2 1.7v1.3l2.3 1.6v1.3l1.7 2.8-0.6 1.2s-1.8 0.8-2.4 1.2-1 2.9-1 2.9l-1.9 1.1c0.6 0.8 0.8 1.9 0.7 2.9l1 0.6h2.5v3.6c0.7 0.7 1.2 1.4 1.7 2.2l0.9 1.9 0.9 1.1-2.5 1.9-0.5 2.1-0.6 0.6v0.6l-1.7 0.7h0.6v1.1h0.6l-1.8 2.4 0.7 1.2v2.2l-0.6 3.2v3.3s-1 1.1-1.1 1.1l-1.3 0.4-1.7 0.2-1.2-1.2-0.6 1.7-1.1 0.4-2.1 2.2-1.4 0.9h-2.4l-1.4 1.4-1.5 3.3c-1.3 0.4-2.5 1-3.6 1.8l-1.7-1.2-2.3 0.5-1.1-1.5v-0.7l-0.8 0.1-1.6-0.7-1.3 0.6-3.6-2.3-0.6-2.8-1.1-2.4s0.6-0.6 0.6-0.7l-2.3-1.7-0.7-1.7h1.7l1.2-1.3-0.6-0.6 0.6-0.5-0.6-0.6-0.1 0.5-2.8-3.4h-1.1l0.2-0.4-1.4-0.7 0.1-1.7 0.4-0.9-2.3-3.8 1.5-2.4 2.1-0.4 1.5-0.9 0.7 1 0.6 1.6v1.8l1.8 3.6 2 1.5 3 0.1 4.5-2.5-0.8-0.7h-2.3l-0.6 1.2-1.9-0.1-4.8-4.7-0.3-3.2-1.2-1v-2.9l-0.8-1.2 0.8-4.1 3-3.1 1.7-1.9 0.7 1.1 1.3-2.8 1.1 1.2 1.2-1.4-2.3-1.3-0.7 0.8h-2l-0.3-1.2-1.3-0.3 0.2-1.6 0.5-0.6v-2.7l1-0.6v-2l0.4-2.2 1-0.6 0.8 0.7-0.4 1.6 0.7 0.8-0.7 0.9 1.6 0.6-0.3-3.4 2-1.6 1.2 0.2 1.6-3.1-2-2.1 1.1-2.3 3-0.6 0.6-1.4 1.3-1.3-2.1-1.2-0.8-1.7 3.5-2.1v-1.7l-0.8-0.8-2.8 3.6-3.4 1.9-1.2-1.7 0.2-2.6 0.7-2.3-1-0.4-0.8 2.1-0.6 2.8-4.2 4.6-3.1-1.9 2.6-4.7v-2.6l-1.7 0.9 0.1 1.5-1 0.5-1.6-0.1-1.6-1.9-0.3-1.9-0.7-3 1.9-2.9-2.5-2.3c-0.3-1.2-0.6-2.5-1-3.7-0.4-0.9-1-1.8-1.7-2.5-0.6-0.6-1.6-1.5-1.7-2.1v-1.1l1.4-0.3 0.4-1.6 0.8 0.5 1.2-3.4-0.2-2.4 1.4-0.4-0.1-1.3 4.6-4.4 1.7-4.9 2.3-2.1 5.2 0.4 0.6-0.8-3.8-0.9 0.7-1.6 5.8 2.5 3.6 0.1v-0.9l-3.8-0.4 1.7-1 2 0.1-0.7-1.4h-0.5l1.2-4.1 4.7-0.6 3.1-2.2 5.7-3.1 2.5 5.9 3.5 1.2-0.6 3-3 0.5-0.6 3.7-1.6 3.8v2.6s1 2.3 1.1 2.3 5.2-0.7 5.2-0.7l2.4 3-1.2 3.9-1.3 1.8 1.9 3-1.3 0.5 0.1 2.5 3.5 3.8 0.6 1.2v3.2l-0.7 0.5s-4 0.6-4.1 0.6-0.4 3.4-0.4 3.4z"/>    <path d="m54.9 63.2-1.6-3 0.5-1.8h-0.9l-0.3 1.8 1.4 2.9 0.9 0.1z"/>    <path d="m6.4 56 0.6-2.1 5.3-1.8c0.2-0.5 0.5-1 0.8-1.5 0.1 0 3.3-1.2 3.3-1.2v-2c0.1 0 3.9-3.8 3.9-3.8l-1.8-1.1-0.4-2 1.9-4.3-5.5 1.1-5.9 6.6-3.2 1.1-2 3.6-0.6 2.2-2.8 3.5 3.5-0.9 1.7 0.8 1.2 1.8z"/></g><g transform="translate(180.75 485.63)" fill="#FBD8AE">    <path d="m125.8 62.7-1.8-0.8v2.2l1.6 0.1 0.8-0.5s0.2 3.4 0.1 4.4-0.1 2.7-0.8 3.3-3 2.2-3 2.2l-0.9 1.1-3.3 0.2-0.9 1.4-4.3-0.2-0.4 0.8-3.3 1.4 0.1 1.3-1.5 1.7 0.1 3.2-4.4-1-3.4-1.9-1.2 2-2.5 2.4-2.8 0.9-1.7-0.4-1 0.7-3.4 0.1-2.8 0.7-1.9 1-0.8 1.5-4.1 1.3-3.6-1.5-0.7-1.3-4.8-2.2-4-1.5c-0.4-0.1-0.7-0.2-1.1-0.3l-0.9-0.5-4 0.2-1.4 0.7h-4.1l-1.5-0.7-5.1 0.7-3.3-0.3-0.1 0.8-1.2-0.8-0.9 1.1v2.2l-2-1.2-1.5-2.1v-1.6l1.6-0.6-0.3-2.4-1.3 0.6-0.2 0.9-0.9 0.1v-1.9l-2 0.2-1.7-0.5-1.2 1.3-0.1 1.8-1.5 0.8-0.9-0.9h-1l-0.5 0.8-4.5-4.4-0.7-2.3h-1.4s-1-3.3-1.1-3.3l-0.9 1.6-2.4-1.9 0.1 1.1 5 5.7-1 1.7-6.3 1.1-1.6-0.4v1.3l-1.7 1.6-2.9-2.5h-1l-0.1-0.6 0.8-0.5-2.5 0.1-1-1.2h-0.8l-0.4-1.7c0.2-0.2 0.3-0.4 0.4-0.6h-0.5v-0.6l1.1-1.1c-0.7-0.8-1.5-1.3-2.3-1.8l0.5-1.9 1.3-0.6c-0.3-1.3-1.2-2.5-2.4-3.1-0.8-0.5-1.5-1.3-1.8-2.2 1.6-0.1 3.2-0.5 4.6-1.3l2.3 2.4h0.8l2.3 1.9h2.3l1.3-3.6-1.2-1.1v-3.5l-0.7-2.4h0.6l0.1-3-1.2-1 0.6-1.3 4.6-1.8v0.7h1.3l2.4-4.7-2.4-5.3 1.9-2.2-1.3-1.7v-2.4l-0.7-0.1-1.1-3.5-1.9-0.6 1.9-2.8-0.5-3.7 1.1 0.6-1.1-2.5 1.6-7.5 1.9-2.2v-5.4l1.8 1.7 3.5-1.8 0.5-1.8 0.6-2.3c0.5-0.5 1-1.1 1.2-1.8h3.9l1.1-2.9 0.7-0.3 2.3 4.1-2.3 0.5 0.7 0.7-0.6 1.5v0.8h0.6l-0.1 3.6 3 0.5-0.1 0.7 2.9-2.4h-0.6v-1.2l4.7-1.1v-0.7l3 0.6 1.1 3.1 1.1-0.6v-0.8l1.9-1.1-1.2-1.8v-1.9l2.1-0.5 0.1-0.7h0.7l1.2-1.2 2.2-0.6h1.8l1.3 1.2 0.5 4.3c-0.2 0-0.4 0.1-0.6 0.1-0.6 1.2-1.4 2.3-2.2 3.4l0.5 0.7-1.2 2.2v2l-1.2 1.6v0.7l-0.5 0.3v1.3l0.6-0.6 3.6 3.5 0.5 1.9-1.2 1.1-1.8-1.2-0.6 0.6-0.9-1-0.7-2-2.2 0.8 2.7 3.8v0.8l1.2 1.1h0.5v1.8l1.2 0.5-0.6 0.6 0.1 1.2 0.5 0.6h1.9l0.5 0.6-1.8 1.8h0.8v2.3l0.5 0.1 0.8 1.6v1.8h-0.6v2.3l-0.7 0.7-0.6 1.7 1.1 0.6h0.7l-0.1 1.2 0.5 0.6 0.7-0.1s0.4 0.6 0.5 0.6 0.7-0.1 0.7-0.1l-0.1 1.3h1.3l0.5 0.6-0.1 0.7 0.7-0.1 0.6 0.6-0.7 0.4v0.7l-0.8 0.7-0.1 0.4-0.3 0.6 0.7 0.6 0.7-0.7 0.1-0.8 0.9-0.7-0.1-0.7 1.1-0.1v0.7l0.7-0.1 0.6 0.6-0.5 0.8-0.2 1 1.1-0.7 0.8-0.1-0.1 0.8 0.5 0.3v1.9l1.1 0.6 1.3-0.6 0.5-1.2h1.2l0.6-1.2 1.1 0.6v0.7l1.7 2.3h1.8l1.1-2.9h0.6l0.7-0.5-0.1-2.6 0.7 0.7v-2.4l0.6-0.6 0.5 0.1v-0.6h1.2l0.1-0.8 0.8-0.4 1.3 1.2 1.2-0.5 1.9 1.8 3.7 0.2 0.4-1.2 5.2-0.5 3.8 2.2-2.9 0.3-4.1 1.5-0.7 1.6 2-0.7 1.9 1.9h2.1l1-2h1.3l0.7 2.2-0.3 1.3 1.7-0.3 1.3 1.5s2.2 0.7 2.2 0.8-0.2 0.6-0.2 0.6l3.6-1 2.2-0.3 1.6-0.8 6.6-0.5 0.3 1.2 2.7-0.4 2.2-0.6 1.7 0.7v2.8l-3.1 1.3z"/>    <path d="m11.3 88.3 1.7-0.4s1.3 0.3 1.4 0.3l5.1 5.1 0.4-0.5 0.6 1.6 0.7 0.2 4.6-1 0.6-2.2-0.4-0.9v-0.3h3.1l-1.2-3.1 0.2-1.3-3.6 0.4-0.5-0.7 0.3-1.3-0.9-0.9-0.6 1 0.1 1.9-0.8 0.8-0.3-0.6 0.4-1.4v-2h-0.8l-1 1.5-1.3 0.4-0.7 1.4-2-0.8-2.4 0.7-0.7-0.6-2 2.7z"/>    <path d="m36.2 83.5-1.8 0.1-1.5-0.6 2.2-1.9 1.1 2.4z"/>    <path d="m106.8 57.3-2.8-1.7-0.9-2.1 0.6-1.3 1.8 0.4 0.2 1.2 5 3.4-3.9 0.1z"/></g><g transform="translate(55.069)" fill="#FBD8AE">    <path d="m189.4 169.2 0.2 1.4-1.3 1.8-2.9 2.4-1.2 0.4-0.7 1.8-5.3 7-1 6.2-1.9 3.3s-1.9 1.1-1.9 1.2c0 0.2-2.9 8-2.9 8l-1.9 2.4-5.9 4c-0.7 1.4-1.2 2.8-1.5 4.3l-1.9 0.7-0.3 3.2-2.4 2.1-0.5 0.7-6.6 4.4-1.9-1.2-2.9 0.8-1.2-0.8-1.6 1.1-3-0.9s-2.3 1-3.3 1.6-4.6 3-4.6 3c-0.1 0.4-0.1 0.8-0.2 1.1 0.1 0 2.3-0.2 2.3-0.2 1.1-0.7 2.2-1.4 3.3-2 1.9-0.7 3.8-1.1 5.8-1.3l0.7-0.9 3.4 1.3 1.5 6.6 1.8 0.8 1.7 1.9 0.3 2-2.2 2c-1.4 0.2-2.8 0.6-4.1 1.3h-3.6l-2.7-1.9-2.1 1.4-2 2.1h-1.5l-1.6 1.5-0.6 2.4-1.9 0.5-1.5-1.1-1.3 1.3-2.6-0.1-0.5 1.1-2-0.3-8-5.2h-1.5l1.8 4 5.2 1.1 2.7 1.5 2.3 0.2 3.7 1.6 2.8-0.1 0.9 1.4 1.7 1.4 3 0.1 6.6-5.6 4.4 0.7 4.5 3.7 5.1 5.1 0.8 0.1 1 1.7h2l1.1-0.2 2 1.4 0.2 1.7 1.5 1.2v1.9l0.7 0.5 0.1 1.2-1.5 2-2.5 2.3-3.1 2.7-1.2 1.8-1.7-0.7-1.7 0.7 4.1 10.5-6.4 3.6v1.8h-4.9l-2 2-1.3 0.7-5.4 5.8-5.7 3.2-3.1 2.2-4.7 0.5-1.2 4.1-7.8-0.5-9.7-1.9-1.1 5.4-3.2-0.8-3.4 1.6-1.3-2.3-0.9 3.9-1.3 0.2-0.9 1-3 1.5-3-1.5-2.2 0.1-1.8-1.3c-0.2-0.7-0.5-1.2-1-1.7-0.7-0.6-2.9-3-2.9-3l-3.9-2.3 2 4.9 0.5 0.5-1.8 2.8v3.3l-1.7 0.9-1.4-0.7-9-10.1-1.3-3.3-4.7 1.9-0.6 5.1 0.2 5.8h-1.5l-1.4-3.4 0.8-1.9-1.4-3.9-2.3-3.3-1.8-5.1 1.3-4.6 2.3-0.8 1.3 0.4-0.2 4.1 0.5 1.9 0.8-0.5 0.7-3.2s-0.7-2.7-0.7-2.8-0.1-1.1-0.1-1.1l5.7-7.6 3.3-1.9 1.4-3.6 3.7-6.5 5.3-3.4-0.6-4.1-0.7-0.6 1.3-1.2-2.9-4.1-1.9-0.5-1.8-4.2 2.1-3 0.5-3-0.3-5.8h1.2l2.4-3.5 3.9 2.6 6.6 2.4 1.8 2h0.6l-1.6-3.1-1.8-0.3-5.4-2.9-0.5-2.1-1.7-1.7-0.7-3.1h-0.8l0.2 2.8 1.2 1.8-2.3 0.5-0.8-1.8 0.6-1.9-0.8-1-0.6 1.6-0.3 2.6-1.3 0.4 0.4 1.4-1.6 1.8-1.4 3.1-2.7-1 0.8-1.6-0.6-4.2-1 0.1 0.3 3.5-0.6 0.6-1-1.6-1.4-1.4-0.2-1.4-0.8 0.1-0.3 2.4-0.7 0.7-0.4 3.7-1.5-0.4-1.1-1-0.1-5.4 0.6-2.7 7.4-7.6 2.7-0.5 2.4-2.8 3.3-1.9 0.3-1-3.3 1.1-0.3-0.8-5.2 4.1-1 1.4-1.3 0.3-4.6 5.3-1.9 1.3-1.3-1.1-1.1 0.3 0.2 7.6 2.4 5-0.9 2.7h-2l-1.3 1.4-3.5 7.4-0.2 1.8-1.2 0.4-0.9 2.9-3.6 4.3 0.9 3.5-2.8 3-4-0.1-3-1.7 1-4.6 2.3-1.2h1.6l0.8-8 2.6-3 0.7-3.7 3.8-3.1 3.5-1.6 2.1-2.8-0.6-0.8-2.5 2.5-3.1 1.7-0.7-1.2 0.7-1.2-1.5-1 0.6-2.1 2.3-2.4 1.1-1.6-0.7-0.6-1.5 1.7-1.2-0.1v-1l3.1-2.8 0.7-1.9 1.3-0.5v-1.2l-1.5 0.7-1.8 2.7-1.7 1.3-0.5-1.4 1.8-2.1 1.3-1.2 3.3-3.4 1.2-0.5 0.3-1.7 1.5-1.8-0.7-0.6-1.8 1.4-0.8 1.2-0.9-0.2 1.1-2.1 3.3-2.6-0.3-1.1 2.2-1.1-0.4-0.7-1.4 0.4-1-0.5-1.7 0.8-0.6 1.4-0.3 1.7-0.8-0.7v-2.4l1.6-1.5v-1.8l1.4-1.1 0.5 1.6 1.1-2.1 1.3-0.4 0.1-1.9-0.6-1.2 2-1.3 0.4 0.5 2-1.4 1.8 0.3-0.9-2.3-1.2 0.2v-1l3.6-1.5-0.8-1.1 1-1.9 3.6-3.1-0.5-0.7 1-0.6 4.2-0.3-0.4-1.6-1.4 0.4-0.1-1 3.5-3.3 1.4-2-0.8-0.5-1.8 2.1-1.3 0.5-0.9 1.6-3.1 2.6-3.3 2.2-0.9-0.7-1.5 1.8h-1.3l-0.8 1.9-2.1 2.1-2.4 0.7-0.7 1-1.6-0.3-0.3-1.5-2.6-1.6-1.7-0.1-2.4-2.3-0.2-1.9-0.9-1.9v-1.2h5.5l1.4-0.4h0.8l0.8-0.8 0.7 0.1 1.6 1.1 2.1 0.7h2.4l-1.1-0.7h-2.5c0-0.1-1-1.7-1-1.7l-0.8 0.1-0.3-0.5h-1.4v0.5l-0.1-1.1-0.4 0.6h-0.7c-0.1 0.2-0.3 0.4-0.5 0.6l-0.6-0.6h-2.4l-0.8-0.8-2.7-0.4-0.4-1.2-2.5 0.8-1.7-0.8-0.5-2.6 1.9-1.6 6.7 1v-1l3.1 2.8 0.6-0.5-0.8-1.5 0.5-1.8 1.8-0.8 3.5-0.5-1.4-1.2 2.1-1.1-0.2-0.8-5.1 0.4c-0.5-0.3-1.1-0.5-1.6-0.8 0.1 0 0.7-0.8 0.7-0.8h1.9l-0.1-1.3 1.6-2 0.4-2.2h3.7l2.2 3.1s3.6-0.1 3.6-0.2 0-0.9 0-0.9h-2.4l-1.3-0.8-0.3-1.9-1.8-0.3-1.2-1.5 2.6-3 4.7 2h1.4l-0.6-2.2s-1.9-1.3-2-1.4-1.7-0.4-1.7-0.4l0.1-1.6 2-1v-1.9l3.8-1 2.1 2.9h1.3c0-0.1-0.9-2-0.9-2l-1.8-1.9h-2.3l-1.3-0.9h-2.9v-1.2l3.1-2.2 2.8-0.1-0.5-1.4 0.1-2.8-2.7 2.6-1.8 0.6h-2.1l-0.6-2.3 0.7-3.3-0.9-2.1 2.1-5.6 2.2 0.7 0.3 1.4 1.7 0.2 0.5 2.5 1.7-2 1.9 0.5 1.3-0.9-1.6-0.7-2.1-0.2-1-0.9-1.3-2.1 0.4-0.5-0.8-2.2-1.4 0.2v-1l3.3-2.5s0.6 0.7 0.7 0.7c0.3-0.2 0.6-0.5 0.9-0.7l-0.4-1.9-1.8 0.1-1.4-2.2 1.1-1.3-0.3-2.7 0.6-1.6h3.6l0.4 3.9 1.1 2.2 1.6-1 0.6-2.7-1.7-0.8-0.1-1.1-0.4-1.1s1.1-0.7 1.2-0.7 0.5-1 0.5-1h1.1l1.3 1.4-0.2 2.2 1.8 0.7 1.8-1.8 2.8 1.6 1.1 1.9 1.3 0.5-0.2-1-1.5-1.8-0.1-1.1-2.3-0.9 0.2-1.3 1.3 0.2 2.3 1.7 1.1 0.1 2 2.1h0.9l-0.9-1.6-1.3-1.2 1.2-0.8-1.9-2-1.3-0.5 0.1-2-1.6-2.1-1.2-0.2-0.5-2.9 1.1-1 1.7 2.1 1.7 0.8 1-2.2-0.2-1.6 1.4-0.7-1.5-1.3-0.6-3.5-0.8-0.7 0.9-1.8 1.4 1.2 0.1 0.9 3.8-0.3 1.8 0.6 1.1-0.8 2.8 2.1 1.4-0.1s-3-2.5-4.2-3.3l-1.2-3.4 1.1-2.4 1.6-1.9 1 1.2 0.6-0.7-0.2-1.6 1.3-0.1 0.9 0.8 0.4-1.2-3.2-2.3 0.9-2 3.2-2.9 1.2-2.6 1.1 0.1 0.8 1h1.8l1.6 2.5-1 1.8v1.6h1.1l0.9-4.5 1.1-0.4 0.3 2.5c0.5 0.2 1 0.5 1.5 0.8v1.8l-3.4 3.1 0.3 0.9 2.6-1.5 3.7-4.6 2.5 0.6 1.5 1.9-0.9 3.4-1.9 1.6v0.8s2.7-2.1 2.8-2.1 1.9-2.7 1.9-2.7h2.9l0.9 2.1 0.9-1.8h1.7l0.6-1.5 1.9 0.6 0.3 0.9 1.3-0.5v-1.2l1.2-0.3 0.3 1.3 6.7 2.3 4.3-2 1.6-0.8 2 0.3-0.6 0.8 5.1 2 1.1-2-1-0.7-0.6-1.8 6.6 0.4 0.1 1.1 4.4 2s-1.1 3.7-2.1 4.5-1.7 1.1-1.7 1.1l0.6 3.3 0.8 0.6-0.1 2.2-1.2 1.2-0.6 2.3c-0.5 0.2-1.1 0.4-1.5 0.8-0.4 0.5-1.5 1.6-1.5 1.6l-2.4 1.3s-1.8-0.3-1.8-0.2-0.1 1.2-0.1 1.2l-2.1-0.5-4.6 4.8-3.5 2.6h-1.9l-1.5 2-7.9 4.9-6.2 1 1.9 3.2-4 3-2.1-1.5-3.3-0.6-2.6-4-0.8 0.3 2.5 4.5 4 0.9 3.9 2.8s3.3-1.1 3.4-1.1l0.6 1.9 2.3-1.8 1.3 0.4-2.5 4.1-3.8 3.9h-1.5l-0.7-1 1.1-1.9-3.5 1.1-1.8 1.3-1.3-1.1-3.9 2-2.7 1.8-1.2 2.8 6.7-4.7 5 0.1 1.8 0.9-1.4 1.4-2.4 2v1.5l-2 0.2-0.7 1.2-2.2-0.4 0.4 1.7-1.1 1.1-1.3-0.9-3.3 0.1 4.1 1.6 2.9 0.4 4.6-3.5-0.1-1.7 1.9-0.8 0.9 0.9 6.9-0.7 2.8-1.9 2.7 2.5 3.6-3.5 2.6-0.2 2.8-0.6 6.5 4.2 3 1.1 1-0.8 1.6 0.6 1.1-1.6 1.9 0.1 0.8 1.6 1.2-0.5s2.6 1 2.7 1.1l0.3 0.5 1.2-0.6 2.9 1 0.7 1.2 6.2 0.5 1.5-0.9 1.8 1.3 2.3-0.2 1.4-1.3 3.8 1.1 4.6 7.6 0.8 5.1-0.8 0.6z"/>    <path d="m23.3 271.9-1.3 3-2.4-3.5 3.7 0.5z"/>    <path d="m83.5 120.1 0.3 0.8-0.9 0.3-0.3-1.1h0.9z"/>    <path d="m82.1 119.2-0.1-1.3-1.8-0.1 0.3 1 1.6 0.4z"/>    <path d="m89.7 105.4-0.4-0.5-1-0.6 0.4-0.4 0.1-0.3 1.3 1-0.4 0.8z"/>    <g transform="translate(53.1 251.98)">        <path d="m16.1 4.1-1 0.2 0.1-1.3h1.2l-0.3 1.1z"/>        <path d="m17.1 2.3h-0.9l-0.2-1 0.9-1.3 1.3 1.2-1.1 1.1z"/>        <path d="m7.5 10.6 0.7-5.7-1.7-1.6v-0.8l-2.1-0.9-0.7 0.8-2.4 0.9-0.1 1.3-1.2 0.9v3.5l0.8 1.1-0.6 1.3v2l0.5 0.4 0.1 1 1.1 2.7 2.2 1.2h4l-0.1-1.8 1-1.3-0.3-2 0.9-1.1-0.5-1.2-1.6-0.7z"/>    </g>    <g transform="translate(16.791 203.13)">        <path d="m45.6 46.2 0.8 1.7-0.9-0.1 0.1-1.6z"/>        <path d="m47.3 43.4-0.4 4.1 0.5 0.6 1 0.1-0.3 1.4 0.8 1.6 1.1 0.8 0.5-1.1-1-0.6s1.3-3.4 1.4-3.4-0.1-2.5-0.1-2.5l-1.1 0.2-0.5-1.1 0.5-1.2-1.5-1.3-0.6-1.4-1-0.5-1.2 1 0.1 1 0.3 0.3 0.5 2h1z"/>        <path d="m24.5 53.1-0.1-0.8-0.7 0.7 0.8 0.1z"/>        <path d="m24.1 51.8 1.6-0.9 0.8-1.3-0.7-0.7 1.3-1.7-1.2-0.3-0.5 1.1-0.7 0.8v1.3l-0.6 0.8v0.9z"/>        <path d="m7.2 39.1-1.7 1.4-0.2 1.3-1.4 1.5-2.5 1.4h-1.3l-0.1-1 1.5-2.4 0.3-1 1-0.6 0.1-0.7-0.5-0.8 1.6-3.4 2.6 0.1 1.7-0.7-0.2 3.4 5.3-5.1 2.4 0.8-0.7 1 0.6 3.5-0.5 0.4-0.1 3.1 0.7 3.3 0.4 0.6-0.5 0.9 0.5 0.6 0.1 1-1.5 1-0.8-0.8-0.1 1.2-1.7 0.9-2.1 0.1-0.1-0.7-1.3 0.1-0.7 1.6-1.6 1-0.8-0.7h-0.8v-0.8l1.6-1.9-0.1-1.2h0.8l0.6-3.4c-0.6-0.1-1.1-0.3-1.6-0.5 0-0.1 0.8-1 0.8-1l2.1-1.3-1.8-2.2z"/>        <path d="m20.8 40.2-1.9 1.8v-0.8l-1.8-0.5-1.2-1.3-0.1-1.4 0.5-0.7-0.3-1.1 0.4-0.5 0.1-1.1 1.5-1.4s3.2-1.2 3.2-1.1c0.3 0.2 0.5 0.4 0.8 0.6l0.7-0.4h1.3l0.2-0.8-0.8-0.4-1.4 0.8-1.9-1.4 2.2-2 0.5-1 1.1 0.2 0.8-1.2 4.3-1.6 1.4-1.6 0.4 0.5 0.7-0.8 1.2 0.1 0.1 1.6-0.8 0.3-0.7 1.3-1.1 0.2-0.2 1.2-1.7 2.3-0.8 0.1-1 1.3v0.9h-0.9l-1.6 4.2s-0.7-0.4-0.7-0.3-0.2 1-0.2 1l-0.9-0.1-1.6 2 0.2 1.1z"/>        <path d="m14.2 26.5-1.2 1.4 0.3-1.3h0.9v-0.1z"/>        <path d="m15.3 26.1-1.2-0.1-1.6-0.5 0.2-1.1 4.9-3.8 0.1 1.5-2.5 2.6 0.1 1.4z"/>        <path d="m32.5 20.4 0.9-0.8 0.8 0.3-0.2 1.5h-0.7l-1 0.5-1-0.7 0.2-0.9 1 0.1z"/>        <path d="m32.3 16.8h-1.4l0.6-0.9h1l-0.2 0.9z"/>        <path d="m42.7 3.9 2.5-2.6 1-0.3v-1l-1.1 0.2-0.2 0.8-3.2 2.2-1 0.1-0.7 1.5 0.7 0.5 1.2-1.4h0.8z"/>    </g>    <g transform="translate(0 83.618)">        <path d="m28.3 127.8-0.6-1.1-0.7 0.9 1.3 0.2z"/>        <path d="m28.5 129.6 0.4-0.8 0.8-0.1 0.1-1.5s0.4-1 0.5-0.9c0.6 0.1 1.1 0.2 1.7 0.2l0.3 1.3 1.5 1v-1.3l3.4 0.8 1.5 0.1 0.6-0.7 2-0.1 1.4-1.3-0.2-0.9-1.4 0.8-1-0.3-2.5 0.8-2.1-1.2 4.8-3.1 2-1.4 1.4-0.1 0.2-1.1-1.9-0.4s-0.7 0.9-0.8 0.9-2.3-1.1-2.3-1.1v-1.6l-1-0.2-0.5-1.3-3.7-0.4 0.1-1.3 1.7-1.2c0-0.2 0.1-0.4 0.1-0.6l-0.8-0.2-0.1-1.4 1.5 0.5 0.8-0.6 0.6 1.3 1-0.1 0.1-1.6 0.5-1 2.9 0.1 1.6 1.8-0.8 0.5 0.6 0.8h0.8l1.1 2.8 0.2 3.1 8.2 5.2 0.6 2.6-0.8 0.3v1.2l-1.9-0.1 0.4-1.3s-0.9-0.9-0.9-0.8 0 1.6 0 1.6c-0.3 0-0.5-0.1-0.8-0.1l-0.5 1.3 1.1 0.2 0.6 0.9-5.1 1.9-0.9-0.6 0.3-2.6-2.3 2-1.5-0.3-2.1 1.2-0.9-0.1 0.1-1-2.1 0.4-0.8 0.8-1.4-1.3-0.7 0.6-0.4-0.6s-1.1 1.4-1.1 1.5l-2.1-0.6 0.5-0.6-0.5-0.6-0.8 0.4-1.3-0.5z"/>        <path d="m36.5 119.7 0.2 0.9 2.1-0.3-3.1-2.3-1.8 0.7 1.1 0.2 0.2 1 1.3-0.2z"/>        <path d="m15 114.9-0.6 2.1h-1.2l0.2-1-1.7-0.2 0.5-3.6 0.6-0.4h3.2l5 1-0.4 0.8-1.2-0.5-1.6 1.5-2.8 0.3z"/>        <path d="m24.4 110.4 1.2 0.5 1.1-0.5 2.5-0.9 2.1-4.4h-1.1l-3.4 2.3-1.4-0.2-0.3 1.4-1.4 0.7-1.4 0.3-0.3 0.8 0.7 0.7 1.7-0.7z"/>        <path d="m41.4 98.3-0.3 0.7-0.9 0.1-0.6-0.8h1.8z"/>        <path d="m44.5 97-1.9-2.3 1.7-1.2 0.9 2.6-0.7 0.9z"/>        <path d="m32.1 83.5 2.7 0.4 0.6-0.3-0.9-0.9-2.4 0.8z"/>        <path d="m37.4 88.9-1-0.4-0.3-1.6 2.2-1 0.7-0.9 1.8-0.4 1.8 2.7-0.7 0.4 0.7 1.2-0.6 1.6-1.4 0.7-0.4 0.5-1.4-0.1-1-1.1-0.4-1.6z"/>        <path d="m37.2 63.7 0.2 1.6-0.4 1.7h-1.1l-4-3.7 0.1-1.2-1.2-1-0.1-1 1-0.8 0.4-1.3 1 0.9 1.4-3.4c0.5 1.3 0.8 2.7 1.1 4.1l1.9 0.5-0.8-1.4 1-2.1 0.7-0.5v-1.4l-1.8-0.6 0.1-0.8 1-0.5-0.2-1.4 0.8-1.1 0.8 0.5 1.3 2.6v2.2l1.3 0.8-0.1 1.3h0.9l0.7-1 0.1 1.2 1.1-1 1.4 3 0.6-0.5-0.1-1-0.7-1 0.2-0.8-0.8-1-0.2-1.3 1.2-1.2h-1l0.9-1.7-0.7-0.4 0.6-2.5 1.9-0.7 0.2-1.5 0.5 0.5 0.9-0.3 1.5 1.8 2.4 5.7v3.3l-1.2 3-1.1 4.5-0.9-0.3-0.5 0.8 0.8 0.1 1.1 2-0.4 1.9 0.3 1.5-1.3 0.3 2.2 1.3-0.2 1.3 1.1-0.2 1 0.7 0.2-0.9-0.5-0.9 1.3-0.6 1 0.6 0.6 1.8-1 0.5-1.1 0.3 2.6 2.3 5.7-0.6 2.1 1.3-3.3 3.7-2.7-0.4 0.4 1.2-1.8 2.5-1.1 0.1-0.2 1.2-2.7 1.3-1.1 1.3-2.5-0.5 0.1-2.2 1.1-0.5-0.4-1.1 0.9-0.2v-1.2l0.8-0.6 1.1 0.1 0.1-0.9 1.2-0.1v-1.1l-2-0.1v-2.2c-0.3-0.1-0.6-0.2-0.9-0.3l-2.3 4.1-1.1 0.1-0.4-0.8 0.8-1.2s-0.6-1-0.6-0.9c0.1-0.3 0.2-0.6 0.2-0.9l-0.6-0.7-1.2 1.1-0.7-0.5-1.8 0.7-2.5 0.1 1.1-2.3-1.5 0.2-0.7-1.5 0.8-1.4-1 0.1-0.1-1.2-1.1-0.9-0.1-2.3 2.1-1.9 1.9 1.9 0.5-0.6-1.6-1.4-0.3-1h-1.4l-1-0.9 0.7-0.2 0.4-1.3-0.7-0.4c-0.4 0.4-0.8 0.7-1.3 1 0-0.1-0.2-1.6-0.2-1.6l-1.1 0.3z"/>        <path d="m44.5 81.2 0.9-0.6 0.6-0.1-0.4-1.3-1.1 0.9v1.1z"/>        <path d="m53.8 70.8 1.4-6.7 0.8-0.2 0.8-2.1-1 0.2-0.6 1.4-0.8-0.4-0.9 1.5-0.6 0.2 0.2 2.7-0.6 1 0.3 2 1 0.4z"/>        <path d="m58 60.1v-1.5l1-0.6v-1l-1.3 0.7-0.7 1 0.2 1.3 0.8 0.1z"/>        <path d="m1.9 84.1-1.9-1.6 0.7 3 1.2-1.4z"/>        <path d="M3,83.2l-2.4-1.1c1.8-1.7,3.8-3.1,6-4.1L3,83.2z"/>        <path d="m6.8 48.4-0.5 1.3-1.4-1.5 1.9 0.2z"/>        <path d="m23 41.4 1-2.5-2.8 1.6 0.8 0.7 1 0.2z"/>        <path d="m12 76.1-4.1-1.6 0.1-4 1.9-6.6 0.3-6.5 2.8-0.5-1-3.4 2.8-1.2-1.8-5.1-3.2-2.5 2.5-2.6 6.2 0.8 3.4-1 3.7 3.9-1.3 1.3-2.3-1.7-1.1 0.1 2.5 3.3-3.4 5.4-3.3-0.9 0.7 1.5 0.3 3.2h-2.5l1.2 4.2-4.5 6.2 1.4 3.5-1.3 4.2z"/>        <path d="m30.4 31.9 0.8-1.8-0.7-0.4-2.5 1.2 2.4 1z"/>        <path d="m26 33.8 3 7 5.3-2.8 0.9-1.1 2.9 0.3-0.5-4.6 3 1.5-0.6-5.1 0.6-2.1s0.9 4.5 1 5.5l5.9-0.2s3.6-3.5 5.1-4.3l-0.1-4.5-3.1 0.2-3.7-0.9 1.5-0.5 4.2-0.3 2.3-0.7-0.1-4.1 1.9 1.2 1.3-0.5 2.6 1.4 3.1-3.9-4 1.8h-2.4v-1.5l1.8-1.4 3.2-4.7 0.7-3.4 1.6-1.6v-1.6l-1.6-2.9-0.8 1.2-6.8 3-4 2.7s-7.2 1.6-9 2.9l1.8 5.2-1.1 0.3-2.3-5.1 0.3 4.3-2.5 0.4-0.5-1.1 1.3-0.8-3.7-1.9-2.7 5.2-1.5 1.5 1.2 4.6 3.5-0.2 0.4 0.8-5.8 1.5v2.1l3 2.7 3.7 1.8v1.3l-4.1-0.3-3.9 2.7-1.2-1h-1.1z"/>    </g>    <g transform="translate(152.69)">        <g transform="translate(0 53.306)">            <path d="m4.6 32.5-1.7-1.7-1.1-2.1-1.8-3 1.7-2.3 1.2-0.4s1.4 2.1 1.5 2.2 2.4 2.2 2.4 2.2l0.4 3.4 0.6 0.8-1.9 1.1v-1.3l-1.3 1.1z"/>            <path d="m9.4 31.3 1-1.9-2 0.5 1 1.4z"/>            <path d="m15.8 30.5-1.7-1.1 1.4-0.9 0.3 2z"/>            <path d="m14.7 30.5-2.8 0.2 1.1 3.1-1.3 2.2 1.4 1 1.3-1.7 0.3-4.8z"/>            <path d="m20.7 25.5 2-1.8-0.6 3.4h-2.9l-0.9 1.9-2.6-1.9-1.6-3.6-4.7 0.9h-2.1c-0.5-1.1-0.8-2.3-1.1-3.5l-1.1 1.3-1.1-0.3-0.5-3.8 1.9-7.5 3.7 0.1 0.2 2.1 4.8 1.2 1.1 3-2.8 1.1s-1.1 2-1 2 3.4 0.4 3.4 0.4l0.2 1.3 1.6-1.1-0.1 1.9 0.8 1 3.2-2-0.6 3.6 0.8 0.3z"/>            <path d="m19.4 20.8c0.3-0.9 0.8-1.8 1.4-2.5l-0.1-1.5-3.7 2.3s1.6 1.8 2.4 1.7z"/>            <path d="m27.4 18.6s0.9-2 1-2 1.5-0.6 1.5-0.6l-2.5-2.7-2.5 4.3 2.5 1z"/>            <path d="m15.8 13-3.1-2 1-2.5 3.5 3.1-1.4 1.4z"/>            <path d="m19.2 6.8v-2.8s-3.1 0.2-3 0.2 0.3-2.5 0.3-2.5l3.1-1.7 0.7 1.1 0.2 5.8-1.3-0.1z"/>            <path d="m25.8 10.9 3.9-2.7 1.6 0.1 2.2-2.5-3 0.2-1.4-0.3-2.1 2.4-1.2 2.8z"/>        </g>        <g transform="translate(61.149)">            <g transform="translate(10.592)">                <path d="m8.8 56.9 1.3-5.7-0.4-2.7h2.8l-0.3-4.1 2.5-4.7-1.4-7.1 0.5-1.7 1.2 3 2.5-1.2 2.7-8.9h-5.3l4.3-2.8 2.9-3.6-0.9-5.5 2.5-1.2 0.4-5-2.9-0.3-0.3 4.2-3.2 2.3-1.9-1.8-4.5 1.1-2.6 3.8-2.2-2.1-2.5 4.7 4.8 1.7 1.2 4.3-2.5 0.2 1.5 1.5 3.7 0.5-2.3 1.8-3.3-0.5-1.5 1.4 0.2-2.1-2.8 1.7-3-0.9 0.3 3.6 5.4 2.4-1.9 1.8 1.5 2.5 2.9-3.7 1.2 2.5 1.8-1.7-0.2 6.3-4.9 11.9 0.8 0.4 1.9 3.7z"/>                <path d="m16.7 41 2.5-1.9-1.1-1.6h-2.4l1 3.5z"/>                <path d="m21.5 28.5 3-2.7-3.5 1.4 0.5 1.3z"/>                <path d="m29.1 15.5 1.5-3.3-4.3-0.6-0.2 2.8 3 1.1z"/>                <path d="M27.4,8.8l4.7-7.4L29,0l-3.2,7.4L27.4,8.8z"/>            </g>            <path d="m6.5 66.3c-0.1 0-1.9 1.1-1.9 1.1l-0.6-0.1v-1.4s1-1 1.2-1 1.3 1.4 1.3 1.4z"/>            <path d="m2.1 28.4 0.4 1.9-0.7 1.1-1.4-0.5-0.4-1.7 2.1-0.8z"/>            <path d="m42 23.9-2.4-0.2 0.2-1.2h2.2v1.4z"/>            <path d="m15.3 22.9c-1 0.3-2 0.5-3.1 0.6-0.1-0.8-0.1-1.5 0-2.3 0.1 0 2.2 0.2 2.3 0.3 0.4 0.4 0.6 0.9 0.8 1.4z"/>        </g>    </g></g><path d="m221.2 474.5v0.6h-0.7l-0.5 0.6h-2.4v0.6l1.8 1.1-0.6 3-1.3 0.5-1.5 3.4h-1.9l-0.5 1.3-0.7 0.6-1.1 2.9h-4.1c-0.3 0.7-0.7 1.3-1.2 1.8l-0.6 2.3-3.9-1.2h-2l-0.7-1.1-0.8-2.3-0.9-0.8-0.5-1.1-0.6 0.6-2.1 1.1h-1.4l1.2 3-0.6 1.1-2.4-2.9-3.6 1.2-0.9 0.6h-0.7l-1.7-0.7-1.2 0.6-0.6-0.7 1.1-1.7-1.7-0.6-0.5 1.4 0.6 1.6h-1l-3.1 1.1h-1.3c-0.2-0.5-1-3.5-1-3.5l-1.9-0.1v0.7l-0.6 0.6-1.3-1.3-0.5-1.2-1.7 3.7 0.6 1c0 1.3 0.3 2.5 0.8 3.7l-1.6-0.1s-1.5 1.2-1.6 1.2-2.3-0.1-2.3-0.1v0.7l-1.2-0.7-1.7 1.8-1.4-0.6-0.4-1.2-1.3 0.6-2.8-4.6-3.6-1.2-4.2-4.8 0.2-3.5-1.3-1.5v-1l1.2-2.1-1.2-1.2 3.5-5.3 1.6-1.8 1.9 0.6-1.2-1.7 0.5-2.4 2.4-1.1-3.7-0.5-5.2-7.1 2.9-1.8 5.9-1.8 0.6-1.3-0.6-1.1-4.8 1.7 0.6-1.2-0.6-2.3 3.5-2.3-0.6-0.5 1.8-1.1 1.2-3.7 1.8 0.1-1-1-2.7-3.7-1.1 0.7-1.2-1.2c0.7-1.2 1.3-5.5 1.3-5.5l0.8-0.3 1.4-1.4 1.2 0.1 1.7-0.6 0.1-0.6 1.7-0.7v0.8l3.6 1.7 1.6 3c0.9-0.6 2-1 3-1.2l-0.1-1.3 0.6-0.7v-1.2l1.1-0.6 1.6 0.7 0.8-0.1v0.7l1.1 1.5 2.3-0.5 1.7 1.2c1.1-0.8 2.3-1.4 3.6-1.8l1.5-3.3 1.4-1.4h2.4l1.4-0.9 2.1-2.2 1.1-0.4 0.6-1.7 1.2 1.2 1.7-0.2 1.3-0.4 1.1-1.1 3.5 1.2 1.8 1.8 0.6 2.1-0.1 5.5 0.6 0.5v1.8c-0.7 0.7-1.5 1.2-2.3 1.7l-0.6 1.9-1.3 0.5 0.1 1.9 0.6 1 2.9 1.3-0.1 0.5 1.7 0.7h1.4l2.3 2.3-1.3 0.5 0.7 1.2-0.6 0.7v0.5l-0.6-0.6-0.8 0.1-0.9 0.5-1.7 2.4 1.5 0.4 2.5 1.9s0.3 1.8 1.2 2.3l-1.1 2.2 1.1 3 1.5 1.4 0.8 0.3c0.7 0.8 1.4 1.4 2.1 2.1 1.2 0.7 2.2 1.7 3.1 2.8 0.5 1.1 1.2 2 2 2.8l0.3 1.8c0.1 0.4 0.2 0.8 0.2 1.2l1.9 1.6z" fill="#FBD8AE"/>
+                        <g class="scotland maplink" data-toggle="tooltip"
+        data-placement="bottom" title="Scotland"><circle cx="174.4" cy="174.2" r="4.4" fill="#1A0C0D" opacity="0"/><path d="m163.9 174.2c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5c0 4.2-1.5 5.4-9.4 17-0.4 0.6-1.2 0.7-1.8 0.3l-0.3-0.3c-8-11.6-9.5-12.8-9.5-17zm14.9 0c0-2.4-2-4.4-4.4-4.4s-4.4 2-4.4 4.4 2 4.4 4.4 4.4 4.4-2 4.4-4.4z"/></g>
+                        <g class="edinburgh maplink" data-toggle="tooltip"
+        data-placement="bottom" title="Edinburgh"><circle cx="189.9" cy="252.7" r="4.4" fill="#1A0C0D" opacity="0"/><path d="m179.4 252.7c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5c0 4.2-1.5 5.4-9.4 17-0.4 0.6-1.2 0.7-1.8 0.3l-0.3-0.3c-8-11.6-9.5-12.8-9.5-17zm14.9 0c0-2.4-2-4.4-4.4-4.4s-4.4 2-4.4 4.4 2 4.4 4.4 4.4c2.4-0.1 4.4-2 4.4-4.4z"/></g>
+                        <g class="leeds maplink" data-toggle="tooltip"
+        data-placement="bottom" title="Leeds"><circle cx="204.7" cy="362.6" r="4.4" fill="#1A0C0D" opacity="0"/><path d="m194.2 362.6c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5c0 4.2-1.5 5.4-9.4 17-0.4 0.6-1.2 0.7-1.8 0.3l-0.3-0.3c-8-11.6-9.5-12.7-9.5-17zm14.9 0c0-2.4-2-4.4-4.4-4.4s-4.4 2-4.4 4.4 2 4.4 4.4 4.4 4.4-2 4.4-4.4z"/></g>
+                        <g class="liverpool maplink" data-toggle="tooltip"
+        data-placement="bottom" title="Liverpool"><circle cx="169.2" cy="408.4" r="4.4" fill="#1A0C0D" opacity="0"/><path d="m158.7 408.4c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5c0 4.2-1.5 5.4-9.4 17-0.4 0.6-1.2 0.7-1.8 0.3l-0.3-0.3c-8-11.6-9.5-12.8-9.5-17zm14.9 0c0-2.4-2-4.4-4.4-4.4s-4.4 2-4.4 4.4 2 4.4 4.4 4.4c2.5 0 4.4-2 4.4-4.4z"/></g>
+                        <g class="norwich maplink" data-toggle="tooltip"
+        data-placement="bottom" title="Norwich"><circle cx="309.8" cy="452.4" r="4.4" fill="#1A0C0D" opacity="0"/><path d="m299.3 452.4c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5c0 4.2-1.5 5.4-9.4 17-0.4 0.6-1.2 0.7-1.8 0.3l-0.3-0.3c-8-11.6-9.5-12.8-9.5-17zm14.9 0c0-2.4-2-4.4-4.4-4.4s-4.4 2-4.4 4.4 2 4.4 4.4 4.4 4.4-2 4.4-4.4z"/></g>
+                        <g class="essex maplink" data-toggle="tooltip"
+        data-placement="bottom" title="Essex"><circle cx="283.8" cy="511.6" r="4.4" fill="#1A0C0D" opacity="0"/><path d="m273.3 511.6c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5c0 4.2-1.5 5.4-9.4 17-0.4 0.6-1.2 0.7-1.8 0.3l-0.3-0.3c-8-11.6-9.5-12.8-9.5-17zm14.9 0c0-2.4-2-4.4-4.4-4.4s-4.4 2-4.4 4.4 2 4.4 4.4 4.4c2.5 0 4.4-2 4.4-4.4z"/></g>
+                        <g class="kent maplink" data-toggle="tooltip"
+        data-placement="bottom" title="Kent"><path d="m268.6 543.2c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5c0 4.2-1.5 5.4-9.4 17-0.4 0.6-1.2 0.7-1.8 0.3l-0.3-0.3c-8-11.6-9.5-12.7-9.5-17zm14.9 0c0-2.4-2-4.4-4.4-4.4s-4.4 2-4.4 4.4 2 4.4 4.4 4.4c2.5 0 4.4-2 4.4-4.4z"/><circle cx="279.1" cy="543.2" r="4.4" fill="#1A0C0D" opacity="0"/></g>
+                        <g class="plymouth maplink" data-toggle="tooltip"
+        data-placement="bottom" title="Plymouth"><circle cx="165.8" cy="544.1" r="4.4" fill="#1A0C0D" opacity="0"/><path d="m155.3 544.1c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5c0 4.2-1.5 5.4-9.4 17-0.4 0.6-1.2 0.7-1.8 0.3l-0.3-0.3c-8-11.6-9.5-12.8-9.5-17zm14.9 0c0-2.4-2-4.4-4.4-4.4s-4.4 2-4.4 4.4 2 4.4 4.4 4.4c2.5 0 4.4-2 4.4-4.4z"/></g>
+                        <g class="oxfordshire maplink" data-toggle="tooltip"
+        data-placement="bottom" title="Oxfordshire"><circle cx="218.5" cy="490.6" r="4.4" fill="#1A0C0D" opacity="0"/><path d="m208 490.6c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5c0 4.2-1.5 5.4-9.4 17-0.4 0.6-1.2 0.7-1.8 0.3l-0.3-0.3c-8-11.6-9.5-12.7-9.5-17zm14.9 0c0-2.4-2-4.4-4.4-4.4s-4.4 2-4.4 4.4 2 4.4 4.4 4.4 4.4-2 4.4-4.4z"/></g>
+        <g class="birmingham maplink" data-toggle="tooltip"
+        data-placement="bottom" title="Birmingham"><circle cx="184.4" cy="453.9" r="4.4" fill="#1A0C0D" opacity="0"/><path d="m173.9 453.9c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5c0 4.2-1.5 5.4-9.4 17-0.4 0.6-1.2 0.7-1.8 0.3l-0.3-0.3c-8-11.6-9.5-12.8-9.5-17zm14.9 0c0-2.4-2-4.4-4.4-4.4s-4.4 2-4.4 4.4 2 4.4 4.4 4.4c2.5-0.1 4.4-2 4.4-4.4z"/></g></svg>
+                </div>
+                <div class="text-center mb-3">
+                    <a href="#view-all-categories" data-toggle="bs-collapse" data-target="#view-all-cities">View All Cities <i class="fal fa-chevron-down"></i></a>
+                </div>
+                <div class="collapse" id="view-all-cities">
+                    <div class="row no-gutters-5">
+                        <div class="col-lg-4">
+                            <p><a href="https://mybigasianwedding.co.uk/location/edinburgh/">Edinburgh</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/location/coventry/">Coventry</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/location/cambridge/">Cambridge</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/location/birmingham/">Birmingham</a></p>
+                        </div>
+                        <div class="col-lg-4">
+                            <p><a href="https://mybigasianwedding.co.uk/location/aberdeen/">Aberdeen</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/location/york/">York</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/location/sheffield/">Sheffield</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/location/london/">London</a></p>
+                        </div>
+                        <div class="col-lg-4">
+                            <p><a href="https://mybigasianwedding.co.uk/location/liverpool/">Liverpool</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/location/leicester/">Leicester</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/location/leeds/">Leeds</a></p>
+                            <p><a href="https://mybigasianwedding.co.uk/location/glasgow/">Glasgow</a></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="bg-white-b py-100"></div>
 </div>
-<!-- section 2 How It Works-->
-<div class="pb-80">
-    <div class="container text-center ">
-        <div class="pb-5">
-            <h2 class="text-purple font-weight-bold">How <span class="font-playfairdisplay">It Works</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
+<!-- section 2 Our Featured Wedding Suppliers-->
+<div class="py-50">
+    <div class="container">
+        <div class=" text-center pb-5">
+            <h2>Our Featured Wedding Suppliers</h2>
+            <p>Check Out Our Verified And Reliable Wedding Suppliers.</p>
         </div>
-        <img src="{{ asset('web_asset/images/how-it-works-img.png') }}" class="img-fluid" alt="" />
+        <!-- product-section -->
+        <div class="row">
+            <div class="col-md-6 col-lg-3">
+                <!-- product-box -->
+                <div class="card bs-product-box mb-4">
+                    <!-- product image -->
+                    <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/products/venues-home-block.jpg');">
+                        <!-- heart icon -->
+                        <div class="bs-product-heart text-white">
+                            <div class="save-to-shortlist" id="short_5efdb4b9d2d29">
+                                <input type="checkbox" id="short-5efdb4b9d2d29" value="">
+                                <label for="short-5efdb4b9d2d29" style="cursor: pointer;">
+                                    <i class="far fa-heart fa-2x text-purple"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- featured-line -->
+                        <div class="featured-line">
+                            <p class="bg-danger text-light">FEATURED</p>
+                            <p class="bg-warning">SPECIAL DISCOUNT</p>
+                        </div>
+                    </div>
+                    <div class="card-body p-2 text-purple small">
+                        <h5 class="font-weight-bold"><a href="#">De Vere Horsley Estate</a></h5>
+                        <p class="mb-2"><i class="fas fa-map-marker-alt"></i> S1, Sheffield</p>
+                        <div class="mb-2">
+                            <div class="star-rating" title="50%" style="display: inline-block;margin:0px;padding:0px">
+                                <div class="back-stars">
+                                    <i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i>
+                                    <div class="front-stars" style="width: 50%">
+                                        <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            125 Reviews
+                        </div>
+                        <p>Number of Guest:<br/><i class="fal fa-user-friends text-warning"></i> <strong>500-750</strong></p>
+                        <div class="btn-group-sm">
+                        <a href="#" class="btn btn-warning rounded mb-1">Request pricing</a>
+                        <a href="search-view.html" class="btn btn-danger rounded mb-1">View details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <!-- product-box -->
+                <div class="card bs-product-box mb-4">
+                    <!-- product image -->
+                    <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/products/venues-home-block.jpg');">
+                        <!-- heart icon -->
+                        <div class="bs-product-heart text-white">
+                            <div class="save-to-shortlist shortlisted" id="short_5efdb4b9d2d292">
+                                <input type="checkbox" id="short-5efdb4b9d2d292" value="">
+                                <label for="short-5efdb4b9d2d292" style="cursor: pointer;">
+                                    <i class="far fa-heart fa-2x text-purple"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- featured-line -->
+                        <div class="featured-line">
+                            <p class="bg-danger text-light">FEATURED</p>
+                            <p class="bg-warning">SPECIAL DISCOUNT</p>
+                        </div>
+                    </div>
+                    <div class="card-body p-2 text-purple small">
+                        <h5 class="font-weight-bold"><a href="#">De Vere Horsley Estate</a></h5>
+                        <p class="mb-2"><i class="fas fa-map-marker-alt"></i> S1, Sheffield</p>
+                        <div class="mb-2">
+                            <div class="star-rating" title="50%" style="display: inline-block;margin:0px;padding:0px">
+                                <div class="back-stars">
+                                    <i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i>
+                                    <div class="front-stars" style="width: 50%">
+                                        <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            125 Reviews
+                        </div>
+                        <p>Number of Guest:<br/><i class="fal fa-user-friends text-warning"></i> <strong>500-750</strong></p>
+                        <div class="btn-group-sm">
+                        <a href="#" class="btn btn-warning rounded mb-1">Request pricing</a>
+                        <a href="search-view.html" class="btn btn-danger rounded mb-1">View details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <!-- product-box -->
+                <div class="card bs-product-box mb-4">
+                    <!-- product image -->
+                    <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/products/venues-home-block.jpg');">
+                        <!-- heart icon -->
+                        <div class="bs-product-heart text-white">
+                            <div class="save-to-shortlist" id="short_5efdb4b9d2d293">
+                                <input type="checkbox" id="short-5efdb4b9d2d293" value="">
+                                <label for="short-5efdb4b9d2d293" style="cursor: pointer;">
+                                    <i class="far fa-heart fa-2x text-purple"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- featured-line -->
+                        <div class="featured-line">
+                            <p class="bg-danger text-light">FEATURED</p>
+                            <p class="bg-warning">SPECIAL DISCOUNT</p>
+                        </div>
+                    </div>
+                    <div class="card-body p-2 text-purple small">
+                        <h5 class="font-weight-bold"><a href="#">De Vere Horsley Estate <i class="fas fa-badge-check text-success"></i></a></h5>
+                        <p class="mb-2"><i class="fas fa-map-marker-alt"></i> S1, Sheffield</p>
+                        <div class="mb-2">
+                            <div class="star-rating" title="50%" style="display: inline-block;margin:0px;padding:0px">
+                                <div class="back-stars">
+                                    <i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i>
+                                    <div class="front-stars" style="width: 50%">
+                                        <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            125 Reviews
+                        </div>
+                        <p>Number of Guest:<br/><i class="fal fa-user-friends text-warning"></i> <strong>500-750</strong></p>
+                        <div class="btn-group-sm">
+                        <a href="#" class="btn btn-warning rounded mb-1">Request pricing</a>
+                        <a href="search-view.html" class="btn btn-danger rounded mb-1">View details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <!-- product-box -->
+                <div class="card bs-product-box mb-4">
+                    <!-- product image -->
+                    <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/products/venues-home-block.jpg');">
+                        <!-- heart icon -->
+                        <div class="bs-product-heart text-white">
+                            <div class="save-to-shortlist" id="short_5efdb4b9d2d293">
+                                <input type="checkbox" id="short-5efdb4b9d2d293" value="">
+                                <label for="short-5efdb4b9d2d293" style="cursor: pointer;">
+                                    <i class="far fa-heart fa-2x text-purple"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- featured-line -->
+                        <div class="featured-line">
+                            <p class="bg-danger text-light">FEATURED</p>
+                            <p class="bg-warning">SPECIAL DISCOUNT</p>
+                        </div>
+                    </div>
+                    <div class="card-body p-2 text-purple small">
+                        <h5 class="font-weight-bold"><a href="#">De Vere Horsley Estate <i class="fas fa-badge-check text-success"></i></a></h5>
+                        <p class="mb-2"><i class="fas fa-map-marker-alt"></i> S1, Sheffield</p>
+                        <div class="mb-2">
+                            <div class="star-rating" title="50%" style="display: inline-block;margin:0px;padding:0px">
+                                <div class="back-stars">
+                                    <i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i>
+                                    <div class="front-stars" style="width: 50%">
+                                        <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            125 Reviews
+                        </div>
+                        <p>Number of Guest:<br/><i class="fal fa-user-friends text-warning"></i> <strong>500-750</strong></p>
+                        <div class="btn-group-sm">
+                        <a href="#" class="btn btn-warning rounded mb-1">Request pricing</a>
+                        <a href="search-view.html" class="btn btn-danger rounded mb-1">View details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <!-- product-box -->
+                <div class="card bs-product-box mb-4">
+                    <!-- product image -->
+                    <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/products/venues-home-block.jpg');">
+                        <!-- heart icon -->
+                        <div class="bs-product-heart text-white">
+                            <div class="save-to-shortlist" id="short_5efdb4b9d2d29">
+                                <input type="checkbox" id="short-5efdb4b9d2d29" value="">
+                                <label for="short-5efdb4b9d2d29" style="cursor: pointer;">
+                                    <i class="far fa-heart fa-2x text-purple"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- featured-line -->
+                        <div class="featured-line">
+                            <p class="bg-danger text-light">FEATURED</p>
+                            <p class="bg-warning">SPECIAL DISCOUNT</p>
+                        </div>
+                    </div>
+                    <div class="card-body p-2 text-purple small">
+                        <h5 class="font-weight-bold"><a href="#">De Vere Horsley Estate</a></h5>
+                        <p class="mb-2"><i class="fas fa-map-marker-alt"></i> S1, Sheffield</p>
+                        <div class="mb-2">
+                            <div class="star-rating" title="50%" style="display: inline-block;margin:0px;padding:0px">
+                                <div class="back-stars">
+                                    <i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i>
+                                    <div class="front-stars" style="width: 50%">
+                                        <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            125 Reviews
+                        </div>
+                        <p>Number of Guest:<br/><i class="fal fa-user-friends text-warning"></i> <strong>500-750</strong></p>
+                        <div class="btn-group-sm">
+                        <a href="#" class="btn btn-warning rounded mb-1">Request pricing</a>
+                        <a href="search-view.html" class="btn btn-danger rounded mb-1">View details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <!-- product-box -->
+                <div class="card bs-product-box mb-4">
+                    <!-- product image -->
+                    <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/products/venues-home-block.jpg');">
+                        <!-- heart icon -->
+                        <div class="bs-product-heart text-white">
+                            <div class="save-to-shortlist shortlisted" id="short_5efdb4b9d2d292">
+                                <input type="checkbox" id="short-5efdb4b9d2d292" value="">
+                                <label for="short-5efdb4b9d2d292" style="cursor: pointer;">
+                                    <i class="far fa-heart fa-2x text-purple"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- featured-line -->
+                        <div class="featured-line">
+                            <p class="bg-danger text-light">FEATURED</p>
+                            <p class="bg-warning">SPECIAL DISCOUNT</p>
+                        </div>
+                    </div>
+                    <div class="card-body p-2 text-purple small">
+                        <h5 class="font-weight-bold"><a href="#">De Vere Horsley Estate</a></h5>
+                        <p class="mb-2"><i class="fas fa-map-marker-alt"></i> S1, Sheffield</p>
+                        <div class="mb-2">
+                            <div class="star-rating" title="50%" style="display: inline-block;margin:0px;padding:0px">
+                                <div class="back-stars">
+                                    <i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i>
+                                    <div class="front-stars" style="width: 50%">
+                                        <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            125 Reviews
+                        </div>
+                        <p>Number of Guest:<br/><i class="fal fa-user-friends text-warning"></i> <strong>500-750</strong></p>
+                        <div class="btn-group-sm">
+                        <a href="#" class="btn btn-warning rounded mb-1">Request pricing</a>
+                        <a href="search-view.html" class="btn btn-danger rounded mb-1">View details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <!-- product-box -->
+                <div class="card bs-product-box mb-4">
+                    <!-- product image -->
+                    <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/products/venues-home-block.jpg');">
+                        <!-- heart icon -->
+                        <div class="bs-product-heart text-white">
+                            <div class="save-to-shortlist" id="short_5efdb4b9d2d293">
+                                <input type="checkbox" id="short-5efdb4b9d2d293" value="">
+                                <label for="short-5efdb4b9d2d293" style="cursor: pointer;">
+                                    <i class="far fa-heart fa-2x text-purple"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- featured-line -->
+                        <div class="featured-line">
+                            <p class="bg-danger text-light">FEATURED</p>
+                            <p class="bg-warning">SPECIAL DISCOUNT</p>
+                        </div>
+                    </div>
+                    <div class="card-body p-2 text-purple small">
+                        <h5 class="font-weight-bold"><a href="#">De Vere Horsley Estate <i class="fas fa-badge-check text-success"></i></a></h5>
+                        <p class="mb-2"><i class="fas fa-map-marker-alt"></i> S1, Sheffield</p>
+                        <div class="mb-2">
+                            <div class="star-rating" title="50%" style="display: inline-block;margin:0px;padding:0px">
+                                <div class="back-stars">
+                                    <i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i>
+                                    <div class="front-stars" style="width: 50%">
+                                        <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            125 Reviews
+                        </div>
+                        <p>Number of Guest:<br/><i class="fal fa-user-friends text-warning"></i> <strong>500-750</strong></p>
+                        <div class="btn-group-sm">
+                        <a href="#" class="btn btn-warning rounded mb-1">Request pricing</a>
+                        <a href="search-view.html" class="btn btn-danger rounded mb-1">View details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <!-- product-box -->
+                <div class="card bs-product-box mb-4">
+                    <!-- product image -->
+                    <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/products/venues-home-block.jpg');">
+                        <!-- heart icon -->
+                        <div class="bs-product-heart text-white">
+                            <div class="save-to-shortlist" id="short_5efdb4b9d2d293">
+                                <input type="checkbox" id="short-5efdb4b9d2d293" value="">
+                                <label for="short-5efdb4b9d2d293" style="cursor: pointer;">
+                                    <i class="far fa-heart fa-2x text-purple"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- featured-line -->
+                        <div class="featured-line">
+                            <p class="bg-danger text-light">FEATURED</p>
+                            <p class="bg-warning">SPECIAL DISCOUNT</p>
+                        </div>
+                    </div>
+                    <div class="card-body p-2 text-purple small">
+                        <h5 class="font-weight-bold"><a href="#">De Vere Horsley Estate <i class="fas fa-badge-check text-success"></i></a></h5>
+                        <p class="mb-2"><i class="fas fa-map-marker-alt"></i> S1, Sheffield</p>
+                        <div class="mb-2">
+                            <div class="star-rating" title="50%" style="display: inline-block;margin:0px;padding:0px">
+                                <div class="back-stars">
+                                    <i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i><i class="far fa-star" aria-hidden="true"></i>
+                                    <div class="front-stars" style="width: 50%">
+                                        <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            125 Reviews
+                        </div>
+                        <p>Number of Guest:<br/><i class="fal fa-user-friends text-warning"></i> <strong>500-750</strong></p>
+                        <div class="btn-group-sm">
+                        <a href="#" class="btn btn-warning rounded mb-1">Request pricing</a>
+                        <a href="search-view.html" class="btn btn-danger rounded mb-1">View details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- section 3-->
-<div class="py-80 Popular Venue Searches">
+<!-- <div class="py-80 Popular Venue Searches">
     <div class="container text-center pb-5">
         <h2 class="text-purple font-weight-bold">Popular <span class="font-playfairdisplay">Venue Searches</span></h2>
     </div>
@@ -142,22 +611,53 @@
             </div>
         </div>
     </div>
+</div> -->
+<!-- section 4 -->
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2>UK's #1 Wedding Suppliers Directory</h2>
+            <p>Most Number Of Verified And Reliable Wedding Suppliers On A Single Platform.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-7 col-lg-6 align-self-center">
+                <div class="text-center">
+                    <img src="web_asset/images/web-image-03-e1582032129402.png" class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class="col-md-5 col-lg-6 align-self-center">
+                <div class="py-4">
+                    <p><strong>1- Local Wedding Suppliers</strong><br/>
+                    Browse through thousands of verified local wedding suppliers from wedding photographers to makeup artists near you.</p>
+
+                    <p><strong>2- Special Discounts and Competitive Prices </strong><br/>
+                    Our aim is to promote local wedding related businesses and in return our suppliers offer special discounted rates to all our users.</p>
+
+                    <p><strong>3- Plan Your Wedding With Peace of Mind</strong><br/>
+                    Our reviews based listings help you pick the reliable, verified and highly talented wedding supplier to make sure your wedding is as well or ganised as you want.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- section 4 Plan anywhere, anytime-->
-<div class="bg-grey py-80 py-md-0">
+<!-- section 4 -->
+<div class="py-5">
     <div class="container">
         <div class="row">
             <div class="col-md-6 align-self-center text-center">
-                <div class="bs-my-n30-md">
-                    <img src="{{ asset('web_asset/images/mobiles.png') }}" class="img-fluid" alt="" />
-                </div>
+                <a href="https://vimeo.com/395161521" data-fancybox>
+                    <div class="bs-player-warning"><img src="https://i.vimeocdn.com/video/861336516_640.jpg" class="img-fluid" alt="" /></div>
+                </a>
             </div>
             <div class="col-md-6 align-self-center">
-                <div class="py-5">
-                    <h2 class="text-purple font-weight-bold"><span class="font-playfairdisplay">Plan anywhere, anytime</span></h2>
-                    <p>The Weddified app is designed with busy modern couples like you in mind. You can now both simultaneously plan your wedding on the go, wherever that might be! Never lose track of your planning again with Weddified.</p>
-                    <div class="pt-2">
-                        <img src="{{ asset('web_asset/images/appstore.jpg') }}" class="img-fluid mr-2     mb-3" alt="appstore"> <img src="{{ asset('web_asset/images/icon_bt_googlePlay.jpg') }}" class="img-fluid mr-2 mb-3" alt="">
+                <div class="">
+                    <h2 class="text-purple font-weight-bold"><span class="font-playfairdisplay">People talking about us</span></h2>
+                </div>
+                <div class="bg-light rounded pt-3 px-3">
+                    <p>We have exceeded our `{`goals for`}` how many people are going to our website, staying on our website and also calling us… We’ve always viewed our relationship with listingpro as an investment to keep us current in our community and to keep us relevant and our brand out there.</p>
+                    <div class="media mb-3">
+                        <div class="pr-2"><div class="review-img" style="background-image: url('web_asset/images/how-it-works-img.png');"></div></div>
+                        <div class="media-body align-self-center"><p><strong>Richard Jeans</strong><br/>DX Media. Cortland, OH</p></div>
                     </div>
                 </div>
             </div>
@@ -165,157 +665,158 @@
     </div>
 </div>
 <!-- section 5 Latest Blogs -->
+<div class="bg-center-url" style="background-image: url('web_asset/images/bg-dhol-baraat-ceremony-celebration.jpg');">
 <div class="container py-80">
-    <div class="bg-purple p-3 p-sm-4 p-lg-5 bs-latebs-blogs">
+    <div class="bg-white p-3 p-sm-4 p-lg-5 bs-latebs-blogs">
         <div class="row">
             <div class="col-lg-6">
-                <div class="text-light link-light mb-3">
+                <div class="mb-3">
                     <h3 class="font-weight-bold">Latest Blogs</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="bg-light p-3 mb-3">
+                <div class="p-3 mb-3">
                     <div class="row no-gutters-5">
                         <div class="col-4 col-md-4">
                             <img src="https://via.placeholder.com/400x400" class="img-fluid w-100">
                         </div>
                         <div class="col-8 col-md-8">
-                            <div class="mb-1 text-purple link-purple small">
-                                <div class="d-inline-block mr-2">January 28,2019 </div>
-                                <div class="d-inline-block font-weight-bold">
+                            <div class="mb-1 small">
+                                <div class="d-inline-block mr-2">January 28,2021 </div>
+                                <div class="d-inline-block font-weight-bold link-danger">
                                     <a href="#" class=" mr-2"><i class="fas fa-comment"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-eye"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-thumbs-up"></i> 10</a>
                                 </div>
                             </div>
-                            <h4 class="font-weight-bold link-purple"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
+                            <h4 class="font-weight-bold"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="bg-light p-3 mb-3">
+                <div class="p-3 mb-3">
                     <div class="row no-gutters-5">
                         <div class="col-4 col-md-4">
                             <img src="https://via.placeholder.com/400x400" class="img-fluid w-100">
                         </div>
                         <div class="col-8 col-md-8">
-                            <div class="mb-1 text-purple link-purple small">
-                                <div class="d-inline-block mr-2">January 28,2019 </div>
-                                <div class="d-inline-block font-weight-bold">
+                            <div class="mb-1 small">
+                                <div class="d-inline-block mr-2">January 28,2021 </div>
+                                <div class="d-inline-block font-weight-bold link-danger">
                                     <a href="#" class=" mr-2"><i class="fas fa-comment"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-eye"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-thumbs-up"></i> 10</a>
                                 </div>
                             </div>
-                            <h4 class="font-weight-bold link-purple"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
+                            <h4 class="font-weight-bold"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="bg-light p-3 mb-3">
+                <div class="p-3 mb-3">
                     <div class="row no-gutters-5">
                         <div class="col-4 col-md-4">
                             <img src="https://via.placeholder.com/400x400" class="img-fluid w-100">
                         </div>
                         <div class="col-8 col-md-8">
-                            <div class="mb-1 text-purple link-purple small">
-                                <div class="d-inline-block mr-2">January 28,2019 </div>
-                                <div class="d-inline-block font-weight-bold">
+                            <div class="mb-1 small">
+                                <div class="d-inline-block mr-2">January 28,2021 </div>
+                                <div class="d-inline-block font-weight-bold link-danger">
                                     <a href="#" class=" mr-2"><i class="fas fa-comment"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-eye"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-thumbs-up"></i> 10</a>
                                 </div>
                             </div>
-                            <h4 class="font-weight-bold link-purple"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
+                            <h4 class="font-weight-bold"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="bg-light p-3 mb-3">
+                <div class="p-3 mb-3">
                     <div class="row no-gutters-5">
                         <div class="col-4 col-md-4">
                             <img src="https://via.placeholder.com/400x400" class="img-fluid w-100">
                         </div>
                         <div class="col-8 col-md-8">
-                            <div class="mb-1 text-purple link-purple small">
-                                <div class="d-inline-block mr-2">January 28,2019 </div>
-                                <div class="d-inline-block font-weight-bold">
+                            <div class="mb-1 small">
+                                <div class="d-inline-block mr-2">January 28,2021 </div>
+                                <div class="d-inline-block font-weight-bold link-danger">
                                     <a href="#" class=" mr-2"><i class="fas fa-comment"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-eye"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-thumbs-up"></i> 10</a>
                                 </div>
                             </div>
-                            <h4 class="font-weight-bold link-purple"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
+                            <h4 class="font-weight-bold"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="bg-light p-3 mb-3">
+                <div class="p-3 mb-3">
                     <div class="row no-gutters-5">
                         <div class="col-4 col-md-4">
                             <img src="https://via.placeholder.com/400x400" class="img-fluid w-100">
                         </div>
                         <div class="col-8 col-md-8">
-                            <div class="mb-1 text-purple link-purple small">
-                                <div class="d-inline-block mr-2">January 28,2019 </div>
-                                <div class="d-inline-block font-weight-bold">
+                            <div class="mb-1 small">
+                                <div class="d-inline-block mr-2">January 28,2021 </div>
+                                <div class="d-inline-block font-weight-bold link-danger">
                                     <a href="#" class=" mr-2"><i class="fas fa-comment"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-eye"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-thumbs-up"></i> 10</a>
                                 </div>
                             </div>
-                            <h4 class="font-weight-bold link-purple"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
+                            <h4 class="font-weight-bold"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="bg-light p-3 mb-3">
+                <div class="p-3 mb-3">
                     <div class="row no-gutters-5">
                         <div class="col-4 col-md-4">
                             <img src="https://via.placeholder.com/400x400" class="img-fluid w-100">
                         </div>
                         <div class="col-8 col-md-8">
-                            <div class="mb-1 text-purple link-purple small">
-                                <div class="d-inline-block mr-2">January 28,2019 </div>
-                                <div class="d-inline-block font-weight-bold">
+                            <div class="mb-1 small">
+                                <div class="d-inline-block mr-2">January 28,2021 </div>
+                                <div class="d-inline-block font-weight-bold link-danger">
                                     <a href="#" class=" mr-2"><i class="fas fa-comment"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-eye"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-thumbs-up"></i> 10</a>
                                 </div>
                             </div>
-                            <h4 class="font-weight-bold link-purple"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
+                            <h4 class="font-weight-bold"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="bg-light p-3 mb-3">
+                <div class="p-3 mb-3">
                     <div class="row no-gutters-5">
                         <div class="col-4 col-md-4">
                             <img src="https://via.placeholder.com/400x400" class="img-fluid w-100">
                         </div>
                         <div class="col-8 col-md-8">
-                            <div class="mb-1 text-purple link-purple small">
-                                <div class="d-inline-block mr-2">January 28,2019 </div>
-                                <div class="d-inline-block font-weight-bold">
+                            <div class="mb-1 small">
+                                <div class="d-inline-block mr-2">January 28,2021 </div>
+                                <div class="d-inline-block font-weight-bold link-danger">
                                     <a href="#" class=" mr-2"><i class="fas fa-comment"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-eye"></i> 10</a>
                                     <a href="#" class=" mr-2"><i class="fas fa-thumbs-up"></i> 10</a>
                                 </div>
                             </div>
-                            <h4 class="font-weight-bold link-purple"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
+                            <h4 class="font-weight-bold"><a href="#">How Nick Jonas proposed to Priyanka Chopra</a></h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
@@ -352,17 +853,91 @@
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
-
   $(document).ready(function(){
+
+    function spaceByhyphen(myStr){
+      myStr=myStr.toLowerCase();
+      myStr=myStr.replace(/(^\s+|[^a-zA-Z0-9 ]+|\s+$)/g,"");
+      myStr=myStr.replace(/\s+/g, "-");
+      return myStr;
+    }
+
+    function spaceByhyphenOnly(myStr){
+      // myStr=myStr.toLowerCase();
+      // myStr=myStr.replace(/(^\s+|[^a-zA-Z0-9 ]+|\s+$)/g,"");
+      myStr=myStr.replace(/\s+/g, "-");
+      return myStr;
+    }
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-  });
-  </script>
+    var path_l = "{{ url('/search_location') }}";
+    var locations = $('.areaofuk').typeahead({
+      source: function (query, process)
+      {
+        return $.get(path_l, {query: query}, function(locations){
+          return process(locations);
+        });
+      },
+      displayText: function (location)
+      {
+        return location['location_name']+', '+location['country_name'];
+      }
+    });
 
+    $(".areaofuk").change(function()
+    {
+      var location_id = $(".areaofuk").typeahead("getActive");
+      $("#location_id").val(location_id.location_id);
+      $(".areaofuk").val(location_id.location_name);
+    });
+
+    var selected_cat = [];
+    $(".category_search_form").change(function()
+    {
+      selected_c = $(this).children("option:selected").text();
+      selected_c_id = $(this).children("option:selected").val();
+      selected_cat.push(selected_c);
+      selected_cat.push(selected_c_id);
+      $(".category_name_searched").val(selected_c);
+    });
+
+    $('.sub_header_search_form').on('submit', function(event){
+      event.preventDefault();
+      var selected_category = "";
+      var selected_cat_id = "";
+      if(selected_cat.length == 0){
+        selected_category = $(".category_search_form option:selected").text();
+        selected_cat_id = $(".category_search_form option:selected").val();
+      }else {
+        showCat = selected_cat.filter(Boolean);
+        selected_category = showCat[0];
+        selected_cat_id = showCat[1];
+      }
+
+      var selected_location = $(".areaofuk").val();
+      if(selected_location == ""){
+        selected_location = "UK"
+      }
+      // var selected_business = $(".business_name_searched").val();
+      // if(selected_business == ""){
+      //   selected_business = "venue-name"
+      // }
+
+      var sel_cat = spaceByhyphen(selected_category);
+      var sel_loc = spaceByhyphenOnly(selected_location);
+      // var sel_bus = spaceByhyphen(selected_business);
+
+
+
+      window.location.href="/search/wedding-"+sel_cat+"/"+sel_loc;
+      // window.location.href="/search/wedding-"+sel_cat;
+    });
+  });
+</script>
 
 @endsection

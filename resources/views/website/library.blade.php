@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="telephone=no" name="format-detection">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>myBigAsianWedding | @yield('title')</title>
+    <title>My Big Asian Wedding UK | @yield('title')</title>
 
     <!-- Latest compiled and minified CSS -->
     <meta name="theme-color" content="#533063">

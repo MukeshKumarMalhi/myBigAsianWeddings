@@ -32,6 +32,25 @@ class BusinessController extends Controller
         $this->middleware('admin');
     }
 
+    public function get_locations_admin(Request $request)
+    {
+      try {
+          $locations = DB::table('locations')
+              ->leftJoin('countries', 'countries.id', '=', 'locations.country_id')
+              ->select('locations.id as location_id', 'locations.location_name', 'countries.id as country_id', 'countries.country_name')
+              ->where('locations.location_name','like',"%{$request->input('query')}%")
+              ->orderBy('locations.location_name', 'asc')
+              ->take(5)
+              ->get();
+
+            return response()->json($locations, 200);
+        }
+        catch(Exception $e)
+        {
+            return response()->json(['error' => 'Something is wrong'], 500);
+        }
+    }
+
     public function show_section($id)
     {
       $section = DB::table('data_sections')
@@ -986,11 +1005,9 @@ class BusinessController extends Controller
 
     public function store_fill_section_form(Request $request){
       $rules = array(
-        'name_answer_text' => 'required',
+        'business_name_answer_text' => 'required',
         'category_id' => 'required'
       );
-
-      // dd($request->all());
 
       $error = Validator::make($request->all(), $rules);
       if($error->fails()){
@@ -1002,7 +1019,7 @@ class BusinessController extends Controller
           'id' => $id,
           'category_id' => $request->category_id,
           'location_id' => $request->location_id,
-          'name' => $request->name_answer_text,
+          'name' => $request->business_name_answer_text,
         );
         $business_liting = BusinessListing::create($form_data);
 
@@ -1084,7 +1101,7 @@ class BusinessController extends Controller
       }else{
 
         $business_liting_update = BusinessListing::find($request->business_listing_id);
-        $business_liting_update->name = $request->updated_name_answer_text_updated;
+        $business_liting_update->name = $request->updated_business_name_answer_text_updated;
         $business_liting_update->location_id = $request->location_id;
         $business_liting_update->save();
 

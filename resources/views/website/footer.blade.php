@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-12 col-lg-3 mb-3">
-                <div class="bs-logo-footer mx-auto mx-sm-0"><img src="{{ asset('web_asset/images/my-big-asian-wedding-logo2.png') }}" class="img-fluid" alt=""></div>
+                <div class="bs-logo-footer mx-auto mx-sm-0"><img src="{{ asset('web_asset/images/my-big-asian-wedding-logo.png') }}" class="img-fluid" alt=""></div>
                 <div class="bs-socal-media link-light h3 my-3">
                     <a href="https://www.facebook.com/shaditayari/"><i class="fab fa-facebook-square"></i></a>
                     <a href="https://twitter.com/ShadiTayari"><i class="fab fa-twitter-square"></i></a>
@@ -11,7 +11,7 @@
                     <a href="#"><i class="fab fa-linkedin"></i></a>
                     <a href="https://www.instagram.com/shaditayari/"><span class="fa-stack"><i class="fas fa-square fa-stack-2x"></i><i class="fab fa-instagram fa-stack-1x text-dark"></i></span></a>
                 </div>
-                <p>Getting married? Don’t know where to start from? Then you are at the right place! At Shadi Tayari we have the complete database of all the wedding suppliers in Pakistan. Browse through our categories and choose your favourite wedding designer, venue, photographer, salon and many more - to create your magical wedding!<br><br> Pakistan's comprehensive online wedding suppliers directory</p>
+                <p>Getting married? Don’t know where to start from? Then you are at the right place! At MyBigAsianWedding we have the complete database of all the wedding suppliers in Pakistan. Browse through our categories and choose your favourite wedding designer, venue, photographer, salon and many more - to create your magical wedding!<br><br> Pakistan's comprehensive online wedding suppliers directory</p>
             </div>
             <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
                 <h4 class="mb-3"><strong>Most Searched Categories</strong></h4>
@@ -32,7 +32,7 @@
                         <input type="email" class="form-control form-control-dark" name="email" placeholder="Email Address" autocomplete="off" required>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-dark btn-purple">Subscribe</button>
+                        <button class="btn  btn-warning">Subscribe</button>
                     </div>
                 </form>
             </div>
@@ -52,5 +52,3 @@
         <div class="pt-3 text-center"> &copy; 2020 Copyright by Weddified. All rights reserved.</div>
     </div>
 </footer>
-</body>
-</html>

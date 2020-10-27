@@ -18,12 +18,12 @@ use Illuminate\Support\Str;
 use App\User;
 
 Route::get('/','WebController@index');
-Route::get('/mazy', function ()
-{
-  $string = " hello moto moto";
-  $newString = Str::random(40);
-  dd($newString);
-});
+// Route::get('/mazy', function ()
+// {
+//   $string = " hello moto moto";
+//   $newString = Str::random(40);
+//   dd($newString);
+// });
 
 
 Auth::routes();
@@ -64,13 +64,14 @@ Route::get('/happy_wedding/{user_url}', function($user_url){
 // Route::get('/happy_wedding/{user_url}', 'HomeController@show_user_url');
 
 Route::get('/search_venues', 'HomeController@get_venues');
-Route::get('/search_location', 'HomeController@get_locations');
+Route::get('/search_location', 'WebController@get_locations');
+Route::get('/search_location_admin', 'Admin\BusinessController@get_locations_admin');
 Route::get('/search_business', 'HomeController@get_businesses');
 
 Route::get('/settings', 'HomeController@user_settings');
 // Route::get('/search/{type}/{city}', 'HomeController@search_categories_values');
 Route::get('/search/{slug?}', 'WebController@search_categories_values_listing')->where('slug', '(.*)');
-Route::get('/{type}/{name}', 'HomeController@show_detail_page');
+Route::get('/{type}/{name}', 'WebController@show_detail_page');
 
 Route::post('/store_shortlist', 'HomeController@store_shortlist');
 Route::post('/delete_shortlist', 'HomeController@delete_shortlist');
