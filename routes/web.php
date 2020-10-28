@@ -117,7 +117,7 @@ Route::post('/store_data_question', 'Admin\BusinessController@store_data_questio
 Route::post('/update_data_question', 'Admin\BusinessController@update_data_question');
 Route::post('/delete_question_data', 'Admin\BusinessController@delete_question_data');
 
-Route::get('/view_data_submissions', 'Admin\BusinessController@view_data_submissions');
+Route::get('/view_data_submissions/{slug?}', 'Admin\BusinessController@view_data_submissions')->where('slug', '(.*)');
 Route::post('/update_category_data_submission', 'Admin\BusinessController@update_category_data_submission');
 
 Route::post('/store_fill_section_form', 'Admin\BusinessController@store_fill_section_form');

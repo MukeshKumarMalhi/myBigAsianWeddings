@@ -25,6 +25,8 @@ use App\DataAnswer;
 use App\DataSection;
 use App\SectionBusinessCategory;
 use App\DataType;
+use DateTime;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class BusinessController extends Controller
 {
@@ -1292,17 +1294,143 @@ class BusinessController extends Controller
       return response()->json("Photo Deleted Succssfully", 200);
     }
 
-    public function view_data_submissions(){
+    public function view_data_submissions(Request $request, $slug = null){
+
+      $values = explode("/", $slug);
+      $get_cats = explode("-", $values[0]);
+
+      $got_cat = "";
+      foreach ($get_cats as $key => $cat) {
+        if($key > 0){
+          if($cat == "and"){
+            $got_cat .= $cat." ";
+          }else {
+            $got_cat .= ucfirst($cat." ");
+          }
+        }
+      }
+
+      $loc_for_search = "";
+      if(count($values) > 1){
+        $loc_for_search = preg_replace('/(?<!\s)-(?!\s)/', ' ', $values[1]);
+      }
+      $cat_for_search = trim($got_cat);
+
+      $category_id = DB::table('categories')->where('category_name', '=', $cat_for_search)->first();
+      $location_id = DB::table('locations')->where('location_name', '=', $loc_for_search)->first();
+
+      $array_values = array();
+      foreach ($values as $key => $value) {
+        $result = preg_replace('/(?<!\s)-(?!\s)/', ' ', $value);
+        array_push($array_values, $result);
+      }
+
+      $keyword_for_search = "";
+      $keyword_for_search = preg_replace('/(?<!\s)-(?!\s)/', ' ', $request->search_by_keyword);
+
+      $sorttype = $request->get('sort_type');
+      $date = new DateTime();
+      unset($array_values[0]);
+      $array_values = array_values($array_values);
+
+      $business_is_null = "";
+      $location_is_null = "";
+      $category_is_null = "";
+      $postcode_is_null = "";
+
+      if(isset($request->postcode) && $request->postcode == "is_null"){
+        $postcode_is_null = $request->postcode;
+      }
+      if(isset($request->name) && $request->name == "is_null"){
+        $business_is_null = $request->name;
+      }
+      if(isset($request->location) && $request->location == "is_null"){
+        $location_is_null = $request->location;
+      }
+      if(isset($request->category) && $request->category == "is_null"){
+        $category_is_null = $request->category;
+      }
+
       $submissions = DB::table('business_listings')
       ->leftJoin('categories', 'categories.id', '=', 'business_listings.category_id')
+      ->leftJoin('locations', 'locations.id', '=', 'business_listings.location_id')
       ->leftJoin('business_listing_details', 'business_listing_details.business_listing_id', '=', 'business_listings.id')
-      ->select('business_listings.*', 'categories.category_name', 'business_listing_details.created_by_user', 'business_listing_details.updated_by_user')
-      ->orderBy('business_listings.updated_at', 'desc')
-      ->paginate(10);
+      ->select('business_listings.*', 'categories.category_name', 'locations.location_name', 'business_listing_details.created_by_user', 'business_listing_details.updated_by_user');
+
+      $diff = DB::table('business_listings')
+      ->leftJoin('categories', 'categories.id', '=', 'business_listings.category_id')
+      ->leftJoin('locations', 'locations.id', '=', 'business_listings.location_id')
+      ->leftJoin('business_listing_details', 'business_listing_details.business_listing_id', '=', 'business_listings.id')
+      ->select('business_listings.*', 'categories.category_name', 'locations.location_name', 'business_listing_details.created_by_user', 'business_listing_details.updated_by_user')
+      ->orderBy('business_listings.updated_at', 'asc')->get()->toArray();
+
+      if($category_id != null){
+        $submissions->where('business_listings.category_id', '=', $category_id->id);
+      }
+      if($location_id != null){
+        $submissions->where('business_listings.location_id', '=', $location_id->id);
+      }
+      if($keyword_for_search != ""){
+        $submissions->leftJoin('business_listing_attributes', 'business_listing_attributes.business_listing_id', '=', 'business_listings.id')
+        ->where('business_listing_attributes.data_answer_text', '=', $keyword_for_search);
+      }
+      if($postcode_is_null != ""){
+        $submissions = $submissions->leftJoin('business_listing_attributes', 'business_listing_attributes.business_listing_id', '=', 'business_listings.id')
+        ->where('business_listing_attributes.data_question_id', '=', '5f84645f4edda')
+        ->orderBy('business_listings.updated_at', 'asc')
+        ->get()->toArray();
+        // $arr1 =  (array) $diff;
+        // $arr2 =  (array) $submissions;
+        $submissions = array_diff_key($diff, $submissions);
+        // dd($submissions);
+        // $big_array = array();
+        // foreach ($diff as $key => $value) {
+        //   foreach ($submissions as $key => $value2) {
+        //     if($value->id == $value2->id){
+        //       continue;
+        //     }else {
+        //       array_push($big_array, $value);
+        //     }
+        //   }
+        // }
+        // dd($big_array);
+        // $submissions = $big_array;
+      }
+      if($business_is_null != ""){
+        $submissions->where('business_listings.name', '=', null);
+      }
+      if($category_is_null != ""){
+        $submissions->where('business_listings.category_id', '=', null);
+      }
+      if($location_is_null != ""){
+        $submissions->where('business_listings.location_id', '=', null);
+      }
+      if($postcode_is_null == ""){
+        $submissions = $submissions->orderBy('business_listings.updated_at', 'desc')->get();
+      }
 
       $cats = DB::table('categories')->where('parent_category_id', null)->get();
 
-      return view('admins.data_submission', ['submissions' => $submissions, 'cats' => $cats]);
+      $paginator="false";
+      $currentPage = LengthAwarePaginator::resolveCurrentPage();
+      $itemCollection = collect($submissions);
+      $perPage = 10;
+      $currentPageItems = $itemCollection->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
+      $paginatedItems= new LengthAwarePaginator($currentPageItems , count($itemCollection), $perPage);
+      $paginatedItems->setPath($request->url());
+
+
+      return view('admins.data_submission', [
+        'cats' => $cats,
+        'submissions' => $paginatedItems,
+        'search_location' => $loc_for_search,
+        'category_search' => $cat_for_search,
+        'keyword_search' => $keyword_for_search,
+        'postcode_is_null' => $postcode_is_null,
+        'category_is_null' => $category_is_null,
+        'location_is_null' => $location_is_null,
+        'business_is_null' => $business_is_null
+      ]);
     }
 
     public function update_category_data_submission(Request $request){

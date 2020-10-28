@@ -9,8 +9,8 @@
                     <a class="nav-link" href="#">Order</a>
                 </li> -->
                 <li class="nav-item link-light">
-                    <a class="nav-link" href="#"><i class="fal fa-user"></i> {{ Auth::user()->name }}</a>
-                    <a class="nav-link" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fal fa-sign-out-alt"></i> Log out</a>
+                    <a href="#"><i class="fal fa-user"></i> {{ Auth::user()->name }}</a> &nbsp; &nbsp;
+                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fal fa-sign-out-alt"></i> Log out</a>
                     <form id="logout-form" style="display: none;" action="{{ url('/logout') }}" method="POST">
                       @csrf
                     </form>
