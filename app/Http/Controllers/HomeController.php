@@ -48,7 +48,7 @@ class HomeController extends Controller
           ->select('users.*', 'locations.location_name', 'countries.country_name')
           ->where('users.id', '=', Auth::user()->id)
           ->first();
-      return view('website.dashboard', compact('user'));
+      return view('users.dashboard', compact('user'));
     }
 
     public function create_session_variable(Request $request)

@@ -28,15 +28,16 @@
     <div id="page-content-wrapper">
         <div class="container-fluid py-3" id="submissions">
           <div class="row">
-            <div class="col-4">
+            <div class="col-12">
               <form role="form" id="serach_filter_form">
-                <div class="form-group">
+                <div class="row">
+                <div class="form-group col-md-3">
                   <input type="text" name="search_by_keyword" class="form-control rounded" placeholder="Search by keyword" value="{{ ($keyword_search == '' ? '' : $keyword_search) }}">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-3">
                   <input type="text" name="location_name_searched" placeholder="Search location" class="form-control areaofuk rounded" value="{{ ($search_location == 'UK' ? '' : $search_location) }}" autocomplete="off">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-3">
                   <select name='category_id_searched' class="form-control category_search_form filters custom-select rounded">
                     <option value="category" selected>Select Category</option>
                     @foreach ($cats as $key => $value)
@@ -44,34 +45,46 @@
                     @endforeach
                   </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-3">
                   <button type="button" class="btn btn-warning btn-block" id="form_submit" name="button">Search</button>
                 </div>
-              </form>
-            </div>
-            <div class="col-4">
-              <form role="form" action="{{ url('/view_data_submissions') }}" method="get" id="is_null_form">
-                <div class="form-group form-check">
-                  <input type="checkbox" id="name" name="name" class="form-check-input form-control unchecking" value="is_null" <?php $name_null = ($business_is_null == '' ? '' : 'checked'); echo $name_null;?>> &nbsp;
-                  <label class="form-check-label"  for="name">Business Name Is NULL</label>
-                </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" id="postcode" name="postcode" class="form-check-input form-control unchecking" value="is_null" <?php $post_null = ($postcode_is_null == '' ? '' : 'checked'); echo $post_null;?>> &nbsp;
-                  <label class="form-check-label"  for="postcode">Postcode Is NULL</label>
-                </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" id="category" name="category" class="form-check-input form-control unchecking" value="is_null" <?php $category_null = ($category_is_null == '' ? '' : 'checked'); echo $category_null;?>> &nbsp;
-                  <label class="form-check-label"  for="category">Category Is NULL</label>
-                </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" id="location" name="location" class="form-check-input form-control unchecking" value="is_null" <?php $location_null = ($location_is_null == '' ? '' : 'checked'); echo $location_null;?>> &nbsp;
-                  <label class="form-check-label"  for="location">Location Is NULL</label>
                 </div>
               </form>
             </div>
           </div>
+          <div class="row">
+            <div class="col-12">
+              <form role="form" action="{{ url('/view_data_submissions') }}" method="get" id="is_null_form">
+                <div class="form-check form-check-inline">
+                  <input type="checkbox" id="name" name="name" class="form-check-input form-control unchecking" value="is_null" <?php $name_null = ($business_is_null == '' ? '' : 'checked'); echo $name_null;?>> &nbsp;
+                  <label class="form-check-label" for="name">Business Name Is NULL</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input type="checkbox" id="postcode" name="postcode" class="form-check-input form-control unchecking" value="is_null" <?php $post_null = ($postcode_is_null == '' ? '' : 'checked'); echo $post_null;?>> &nbsp;
+                  <label class="form-check-label" for="postcode">Postcode Is NULL</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input type="checkbox" id="category" name="category" class="form-check-input form-control unchecking" value="is_null" <?php $category_null = ($category_is_null == '' ? '' : 'checked'); echo $category_null;?>> &nbsp;
+                  <label class="form-check-label" for="category">Category Is NULL</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input type="checkbox" id="location" name="location" class="form-check-input form-control unchecking" value="is_null" <?php $location_null = ($location_is_null == '' ? '' : 'checked'); echo $location_null;?>> &nbsp;
+                  <label class="form-check-label" for="location">Location Is NULL</label>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 text-right">
+              <h3 class="text-right">
+                <span style="color: #0087CB;">
+                  Showing {{$submissions->currentpage()*$submissions->perpage()}} of {{$submissions->total()}} entries
+                </span>
+              </h3>
+            </div>
+          </div>
           <div class="card">
-              <div class="card-header bg-blue text-light">
+              <!-- <div class="card-header bg-blue text-light">
                 <div class="row">
                   <div class="col-sm-6">
                     <h4 class="mb-0">Data Submissions</h4>
@@ -80,7 +93,7 @@
                     <a class="btn btn-default btn-yellow" href="{{ url('/view_categories') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Business</a>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="table-responsive small">
                 <table class="table table-condensed" id="userTable">
                     <thead>
@@ -101,7 +114,13 @@
                            @foreach($submissions as $submission)
                              <tr class="Submission{{$submission->id}}">
                                <td>{{ $submission->id }}</td>
-                               <td class="px-2 text-nowrap"><a href="{{ url('/edit_data_submission') }}/{{ $submission->id }}/{{ $submission->category_id }}" style="text-decoration: underline;">{{ $submission->name }}</a></td>
+                               <td class="px-2 text-nowrap">
+                                 @if($submission->category_name == "")
+                                  {{ $submission->name }}
+                                 @else
+                                 <a href="{{ url('/edit_data_submission') }}/{{ $submission->id }}/{{ $submission->category_id }}" style="text-decoration: underline;">{{ $submission->name }}</a>
+                                 @endif
+                               </td>
                                @if($submission->category_id == NULL)
                                <td>
                                  <div class="form-group add">
@@ -129,8 +148,10 @@
                                   {{ $submission->updated_by_user }} (<?php echo date('d M Y',strtotime($submission->updated_at)); ?>)
                                  @endif
                                </td>
-                               <td class="px-2 text-nowrap">
-                                 <a href="{{ url('/edit_data_submission') }}/{{ $submission->id }}/{{ $submission->category_id }}" class="btn btn-sm btn-warning"><i class='fa fa-pencil'></i></a>
+                               <td class="px-2 text-nowrap text-center">
+                                 @if($submission->category_name != "")
+                                  <a href="{{ url('/edit_data_submission') }}/{{ $submission->id }}/{{ $submission->category_id }}" class="btn btn-sm btn-warning"><i class='fa fa-pencil'></i></a>
+                                 @endif
                                  <a href="#" class="delete_modal btn btn-sm btn-danger" data-id="{{ $submission->id }}" data-name="{{ $submission->name }}" data-toggle="modal" data-target="#DeleteBusinessModal" data-whatever="@mdo"><i class='fa fa-trash'></i></a>
                                </td>
                              </tr>
@@ -153,6 +174,7 @@
                  'postcode' => app('request')->input('postcode'),
                  'name' => app('request')->input('name'),
                  'location' => app('request')->input('location'),
+                 'search_by_keyword' => app('request')->input('search_by_keyword'),
                  'category' => app('request')->input('category')
                ])->links() }}
 		         </ul>

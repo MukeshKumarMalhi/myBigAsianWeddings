@@ -25,7 +25,7 @@
                 <input type="hidden" name="category_id" value="{{ $sections[0]->category_id }}">
               <?php
                 foreach ($sections as $key => $value) {
-                  echo "<span style='font-weight: 600; font-size: 20px;'>$value->section_name</span>";
+                  echo "<span style='font-weight: 600; font-size: 20px;'>$value->section_name</span><hr/>";
                   echo "<p style='font-weight: 500; font-size: 18px;'>$value->section_sub_heading</p>";
                   $arr_names = array();
                   foreach ($value->questions as $key => $val) {

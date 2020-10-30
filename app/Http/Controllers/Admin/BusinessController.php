@@ -36,6 +36,11 @@ class BusinessController extends Controller
         $this->middleware('admin');
     }
 
+    public function view_admin_dashboard()
+    {
+      return view('admins.admin_dashboard');
+    }
+
     public function get_locations_admin(Request $request)
     {
       try {
@@ -1372,7 +1377,7 @@ class BusinessController extends Controller
       }
       if($keyword_for_search != ""){
         $submissions->leftJoin('business_listing_attributes', 'business_listing_attributes.business_listing_id', '=', 'business_listings.id')
-        ->where('business_listing_attributes.data_answer_text', '=', $keyword_for_search);
+        ->where('business_listing_attributes.data_answer_text', 'LIKE', '%'.$keyword_for_search.'%');
       }
       if($postcode_is_null != ""){
         $submissions = $submissions->leftJoin('business_listing_attributes', 'business_listing_attributes.business_listing_id', '=', 'business_listings.id')
@@ -1411,10 +1416,12 @@ class BusinessController extends Controller
 
       $cats = DB::table('categories')->where('parent_category_id', null)->get();
 
+      $count = count($submissions);
+
       $paginator="false";
       $currentPage = LengthAwarePaginator::resolveCurrentPage();
       $itemCollection = collect($submissions);
-      $perPage = 10;
+      $perPage = 30;
       $currentPageItems = $itemCollection->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
       $paginatedItems= new LengthAwarePaginator($currentPageItems , count($itemCollection), $perPage);
       $paginatedItems->setPath($request->url());
@@ -1422,6 +1429,7 @@ class BusinessController extends Controller
 
       return view('admins.data_submission', [
         'cats' => $cats,
+        'count' => $count,
         'submissions' => $paginatedItems,
         'search_location' => $loc_for_search,
         'category_search' => $cat_for_search,

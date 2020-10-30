@@ -20,10 +20,6 @@ class AdminMiddleware
         return $next($request);
       }
 
-      else if(Auth::user()->role_id== 2){
-        return $next($request);
-      }
-
-      return redirect('/');
+      return redirect('/login');
     }
 }

@@ -37,7 +37,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -91,10 +91,9 @@ class LoginController extends Controller
             }
             elseif($user->role_id == 1) {
               Auth::attempt($credentials);
-              return Redirect::to('/view_business');
+              return Redirect::to('/admin_dashboard');
             }elseif ($user->role_id == 2) {
               Auth::attempt($credentials);
-              // Auth::login($user);
               return Redirect::to('/home');
             }
           }

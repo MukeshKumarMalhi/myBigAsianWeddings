@@ -26,7 +26,6 @@ Route::get('/','WebController@index');
 // });
 
 
-Auth::routes();
 Route::get('/show_section/{id}', 'Admin\BusinessController@show_section');
 Route::get('/fill_section/{id}', 'Admin\BusinessController@fill_section');
 Route::get('/edit_data_submission/{id}/{cat_id}', 'Admin\BusinessController@edit_data_submission');
@@ -102,6 +101,7 @@ Route::post('store_feature', 'Admin\BusinessController@store_feature');
 Route::post('update_feature', 'Admin\BusinessController@update_feature');
 Route::post('delete_feature', 'Admin\BusinessController@delete_feature');
 
+Route::get('/admin_dashboard', 'Admin\BusinessController@view_admin_dashboard');
 Route::get('/view_business', 'Admin\BusinessController@create_new_business');
 Route::post('/store_business', 'Admin\BusinessController@store_business');
 Route::get('/show_business/{id}', 'Admin\BusinessController@show_business');

@@ -30,49 +30,49 @@
     <div class="row no-gutters-5 text-center bottom-negative-70 text-light link-light">
         <div class="col-4 col-md-3 col-lg mb-3">
             <div class="h-100 bg-danger p-3 rounded">
-                <img src="web_asset/images/icons/search.png" class="img-fluid m-auto">
+                <img src="{{ asset('web_asset/images/icons/search.png') }}" class="img-fluid m-auto">
                 <p class="mb-0">Search</p>
             </div>
         </div>
         <div class="col-4 col-md-3 col-lg mb-3">
             <div class="h-100 bg-danger p-3 rounded">
-                <img src="web_asset/images/icons/planning-tools.png" class="img-fluid m-auto">
+                <img src="{{ asset('web_asset/images/icons/planning-tools.png') }}" class="img-fluid m-auto">
                 <p class="mb-0">Planning Tools</p>
             </div>
         </div>
         <div class="col-4 col-md-3 col-lg mb-3">
             <div class="h-100 bg-danger p-3 rounded">
-                <img src="web_asset/images/icons/guestlist.png" class="img-fluid m-auto">
+                <img src="{{ asset('web_asset/images/icons/guestlist.png') }}" class="img-fluid m-auto">
                 <p class="mb-0">Guestlist</p>
             </div>
         </div>
         <div class="col-4 col-md-3 col-lg mb-3">
             <div class="h-100 bg-danger p-3 rounded">
-                <img src="web_asset/images/icons/checklist.png" class="img-fluid m-auto">
+                <img src="{{ asset('web_asset/images/icons/checklist.png') }}" class="img-fluid m-auto">
                 <p class="mb-0">Checklist</p>
             </div>
         </div>
         <div class="col-4 col-md-3 col-lg mb-3">
             <div class="h-100 bg-danger p-3 rounded">
-                <img src="web_asset/images/icons/budget.png" class="img-fluid m-auto">
+                <img src="{{ asset('web_asset/images/icons/budget.png') }}" class="img-fluid m-auto">
                 <p class="mb-0">Budget</p>
             </div>
         </div>
         <div class="col-4 col-md-3 col-lg mb-3">
             <div class="h-100 bg-danger p-3 rounded">
-                <img src="web_asset/images/icons/shortlist.png" class="img-fluid m-auto">
+                <img src="{{ asset('web_asset/images/icons/shortlist.png') }}" class="img-fluid m-auto">
                 <p class="mb-0">Shortlist</p>
             </div>
         </div>
         <div class="col-4 offset-2 offset-md-0 col-md-3 col-lg mb-3">
             <div class="h-100 bg-danger p-3 rounded">
-                <img src="web_asset/images/icons/advice.png" class="img-fluid m-auto">
+                <img src="{{ asset('web_asset/images/icons/advice.png') }}" class="img-fluid m-auto">
                 <p class="mb-0">Advice</p>
             </div>
         </div>
         <div class="col-4 col-md-3 col-lg mb-3">
             <div class="h-100 bg-danger p-3 rounded">
-                <img src="web_asset/images/icons/gift-lists.png" class="img-fluid m-auto">
+                <img src="{{ asset('web_asset/images/icons/gift-lists.png') }}" class="img-fluid m-auto">
                 <p class="mb-0">Gift Lists</p>
             </div>
         </div>
@@ -144,34 +144,44 @@
                     </div>
                 </div>
                 <div class="text-center mb-3">
-                    <a href="#view-all-categories" data-toggle="bs-collapse" data-target="#view-all-categories">View All Categories <i class="fal fa-chevron-down"></i></a>
+                    <a href="#view-all-categories" data-toggle="collapse" data-target="#view-all-categories">View All Categories <i class="fal fa-chevron-down"></i></a>
                 </div>
                 <div class="collapse" id="view-all-categories">
                     <div class="row no-gutters-5">
-                        <div class="col-lg-4">
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/accessories/">Accessories</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/accommodation/">Accommodation</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/bridal-and-womens-wear/">Bridal Dresses</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/car-hire/">Car Hire</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/decoration/">Decoration</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/entertainment/">Entertainment</a></p>
+                      <?php
+                      foreach ($categories as $key => $value) {
+                        $for_url = str_replace(' ', '-', strtolower($value->category_name));
+                      ?>
+                      <div class="col-lg-4">
+                        <p><a href="{{ url('/search/wedding') }}/wedding-{{ $for_url }}/UK">{{$value->category_name}}</a></p>
+                      </div>
+                      <?php
+                      }
+                      ?>
+                        <!-- <div class="col-lg-4">
+                            <p><a href="{{ url('/search/wedding-accessories/UK') }}">Accessories</a></p>
+                            <p><a href="{{ url('/search/wedding-accommodation/UK') }}">Accommodation</a></p>
+                            <p><a href="{{ url('/search/wedding-bridal-dresses/UK') }}">Bridal Dresses</a></p>
+                            <p><a href="{{ url('/search/wedding-car-hire/UK') }}">Car Hire</a></p>
+                            <p><a href="{{ url('/search/wedding-decoration/UK') }}">Decoration</a></p>
+                            <p><a href="{{ url('/search/wedding-entertainment/UK') }}">Entertainment</a></p>
                         </div>
                         <div class="col-lg-4">
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/hair-and-beauty/">Hair And Beauty</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/featured-2/">Featured</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/florists/">Florists</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/groom-dresses/">Groom Dresses</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/catering-2/">Catering</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/home-decor/">Home Decor</a></p>
+                            <p><a href="{{ url('/search/wedding-hair-and-beauty/UK') }}">Hair And Beauty</a></p>
+                            <p><a href="{{ url('/search/wedding-featured/UK') }}">Featured</a></p>
+                            <p><a href="{{ url('/search/wedding-florists/UK') }}">Florists</a></p>
+                            <p><a href="{{ url('/search/wedding-groom-dresses/UK') }}">Groom Dresses</a></p>
+                            <p><a href="{{ url('/search/wedding-catering/UK') }}">Catering</a></p>
+                            <p><a href="{{ url('/search/wedding-home-decor/UK') }}">Home Decor</a></p>
                         </div>
                         <div class="col-lg-4">
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/travel/honeymoon/">Honeymoon</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/miscellaneous/">Miscellaneous</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/photographer/">Photographers</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/wedding-cards/">Wedding Cards</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/wedding-planners/">Weddings Planners</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/featured/">Wedding Gifts</a></p>
-                        </div>
+                            <p><a href="{{ url('/search/wedding-honeymoon/UK') }}">Honeymoon</a></p>
+                            <p><a href="{{ url('/search/wedding-miscellaneous/UK') }}">Miscellaneous</a></p>
+                            <p><a href="{{ url('/search/wedding-photographer/UK') }}">Photographers</a></p>
+                            <p><a href="{{ url('/search/wedding-wedding-cards/UK') }}">Wedding Cards</a></p>
+                            <p><a href="{{ url('/search/wedding-wedding-planners/UK') }}">Weddings Planners</a></p>
+                            <p><a href="{{ url('/search/wedding-wedding-gift/UK') }}">Wedding Gifts</a></p>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -202,12 +212,22 @@
         data-placement="bottom" title="Birmingham"><circle cx="184.4" cy="453.9" r="4.4" fill="#1A0C0D" opacity="0"/><path d="m173.9 453.9c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5c0 4.2-1.5 5.4-9.4 17-0.4 0.6-1.2 0.7-1.8 0.3l-0.3-0.3c-8-11.6-9.5-12.8-9.5-17zm14.9 0c0-2.4-2-4.4-4.4-4.4s-4.4 2-4.4 4.4 2 4.4 4.4 4.4c2.5-0.1 4.4-2 4.4-4.4z"/></g></svg>
                 </div>
                 <div class="text-center mb-3">
-                    <a href="#view-all-categories" data-toggle="bs-collapse" data-target="#view-all-cities">View All Cities <i class="fal fa-chevron-down"></i></a>
+                    <a href="#view-all-categories" data-toggle="collapse" data-target="#view-all-cities">View All Cities <i class="fal fa-chevron-down"></i></a>
                 </div>
                 <div class="collapse" id="view-all-cities">
                     <div class="row no-gutters-5">
-                        <div class="col-lg-4">
-                            <p><a href="https://mybigasianwedding.co.uk/location/edinburgh/">Edinburgh</a></p>
+                      <?php
+                      foreach ($locations as $key => $value) {
+                        $for_url_city = str_replace(' ', '-', $value->location_name);
+                      ?>
+                      <div class="col-lg-4">
+                        <p><a href="{{ url('/search/wedding-venues') }}/{{ $for_url_city }}">{{$value->location_name}}</a></p>
+                      </div>
+                      <?php
+                      }
+                      ?>
+                        <!-- <div class="col-lg-4">
+                            <p><a href="{{ url('/search/wedding-venues/Edinburgh') }}">Edinburgh</a></p>
                             <p><a href="https://mybigasianwedding.co.uk/location/coventry/">Coventry</a></p>
                             <p><a href="https://mybigasianwedding.co.uk/location/cambridge/">Cambridge</a></p>
                             <p><a href="https://mybigasianwedding.co.uk/location/birmingham/">Birmingham</a></p>
@@ -223,7 +243,7 @@
                             <p><a href="https://mybigasianwedding.co.uk/location/leicester/">Leicester</a></p>
                             <p><a href="https://mybigasianwedding.co.uk/location/leeds/">Leeds</a></p>
                             <p><a href="https://mybigasianwedding.co.uk/location/glasgow/">Glasgow</a></p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

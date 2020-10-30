@@ -35,7 +35,8 @@ class WebController extends Controller
   public function index()
   {
     $categories = DB::table('categories')->where('parent_category_id', null)->get();
-    return view('auth.index', ['categories' => $categories]);
+    $locations = DB::table('locations')->get();
+    return view('auth.index', ['categories' => $categories, 'locations' => $locations]);
   }
 
   public function get_locations(Request $request)
