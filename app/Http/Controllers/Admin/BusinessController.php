@@ -668,6 +668,12 @@ class BusinessController extends Controller
           $section_basic_search = false;
         }
 
+        if(isset($request->section_is_common)){
+          $section_is_common = true;
+        }else {
+          $section_is_common = false;
+        }
+
         if(isset($request->section_advance_search)){
           $section_advance_search = true;
         }else {
@@ -682,7 +688,8 @@ class BusinessController extends Controller
           'section_order' => $request->section_order,
           'section_status' => true,
           'section_basic_search' => $section_basic_search,
-          'section_advance_search' => $section_advance_search
+          'section_advance_search' => $section_advance_search,
+          'section_is_common' => $section_is_common
         );
         $section_id = DataSection::create($form_data);
         foreach ($request->categories as $key => $cate) {
@@ -717,6 +724,12 @@ class BusinessController extends Controller
           $question_basic_search = false;
         }
 
+        if(isset($request->question_is_common)){
+          $question_is_common = true;
+        }else {
+          $question_is_common = false;
+        }
+
         if(isset($request->question_advance_search)){
           $question_advance_search = true;
         }else {
@@ -741,7 +754,8 @@ class BusinessController extends Controller
           'question_order' => $request->question_order,
           'question_status' => true,
           'question_basic_search' => $question_basic_search,
-          'question_advance_search' => $question_advance_search
+          'question_advance_search' => $question_advance_search,
+          'question_is_common' => $question_is_common
         );
         $data_question_id = DataQuestion::create($form_data);
         foreach ($request->answer_name as $key => $cate) {
@@ -776,6 +790,12 @@ class BusinessController extends Controller
           $edit_section_basic_search = false;
         }
 
+        if(isset($request->edit_section_is_common)){
+          $edit_section_is_common = true;
+        }else {
+          $edit_section_is_common = false;
+        }
+
         if(isset($request->edit_section_status)){
           $edit_section_status = true;
         }else {
@@ -795,6 +815,7 @@ class BusinessController extends Controller
         $data_section_id->section_status = $edit_section_status;
         $data_section_id->section_basic_search = $edit_section_basic_search;
         $data_section_id->section_advance_search = $edit_section_advance_search;
+        $data_section_id->section_is_common = $edit_section_is_common;
         $data_section_id->save();
 
         $deleted = SectionBusinessCategory::where('data_section_id',$request->edit_fid)->delete();
@@ -815,6 +836,7 @@ class BusinessController extends Controller
     }
 
     public function update_data_question(Request $request){
+      // dd($request->all());
       $rules = array(
         'edit_question_name' => 'required',
         'edit_question_order' => 'required'
@@ -828,6 +850,12 @@ class BusinessController extends Controller
           $edit_question_basic_search = true;
         }else {
           $edit_question_basic_search = false;
+        }
+
+        if(isset($request->edit_question_is_common)){
+          $edit_question_is_common = true;
+        }else {
+          $edit_question_is_common = false;
         }
 
         if(isset($request->edit_question_status)){
@@ -849,6 +877,7 @@ class BusinessController extends Controller
         }
 
         $data_question_id = DataQuestion::find($request->edit_fid);
+        $data_question_id->data_type_id = $request->edit_data_type_id;
         $data_question_id->question_name = $request->edit_question_name;
         $data_question_id->question_label = $request->edit_question_label;
         $data_question_id->question_placeholder = $request->edit_question_placeholder;
@@ -857,6 +886,7 @@ class BusinessController extends Controller
         $data_question_id->question_status = $edit_question_status;
         $data_question_id->question_basic_search = $edit_question_basic_search;
         $data_question_id->question_advance_search = $edit_question_advance_search;
+        $data_question_id->question_is_common = $edit_question_is_common;
         $data_question_id->save();
 
 

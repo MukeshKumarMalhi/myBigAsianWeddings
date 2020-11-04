@@ -55,19 +55,19 @@
           <div class="row">
             <div class="col-12">
               <form role="form" action="{{ url('/view_data_submissions') }}" method="get" id="is_null_form">
-                <div class="form-check form-check-inline">
+                <div class="form-check d-inline-block mb-2 mr-2">
                   <input type="checkbox" id="name" name="name" class="form-check-input form-control unchecking" value="is_null" <?php $name_null = ($business_is_null == '' ? '' : 'checked'); echo $name_null;?>> &nbsp;
                   <label class="form-check-label" for="name">Business Name Is NULL</label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div class="form-check d-inline-block mb-2 mr-2">
                   <input type="checkbox" id="postcode" name="postcode" class="form-check-input form-control unchecking" value="is_null" <?php $post_null = ($postcode_is_null == '' ? '' : 'checked'); echo $post_null;?>> &nbsp;
                   <label class="form-check-label" for="postcode">Postcode Is NULL</label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div class="form-check d-inline-block mb-2 mr-2">
                   <input type="checkbox" id="category" name="category" class="form-check-input form-control unchecking" value="is_null" <?php $category_null = ($category_is_null == '' ? '' : 'checked'); echo $category_null;?>> &nbsp;
                   <label class="form-check-label" for="category">Category Is NULL</label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div class="form-check d-inline-block mb-2 mr-2">
                   <input type="checkbox" id="location" name="location" class="form-check-input form-control unchecking" value="is_null" <?php $location_null = ($location_is_null == '' ? '' : 'checked'); echo $location_null;?>> &nbsp;
                   <label class="form-check-label" for="location">Location Is NULL</label>
                 </div>
@@ -78,7 +78,7 @@
             <div class="col-sm-12 text-right">
               <h3 class="text-right">
                 <span style="color: #0087CB;">
-                  Showing {{$submissions->currentpage()*$submissions->perpage()}} of {{$submissions->total()}} entries
+                  Showing {{($submissions->currentpage()-1) * $submissions->perpage() + $submissions->count()}} of {{$submissions->total()}} entries
                 </span>
               </h3>
             </div>
@@ -124,7 +124,7 @@
                                @if($submission->category_id == NULL)
                                <td>
                                  <div class="form-group add">
-                                   <select class="form-control" id="parent_category_id" data-business_listing_id="{{ $submission->id }}" style="border-radius: 5px; width: 60%;" name="parent_category_id">
+                                   <select class="form-control parent_category_id" data-business_listing_id="{{ $submission->id }}" style="border-radius: 5px; width: 60%;" name="parent_category_id">
                                      <option value="">Select Category</option>
                                      <?php if(isset($cats) && count($cats) > 0){ ?>
                                        @foreach($cats as $cat)
@@ -303,11 +303,12 @@
         // console.log(qdata);
         // console.log(fdata);
         // return false;
-        var url = 'http://127.0.0.1:8000/view_data_submissions/wedding-'+sel_cat+'/'+sel_loc+fdata+qdata;
+        var url_web = "{{ url('/view_data_submissions') }}";
+        var url = url_web+'/wedding-'+sel_cat+'/'+sel_loc+fdata+qdata;
         window.location = url;
     });
 
-    $('#parent_category_id').on('change', function(){
+    $('.parent_category_id').on('change', function(){
   		event.preventDefault();
   		var data = {
   			'business_listing_id' : $(this).data('business_listing_id'),

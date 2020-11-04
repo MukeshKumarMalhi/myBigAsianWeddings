@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Mail;
 use App\User;
 use App\Category;
 use App\Location;
@@ -14,9 +15,18 @@ use App\Business;
 use App\Shortlist;
 use App\Message;
 use App\MessageFile;
-use App\DataAnswer;
+use App\BusinessListing;
 use App\BusinessListingAttribute;
+use App\BusinessListingDetail;
+use App\DataQuestion;
+use App\DataAnswer;
+use App\DataSection;
+use App\SectionBusinessCategory;
+use App\DataType;
 use App\Feedback;
+use App\Mail\TestEmail;
+use App\Mail\SubscribeEmail;
+use App\Mail\IntrestedInGraphicsDesignEmail;
 use DB;
 use Validator;
 use DateTime;
@@ -32,12 +42,228 @@ class WebController extends Controller
     $this->middleware('guest')->except('logout');
   }
 
+  public function send_test_email()
+  {
+    $data = ['message' => '2nd Testing Email Sending', 'useremail' => 'mukeshkumarmalhi7731@gmail.com', 'username' => 'Qadir Khan', 'subject' => 'MyBigAsianWedding'];
+
+    Mail::to('shahzebmehmood99@gmail.com')->queue(new TestEmail($data));
+    // Mail::send('emails.test', ['data' => $data], function ($message) use ($data) {
+    //     $message->from($data['useremail'], $data['username']);
+    //     $message->to('fayyaz@cospace.pk' , 'Autohaven Motors')->subject($data['subject']);
+    // });
+
+    return "mail send successfully";
+  }
+
+  public function store_subscription_send_mail(Request $request)
+  {
+    $rules = array(
+      'fname' => 'required|regex:/^[a-zA-Z]+$/u|max:255|string',
+      'email' => 'required|regex:^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^|email'
+    );
+
+    $error = Validator::make($request->all(), $rules);
+    if($error->fails()){
+      return response()->json(['errors' => $error->errors()->all()]);
+    }else{
+      Mail::to('mukeshkumarmalhi7731@gmail.com')->queue(new SubscribeEmail($request->all()));
+      if( count(Mail::failures()) > 0 ) {
+        $failures_array = array();
+        foreach(Mail::failures as $email_subscribe) {
+          $failures_array[] = $email_subscribe;
+          return response()->json(['failure' => $failures_array], 500);
+        }
+      } else {
+        return response()->json(['success' => 'Subscribed Successfully'], 200);
+      }
+    }
+  }
+
+  public function store_intrested_in_graphics_desgin_send_mail(Request $request)
+  {
+    $rules = array(
+      'fname' => 'required|regex:/^[a-zA-Z]+$/u|max:255|string',
+      'email' => 'required|regex:^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^|email',
+      'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|numeric',
+      'intrested_in' => 'required',
+      'intrested_in.*' => 'in:Logo Design,Brand Identity Design,Leaflet / Flyer Design'
+    );
+    ///^([0-9\s\-\+\(\)]*)$/
+
+    $error = Validator::make($request->all(), $rules);
+    if($error->fails()){
+      return response()->json(['errors' => $error->errors()->all()]);
+    }else{
+      Mail::to('mukeshkumarmalhi7731@gmail.com')->queue(new IntrestedInGraphicsDesignEmail($request->all()));
+      if( count(Mail::failures()) > 0 ) {
+        $failures_array = array();
+        foreach(Mail::failures as $email_subscribe) {
+          $failures_array[] = $email_subscribe;
+          return response()->json(['failure' => $failures_array], 500);
+        }
+      } else {
+        return response()->json(['success' => 'Data Stored Successfully'], 200);
+      }
+    }
+  }
+
   public function index()
   {
-    $categories = DB::table('categories')->where('parent_category_id', null)->get();
-    $locations = DB::table('locations')->get();
-    return view('auth.index', ['categories' => $categories, 'locations' => $locations]);
+    return view('landing.index');
   }
+  public function business_congratulations_page()
+  {
+    return view('landing.congratulation');
+  }
+
+  public function business_register_page()
+  {
+    $sections = DB::table('data_sections')
+    ->select('data_sections.*')
+    ->where('data_sections.section_is_common', '=', true)
+    ->where('data_sections.section_is_common', '!=', false)
+    ->orderBy('data_sections.section_order', 'asc')
+    ->get();
+
+    foreach ($sections as $key => $value) {
+      $questions = DB::table('data_questions')
+      ->leftJoin('data_sections', 'data_sections.id', '=', 'data_questions.data_section_id')
+      ->leftJoin('data_types', 'data_types.id', '=', 'data_questions.data_type_id')
+      ->select('data_questions.*', 'data_types.type', 'data_types.html_tag')
+      ->where('data_questions.data_section_id', '=', $value->id)
+      ->where('data_questions.question_is_common', '=', true)
+      ->where('data_questions.question_is_common', '!=', false)
+      ->orderBy('data_questions.question_order', 'asc')
+      ->get()->toArray();
+
+      foreach ($questions as $key => $val) {
+        $answers = DB::table('data_answers')
+        ->select('data_answers.id as answer_id', 'data_answers.answer_name')
+        ->where('data_answers.data_question_id', '=', $val->id)
+        ->get()->toArray();
+        $val->answers = $answers;
+      }
+
+      $value->questions = $questions;
+    }
+    $categories = DB::table('categories')->where('parent_category_id', null)->get();
+    // dd($sections);
+    return view('landing.business_register', ['sections' => $sections, 'categories' => $categories]);
+  }
+
+  public function preg_array_key_exists($pattern, $array) {
+    $keys = array_keys($array);
+    $item = preg_grep($pattern,$keys);
+    return $item;
+  }
+
+  public function store_business_register_data(Request $request)
+  {
+    $rules = array(
+      'business_name_answer_text' => 'required',
+      'category_id' => 'required'
+    );
+
+    $error = Validator::make($request->all(), $rules);
+    if($error->fails()){
+      return response()->json(['errors' => $error->errors()->all()]);
+    }else{
+
+      $id = uniqid();
+      $form_data = array(
+        'id' => $id,
+        'category_id' => $request->category_id,
+        'location_id' => $request->location_id,
+        'name' => $request->business_name_answer_text,
+      );
+
+      $business_liting = BusinessListing::create($form_data);
+
+      foreach ($request->all_names as $key => $name) {
+        $items = $this->preg_array_key_exists('/^'.$name.'/i',$request->all());
+        $u_id = uniqid();
+        $data_attributes = array(
+          'id' => $u_id,
+          'business_listing_id' => $id
+        );
+        foreach ($items as $key => $item) {
+          if(array_key_exists($item, $request->all())){
+            // if(preg_match("/checkbox$/i", $item)){
+            //   $data_attributes['data_question_id'] = $request->all()[$item];
+            // }
+            if(preg_match("/question_id$/i", $item)){
+              $data_attributes['data_question_id'] = $request->all()[$item];
+            }
+            if(preg_match("/answer_id$/i", $item)){
+              $data_attributes['data_answer_id'] = $request->all()[$item];
+            }
+            if(preg_match("/answer_text$/i", $item)){
+              $data_attributes['data_answer_text'] = $request->all()[$item];
+            }
+          }
+        }
+        if(isset($data_attributes['data_question_id'])){
+          if((isset($data_attributes['data_answer_text']) && $data_attributes['data_answer_text'] != null) || (isset($data_attributes['data_answer_id']) && $data_attributes['data_answer_id'] != null)){
+            if(is_array($data_attributes['data_answer_id'])){
+              foreach ($data_attributes['data_answer_id'] as $value) {
+                $uc_id = uniqid();
+                $data_attributes_checks = array(
+                  'id' => $uc_id,
+                  'business_listing_id' => $id,
+                  'data_question_id' => $data_attributes['data_question_id'],
+                  'data_answer_id' => $value,
+                  'data_answer_text' => $data_attributes['data_answer_text']
+                );
+                $business_liting_attributes = BusinessListingAttribute::create($data_attributes_checks);
+              }
+            }
+            elseif(is_array($data_attributes['data_answer_text'])) {
+              foreach ($data_attributes['data_answer_text'] as $file) {
+                $file1=$file->store('public');
+                $image=Storage::get($file1);
+                Storage::put($file1,$image);
+                $image_path=explode('/', $file1);
+                $image_path=$image_path[1];
+                $up_id = uniqid();
+                $data_attributes_photos = array(
+                  'id' => $up_id,
+                  'business_listing_id' => $id,
+                  'data_question_id' => $data_attributes['data_question_id'],
+                  'data_answer_id' => $data_attributes['data_answer_id'],
+                  'data_answer_text' => $image_path
+                );
+                $business_liting_attributes = BusinessListingAttribute::create($data_attributes_photos);
+              }
+            }
+            else {
+              $business_liting_attributes = BusinessListingAttribute::create($data_attributes);
+            }
+          }
+        }
+      }
+      // $details_id = uniqid();
+      // $details_form_data = array(
+      //   'id' => $details_id,
+      //   'business_listing_id' => $id,
+      //   'created_user_id' => Auth::user()->id,
+      //   'updated_user_id' => null,
+      //   'created_by_user' => Auth::user()->name,
+      //   'updated_by_user' => null
+      // );
+      //
+      // $business_listing_details = BusinessListingDetail::create($details_form_data);
+      return response()->json(['success' => 'Business listing attributes added successfully'], 200);
+    }
+  }
+
+
+
+  // public function index()
+  // {
+  //   $categories = DB::table('categories')->where('parent_category_id', null)->get();
+  //   $locations = DB::table('locations')->get();
+  //   return view('auth.index', ['categories' => $categories, 'locations' => $locations]);
+  // }
 
   public function get_locations(Request $request)
   {

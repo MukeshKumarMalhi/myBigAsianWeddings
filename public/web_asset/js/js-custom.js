@@ -101,15 +101,15 @@ jQuery(document).ready(function($){
 	    }
 	});
 	var leftPos = $(".bs-timeline");
-	$(".bs-timeline-hand .btn.tl-next").click(function () { 
+	$(".bs-timeline-hand .btn.tl-next").click(function () {
 		leftPos.animate({ scrollLeft: ((leftPos.width() / 2)) + leftPos.scrollLeft(),})
 	});
-	$(".bs-timeline-hand .btn.tl-prev").click(function () { 
+	$(".bs-timeline-hand .btn.tl-prev").click(function () {
 	   leftPos.animate({ scrollLeft: -((leftPos.width() / 2)) + leftPos.scrollLeft(),})
 	});
 
     var radiocheck = $("input[id=radio-check]:checked").val();
-	var radiotime = $("input[id=radio-times]:checked").val();  
+	var radiotime = $("input[id=radio-times]:checked").val();
     if(radiocheck == 'check'){
         $('.wedding-website-collaspe-db').show();
     }else if(radiotime == 'times'){
@@ -118,7 +118,7 @@ jQuery(document).ready(function($){
 
 	$(".wedding-website-db .bs-website-button input[type='radio']").on('change', function(){
         radiocheck = $("input[id=radio-check]:checked").val();
-    	radiotime = $("input[id=radio-times]:checked").val();  
+    	radiotime = $("input[id=radio-times]:checked").val();
         if(radiocheck == 'check'){
             $('.wedding-website-collaspe-db').slideDown();
         }else if(radiotime == 'times'){
@@ -126,16 +126,16 @@ jQuery(document).ready(function($){
         }
     });
 
-	
+
 	$('[data-toggle="tooltip"]').tooltip({html: true,});
-	
+
 
     $(".datepicker").datepicker({dateFormat: "dd/mm/yy", beforeShow: function(input, inst){
     		  var input_width= $(this).width();
         	inst.dpDiv.css({minWidth : input_width +'px'});
     	}
 	});
-	
+
 	$(".form-group.bs-form-db .form-control").focus(function(e){
         $(this).parent().addClass("input-group-focus");
     }).blur(function(e){
@@ -166,7 +166,7 @@ jQuery(document).ready(function($){
 	            },
 	        })
 	    $(this).stselectmenu().stselectmenu("menuWidget").addClass( "ui-menu-icons customicons" );
-    }); 
+    });
 
 	$(document).ready(function(){
 	  $('.bs-radio-ratings .bs-radio-inline').on('mouseover', function(){
@@ -233,13 +233,13 @@ jQuery(document).ready(function($){
 		});
 	});
 	// ------------------------------------------------------- //
- 	// home login Signup 
+ 	// home login Signup
 	// ------------------------------------------------------ //
-	
 
-	
+
+
 	// ------------------------------------------------------- //
- 	// Dashboard Signup 
+ 	// Dashboard Signup
 	// ------------------------------------------------------ //
   jQuery.validator.addMethod("notEqualTo",function(value, element, param) {
         var notEqual = true;
@@ -252,7 +252,7 @@ jQuery(document).ready(function($){
     "You can not use same email address as your partner's email."
     );
 
-                    $st_owl_steps = $('.owl-carousel.bs-carousel-steps');   
+                    $st_owl_steps = $('.owl-carousel.bs-carousel-steps');
                     $st_owl_steps.owlCarousel({
                         animateOut: 'bs-zoomOut',
                         animateIn: 'bs-zoomIn',
@@ -270,10 +270,10 @@ jQuery(document).ready(function($){
                     $('.StepSkip').click(function() {
                         $st_owl_steps.trigger('next.owl.carousel');
                     });
-                
+
                   var form2 = $('#steps-form');
 
-                    $(".StepNextBtn").click(function(){    
+                    $(".StepNextBtn").click(function(){
                         form2.validate({
                           // errorElement: 'span',
                           errorClass: 'help-block',
@@ -309,12 +309,12 @@ jQuery(document).ready(function($){
                                                 } else {
                                                     return 'true';
                                                 }
-                                            }                                            
+                                            }
                                         }
                                   },
                                   my_email: {
                                     required:true,
-                                    notEqualTo: ['#partner-email'], 
+                                    notEqualTo: ['#partner-email'],
                                     email:true,
 
                                       remote: {
@@ -354,7 +354,7 @@ jQuery(document).ready(function($){
                                      required: "Number can not be blank",
                                      number: "Please enter a number"
                                  },
-                               
+
                              },
                         });
                         if (form2.valid() === true){
@@ -424,30 +424,30 @@ jQuery(document).ready(function($){
 
                     $('.tabweddingyear').click(function(){
 
-                        $("#step5-radiobox1").addClass('show active'); 
-                        $("#step5-radiobox2").removeClass('show active'); 
-                        $("#step5-radiobox3").removeClass('show active'); 
+                        $("#step5-radiobox1").addClass('show active');
+                        $("#step5-radiobox2").removeClass('show active');
+                        $("#step5-radiobox3").removeClass('show active');
                     });
 
 
                     $('.tabweddingmonth').click(function(){
 
-                        $("#step5-radiobox1").removeClass('show active'); 
-                        $("#step5-radiobox2").addClass('show active'); 
-                        $("#step5-radiobox3").removeClass('show active'); 
+                        $("#step5-radiobox1").removeClass('show active');
+                        $("#step5-radiobox2").addClass('show active');
+                        $("#step5-radiobox3").removeClass('show active');
                     });
-                    
+
 
                     $('.tabweddingday').click(function(){
 
-                        $("#step5-radiobox1").removeClass('show active'); 
-                        $("#step5-radiobox2").removeClass('show active'); 
-                        $("#step5-radiobox3").addClass('show active'); 
+                        $("#step5-radiobox1").removeClass('show active');
+                        $("#step5-radiobox2").removeClass('show active');
+                        $("#step5-radiobox3").addClass('show active');
                     });
 
                     $(".datepicker-show").datepicker();
                     $('#step5-date').change(function(){
-                        $('.datepicker-show').datepicker('setDate', $(this).val());                        
+                        $('.datepicker-show').datepicker('setDate', $(this).val());
                     });
                     $('.datepicker-show').change(function(){
                         $('#step5-date').attr('value',$(this).val());
@@ -460,7 +460,7 @@ jQuery(document).ready(function($){
                     $('.otherweddingyear').change(function(){
 
                         val=$('.otherweddingyear').val();
-                        
+
                         if(val==""){
                          $('.weddingyear').attr('required',true);
                         }
@@ -478,7 +478,7 @@ jQuery(document).ready(function($){
                          a2.addClass('active');
                          a2.attr('disabled',false);
                          a2.css('cursor','pointer');
-                         $("#step5-radiobox1").removeClass('show active');                         
+                         $("#step5-radiobox1").removeClass('show active');
                          $("#step5-radiobox2").addClass('show active');
                         }
                     });
@@ -493,7 +493,7 @@ jQuery(document).ready(function($){
                          a2.addClass('active');
                          a2.attr('disabled',false);
                          a2.css('cursor','pointer');
-                         $("#step5-radiobox1").removeClass('show active');                         
+                         $("#step5-radiobox1").removeClass('show active');
                          $("#step5-radiobox2").addClass('show active');
                     });
 
@@ -521,7 +521,7 @@ jQuery(document).ready(function($){
                          a2.css('cursor','pointer');
                          a.removeClass('active');
                          a2.addClass('active');
-                         $("#step5-radiobox2").removeClass('show active');                         
+                         $("#step5-radiobox2").removeClass('show active');
                          $("#step5-radiobox3").addClass('show active');
 
                     });
@@ -540,7 +540,7 @@ jQuery(document).ready(function($){
                          a2.addClass('active');
                          a2.attr('disabled',false);
                          a2.css('cursor','pointer');
-                         $("#step5-radiobox2").removeClass('show active');                         
+                         $("#step5-radiobox2").removeClass('show active');
                          $("#step5-radiobox3").addClass('show active');
 
                     });
@@ -555,10 +555,9 @@ jQuery(document).ready(function($){
                     $('.undecided_budget').change(function(){
                         $('.budget').removeAttr('required');
                     });
-                    
+
                     $("#signup-popup").modal({
                         backdrop: 'static',
                         keyboard: false
                     });
 });
-

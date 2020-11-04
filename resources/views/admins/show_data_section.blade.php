@@ -67,6 +67,12 @@
                 </div>
               </div>
               <div class="form-group row add">
+                <label for="question_is_common" class="control-label col-sm-3" style="font-weight: 600;">Question Is Common :</label>
+                <div class="col-sm-9">
+                  <input type="checkbox" name="question_is_common" id="question_is_common" value="true" style="border-radius: 5px;" class="form-control"/>
+                </div>
+              </div>
+              <div class="form-group row add">
                 <label for="question_basic_search" class="control-label col-sm-3" style="font-weight: 600;">Basic Search :</label>
                 <div class="col-sm-9">
                   <input type="checkbox" name="question_basic_search" id="question_basic_search" value="true" style="border-radius: 5px;" class="form-control"/>
@@ -180,6 +186,12 @@
                   </div>
                 </div>
                 <div class="form-group row add">
+                  <label for="edit_question_is_common" class="control-label col-sm-3" style="font-weight: 600;">Question Is Common :</label>
+                  <div class="col-sm-9">
+                    <input type="checkbox" name="edit_question_is_common" id="edit_question_is_common" value="true" style="border-radius: 5px;" class="form-control"/>
+                  </div>
+                </div>
+                <div class="form-group row add">
                   <label for="edit_question_basic_search" class="control-label col-sm-3" style="font-weight: 600;">Basic Search :</label>
                   <div class="col-sm-9">
                     <input type="checkbox" name="edit_question_basic_search" id="edit_question_basic_search" value="true" style="border-radius: 5px;" class="form-control"/>
@@ -263,6 +275,10 @@
                             <th><span>Question Label</span></th>
                             <th><span>Question Placeholder</span></th>
                             <th><span>Order no#</span></th>
+                            <th><span>Status</span></th>
+                            <th><span>Is Common</span></th>
+                            <th><span>Basic Search</span></th>
+                            <th><span>Advance Search</span></th>
                             <th><span>Data Type</span></th>
                             <th><span>Section</span></th>
                             <th><span>Choices Answer</span></th>
@@ -281,6 +297,10 @@
                                <td>{{ $question->question_label }}</td>
                                <td>{{ $question->question_placeholder }}</td>
                                <td>{{ $question->question_order }}</td>
+                               <td>{{ $question->question_status }}</td>
+                               <td>{{ $question->question_is_common }}</td>
+                               <td>{{ $question->question_basic_search }}</td>
+                               <td>{{ $question->question_advance_search }}</td>
                                <td>{{ $question->type }}</td>
                                <td>{{ $question->section_name }}</td>
                                <td>
@@ -292,7 +312,7 @@
                                </td>
                                <td><?php echo date('d M Y',strtotime($question->created_at)); ?></td>
                                <td class="px-2 text-nowrap">
-                                 <a href="#" class="edit_modal btn btn-sm btn-save" data-id="{{ $question->id }}" data-question_name="{{ $question->question_name }}" data-question_label="{{ $question->question_label }}" data-question_placeholder="{{ $question->question_placeholder }}" data-question_order="{{ $question->question_order }}" data-question_mandatory="{{ $question->question_mandatory }}" data-question_status="{{ $question->question_status }}" data-question_basic_search="{{ $question->question_basic_search }}" data-question_advance_search="{{ $question->question_advance_search }}" data-data_type_id="{{ $question->data_type_id }}" data-answers="<?php echo htmlspecialchars(json_encode($question->answers), ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#EditQuestionModal" data-whatever="@mdo"><i class='fa fa-pencil'></i></a>
+                                 <a href="#" class="edit_modal btn btn-sm btn-save" data-id="{{ $question->id }}" data-question_name="{{ $question->question_name }}" data-question_label="{{ $question->question_label }}" data-question_placeholder="{{ $question->question_placeholder }}" data-question_order="{{ $question->question_order }}" data-question_mandatory="{{ $question->question_mandatory }}" data-question_status="{{ $question->question_status }}" data-question_is_common="{{ $question->question_is_common }}" data-question_basic_search="{{ $question->question_basic_search }}" data-question_advance_search="{{ $question->question_advance_search }}" data-data_type_id="{{ $question->data_type_id }}" data-answers="<?php echo htmlspecialchars(json_encode($question->answers), ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#EditQuestionModal" data-whatever="@mdo"><i class='fa fa-pencil'></i></a>
                                  <a href="#" class="delete_modal btn btn-sm btn-danger" data-id="{{ $question->id }}" data-question_name="{{ $question->question_name }}" data-toggle="modal" data-target="#DeleteQuestionModal" data-whatever="@mdo"><i class='fa fa-trash'></i></a>
                                </td>
                              </tr>
@@ -491,6 +511,11 @@
       $('#edit_question_basic_search').prop('checked', true);
     }else {
       $('#edit_question_basic_search').prop('checked', false);
+    }
+    if($(this).data('question_is_common') == true){
+      $('#edit_question_is_common').prop('checked', true);
+    }else {
+      $('#edit_question_is_common').prop('checked', false);
     }
     if($(this).data('question_advance_search') == true){
       $('#edit_question_advance_search').prop('checked', true);

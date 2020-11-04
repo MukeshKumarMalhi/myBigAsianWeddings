@@ -32,6 +32,6 @@ class DataQuestion extends Model
   */
 
  protected $fillable = [
-     'id', 'data_type_id', 'data_section_id', 'question_name', 'question_label', 'question_placeholder', 'question_mandatory', 'question_status', 'question_order', 'question_basic_search', 'question_advance_search'
+     'id', 'data_type_id', 'data_section_id', 'question_name', 'question_label', 'question_placeholder', 'question_mandatory', 'question_status', 'question_order', 'question_basic_search', 'question_advance_search', 'question_is_common'
  ];
 }

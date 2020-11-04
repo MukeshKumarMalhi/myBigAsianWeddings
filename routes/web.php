@@ -17,7 +17,14 @@
 use Illuminate\Support\Str;
 use App\User;
 
+// Route::get('/','WebController@index');
 Route::get('/','WebController@index');
+Route::get('/business-register','WebController@business_register_page');
+Route::get('/congratulations','WebController@business_congratulations_page');
+Route::post('store_business_register_data','WebController@store_business_register_data');
+Route::get('/send_test_email','WebController@send_test_email');
+Route::post('store_subscription','WebController@store_subscription_send_mail');
+Route::post('store_intrested_in_graphics_desgin','WebController@store_intrested_in_graphics_desgin_send_mail');
 // Route::get('/mazy', function ()
 // {
 //   $string = " hello moto moto";
@@ -27,6 +34,7 @@ Route::get('/','WebController@index');
 
 
 Route::get('/show_section/{id}', 'Admin\BusinessController@show_section');
+
 Route::get('/fill_section/{id}', 'Admin\BusinessController@fill_section');
 Route::get('/edit_data_submission/{id}/{cat_id}', 'Admin\BusinessController@edit_data_submission');
 Route::post('check_question_name_exists', 'Admin\BusinessController@check_question_name_exists');
@@ -123,7 +131,7 @@ Route::post('/update_category_data_submission', 'Admin\BusinessController@update
 Route::post('/store_fill_section_form', 'Admin\BusinessController@store_fill_section_form');
 Route::post('/update_fill_section_form', 'Admin\BusinessController@update_fill_section_form');
 Route::post('/delete_single_submission_image', 'Admin\BusinessController@delete_single_submission_image');
-
+Route::post('get_lat_long', 'Controller@get_lat_long');
 
 Auth::routes();
 

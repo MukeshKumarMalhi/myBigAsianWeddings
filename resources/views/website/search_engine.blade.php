@@ -313,7 +313,8 @@
         // console.log(qdata);
         // console.log(fdata);
         // return false;
-        var url = 'http://127.0.0.1:8000/search/wedding-'+sel_cat+'/'+sel_loc+fdata+qdata;
+        var url_web = "{{ url('/view_data_submissions') }}";
+        var url = url_web+'/search/wedding-'+sel_cat+'/'+sel_loc+fdata+qdata;
         window.location = url;
     });
   });

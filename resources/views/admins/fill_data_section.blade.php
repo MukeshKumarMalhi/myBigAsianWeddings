@@ -20,6 +20,10 @@
             <div id="append_success" style="width: 50%; color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6; border-radius: 5px; padding: 17px 0px 1px 0px; margin-bottom: 15px; margin-top: 15px; margin-left: 25px; display: none;">
               <ul></ul>
             </div>
+            <!-- <div class="form-group">
+              <input type="text" class="form-control" id="my-address">
+              <button id="getCords" class="btn btn-primary" onclick="codeAddress();">getLat&Long</button>
+            </div> -->
             <div class="table-responsive small p-4" style="font-weight: 500; font-size: 16px;">
               <form method="post" role="form" class="form-horizontal" id="fill_section_form" enctype="multipart/form-data">
                 <input type="hidden" name="category_id" value="{{ $sections[0]->category_id }}">
@@ -86,15 +90,48 @@
               </form>
             </div>
           </div>
-          <div style="margin-top: 10px;margin-left: 440px;">
-            <ul class="pagination-for-categories justify-content-center">
-            </ul>
-		      </div>
         </div>
     </div>
 
 <script type="text/javascript">
+    // function initialize() {
+    //   var address = (document.getElementById('my-address'));
+    //   var autocomplete = new google.maps.places.Autocomplete(address);
+    //   autocomplete.setTypes(['geocode']);
+    //   google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    //     var place = autocomplete.getPlace();
+    //     if (!place.geometry) {
+    //       return;
+    //     }
+    //
+    //     var address = '';
+    //     if (place.address_components) {
+    //       address = [
+    //         (place.address_components[0] && place.address_components[0].short_name || ''),
+    //         (place.address_components[1] && place.address_components[1].short_name || ''),
+    //         (place.address_components[2] && place.address_components[2].short_name || '')
+    //       ].join(' ');
+    //     }
+    //   });
+    // }
+    // function codeAddress() {
+    //   geocoder = new google.maps.Geocoder();
+    //   var address = document.getElementById("my-address").value;
+    //   geocoder.geocode( { 'address': address}, function(results, status) {
+    //     if (status == google.maps.GeocoderStatus.OK) {
+    //
+    //       alert("Latitude: "+results[0].geometry.location.lat());
+    //       alert("Longitude: "+results[0].geometry.location.lng());
+    //     }
+    //
+    //     else {
+    //       alert("Geocode was not successful for the following reason: " + status);
+    //     }
+    //   });
+    // }
+    // google.maps.event.addDomListener(window, 'load', initialize);
   $(document).ready(function(){
+
 
     $.ajaxSetup({
       headers: {
@@ -178,6 +215,33 @@
         }
       });
     });
+
+    // var get_lat_lang = false;
+    // $("input[name='postcode_answer_text']").on('blur', function(event){
+    //   event.preventDefault();
+    //   var postcode_value = $("input[name='postcode_answer_text']").val();
+    //   var address_value = $("input[name='address_answer_text']").val();
+    //   var location_value = $("input[name='location_answer_text']").val();
+    //
+    //   var data = {
+    //     'postcode_value' : postcode_value,
+    //     'address_value' : address_value,
+    //     'location_value' : location_value
+    //   };
+    //   if (address_value == '') {
+    //     get_lat_lang = false;
+    //     return;
+    //   }
+    //
+    //   $.ajax({
+    //     url:"{{ url('get_lat_long') }}",
+    //     type:"post",
+    //     data: data,
+    //     success: function(response){
+    //       console.log(response);
+    //     }
+    //   });
+    // });
 
   $('#fill_section_form').on('submit', function(event){
 		event.preventDefault();

@@ -60,6 +60,12 @@
                 </div>
               </div>
               <div class="form-group row add">
+                <label for="section_is_common" class="control-label col-sm-3" style="font-weight: 600;">Section Is Common :</label>
+                <div class="col-sm-9">
+                  <input type="checkbox" name="section_is_common" id="section_is_common" value="true" style="border-radius: 5px;" class="form-control"/>
+                </div>
+              </div>
+              <div class="form-group row add">
                 <label for="section_basic_search" class="control-label col-sm-3" style="font-weight: 600;">Basic Search :</label>
                 <div class="col-sm-9">
                   <input type="checkbox" name="section_basic_search" id="section_basic_search" value="true" style="border-radius: 5px;" class="form-control"/>
@@ -151,6 +157,12 @@
                   </div>
                 </div>
                 <div class="form-group row add">
+                  <label for="edit_section_is_common" class="control-label col-sm-3" style="font-weight: 600;">Section Is Common :</label>
+                  <div class="col-sm-9">
+                    <input type="checkbox" name="edit_section_is_common" id="edit_section_is_common" value="true" style="border-radius: 5px;" class="form-control"/>
+                  </div>
+                </div>
+                <div class="form-group row add">
                   <label for="edit_section_basic_search" class="control-label col-sm-3" style="font-weight: 600;">Basic Search :</label>
                   <div class="col-sm-9">
                     <input type="checkbox" name="edit_section_basic_search" id="edit_section_basic_search" value="true" style="border-radius: 5px;" class="form-control"/>
@@ -216,6 +228,10 @@
                             <th><span>ID</span></th>
                             <th><span>Section Name</span></th>
                             <th><span>Order no#</span></th>
+                            <th><span>Status</span></th>
+                            <th><span>Is Common</span></th>
+                            <th><span>Basic Search</span></th>
+                            <th><span>Advance Search</span></th>
                             <th><span>Categories</span></th>
                             <th><span>Created at</span></th>
                             <th class="text-center" style="width:110px">Action</th>
@@ -230,6 +246,10 @@
                                <td>{{ $section->id }}</td>
                                <td class="px-2 text-nowrap"><a href="{{ url('/show_section') }}/{{ $section->id }}" style="text-decoration: underline;">{{ $section->section_name }}</a></td>
                                <td>{{ $section->section_order }}</td>
+                               <td>{{ $section->section_status }}</td>
+                               <td>{{ $section->section_is_common }}</td>
+                               <td>{{ $section->section_basic_search }}</td>
+                               <td>{{ $section->section_advance_search }}</td>
                                <td>
                                  <?php
                                   $cat_ids = array();
@@ -241,7 +261,7 @@
                                </td>
                                <td><?php echo date('d M Y',strtotime($section->created_at)); ?></td>
                                <td class="px-2 text-nowrap">
-                                 <a href="#" class="edit_modal btn btn-sm btn-save" data-id="{{ $section->id }}" data-section_name="{{ $section->section_name }}" data-section_sub_heading="{{ $section->section_sub_heading }}" data-section_order="{{ $section->section_order }}" data-section_status="{{ $section->section_status }}" data-section_basic_search="{{ $section->section_basic_search }}" data-section_advance_search="{{ $section->section_advance_search }}" data-section_advance_search="{{ $section->section_advance_search }}" data-categories="<?php echo htmlspecialchars(json_encode($cat_ids), ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#EditSectionModal" data-whatever="@mdo"><i class='fa fa-pencil'></i></a>
+                                 <a href="#" class="edit_modal btn btn-sm btn-save" data-id="{{ $section->id }}" data-section_name="{{ $section->section_name }}" data-section_sub_heading="{{ $section->section_sub_heading }}" data-section_order="{{ $section->section_order }}" data-section_status="{{ $section->section_status }}" data-section_is_common="{{ $section->section_is_common }}" data-section_basic_search="{{ $section->section_basic_search }}" data-section_advance_search="{{ $section->section_advance_search }}" data-categories="<?php echo htmlspecialchars(json_encode($cat_ids), ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#EditSectionModal" data-whatever="@mdo"><i class='fa fa-pencil'></i></a>
                                  <a href="#" class="delete_modal btn btn-sm btn-danger" data-id="{{ $section->id }}" data-section_name="{{ $section->section_name }}" data-toggle="modal" data-target="#DeleteSectionModal" data-whatever="@mdo"><i class='fa fa-trash'></i></a>
                                  <a href="{{ url('/show_section') }}/{{ $section->id }}" class="btn btn-sm btn-warning"><i class='fa fa-eye'></i></a>
                                  <!-- <a href="{{ url('/fill_section') }}/{{ $section->id }}" class="btn btn-sm btn-success"><i class="fas fa-edit" aria-hidden="true"></i> Fill </a> -->
@@ -364,6 +384,11 @@
       $('#edit_section_status').prop('checked', true);
     }else {
       $('#edit_section_status').prop('checked', false);
+    }
+    if($(this).data('section_is_common') == true){
+      $('#edit_section_is_common').prop('checked', true);
+    }else {
+      $('#edit_section_is_common').prop('checked', false);
     }
     if($(this).data('section_basic_search') == true){
       $('#edit_section_basic_search').prop('checked', true);
