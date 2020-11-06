@@ -142,10 +142,6 @@
               </form>
             </div>
           </div>
-          <div style="margin-top: 10px;margin-left: 440px;">
-            <ul class="pagination-for-categories justify-content-center">
-            </ul>
-		      </div>
         </div>
     </div>
 

@@ -939,7 +939,6 @@ button.menu-press{position:fixed;bottom: 10px; left: 6px;}
 .bs-upload-dropndrag img{position:absolute;top:0; left:0; width: 100%;height: 100%; display: block;object-fit: contain;object-position: center;}
 .bs-upload-dropndrag input{opacity: 0;width: 100%;height: 100%;position: absolute;left: 0;top: 0;}
 
-/* Image Uploader */
 [class*=iui-],[class^=iui-]{font-family:'Font Awesome 5 Pro'!important;font-weight: 300;speak:none;font-style:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;display: inline-block !important;}
 .iui-close:before{content:"\f2ed"}.iui-cloud-upload:before{content:"\f055";color:#F9A832;}
 .image-uploader{min-height:10rem;position:relative;border: 2px dashed #f6921e;background: #ffffff;}

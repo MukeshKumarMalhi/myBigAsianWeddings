@@ -1,19 +1,31 @@
 @extends('layouts.l_app')
-@section('title','Business Register  Step 1')
+@section('title','Business Register Step 2')
 
 @section('content')
 <div class="container py-3">
-  <div id="append_errors" style="width: 50%; color: #a94442; background-color: #f2dede; border-color: #ebccd1; border-radius: 5px; padding: 17px 0px 1px 0px; margin-bottom: 15px; margin-top: 15px; margin-left: 25px; display: none;">
-    <ul></ul>
-  </div>
-  <div id="append_success" style="width: 50%; color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6; border-radius: 5px; padding: 17px 0px 1px 0px; margin-bottom: 15px; margin-top: 15px; margin-left: 25px; display: none;">
-    <ul></ul>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group text-left">
+        <a href="{{ url('business-register-step1') }}/{{ $category_set }}/{{ $slug }}" class="btn btn-danger"><i class="fas fa-arrow-left"></i> Back to Step 1</a>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div id="append_errors" style="width: 50%; color: #a94442; background-color: #f2dede; border-color: #ebccd1; border-radius: 5px; padding: 17px 0px 1px 0px; margin-bottom: 15px; margin-top: 15px; margin-left: 25px; display: none;">
+        <ul></ul>
+      </div>
+      <div id="append_success" style="width: 50%; color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6; border-radius: 5px; padding: 17px 0px 1px 0px; margin-bottom: 15px; margin-top: 15px; margin-left: 25px; display: none;">
+        <ul></ul>
+      </div>
+    </div>
   </div>
 </div>
-<form method="post" role="form" class="form-horizontal" id="business-register-data" enctype="multipart/form-data">
+<form method="post" role="form" class="form-horizontal" id="business-register-data-step2" enctype="multipart/form-data">
   @csrf
 <?php
   foreach ($sections as $key => $value) {
+    if(isset($value->questions) && empty($value->questions)){
+      continue;
+    }
     if($value->section_name == "Experience" || $value->section_name == "Getting Here"){
       echo "<div class='bg-warning-l'><div class='container py-3'><div class='row'><div class='col-sm-6'>";
     }
@@ -68,9 +80,6 @@
       if($val->question_mandatory == true){
         $question_mandatory = 'required';
       }
-      // if($val->question_name == "photos"){
-      //   $images_multiple = 'multiple';
-      // }
       if($val->question_name == 'location'){
         $question_class = 'areaofuk';
       }
@@ -157,34 +166,15 @@
   }
 
 ?>
-  <input type="hidden" name="location_id" id="location_id">
+  <input type="hidden" name="business_listing_id" id="business_listing_id" value="{{ $business_listing_id->business_listing_id }}">
   <div class="container py-3">
     <div class="form-group text-center">
-        <button class="btn btn-danger"><i class="fa fa-download"></i> Save Change + Step 2</button>
+        <button class="btn btn-danger"><i class="fa fa-download"></i> Save Change</button>
     </div>
   </div>
 </form>
 
 <script type="text/javascript">
-
-function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        $('#blah')
-            .attr('src', e.target.result);
-    };
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-function convertToSlug( str ) {
-  str = str.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
-  str = str.replace(/^\s+|\s+$/gm,'');
-  str = str.replace(/\s+/g, '-');
-  $("input[name=slug_answer_text]").val(str);
-}
-
 function spaceByhyphen(myStr){
   myStr=myStr.toLowerCase();
   myStr=myStr.replace(/(^\s+|[^a-zA-Z0-9 ]+|\s+$)/g,"");
@@ -193,36 +183,12 @@ function spaceByhyphen(myStr){
 }
 
 $(document).ready(function() {
-  $('.bs-upload-thumbnails').imageUploader({
-    imagesInputName:"photos_answer_text",
-    extensions:[".jpg",".jpeg",".png",".gif",".svg",".PNG",".JPG",".JPEG"]
-  });
-    var path_l = "{{ url('/search_location') }}";
-    var locations = $('.areaofuk').typeahead({
-      source: function (query, process)
-      {
-        return $.get(path_l, {query: query}, function(locations){
-          return process(locations);
-        });
-      },
-      displayText: function (location)
-      {
-        return location['location_name']+', '+location['country_name'];
-      }
-    });
 
-    $(".areaofuk").change(function()
-    {
-      var location_id = $(".areaofuk").typeahead("getActive");
-      $("#location_id").val(location_id.location_id);
-      $(".areaofuk").val(location_id.location_name);
-    });
-
-    $('#business-register-data').on('submit', function(event){
+    $('#business-register-data-step2').on('submit', function(event){
       event.preventDefault();
 
       $.ajax({
-        url:"{{ url('store_business_register_data') }}",
+        url:"{{ url('store_business_register_data_step_two') }}",
         method:"POST",
         data:new FormData(this),
         dataType:"JSON",
@@ -243,20 +209,8 @@ $(document).ready(function() {
             $('#append_success').show();
             $('#append_success ul').append("<li>"+data.success+"</li>");
             setTimeout(function(){ $('#append_success').hide(); },1000);
-            var slug = $("input[name=slug_answer_text]").val();
-            var selected_category = $("#category_id option:selected").text();
-            var sel_cat = spaceByhyphen(selected_category);
-            if(slug == ""){
-              var business_name = $("input[name=business_name_answer_text]").val();
-              var slug = spaceByhyphen(business_name);
-            }
-            var url_web = "{{ url('/business-register-step2') }}";
-            var url = url_web+'/wedding-'+sel_cat+'/'+slug;
-            // console.log(url);
-            // return false;
-            window.location = url;
-            // var url_redirect = "{{ url('/congratulations') }}";
-            // window.location = url_redirect+'/'+slug+;
+            var url_redirect = "{{ url('/congratulations') }}";
+            window.location = url_redirect;
           }
         },
       });

@@ -20,8 +20,11 @@ use App\User;
 // Route::get('/','WebController@index');
 Route::get('/','WebController@index');
 Route::get('/business-register','WebController@business_register_page');
+Route::get('/business-register-step2/{category}/{slug}','WebController@business_register_page_two');
+Route::get('/business-register-step1/{category}/{slug}','WebController@business_register_page_one_back');
 Route::get('/congratulations','WebController@business_congratulations_page');
 Route::post('store_business_register_data','WebController@store_business_register_data');
+Route::post('store_business_register_data_step_two','WebController@store_business_register_data_step_two');
 Route::get('/send_test_email','WebController@send_test_email');
 Route::post('store_subscription','WebController@store_subscription_send_mail');
 Route::post('store_intrested_in_graphics_desgin','WebController@store_intrested_in_graphics_desgin_send_mail');
@@ -131,6 +134,7 @@ Route::post('/update_category_data_submission', 'Admin\BusinessController@update
 Route::post('/store_fill_section_form', 'Admin\BusinessController@store_fill_section_form');
 Route::post('/update_fill_section_form', 'Admin\BusinessController@update_fill_section_form');
 Route::post('/delete_single_submission_image', 'Admin\BusinessController@delete_single_submission_image');
+Route::post('/delete_single_submission_image_step_one', 'WebController@delete_single_submission_image_step_one');
 Route::post('get_lat_long', 'Controller@get_lat_long');
 
 Auth::routes();

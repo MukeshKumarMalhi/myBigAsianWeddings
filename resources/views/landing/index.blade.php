@@ -289,16 +289,16 @@ $(document).ready(function(){
         if(data.failure){
           $.each(data.failure, function(i, error){
             $('.append_response').show();
-            $('.append_response ul').append("<li><i class='fas fa-exclamation-circle'> " + data.errors[i] + "</i></li>");
+            $('.append_response ul').append("<li><i class='fas fa-exclamation-circle'></i> " + data.errors[i] + "</li>");
           });
         }else if (data.errors) {
           $.each(data.errors, function(j, error){
             $('.append_response').show();
-            $('.append_response ul').append("<li><i class='fas fa-exclamation-circle'> " + data.errors[j] + "</i></li>");
+            $('.append_response ul').append("<li><i class='fas fa-exclamation-circle'></i> " + data.errors[j] + "</li>");
           });
         }else if (data.success) {
           $('.append_response').show();
-          $('.append_response ul').append("<li><i class='fas fa-check'></i> " + data.success + "</i></li>");
+          $('.append_response ul').append("<li><i class='fas fa-check'></i> " + data.success + "</li>");
         }
       },
     });

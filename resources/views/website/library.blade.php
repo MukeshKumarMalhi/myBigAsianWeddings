@@ -16,6 +16,7 @@
     <link rel="apple-touch-icon-precomposed" href="{{ asset('web_asset/images/favicon.png') }}">
     <meta name="msapplication-TileImage" content="{{ asset('web_asset/images/favicon.png') }}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_asset/css/image-uploader.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('web_asset/vendor/jquery-ui/jquery-ui.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('web_asset/vendor/animate3.7.0/animate.min.css') }}">

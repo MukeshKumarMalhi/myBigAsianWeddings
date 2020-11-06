@@ -39,6 +39,7 @@
                     $question_mandatory = '';
                     $question_class = '';
                     $exists_business_name = '';
+                    $exists_business_name_convert_to_slug = '';
                     if($val->question_mandatory == true){
                       $question_mandatory = 'required';
                     }
@@ -47,10 +48,11 @@
                     }
                     if($val->question_name == 'business_name'){
                       $exists_business_name = 'business_name_exists';
+                      $exists_business_name_convert_to_slug = "onkeyup='convertToSlug(this.value)'";
                     }
                     $select = "";
                     if($val->type == "text"){
-                      echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control $question_class $exists_business_name' placeholder='$val->question_placeholder' $question_mandatory autocomplete='off'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
+                      echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control $question_class $exists_business_name' $exists_business_name_convert_to_slug placeholder='$val->question_placeholder' $question_mandatory autocomplete='off'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
                     }
                     if($val->type == "file"){
                       echo "<input type='$val->type' name='$val->question_name"."_answer_text[]' class='form-control' accept='image/*' multiple $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
@@ -130,9 +132,15 @@
     //   });
     // }
     // google.maps.event.addDomListener(window, 'load', initialize);
+
+    /* Encode string to slug */
+    function convertToSlug( str ) {
+      str = str.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+      str = str.replace(/^\s+|\s+$/gm,'');
+      str = str.replace(/\s+/g, '-');
+      $("input[name=slug_answer_text]").val(str);
+    }
   $(document).ready(function(){
-
-
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
