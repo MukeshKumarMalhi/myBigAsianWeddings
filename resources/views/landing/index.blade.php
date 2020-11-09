@@ -11,16 +11,16 @@
     </div>
 
     <div class="container header-title-top pt-1 pt-responsive-1 pb-80 text-light link-light text-center align-self-end align-content-end justify-content-end">
-        <h1 class="font-gotham-bold">UK’s Free Online <span class="txt-rotate text-warning" data-period="1000" data-rotate='[ "Asian", "Chinese", "Indian", "Pakistani" ]'></span> Wedding Planning Tool</h1>
-        <h3 class="font-gotham-bold text-warning">Let’s find the reliable local wedding suppliers nearest to you from <span class="text-light">18,589</span> verified wedding suppliers.</h3>
+        <h1 class="font-gotham-bold">UK’s Free Online <span class="txt-rotate text-warning" data-period="1000" data-rotate='[ "Asian", "Chinese", "Indian", "Pakistani" ]'></span>&nbsp;Wedding Planning Tool</h1>
+        <h3 class="font-gotham-bold text-warning">Let’s find the reliable local wedding suppliers nearest to you from <span class="text-light">{{ $total_listings }}</span> verified wedding suppliers.</h3>
     </div>
 </div>
 <div class="pt-100 pb-50">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-lg-7">
-                <div class="mx-auto bg-purple-d2 h-100 text-light p-4">
-                    <p>Subscribe now to download our free<br/>wedding planning app and receive <span class="font-gotham-bold">exclusive discounts</span>.</p>
+                <div class="mx-auto bg-purple-d2 text-light px-4 pt-4 h-100">
+                    <p>Subscribe now to download our free wedding planning app and receive <span class="font-gotham-bold">exclusive discounts</span>.</p>
                     <form class="text-center" role="form" id="email_subscription_form" method="post">
                       @csrf
                         <div class="row form-group">
@@ -35,14 +35,14 @@
                             </div>
                         </div>
                     </form>
-                    <div class="append_response" style="color: #F9A832 !important; border-color: #F9A832; border: 1px solid; padding: 15px 0px 0px 0px; border-radius: 5px; display: none;">
+                    <div class="append_response" style="color: #F9A832 !important; border-color: #F9A832; border: 1px solid; padding: 15px 0px 0px 0px;margin-bottom: 20px;border-radius: 5px; display: none;">
                       <ul style="list-style: none;"></ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-lg-5">
-                <div class="bg-warning p-4 h-100 text-center">
-                    <h2 class="font-gotham-bold">GOING LIVE IN!</h2>
+                <div class="bg-warning p-4 text-center">
+                    <h2 class="font-gotham-bold mb-3">GOING LIVE IN!</h2>
                     <div class="countdown" data-Date='January 1, 2021'>
                         <div class="countdown-running"></div>
                         <div class="countdown-ending">
@@ -299,6 +299,7 @@ $(document).ready(function(){
         }else if (data.success) {
           $('.append_response').show();
           $('.append_response ul').append("<li><i class='fas fa-check'></i> " + data.success + "</li>");
+          $('#email_subscription_form')[0].reset();
         }
       },
     });
@@ -324,43 +325,59 @@ $(document).ready(function(){
         }
     }, 1000);
 
-    var TxtRotate = function(el, toRotate, period) {
-  this.toRotate = toRotate;
-  this.el = el;
-  this.loopNum = 0;
-  this.period = parseInt(period, 10) || 2000;
-  this.txt = '';
-  this.tick();
-  this.isDeleting = false;
-};
-TxtRotate.prototype.tick = function() {
-  var i = this.loopNum % this.toRotate.length;
-  var fullTxt = this.toRotate[i];
+          var TxtRotate = function(el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = '';
+        this.tick();
+        this.isDeleting = false;
+      };
+      TxtRotate.prototype.tick = function() {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
 
-  if (this.isDeleting) {
-    this.txt = fullTxt.substring(0, this.txt.length - 1);
-  } else {
-    this.txt = fullTxt.substring(0, this.txt.length + 1);
-  }
-  this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+        if (this.isDeleting) {
+          this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+          this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
 
-  var that = this;
-  var delta = 300 - Math.random() * 100;
+        var that = this;
+        var delta = 150 - Math.random() * 100;
 
-  if (this.isDeleting) { delta /= 2; }
+        if (this.isDeleting) { delta /= 2; }
 
-  if (!this.isDeleting && this.txt === fullTxt) {
-    delta = this.period;
-    this.isDeleting = true;
-  } else if (this.isDeleting && this.txt === '') {
-    this.isDeleting = false;
-    this.loopNum++;
-    delta = 500;
-  }
-  setTimeout(function() {
-    that.tick();
-  }, delta);
-};
+        if (!this.isDeleting && this.txt === fullTxt) {
+          delta = this.period;
+          this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+          this.isDeleting = false;
+          this.loopNum++;
+          delta = 800;
+        }
+        setTimeout(function() {
+          that.tick();
+        }, delta);
+      };
+      window.onload = function() {
+        var elements = document.getElementsByClassName('txt-rotate');
+        for (var i=0; i<elements.length; i++) {
+          var toRotate = elements[i].getAttribute('data-rotate');
+          var period = elements[i].getAttribute('data-period');
+          if (toRotate) {
+            new TxtRotate(elements[i], JSON.parse(toRotate), period);
+          }
+        }
+        // INJECT CSS
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+        document.body.appendChild(css);
+      };
+
 window.onload = function() {
   var elements = document.getElementsByClassName('txt-rotate');
   for (var i=0; i<elements.length; i++) {

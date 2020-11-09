@@ -14,17 +14,18 @@
     </div>
     <div class="col-sm-3">
       <div class="form-group text-right">
-        <a href="{{ url('business-register-step2') }}/{{ $category_set }}/{{ $slug }}" class="btn btn-danger">Proceed to Step 2 <i class="fas fa-arrow-right"></i></a>
+        <a href="{{ url('business-register-step2') }}/{{ $category_set }}/{{ $slug }}/{{ $business_listing_id }}" class="btn btn-danger">Proceed to Step 2 <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
   </div>
 </div>
-<form method="post" role="form" class="form-horizontal" id="business-register-data" enctype="multipart/form-data">
+<form method="post" role="form" class="form-horizontal" id="business-register-data-update" enctype="multipart/form-data">
   @csrf
   <input type="hidden" name="category_id" value="{{ $sections[0]->category_id }}">
   <input type="hidden" name="location_id" id=location_id value="{{ $sections[0]->location_id }}">
-  <input type="hidden" name="business_listing_id" value="{{ $business_listing_id }}">
+  <input type="hidden" name="business_listing_id" id="business_listing_id" value="{{ $business_listing_id }}">
 <?php
+$images_array = array();
   foreach ($sections as $key => $value) {
     if($value->section_name == "Experience" || $value->section_name == "Getting Here"){
       echo "<div class='bg-warning-l'><div class='container py-3'><div class='row'><div class='col-sm-6'>";
@@ -98,42 +99,47 @@
       }elseif ($val->type == "text" && count($val->listings) > 0) {
         array_push($arr_name_updated, "updated_".$val->question_name);
         foreach ($val->listings as $key => $list_name) {
-          echo "<input type='$val->type' name='updated_"."$val->question_name"."_answer_text_updated' class='form-control $question_class $exists_business_name' placeholder='$val->question_placeholder' $exists_business_name_convert_to_slug $slug_display_none value='$list_name->business_listing_attribute_data_answer_text' $question_mandatory autocomplete='off'><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><input type='hidden' name='updated_"."$val->question_name"."_answer_id_updated'><input type='hidden' name='updated_"."$val->question_name"."_$val->type"."_updated' value='$val->type'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$list_name->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$list_name->business_listing_attribute_id'>";
+          echo "<input type='$val->type' name='updated_"."$val->question_name"."_answer_text_updated' class='form-control border-warning $question_class $exists_business_name' placeholder='$val->question_placeholder' $exists_business_name_convert_to_slug $slug_display_none value='$list_name->business_listing_attribute_data_answer_text' $question_mandatory autocomplete='off'><input type='hidden' name='updated_"."$val->question_name"."_question_id_updated' value='$val->id'><input type='hidden' name='updated_"."$val->question_name"."_answer_id_updated'><input type='hidden' name='updated_"."$val->question_name"."_$val->type"."_updated' value='$val->type'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_id_updated' value='$list_name->business_listing_attribute_business_listing_id'><input type='hidden' name='updated_"."$val->question_name"."_business_listing_attribute_id_updated' value='$list_name->business_listing_attribute_id'>";
         }
       }
 
       if($val->type == "file" && $val->question_name == "photos" && count($val->listings) == 0){
         echo "<br/><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
       }elseif ($val->type == "file" && $val->question_name == "photos" && count($val->listings) >0) {
-        echo "<br/><div class='image-uploader has-files'><div class='uploaded'>";
+        // echo "<br/><div class='image-uploader has-files'><input type='$val->type' id='photos_answer_text-1604674516191' name='$val->question_name"."_answer_text[]' accept='.jpg,.jpeg,.png,.gif,.svg,.PNG,.JPG,.JPEG' multiple='multiple' style='width: 100%;height: 100%;z-index: 0;'  $question_mandatory><div class='uploaded'>";
+        echo "<input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
         foreach ($val->listings as $key => $pic) {
           if(strpos($pic->business_listing_attribute_data_answer_text, 'http') === 0) {
             $image = $pic->business_listing_attribute_data_answer_text;
           }else{
             $image = asset('/storage/'.$pic->business_listing_attribute_data_answer_text);
           }
-          echo "<div class='uploaded-image' id='remove_image_$pic->business_listing_attribute_id'><img src='$image'>";
-          echo "<button type='button' title='Delete image' class='delete-image' data-id='$pic->business_listing_attribute_id'><i class='fas fa-trash-alt'></i></button></div>";
+          $images_array[] = ['id' => $pic->business_listing_attribute_id, 'src' => $image];
+          // echo "<div class='uploaded-image' id='remove_image_$pic->business_listing_attribute_id'><img src='$image'>";
+          // echo "<button type='button' title='Delete image' class='delete-image' data-id='$pic->business_listing_attribute_id'><i class='fas fa-trash-alt'></i></button></div>";
         }
-        echo "</div></div><br/>";
-        echo "<input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
+        // echo "</div></div><br/>";
       }
 
       if($val->type == "file" && $val->question_name == "featured_image" && count($val->listings) == 0){
         echo "<br/><img id='blah' src='".asset('web_asset/images/drop-and-drag-img.png')."' class='img-fluid'><input type='$val->type' name='$val->question_name"."_answer_text[]' onchange='readURL(this);' class='form-control' accept='image/*' $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
       }elseif ($val->type == "file" && $val->question_name == "featured_image" && count($val->listings) >0) {
         // echo "<br/><div class='image-uploader has-files'><div class='uploaded'>";
+
         foreach ($val->listings as $key => $pic) {
           if(strpos($pic->business_listing_attribute_data_answer_text, 'http') === 0) {
             $image = $pic->business_listing_attribute_data_answer_text;
           }else{
             $image = asset('/storage/'.$pic->business_listing_attribute_data_answer_text);
           }
-          echo "<div class='uploaded-image' id='remove_image_$pic->business_listing_attribute_id'><img src='$image'>";
-          echo "<button type='button' title='Delete image' class='delete-image' data-id='$pic->business_listing_attribute_id'><i class='fas fa-trash-alt'></i></button></div>";
+          echo "<br/><img id='blah' src='$image' class='img-fluid'><input type='$val->type' name='$val->question_name"."_answer_text[]' onchange='readURL(this);' class='form-control' accept='image/*' $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'><span class='edit'></span>";
+          // echo "<div class='uploaded-image' id='remove_image_$pic->business_listing_attribute_id'><img src='$image'>";
+          // echo "<button type='button' title='Delete image' class='delete-image' data-id='$pic->business_listing_attribute_id'><i class='fas fa-trash-alt'></i></button></div>";
         }
         // echo "</div></div><br/>";
       }
+
+      //scrpt??
 
       if($val->type == "textarea" && count($val->listings) == 0){
         echo "<textarea name='$val->question_name"."_answer_text' class='form-control border-warning' placeholder='$val->question_placeholder' rows='4' $question_mandatory></textarea><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
@@ -235,7 +241,27 @@
           $category_dropbox .= "</select></div>";
           echo $category_dropbox;
           echo "</div></div>";
-        }else {
+        }
+        elseif($val->question_name == "location"){
+          echo "</div>";
+
+          $display_sub_cat = "";
+          if($sub_category == ""){
+            $display_sub_cat = "style='display: none;'";
+          }
+          $sub_category_dropbox = "<div class='form-group col-sm-6 sub_category_col' $display_sub_cat><select class='form-control border-warning' name='sub_category_id' id='sub_category_id'>";
+          foreach ($sub_categories as $key => $sub_cat) {
+            if($sub_category == $sub_cat->id){
+              $sub_category_dropbox .= "<option value='".$sub_cat->id."' selected>".$sub_cat->category_name."</option>";
+            }else {
+              $sub_category_dropbox .= "<option value='".$sub_cat->id."'>".$sub_cat->category_name."</option>";
+            }
+          }
+          $sub_category_dropbox .= "</select></div>";
+          echo $sub_category_dropbox;
+          echo "</div></div>";
+        }
+        else {
           echo "</div></div></div>";
         }
       }else {
@@ -261,11 +287,10 @@
       echo "</div>";
     }
   }
-
 ?>
   <div class="container py-3">
     <div class="form-group text-center">
-        <button class="btn btn-danger"><i class="fa fa-download"></i> Save Change + Step 2</button>
+        <button class="btn btn-danger px-5">Update</button>
     </div>
   </div>
 </form>
@@ -273,21 +298,21 @@
 <script type="text/javascript">
 
 function readURL(input) {
-  if (input.files && input.files[0]) {
+    if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = function (e) {
-        $('#blah')
-            .attr('src', e.target.result);
+        $('#blah').attr('src', e.target.result);
+        $('.bs-upload-dropndrag').addClass('edit');
     };
     reader.readAsDataURL(input.files[0]);
-  }
+    }
 }
 
 function convertToSlug( str ) {
   str = str.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
   str = str.replace(/^\s+|\s+$/gm,'');
   str = str.replace(/\s+/g, '-');
-  $("input[name=slug_answer_text]").val(str);
+  $("input[name=updated_slug_answer_text_updated]").val(str);
 }
 
 function spaceByhyphen(myStr){
@@ -297,10 +322,23 @@ function spaceByhyphen(myStr){
   return myStr;
 }
 
+var are = <?php echo json_encode($images_array) ?>;
+// console.log(are);
+//
+// var preloaded = are;
+// var preloaded = [
+//    {id: '5fa559c58ae08', src: 'http://127.0.0.1:8000/storage/GnaGBI763FpCTwuuILFk43EGAnD6hEUbnl2K2Fut.png'},
+//    // {id: '5fa559c58ae08', src: 'http://127.0.0.1:8000/storage/GnaGBI763FpCTwuuILFk43EGAnD6hEUbnl2K2Fut.png'},
+//    // {id: '5fa559c58ae08', src: 'http://127.0.0.1:8000/storage/GnaGBI763FpCTwuuILFk43EGAnD6hEUbnl2K2Fut.png'},
+// ];
+
 $(document).ready(function() {
+
+
   $('.bs-upload-thumbnails').imageUploader({
     imagesInputName:"photos_answer_text",
-    extensions:[".jpg",".jpeg",".png",".gif",".svg",".PNG",".JPG",".JPEG"]
+    extensions:[".jpg",".jpeg",".png",".gif",".svg",".PNG",".JPG",".JPEG"],
+    preloaded: are,
   });
     var path_l = "{{ url('/search_location') }}";
     var locations = $('.areaofuk').typeahead({
@@ -323,11 +361,11 @@ $(document).ready(function() {
       $(".areaofuk").val(location_id.location_name);
     });
 
-    $('#business-register-data').on('submit', function(event){
+    $('#business-register-data-update').on('submit', function(event){
       event.preventDefault();
 
       $.ajax({
-        url:"{{ url('store_business_register_data') }}",
+        url:"{{ url('update_business_register_data') }}",
         method:"POST",
         data:new FormData(this),
         dataType:"JSON",
@@ -348,15 +386,20 @@ $(document).ready(function() {
             $('#append_success').show();
             $('#append_success ul').append("<li>"+data.success+"</li>");
             setTimeout(function(){ $('#append_success').hide(); },1000);
-            var slug = $("input[name=slug_answer_text]").val();
+            var slug = $("input[name=updated_slug_answer_text_updated]").val();
+            var business_listing_id = $("#business_listing_id").val();
             var selected_category = $("#category_id option:selected").text();
+            var selected_sub_value = $("#sub_category_id option:selected").val();
+            if(selected_sub_value != ""){
+              selected_category = $("#sub_category_id option:selected").text();
+            }
             var sel_cat = spaceByhyphen(selected_category);
             if(slug == ""){
               var business_name = $("input[name=business_name_answer_text]").val();
               var slug = spaceByhyphen(business_name);
             }
             var url_web = "{{ url('/business-register-step2') }}";
-            var url = url_web+'/wedding-'+sel_cat+'/'+slug;
+            var url = url_web+'/wedding-'+sel_cat+'/'+slug+'/'+business_listing_id;
             // console.log(url);
             // return false;
             window.location = url;
@@ -391,14 +434,64 @@ $(document).ready(function() {
         return false;
       }
     });
+
+    $("#category_id").change(function(){
+      var data = {
+        '_token' : $('input[name=_token]').val(),
+        'category_id' : $(this).val(),
+        'category_id_check' : 1
+      };
+      $.ajax({
+        url:"{{ url('serach_sub_category') }}",
+        type:"post",
+        data: data,
+        success: function(response){
+          if (response.sub_categories == 'no_sub_categories_exists') {
+            $('#sub_category_id').empty();
+            $('.sub_category_col').hide();
+          }else {
+            $('#sub_category_id').empty();
+            $('#sub_category_id').append(response.sub_categories);
+            $('.sub_category_col').show();
+          }
+        }
+      });
+   });
 });
 </script>
 <style media="screen">
   .form-check-label{
     vertical-align: text-top;
   }
-  .image-uploader .uploaded .uploaded-image .delete-image i {
-    padding-left: 7px;
-  }
+
+.bs-upload-dropndrag{border: 2px dashed #f6921e;background: #ffffff; position: relative; overflow: hidden; width: 100%; display: block;height: 160px;position: relative; margin-top: 22px;}
+.bs-upload-dropndrag img{position:absolute;top:0; left:0; width: 100%;height: 100%; display: block;object-fit: contain;object-position: center;}
+.bs-upload-dropndrag input{position:absolute;top:0; left:0; width: 100%;height: 100%; display: block; opacity: 0; z-index: 1;}
+/* .bs-upload-dropndrag.edit img{object-fit: cover;} */
+.bs-upload-dropndrag.edit:after,
+.bs-upload-dropndrag .edit:after{
+  content: '\f304';
+  font-family: 'Font Awesome 5 Pro';
+  font-weight: 400;
+  color: #f6921e;
+  border: 2px #f6921e solid;
+  background: #ffffff;
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  line-height: 35px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  margin: auto;
+}
+.bs-upload-thumbnails{
+  margin-top: 22px;
+}
 </style>
 @endsection

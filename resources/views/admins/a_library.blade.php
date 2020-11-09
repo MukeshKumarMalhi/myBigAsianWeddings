@@ -11,7 +11,7 @@
     <title>myBigAsianWedding | @yield('title')</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="shortcut icon" href="{{ asset('admin_asset/images/fav-icon-32.ico') }}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset('admin_asset/images/favicon.png') }}" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Montserrat:300,400,500,600,700,800&amp;subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.min.css">

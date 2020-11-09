@@ -32,5 +32,5 @@
     <script type="text/javascript" src="{{ asset('web_asset/vendor/fancybox/jquery.fancybox.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('web_asset/js/js-custom.js') }}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
-    <script type="text/javascript" src="{{ asset('admin_asset/js/image-uploader.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('web_asset/js/image-uploader.min.js') }}"></script>
 </head>

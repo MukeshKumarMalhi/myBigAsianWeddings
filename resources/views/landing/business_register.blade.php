@@ -3,10 +3,10 @@
 
 @section('content')
 <div class="container py-3">
-  <div id="append_errors" style="width: 50%; color: #a94442; background-color: #f2dede; border-color: #ebccd1; border-radius: 5px; padding: 17px 0px 1px 0px; margin-bottom: 15px; margin-top: 15px; margin-left: 25px; display: none;">
-    <ul></ul>
+  <div id="append_errors" style="width: 100%; color: #a94442; background-color: #f2dede; border-color: #ebccd1; border-radius: 5px; padding: 17px 0px 1px 0px; display: none;">
+    <ul class="exists_error"></ul>
   </div>
-  <div id="append_success" style="width: 50%; color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6; border-radius: 5px; padding: 17px 0px 1px 0px; margin-bottom: 15px; margin-top: 15px; margin-left: 25px; display: none;">
+  <div id="append_success" style="width: 100%; color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6; border-radius: 5px; padding: 17px 0px 1px 0px; display: none;">
     <ul></ul>
   </div>
 </div>
@@ -46,7 +46,11 @@
         echo "<div class='form-group bs-upload-thumbnails col-sm-6 col-md-8'>";
       }
       elseif (($val->type == "text") && ($val->question_name == "address" || $val->question_name == "location" || $val->question_name == "postcode")){
-        echo "<div class='col-sm-12'><div class='row'><div class='form-group col-sm-6'>";
+        if($val->question_name == "location"){
+          echo "<div class='col-sm-12'><div class='row append_sub_category'><div class='form-group col-sm-6'>";
+        }else {
+          echo "<div class='col-sm-12'><div class='row'><div class='form-group col-sm-6'>";
+        }
       }
       else {
         echo "<div class='form-group col-sm-6'>";
@@ -133,7 +137,14 @@
           $category_dropbox .= "</select></div>";
           echo $category_dropbox;
           echo "</div></div>";
-        }else {
+        }
+        elseif($val->question_name == "location"){
+          echo "</div>";
+          $sub_category_dropbox = "<div class='form-group col-sm-6 sub_category_col' style='display: none;'><select class='form-control border-warning' name='sub_category_id' id='sub_category_id'></select></div>";
+          echo $sub_category_dropbox;
+          echo "</div></div>";
+        }
+        else {
           echo "</div></div></div>";
         }
       }else {
@@ -160,7 +171,7 @@
   <input type="hidden" name="location_id" id="location_id">
   <div class="container py-3">
     <div class="form-group text-center">
-        <button class="btn btn-danger"><i class="fa fa-download"></i> Save Change + Step 2</button>
+      <button class="btn btn-danger class_check px-5">Next</button>
     </div>
   </div>
 </form>
@@ -171,8 +182,8 @@ function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = function (e) {
-        $('#blah')
-            .attr('src', e.target.result);
+        $('#blah').attr('src', e.target.result);
+        $('.bs-upload-dropndrag').addClass('edit');
     };
     reader.readAsDataURL(input.files[0]);
   }
@@ -220,6 +231,9 @@ $(document).ready(function() {
 
     $('#business-register-data').on('submit', function(event){
       event.preventDefault();
+      if ($('ul.exists_error li').length > 0){
+        return false;
+      }
 
       $.ajax({
         url:"{{ url('store_business_register_data') }}",
@@ -245,13 +259,17 @@ $(document).ready(function() {
             setTimeout(function(){ $('#append_success').hide(); },1000);
             var slug = $("input[name=slug_answer_text]").val();
             var selected_category = $("#category_id option:selected").text();
+            var selected_sub_value = $("#sub_category_id option:selected").val();
+            if (typeof selected_sub_value !== "undefined") {
+              selected_category = $("#sub_category_id option:selected").text();
+            }
             var sel_cat = spaceByhyphen(selected_category);
             if(slug == ""){
               var business_name = $("input[name=business_name_answer_text]").val();
               var slug = spaceByhyphen(business_name);
             }
             var url_web = "{{ url('/business-register-step2') }}";
-            var url = url_web+'/wedding-'+sel_cat+'/'+slug;
+            var url = url_web+'/wedding-'+sel_cat+'/'+slug+'/'+data.business_listing_id;
             // console.log(url);
             // return false;
             window.location = url;
@@ -261,11 +279,107 @@ $(document).ready(function() {
         },
       });
     });
+
+    var question_name_state = false;
+    $('.business_name_exists').on('blur', function(){
+      var question_name = $(this).val();
+      var data = {
+        '_token' : $('input[name=_token]').val(),
+        'question_name' : $(this).val(),
+        'question_name_check' : 1
+      };
+      if (question_name == '') {
+        question_name_state = false;
+        return;
+      }
+      $.ajax({
+        url:"{{ url('check_business_name_exists_step1') }}",
+        type:"post",
+        data: data,
+        success: function(response){
+          $('#append_errors ul').text('');
+          $('#append_success ul').text('');
+          if (response == 'taken') {
+            question_name_state = false;
+            $('#append_errors').show();
+            $('#append_errors ul').append("<li> Sorry... This Business name is already taken.</li>");
+            $('.business_name_exists').attr('required', true);
+            $('.class_check').prop('disabled', true);
+          }else {
+            question_name_state = true;
+            $('#append_errors').hide();
+            $('.class_check').prop('disabled', false);
+            $('.business_name_exists').attr('required', false);
+          }
+        }
+      });
+    });
+    $("#category_id").change(function(){
+      var data = {
+        '_token' : $('input[name=_token]').val(),
+        'category_id' : $(this).val(),
+        'category_id_check' : 1
+      };
+      $.ajax({
+        url:"{{ url('serach_sub_category') }}",
+        type:"post",
+        data: data,
+        success: function(response){
+          if (response.sub_categories == 'no_sub_categories_exists') {
+            $('#sub_category_id').empty();
+            $('.sub_category_col').hide();
+          }else {
+            $('#sub_category_id').empty();
+            $('#sub_category_id').append(response.sub_categories);
+            $('.sub_category_col').show();
+          }
+        }
+      });
+   });
+   // var filter = $(this).val();
+   // $('#sub_category_id').append("<option value=''>Select Sub Category</option>");
+   // $("#a").append('a');
+   //    $('select#sub_category_id option').each(function(){
+   //        $("#a").append('a');
+   //     if ( $(this).val() == filter) {
+   //        $(this).show();
+   //     } else {
+   //        $(this).hide();
+   //     }
+   //   });
+   // var var1= $('#sub_category_id').val(filter);
+   // $('.sub_category_col').show();
 });
 </script>
 <style media="screen">
   .form-check-label{
     vertical-align: text-top;
+  }
+  .bs-upload-dropndrag{border: 2px dashed #f6921e;background: #ffffff; position: relative; overflow: hidden; width: 100%; display: block;height: 160px;position: relative; margin-top: 22px;}
+  .bs-upload-dropndrag img{position:absolute;top:0; left:0; width: 100%;height: 100%; display: block;object-fit: contain;object-position: center;}
+  .bs-upload-dropndrag input{position:absolute;top:0; left:0; width: 100%;height: 100%; display: block; opacity: 0; z-index: 1;}
+  /* .bs-upload-dropndrag.edit img{object-fit: cover;} */
+  .bs-upload-dropndrag.edit:after,
+  .bs-upload-dropndrag .edit:after{
+    content: '\f304';
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 400;
+    color: #f6921e;
+    border: 2px #f6921e solid;
+    background: #ffffff;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 35px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    margin: auto;
   }
 </style>
 @endsection

@@ -20,14 +20,17 @@ use App\User;
 // Route::get('/','WebController@index');
 Route::get('/','WebController@index');
 Route::get('/business-register','WebController@business_register_page');
-Route::get('/business-register-step2/{category}/{slug}','WebController@business_register_page_two');
-Route::get('/business-register-step1/{category}/{slug}','WebController@business_register_page_one_back');
+Route::get('/business-register-step2/{category}/{slug}/{id}','WebController@business_register_page_two');
+Route::get('/business-register-step1/{category}/{slug}/{id}','WebController@business_register_page_one_back');
 Route::get('/congratulations','WebController@business_congratulations_page');
 Route::post('store_business_register_data','WebController@store_business_register_data');
+Route::post('update_business_register_data','WebController@update_business_register_data');
 Route::post('store_business_register_data_step_two','WebController@store_business_register_data_step_two');
 Route::get('/send_test_email','WebController@send_test_email');
 Route::post('store_subscription','WebController@store_subscription_send_mail');
 Route::post('store_intrested_in_graphics_desgin','WebController@store_intrested_in_graphics_desgin_send_mail');
+Route::post('check_business_name_exists_step1', 'WebController@check_business_name_exists_step1');
+Route::post('serach_sub_category', 'WebController@serach_sub_category_exists');
 // Route::get('/mazy', function ()
 // {
 //   $string = " hello moto moto";

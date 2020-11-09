@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-sm-3">
       <div class="form-group text-left">
-        <a href="{{ url('business-register-step1') }}/{{ $category_set }}/{{ $slug }}" class="btn btn-danger"><i class="fas fa-arrow-left"></i> Back to Step 1</a>
+        <a href="{{ url('business-register-step1') }}/{{ $category_set }}/{{ $slug }}/{{ $business_listing_id }}" class="btn btn-danger"><i class="fas fa-arrow-left"></i> Back to Step 1</a>
       </div>
     </div>
     <div class="col-sm-9">
@@ -166,10 +166,10 @@
   }
 
 ?>
-  <input type="hidden" name="business_listing_id" id="business_listing_id" value="{{ $business_listing_id->business_listing_id }}">
+  <input type="hidden" name="business_listing_id" id="business_listing_id" value="{{ $business_listing_id }}">
   <div class="container py-3">
     <div class="form-group text-center">
-        <button class="btn btn-danger"><i class="fa fa-download"></i> Save Change</button>
+        <button class="btn btn-danger px-5">Save</button>
     </div>
   </div>
 </form>

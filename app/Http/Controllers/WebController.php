@@ -109,7 +109,8 @@ class WebController extends Controller
 
   public function index()
   {
-    return view('landing.index');
+    $total_listings = BusinessListing::count();
+    return view('landing.index', ['total_listings' => $total_listings]);
   }
   public function business_congratulations_page()
   {
@@ -147,10 +148,11 @@ class WebController extends Controller
       $value->questions = $questions;
     }
     $categories = DB::table('categories')->where('parent_category_id', null)->get();
-    return view('landing.business_register', ['sections' => $sections, 'categories' => $categories]);
+    $sub_categories = DB::table('categories')->where('parent_category_id', '!=', null)->get();
+    return view('landing.business_register', ['sections' => $sections, 'categories' => $categories, 'sub_categories' => $sub_categories]);
   }
 
-  public function business_register_page_two($category, $slug)
+  public function business_register_page_two($category, $slug, $id)
   {
     $get_cats = explode("-", $category);
 
@@ -166,6 +168,12 @@ class WebController extends Controller
     }
     $cat_for_search = trim($got_cat);
     $category_id = DB::table('categories')->where('category_name', '=', $cat_for_search)->first();
+    $form_category = "";
+    if($category_id->parent_category_id != "" || $category_id->parent_category_id != null){
+      $form_category = $category_id->parent_category_id;
+    }else {
+      $form_category = $category_id->id;
+    }
 
     $business_listing_id = DB::table('business_listings')
     ->leftJoin('categories', 'business_listings.category_id', '=', 'categories.id')
@@ -175,7 +183,10 @@ class WebController extends Controller
     if($category_id != null){
       $business_listing_id->where('business_listings.category_id', '=', $category_id->id);
     }
-    if($slug != ""){
+    if($id != ""){
+      $business_listing_id->where('business_listings.id', '=', $id);
+    }
+    if($id == "" && $slug != ""){
       $business_listing_id->where('business_listing_attributes.data_answer_text', '=', $slug);
     }
 
@@ -185,7 +196,7 @@ class WebController extends Controller
     ->leftJoin('data_sections', 'data_sections.id', '=', 'section_business_categories.data_section_id')
     ->leftJoin('categories', 'categories.id', '=', 'section_business_categories.category_id')
     ->select('data_sections.*', 'categories.category_name')
-    ->where('section_business_categories.category_id', '=', $category_id->id)
+    ->where('section_business_categories.category_id', '=', $form_category)
     ->where('data_sections.section_is_common', '=', false)
     ->where('data_sections.section_is_common', '!=', true)
     ->orderBy('data_sections.section_order', 'asc')
@@ -213,10 +224,11 @@ class WebController extends Controller
 
       $value->questions = $questions;
     }
+    // dd($sections);
     return view('landing.business_register_page_two', ['sections' => $sections, 'category_set' => $category, 'slug' => $slug, 'business_listing_id' => $business_listing_id->business_listing_id]);
   }
 
-  public function business_register_page_one_back($category, $slug)
+  public function business_register_page_one_back($category, $slug, $id)
   {
     $get_cats = explode("-", $category);
 
@@ -233,6 +245,15 @@ class WebController extends Controller
     $cat_for_search = trim($got_cat);
     $category_id = DB::table('categories')->where('category_name', '=', $cat_for_search)->first();
 
+    $form_category = "";
+    $sub_category = "";
+    if($category_id->parent_category_id != "" || $category_id->parent_category_id != null){
+      $form_category = $category_id->parent_category_id;
+      $sub_category = $category_id->id;
+    }else {
+      $form_category = $category_id->id;
+    }
+
     $business_listing_id = DB::table('business_listings')
     ->leftJoin('categories', 'business_listings.category_id', '=', 'categories.id')
     ->leftJoin('business_listing_attributes', 'business_listings.id', '=', 'business_listing_attributes.business_listing_id')
@@ -241,7 +262,10 @@ class WebController extends Controller
     if($category_id != null){
       $business_listing_id->where('business_listings.category_id', '=', $category_id->id);
     }
-    if($slug != ""){
+    if($id != ""){
+      $business_listing_id->where('business_listings.id', '=', $id);
+    }
+    if($id == "" && $slug != ""){
       $business_listing_id->where('business_listing_attributes.data_answer_text', '=', $slug);
     }
 
@@ -251,7 +275,7 @@ class WebController extends Controller
     ->leftJoin('data_sections', 'data_sections.id', '=', 'section_business_categories.data_section_id')
     ->leftJoin('categories', 'categories.id', '=', 'section_business_categories.category_id')
     ->select('section_business_categories.*', 'categories.category_name', 'data_sections.section_name', 'data_sections.section_sub_heading')
-    ->where('categories.id', '=', $category_id->id)
+    ->where('categories.id', '=', $form_category)
     ->where('data_sections.section_is_common', '=', true)
     ->where('data_sections.section_is_common', '!=', false)
     ->orderBy('data_sections.section_order', 'asc')
@@ -292,9 +316,20 @@ class WebController extends Controller
       $value->questions = $questions;
 
     }
-    // dd($sections);
     $categories = DB::table('categories')->where('parent_category_id', null)->get();
-    return view('landing.business_register_page_one_back', ['sections' => $sections, 'business_listing_id' => $business_listing_id->business_listing_id, 'categories' => $categories, 'slug' => $slug, 'category_set' => $category]);
+    $sub_categories = DB::table('categories')->where('parent_category_id', '=', $category_id->parent_category_id)->get()->toArray();
+    // dd($sub_category);
+    return view('landing.business_register_page_one_back', ['sections' => $sections, 'business_listing_id' => $business_listing_id->business_listing_id, 'categories' => $categories, 'slug' => $slug, 'category_set' => $category, 'sub_category' => $sub_category, 'sub_categories' => $sub_categories]);
+  }
+
+  public function check_business_name_exists_step1(Request $request)
+  {
+    $data_question_exists = DB::table('business_listings')->where('business_listings.name', '=', $request->question_name)->get();
+    if(count($data_question_exists) > 0){
+      return response()->json('taken', 200);
+    }else {
+      return response()->json('not taken', 200);
+    }
   }
 
 
@@ -304,6 +339,21 @@ class WebController extends Controller
     $item = preg_grep($pattern,$keys);
     return $item;
   }
+
+  public function serach_sub_category_exists(Request $request) {
+    $sub_categories = DB::table('categories')->where('parent_category_id', '=', $request->category_id)->get()->toArray();
+    if(count($sub_categories) > 0){
+      $options = '<option value="">Select Sub Category</option>';
+      foreach ($sub_categories as $key => $value) {
+        $options .= '<option value="'.$value->id.'">'.$value->category_name.'</option>';
+      }
+      return response()->json(['sub_categories' => $options], 200);
+    }else {
+      return response()->json(['sub_categories' => 'no_sub_categories_exists'], 200);
+    }
+  }
+
+
 
   public function store_business_register_data(Request $request)
   {
@@ -316,11 +366,15 @@ class WebController extends Controller
     if($error->fails()){
       return response()->json(['errors' => $error->errors()->all()]);
     }else{
+      $category = $request->category_id;
+      if(isset($request->sub_category_id) && $request->sub_category_id != ""){
+        $category = $request->sub_category_id;
+      }
 
       $id = uniqid();
       $form_data = array(
         'id' => $id,
-        'category_id' => $request->category_id,
+        'category_id' => $category,
         'location_id' => $request->location_id,
         'name' => $request->business_name_answer_text,
       );
@@ -390,6 +444,160 @@ class WebController extends Controller
         }
       }
       return response()->json(['success' => 'Business registered successfully', 'business_listing_id' => $id], 200);
+    }
+  }
+
+  public function update_business_register_data(Request $request)
+  {
+    $rules = array(
+      'business_listing_id' => 'required',
+      'category_id' => 'required'
+    );
+
+    $error = Validator::make($request->all(), $rules);
+    if($error->fails()){
+      return response()->json(['errors' => $error->errors()->all()]);
+    }else{
+      $category = $request->category_id;
+      if(isset($request->sub_category_id) && $request->sub_category_id != ""){
+        $category = $request->sub_category_id;
+      }
+
+      $business_liting_update = BusinessListing::find($request->business_listing_id);
+      $business_liting_update->name = $request->updated_business_name_answer_text_updated;
+      $business_liting_update->location_id = $request->location_id;
+      $business_liting_update->category_id = $category;
+      $business_liting_update->save();
+
+      foreach ($request->all_names as $key => $name) {
+        $items = $this->preg_array_key_exists('/^'.$name.'/i',$request->all());
+        $u_id = uniqid();
+        $data_attributes = array(
+          'id' => $u_id,
+          'business_listing_id' => $request->business_listing_id
+        );
+        foreach ($items as $key => $item) {
+          if(array_key_exists($item, $request->all())){
+            // if(preg_match("/checkbox$/i", $item)){
+            //   $data_attributes['data_question_id'] = $request->all()[$item];
+            // }
+            if(preg_match("/question_id$/i", $item)){
+              $data_attributes['data_question_id'] = $request->all()[$item];
+            }
+            if(preg_match("/answer_id$/i", $item)){
+              $data_attributes['data_answer_id'] = $request->all()[$item];
+            }
+            if(preg_match("/answer_text$/i", $item)){
+              $data_attributes['data_answer_text'] = $request->all()[$item];
+            }
+          }
+        }
+        if(isset($data_attributes['data_question_id'])){
+          if((isset($data_attributes['data_answer_text']) && $data_attributes['data_answer_text'] != null) || (isset($data_attributes['data_answer_id']) && $data_attributes['data_answer_id'] != null)){
+            if(is_array($data_attributes['data_answer_id'])){
+              foreach ($data_attributes['data_answer_id'] as $value) {
+                $uc_id = uniqid();
+                $data_attributes_checks = array(
+                  'id' => $uc_id,
+                  'business_listing_id' => $request->business_listing_id,
+                  'data_question_id' => $data_attributes['data_question_id'],
+                  'data_answer_id' => $value,
+                  'data_answer_text' => $data_attributes['data_answer_text']
+                );
+                $business_liting_attributes = BusinessListingAttribute::create($data_attributes_checks);
+              }
+            }
+            elseif(is_array($data_attributes['data_answer_text'])) {
+              foreach ($data_attributes['data_answer_text'] as $file) {
+                $file1=$file->store('public');
+                $image=Storage::get($file1);
+                Storage::put($file1,$image);
+                $image_path=explode('/', $file1);
+                $image_path=$image_path[1];
+                $up_id = uniqid();
+                $data_attributes_photos = array(
+                  'id' => $up_id,
+                  'business_listing_id' => $request->business_listing_id,
+                  'data_question_id' => $data_attributes['data_question_id'],
+                  'data_answer_id' => $data_attributes['data_answer_id'],
+                  'data_answer_text' => $image_path
+                );
+                $business_liting_attributes = BusinessListingAttribute::create($data_attributes_photos);
+              }
+            }
+            else {
+              $business_liting_attributes = BusinessListingAttribute::create($data_attributes);
+            }
+          }
+        }
+      }
+
+      foreach ($request->all_names_updated as $key => $name) {
+        $items = $this->preg_array_key_exists('/^'.$name.'/i',$request->all());
+        $data_attributes = array();
+        foreach ($items as $key => $item) {
+          if(array_key_exists($item, $request->all())){
+            // if(preg_match("/checkbox$/i", $item)){
+            //   $data_attributes['data_question_id'] = $request->all()[$item];
+            // }
+            if(preg_match("/question_id_updated$/i", $item)){
+              $data_attributes['data_question_id'] = $request->all()[$item];
+            }
+            if(preg_match("/answer_id_updated$/i", $item)){
+              $data_attributes['data_answer_id'] = $request->all()[$item];
+            }
+            if(preg_match("/answer_text_updated$/i", $item)){
+              $data_attributes['data_answer_text'] = $request->all()[$item];
+            }
+            if(preg_match("/business_listing_id_updated/i", $item)){
+              $data_attributes['business_listing_id'] = $request->all()[$item];
+            }
+            if(preg_match("/business_listing_attribute_id_updated/i", $item)){
+              $data_attributes['id'] = $request->all()[$item];
+            }
+          }
+        }
+        if(isset($data_attributes['data_question_id'])){
+          if((isset($data_attributes['data_answer_text']) && $data_attributes['data_answer_text'] != null) || (isset($data_attributes['data_answer_id']) && $data_attributes['data_answer_id'] != null)){
+            if(is_array($data_attributes['data_answer_id']) && count($data_attributes['data_answer_id']) == 1){
+              foreach ($data_attributes['data_answer_id'] as $value) {
+                $data_attributes_checks = array(
+                  'id' => $data_attributes['id'],
+                  'business_listing_id' => $request->business_listing_id,
+                  'data_question_id' => $data_attributes['data_question_id'],
+                  'data_answer_id' => $value,
+                  'data_answer_text' => $data_attributes['data_answer_text']
+                );
+                $business_liting_attributes_checks = BusinessListingAttribute::find($data_attributes_checks['id']);
+                $business_liting_attributes_checks->data_answer_id = $data_attributes_checks['data_answer_id'];
+                $business_liting_attributes_checks->save();
+                // $business_liting_attributes = BusinessListingAttribute::create($data_attributes_checks);
+              }
+            }
+            elseif(is_array($data_attributes['data_answer_id']) && count($data_attributes['data_answer_id']) > 1){
+              $deleted = BusinessListingAttribute::where('data_question_id', '=', $data_attributes['data_question_id'])->delete();
+              foreach ($data_attributes['data_answer_id'] as $value) {
+                $uc2_id = uniqid();
+                $data_attributes_checks = array(
+                  'id' => $uc2_id,
+                  'business_listing_id' => $request->business_listing_id,
+                  'data_question_id' => $data_attributes['data_question_id'],
+                  'data_answer_id' => $value,
+                  'data_answer_text' => $data_attributes['data_answer_text']
+                );
+                $business_liting_attributes = BusinessListingAttribute::create($data_attributes_checks);
+              }
+            }
+            else {
+              $business_liting_attributes = BusinessListingAttribute::find($data_attributes['id']);
+              $business_liting_attributes->data_answer_text = $data_attributes['data_answer_text'];
+              $business_liting_attributes->save();
+            }
+          }
+        }
+      }
+
+      return response()->json(['success' => 'Business updated successfully'], 200);
     }
   }
 
