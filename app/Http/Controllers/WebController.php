@@ -224,7 +224,6 @@ class WebController extends Controller
 
       $value->questions = $questions;
     }
-    // dd($sections);
     return view('landing.business_register_page_two', ['sections' => $sections, 'category_set' => $category, 'slug' => $slug, 'business_listing_id' => $business_listing_id->business_listing_id]);
   }
 
@@ -318,7 +317,6 @@ class WebController extends Controller
     }
     $categories = DB::table('categories')->where('parent_category_id', null)->get();
     $sub_categories = DB::table('categories')->where('parent_category_id', '=', $category_id->parent_category_id)->get()->toArray();
-    // dd($sub_category);
     return view('landing.business_register_page_one_back', ['sections' => $sections, 'business_listing_id' => $business_listing_id->business_listing_id, 'categories' => $categories, 'slug' => $slug, 'category_set' => $category, 'sub_category' => $sub_category, 'sub_categories' => $sub_categories]);
   }
 
@@ -358,7 +356,7 @@ class WebController extends Controller
   public function store_business_register_data(Request $request)
   {
     $rules = array(
-      'business_name_answer_text' => 'required',
+      'business_name_answer_text' => 'required|unique:business_listings,name|max:255',
       'category_id' => 'required'
     );
 

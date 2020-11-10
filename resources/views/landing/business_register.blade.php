@@ -88,6 +88,7 @@
       $select = "";
       if($val->type == "text"){
         echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control border-warning $question_class $exists_business_name' $exists_business_name_convert_to_slug $slug_display_none placeholder='$val->question_placeholder' $question_mandatory autocomplete='off'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
+
       }
       if($val->type == "file" && $val->question_name == "photos"){
         echo "<br/><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
@@ -229,55 +230,102 @@ $(document).ready(function() {
       $(".areaofuk").val(location_id.location_name);
     });
 
-    $('#business-register-data').on('submit', function(event){
-      event.preventDefault();
-      if ($('ul.exists_error li').length > 0){
-        return false;
-      }
-
-      $.ajax({
-        url:"{{ url('store_business_register_data') }}",
-        method:"POST",
-        data:new FormData(this),
-        dataType:"JSON",
-        contentType:false,
-        cache:false,
-        processData:false,
-        success:function(data){
-          $('#append_errors ul').text('');
-          $('#append_success ul').text('');
-          if(data.errors)
-          {
-            $.each(data.errors, function(i, error){
-              $('#append_errors').show();
-              $('#append_errors ul').append("<li>" + data.errors[i] + "</li>");
-            });
-          }else {
-            $('#append_errors').hide();
-            $('#append_success').show();
-            $('#append_success ul').append("<li>"+data.success+"</li>");
-            setTimeout(function(){ $('#append_success').hide(); },1000);
-            var slug = $("input[name=slug_answer_text]").val();
-            var selected_category = $("#category_id option:selected").text();
-            var selected_sub_value = $("#sub_category_id option:selected").val();
-            if (typeof selected_sub_value !== "undefined") {
-              selected_category = $("#sub_category_id option:selected").text();
-            }
-            var sel_cat = spaceByhyphen(selected_category);
-            if(slug == ""){
-              var business_name = $("input[name=business_name_answer_text]").val();
-              var slug = spaceByhyphen(business_name);
-            }
-            var url_web = "{{ url('/business-register-step2') }}";
-            var url = url_web+'/wedding-'+sel_cat+'/'+slug+'/'+data.business_listing_id;
-            // console.log(url);
-            // return false;
-            window.location = url;
-            // var url_redirect = "{{ url('/congratulations') }}";
-            // window.location = url_redirect+'/'+slug+;
-          }
+    $('#business-register-data').validate({
+      rules: {
+        business_name_answer_text: {
+          required: true
         },
-      });
+        email_answer_text: {
+          required: true,
+          email: true
+        },
+        phone_number_answer_text: {
+          required: true,
+          digits: true
+          // minlength: 10
+        },
+        website_url_answer_text: {
+          required: true,
+          url: true
+        },
+        address_answer_text: {
+          required: true
+        },
+        category_id: {
+          required: true
+        },
+        location_answer_text: {
+          required: true
+        },
+        postcode_answer_text: {
+          required: true
+        },
+        featured_image_answer_text: {
+          required: true
+        },
+      },
+
+      submitHandler: function(form) {
+        // alert('yes');
+        // return false;
+        // if ($('ul.exists_error li').length > 0){
+        //   return false;
+        // }
+
+        $.ajax({
+          url:"{{ url('store_business_register_data') }}",
+          type:"POST",
+          data:new FormData(form),
+          dataType:"JSON",
+          contentType:false,
+          cache:false,
+          processData:false,
+          success:function(data){
+            $('#append_errors ul').text('');
+            $('#append_success ul').text('');
+            if(data.errors)
+            {
+              $.each(data.errors, function(i, error){
+                if(data.errors[i] == "The business name answer text has already been taken."){
+                  $('input[name=business_name_answer_text]').after('<label id="business_name_answer_text_already_exists-error" class="error" for="business_name_answer_text" style="">Sorry... This Business name is already taken..</label>');
+                }else {
+                  $('#append_errors').show();
+                  $('#append_errors ul').append("<li>" + data.errors[i] + "</li>");
+                }
+              });
+            }else {
+              $('#append_errors').hide();
+              $('#append_success').show();
+              $('#append_success ul').append("<li>"+data.success+"</li>");
+              setTimeout(function(){ $('#append_success').hide(); },1000);
+              var slug = $("input[name=slug_answer_text]").val();
+              var selected_category = $("#category_id option:selected").text();
+              var selected_sub_value = $("#sub_category_id option:selected").val();
+              if (typeof selected_sub_value !== "undefined" && selected_sub_value != "") {
+                selected_category = $("#sub_category_id option:selected").text();
+              }
+              var sel_cat = spaceByhyphen(selected_category);
+              if(slug == ""){
+                var business_name = $("input[name=business_name_answer_text]").val();
+                var slug = spaceByhyphen(business_name);
+              }
+              var url_web = "{{ url('/business-register-step2') }}";
+              var url = url_web+'/wedding-'+sel_cat+'/'+slug+'/'+data.business_listing_id;
+              // console.log(url);
+              // return false;
+              window.location = url;
+              // var url_redirect = "{{ url('/congratulations') }}";
+              // window.location = url_redirect+'/'+slug+;
+            }
+          },
+          // error: function(response) {
+          //   $('#nameError').text(response.responseJSON.errors.name);
+          //   $('#emailError').text(response.responseJSON.errors.email);
+          //   $('#mobileNumberError').text(response.responseJSON.errors.mobile_number);
+          //   $('#aboutError').text(response.responseJSON.errors.about);
+          // }
+        });
+      }
     });
 
     var question_name_state = false;
@@ -301,15 +349,17 @@ $(document).ready(function() {
           $('#append_success ul').text('');
           if (response == 'taken') {
             question_name_state = false;
-            $('#append_errors').show();
-            $('#append_errors ul').append("<li> Sorry... This Business name is already taken.</li>");
-            $('.business_name_exists').attr('required', true);
+            $('input[name=business_name_answer_text]').after('<label id="business_name_answer_text_already_exists-error" class="error" for="business_name_answer_text" style="">Sorry... This Business name is already taken..</label>');
+            // $('#append_errors').show();
+            // $('#append_errors ul').append("<li> Sorry... This Business name is already taken.</li>");
+            // $('.business_name_exists').attr('required', true);
             $('.class_check').prop('disabled', true);
           }else {
             question_name_state = true;
-            $('#append_errors').hide();
+            $('#business_name_answer_text_already_exists-error').hide();
+            $('#business_name_answer_text_already_exists-error').remove();
             $('.class_check').prop('disabled', false);
-            $('.business_name_exists').attr('required', false);
+            // $('.business_name_exists').attr('required', false);
           }
         }
       });
@@ -349,6 +399,76 @@ $(document).ready(function() {
    //   });
    // var var1= $('#sub_category_id').val(filter);
    // $('.sub_category_col').show();
+
+  //  $('#business-register-data').validate({ // initialize the plugin
+  //
+  //     rules: {
+  //
+  //         business_name_answer_text: {
+  //
+  //             required: true
+  //
+  //         },
+  //
+  //         email_answer_text: {
+  //
+  //             required: true,
+  //
+  //             email: true
+  //
+  //         },
+  //
+  //         phone_number_answer_text: {
+  //
+  //             required: true,
+  //
+  //             digits: true
+  //
+  //         },
+  //
+  //         website_url_answer_text: {
+  //
+  //             required: true,
+  //
+  //             url: true
+  //
+  //         },
+  //
+  //         address_answer_text: {
+  //
+  //             required: true
+  //
+  //         },
+  //
+  //         category_id: {
+  //
+  //             required: true
+  //
+  //         },
+  //
+  //         location_answer_text: {
+  //
+  //             required: true
+  //
+  //         },
+  //
+  //         postcode_answer_text: {
+  //
+  //             required: true
+  //
+  //         },
+  //
+  //         // filename: {
+  //         //
+  //         //     required: true,
+  //         //
+  //         //     extension: "jpeg|png"
+  //         //
+  //         // },
+  //
+  //     }
+  //
+  // });
 });
 </script>
 <style media="screen">
@@ -380,6 +500,9 @@ $(document).ready(function() {
     bottom: 0;
     text-align: center;
     margin: auto;
+  }
+  .error{
+    color: #dc3545!important;
   }
 </style>
 @endsection

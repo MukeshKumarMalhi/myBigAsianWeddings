@@ -1012,11 +1012,22 @@ class BusinessController extends Controller
 
     public function edit_data_submission($id, $cat_id){
 
+      $category_id = DB::table('categories')->where('id', '=', $cat_id)->first();
+
+      $form_category = "";
+      $sub_category = "";
+      if($category_id->parent_category_id != "" || $category_id->parent_category_id != null){
+        $form_category = $category_id->parent_category_id;
+        $sub_category = $category_id->id;
+      }else {
+        $form_category = $category_id->id;
+      }
+
       $sections = DB::table('section_business_categories')
       ->leftJoin('data_sections', 'data_sections.id', '=', 'section_business_categories.data_section_id')
       ->leftJoin('categories', 'categories.id', '=', 'section_business_categories.category_id')
       ->select('section_business_categories.*', 'categories.category_name', 'data_sections.section_name', 'data_sections.section_sub_heading')
-      ->where('categories.id', '=', $cat_id)
+      ->where('categories.id', '=', $form_category)
       ->orderBy('data_sections.section_order', 'asc')
       ->get();
 
@@ -1051,7 +1062,8 @@ class BusinessController extends Controller
         $value->questions = $questions;
 
       }
-      return view('admins.edit_data_submission', ['sections' => $sections, 'business_listing_id' => $id]);
+      $sub_categories = DB::table('categories')->where('parent_category_id', '=', $category_id->parent_category_id)->get()->toArray();
+      return view('admins.edit_data_submission', ['sections' => $sections, 'business_listing_id' => $id, 'sub_category' => $sub_category, 'sub_categories' => $sub_categories]);
     }
 
     public function preg_array_key_exists($pattern, $array) {

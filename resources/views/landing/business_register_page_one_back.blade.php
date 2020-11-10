@@ -390,7 +390,7 @@ $(document).ready(function() {
             var business_listing_id = $("#business_listing_id").val();
             var selected_category = $("#category_id option:selected").text();
             var selected_sub_value = $("#sub_category_id option:selected").val();
-            if(selected_sub_value != ""){
+            if(typeof selected_sub_value !== "undefined" && selected_sub_value != ""){
               selected_category = $("#sub_category_id option:selected").text();
             }
             var sel_cat = spaceByhyphen(selected_category);
