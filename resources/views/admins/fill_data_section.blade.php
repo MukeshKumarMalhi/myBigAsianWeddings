@@ -214,11 +214,11 @@
             question_name_state = false;
             $('#append_errors').show();
             $('#append_errors ul').append("<li> Sorry... Name already taken.</li>");
-            $('.class_check').prop('disabled', true);
+            // $('.class_check').prop('disabled', true);
           }else {
             question_name_state = true;
             $('#append_errors').hide();
-            $('.class_check').prop('disabled', false);
+            // $('.class_check').prop('disabled', false);
           }
         }
       });

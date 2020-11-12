@@ -119,35 +119,33 @@
                     </div>
                 </div>
                 <div class="text-center mb-3">
-                    <a href="#view-all-categories" data-toggle="bs-collapse" data-target="#view-all-categories">View All Categories <i class="fal fa-chevron-down"></i></a>
+                    <a href="#view-all-categories" data-toggle="collapse" data-target="#view-all-categories">View All Categories <i class="fal fa-chevron-down"></i></a>
                 </div>
                 <div class="collapse" id="view-all-categories">
                     <div class="row no-gutters-5">
                         <div class="col-lg-4">
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/accessories/">Accessories</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/accommodation/">Accommodation</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/bridal-and-womens-wear/">Bridal Dresses</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/car-hire/">Car Hire</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/decoration/">Decoration</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/entertainment/">Entertainment</a></p>
+                            <p><a href="#">Accessories</a></p>
+                            <p><a href="#">Accommodation</a></p>
+                            <p><a href="#">Bridal Dresses</a></p>
+                            <p><a href="#">Car Hire</a></p>
+                            <p><a href="#">Decoration</a></p>
+                            <p><a href="#">Entertainment</a></p>
                         </div>
                         <div class="col-lg-4">
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/hair-and-beauty/">Hair And Beauty</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/featured-2/">Featured</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/florists/">Florists</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/groom-dresses/">Groom Dresses</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/catering-2/">Catering</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/home-decor/">Home Decor</a></p>
+                            <p><a href="#">Hair And Beauty</a></p>
+                            <p><a href="#">Featured</a></p>
+                            <p><a href="">Florists</a></p>
+                            <p><a href="#">Groom Dresses</a></p>
+                            <p><a href="#">Catering</a></p>
+                            <p><a href="#">Home Decor</a></p>
                         </div>
                         <div class="col-lg-4">
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/travel/honeymoon/">Honeymoon</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/miscellaneous/">Miscellaneous</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/photographer/">Photographers</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/wedding-cards/">Wedding Cards</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/wedding-planners/">Weddings Planners</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/listing-category/featured/">Wedding Gifts</a></p>
-                        </div>
-                    </div>
+                            <p><a href="#">Honeymoon</a></p>
+                            <p><a href="#">Miscellaneous</a></p>
+                            <p><a href="#">Photographers</a></p>
+                            <p><a href="#">Wedding Cards</a></p>
+                            <p><a href="#">Weddings Planners</a></p>
+                            <p><a href="#              </div>
                 </div>
             </div>
             <div class="col-md-4 col-lg-5">
@@ -177,27 +175,27 @@
         data-placement="bottom" title="Birmingham"><circle cx="184.4" cy="453.9" r="4.4" fill="#1A0C0D" opacity="0"/><path d="m173.9 453.9c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5c0 4.2-1.5 5.4-9.4 17-0.4 0.6-1.2 0.7-1.8 0.3l-0.3-0.3c-8-11.6-9.5-12.8-9.5-17zm14.9 0c0-2.4-2-4.4-4.4-4.4s-4.4 2-4.4 4.4 2 4.4 4.4 4.4c2.5-0.1 4.4-2 4.4-4.4z"/></g></svg>
                 </div>
                 <div class="text-center mb-3">
-                    <a href="#view-all-categories" data-toggle="bs-collapse" data-target="#view-all-cities">View All Cities <i class="fal fa-chevron-down"></i></a>
+                    <a href="#view-all-categories" data-toggle="collapse" data-target="#view-all-cities">View All Cities <i class="fal fa-chevron-down"></i></a>
                 </div>
                 <div class="collapse" id="view-all-cities">
                     <div class="row no-gutters-5">
                         <div class="col-lg-4">
-                            <p><a href="https://mybigasianwedding.co.uk/location/edinburgh/">Edinburgh</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/location/coventry/">Coventry</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/location/cambridge/">Cambridge</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/location/birmingham/">Birmingham</a></p>
+                            <p><a href="#">Edinburgh</a></p>
+                            <p><a href="#">Coventry</a></p>
+                            <p><a href="#">Cambridge</a></p>
+                            <p><a href="#">Birmingham</a></p>
                         </div>
                         <div class="col-lg-4">
-                            <p><a href="https://mybigasianwedding.co.uk/location/aberdeen/">Aberdeen</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/location/york/">York</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/location/sheffield/">Sheffield</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/location/london/">London</a></p>
+                            <p><a href="#">Aberdeen</a></p>
+                            <p><a href="#">York</a></p>
+                            <p><a href="#">Sheffield</a></p>
+                            <p><a href="#">London</a></p>
                         </div>
                         <div class="col-lg-4">
-                            <p><a href="https://mybigasianwedding.co.uk/location/liverpool/">Liverpool</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/location/leicester/">Leicester</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/location/leeds/">Leeds</a></p>
-                            <p><a href="https://mybigasianwedding.co.uk/location/glasgow/">Glasgow</a></p>
+                            <p><a href="#">Liverpool</a></p>
+                            <p><a href="#">Leicester</a></p>
+                            <p><a href="#">Leeds</a></p>
+                            <p><a href="#">Glasgow</a></p>
                         </div>
                     </div>
                 </div>

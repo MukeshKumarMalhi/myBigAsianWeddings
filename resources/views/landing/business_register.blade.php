@@ -231,6 +231,14 @@ $(document).ready(function() {
     });
 
     $('#business-register-data').validate({
+      // errorElement: 'span',
+      errorClass: 'help-block',
+       highlight: function(element, errorClass, validClass) {
+         $(element).closest('.form-group').addClass("has-error");
+       },
+       unhighlight: function(element, errorClass, validClass) {
+         $(element).closest('.form-group').removeClass("has-error");
+       },
       rules: {
         business_name_answer_text: {
           required: true
@@ -260,17 +268,9 @@ $(document).ready(function() {
         postcode_answer_text: {
           required: true
         },
-        featured_image_answer_text: {
-          required: true
-        },
       },
 
       submitHandler: function(form) {
-        // alert('yes');
-        // return false;
-        // if ($('ul.exists_error li').length > 0){
-        //   return false;
-        // }
 
         $.ajax({
           url:"{{ url('store_business_register_data') }}",
@@ -287,7 +287,7 @@ $(document).ready(function() {
             {
               $.each(data.errors, function(i, error){
                 if(data.errors[i] == "The business name answer text has already been taken."){
-                  $('input[name=business_name_answer_text]').after('<label id="business_name_answer_text_already_exists-error" class="error" for="business_name_answer_text" style="">Sorry... This Business name is already taken..</label>');
+                  $('input[name=business_name_answer_text]').after('<label id="business_name_answer_text_already_exists-error" class="help-block" for="business_name_answer_text">Sorry... This Business name is already taken..</label>');
                 }else {
                   $('#append_errors').show();
                   $('#append_errors ul').append("<li>" + data.errors[i] + "</li>");
@@ -318,12 +318,6 @@ $(document).ready(function() {
               // window.location = url_redirect+'/'+slug+;
             }
           },
-          // error: function(response) {
-          //   $('#nameError').text(response.responseJSON.errors.name);
-          //   $('#emailError').text(response.responseJSON.errors.email);
-          //   $('#mobileNumberError').text(response.responseJSON.errors.mobile_number);
-          //   $('#aboutError').text(response.responseJSON.errors.about);
-          // }
         });
       }
     });
@@ -349,7 +343,7 @@ $(document).ready(function() {
           $('#append_success ul').text('');
           if (response == 'taken') {
             question_name_state = false;
-            $('input[name=business_name_answer_text]').after('<label id="business_name_answer_text_already_exists-error" class="error" for="business_name_answer_text" style="">Sorry... This Business name is already taken..</label>');
+            $('input[name=business_name_answer_text]').after('<label id="business_name_answer_text_already_exists-error" class="help-block" for="business_name_answer_text" style="">Sorry... This Business name is already taken..</label>');
             // $('#append_errors').show();
             // $('#append_errors ul').append("<li> Sorry... This Business name is already taken.</li>");
             // $('.business_name_exists').attr('required', true);
@@ -386,89 +380,6 @@ $(document).ready(function() {
         }
       });
    });
-   // var filter = $(this).val();
-   // $('#sub_category_id').append("<option value=''>Select Sub Category</option>");
-   // $("#a").append('a');
-   //    $('select#sub_category_id option').each(function(){
-   //        $("#a").append('a');
-   //     if ( $(this).val() == filter) {
-   //        $(this).show();
-   //     } else {
-   //        $(this).hide();
-   //     }
-   //   });
-   // var var1= $('#sub_category_id').val(filter);
-   // $('.sub_category_col').show();
-
-  //  $('#business-register-data').validate({ // initialize the plugin
-  //
-  //     rules: {
-  //
-  //         business_name_answer_text: {
-  //
-  //             required: true
-  //
-  //         },
-  //
-  //         email_answer_text: {
-  //
-  //             required: true,
-  //
-  //             email: true
-  //
-  //         },
-  //
-  //         phone_number_answer_text: {
-  //
-  //             required: true,
-  //
-  //             digits: true
-  //
-  //         },
-  //
-  //         website_url_answer_text: {
-  //
-  //             required: true,
-  //
-  //             url: true
-  //
-  //         },
-  //
-  //         address_answer_text: {
-  //
-  //             required: true
-  //
-  //         },
-  //
-  //         category_id: {
-  //
-  //             required: true
-  //
-  //         },
-  //
-  //         location_answer_text: {
-  //
-  //             required: true
-  //
-  //         },
-  //
-  //         postcode_answer_text: {
-  //
-  //             required: true
-  //
-  //         },
-  //
-  //         // filename: {
-  //         //
-  //         //     required: true,
-  //         //
-  //         //     extension: "jpeg|png"
-  //         //
-  //         // },
-  //
-  //     }
-  //
-  // });
 });
 </script>
 <style media="screen">
