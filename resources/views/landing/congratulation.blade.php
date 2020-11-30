@@ -194,7 +194,7 @@
                     </div>
                      <div class="row">
                         <div class="form-group col-sm-6">
-                            <input id="fname" type="text" name="fname" class="form-control border-right-0" placeholder="Your Name" required>
+                            <input id="full_name" type="text" name="full_name" class="form-control border-right-0" placeholder="Your Name" required>
                         </div>
                         <div class="form-group col-sm-6">
                             <input type="email" name="email" class="form-control border-right-0" placeholder="Email" required>
@@ -320,6 +320,11 @@ $(document).ready(function() {
           $('.append_response').hide();
           $('.append_success').show();
           $('.append_success ul').append("<li><i class='fas fa-check'></i> " + data.success + "</i></li>");
+          $('#intrested_in_graphics_design_form')[0].reset();
+          setTimeout(function(){ $('#append_success').hide(); },3000);
+					setTimeout(function(){ $('.interested-popup').modal('hide'); },3000);
+					setTimeout(function(){ $('body').removeClass('modal-open'); },3000);
+					setTimeout(function(){ $('.modal-backdrop').remove(); },3000);
         }
       },
     });

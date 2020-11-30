@@ -29,8 +29,8 @@ class SubscribeEmail extends Mailable
     public function build()
     {
       return $this->view('emails.subscribe', ['data' => $this->data])
-                ->from($this->data['email'], $this->data['fname'])
-                ->replyTo($this->data['email'], $this->data['fname'])
+                ->from($this->data['email'], $this->data['full_name'])
+                ->replyTo($this->data['email'], $this->data['full_name'])
                 ->subject('MyBigAsianWedding Subscription');
     }
 }

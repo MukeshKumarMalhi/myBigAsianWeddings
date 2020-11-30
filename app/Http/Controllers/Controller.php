@@ -38,8 +38,20 @@ class Controller extends BaseController
 
       return response()->json($response_a, 200);
     }
+
     public function categories_anywhere(){
       $categories = DB::table('categories')->where('parent_category_id', null)->get();
       return $categories;
+    }
+
+    public function preg_array_key_exists($pattern, $array) {
+      $keys = array_keys($array);
+      $item = preg_grep($pattern,$keys);
+      return $item;
+    }
+
+    public function sayHello($value)
+    {
+      return $value;
     }
 }

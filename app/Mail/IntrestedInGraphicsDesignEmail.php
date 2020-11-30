@@ -29,8 +29,8 @@ class IntrestedInGraphicsDesignEmail extends Mailable
     public function build()
     {
       return $this->view('emails.intrested', ['data' => $this->data])
-                ->from($this->data['email'], $this->data['fname'])
-                ->replyTo($this->data['email'], $this->data['fname'])
+                ->from($this->data['email'], $this->data['full_name'])
+                ->replyTo($this->data['email'], $this->data['full_name'])
                 ->subject('MyBigAsianWedding Intrested Graphics Design');
     }
 }

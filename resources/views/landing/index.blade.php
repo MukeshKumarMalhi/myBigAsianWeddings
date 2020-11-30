@@ -12,7 +12,7 @@
 
     <div class="container header-title-top pt-1 pt-responsive-1 pb-80 text-light link-light text-center align-self-end align-content-end justify-content-end">
         <h1 class="font-gotham-bold">UK’s Free Online <span class="txt-rotate text-warning" data-period="1000" data-rotate='[ "Asian", "Chinese", "Indian", "Pakistani" ]'></span>&nbsp;Wedding Planning Tool</h1>
-        <h3 class="font-gotham-bold text-warning">Let’s find the reliable local wedding suppliers nearest to you from <span class="text-light">{{ $total_listings }}</span> verified wedding suppliers.</h3>
+        <h3 class="font-gotham-bold text-warning">Let’s find the reliable local wedding suppliers nearest to you from <span class="text-light">{{ number_format($total_listings) }}</span> verified wedding suppliers.</h3>
     </div>
 </div>
 <div class="pt-100 pb-50">
@@ -25,7 +25,7 @@
                       @csrf
                         <div class="row form-group">
                             <div class="form-group bs-form-db col-md-5">
-                                <input type="text" name="fname" placeholder="Name" class="form-control text-light bg-transparent areaofp location_name_searched" autocomplete="off" required>
+                                <input type="text" name="full_name" placeholder="Name" class="form-control text-light bg-transparent areaofp location_name_searched" autocomplete="off" required>
                             </div>
                             <div class="form-group bs-form-db col-md-5">
                                 <input type="email" name="email" placeholder="Email Address" class="form-control text-light bg-transparent areaofp location_name_searched rounded-0" autocomplete="off" required>
@@ -145,7 +145,9 @@
                             <p><a href="#">Photographers</a></p>
                             <p><a href="#">Wedding Cards</a></p>
                             <p><a href="#">Weddings Planners</a></p>
-                            <p><a href="#              </div>
+                            <p><a href="#">Wedding Gifts</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4 col-lg-5">

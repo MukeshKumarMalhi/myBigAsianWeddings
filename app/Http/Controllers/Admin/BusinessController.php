@@ -1066,12 +1066,6 @@ class BusinessController extends Controller
       return view('admins.edit_data_submission', ['sections' => $sections, 'business_listing_id' => $id, 'sub_category' => $sub_category, 'sub_categories' => $sub_categories]);
     }
 
-    public function preg_array_key_exists($pattern, $array) {
-      $keys = array_keys($array);
-      $item = preg_grep($pattern,$keys);
-      return $item;
-    }
-
     public function store_fill_section_form(Request $request){
       $rules = array(
         'business_name_answer_text' => 'required',

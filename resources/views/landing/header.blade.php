@@ -3,7 +3,7 @@ if(Request::getRequestUri() == "/business-register"){ ?>
   <div class="bg-top-url bg-dark" style="background-image: url('{{ asset('web_asset/images/bg-header-business.jpg') }}');">
       <div class="container-fluid py-3">
           <div class="row text-light light-link">
-              <div class="col-sm-6 text-center text-sm-left"><img src="{{ asset('web_asset/images/mybigasianwedding-logo.png') }}" class="img-fluid"></div>
+              <div class="col-sm-6 text-center text-sm-left"><a href="{{ url('/') }}"><img src="{{ asset('web_asset/images/mybigasianwedding-logo.png') }}" class="img-fluid"></a></div>
               <div class="col-sm-6 text-center text-sm-right"><p><span class="m-3">Are you a Wedding Supplier?</span><a href="{{ url('/business-register') }}" class="btn btn-danger">Register Your Business</a></p></div>
           </div>
       </div>
@@ -16,7 +16,7 @@ if(Request::getRequestUri() == "/business-register"){ ?>
   <div class="bg-top-url bg-dark" style="background-image: url('{{ asset('web_asset/images/bg-header4.jpg') }}');">
       <div class="container-fluid py-3">
           <div class="row text-light light-link">
-              <div class="col-sm-6 text-center text-sm-left"><img src="{{ asset('web_asset/images/mybigasianwedding-logo.png') }}" class="img-fluid"></div>
+              <div class="col-sm-6 text-center text-sm-left"><a href="{{ url('/') }}"><img src="{{ asset('web_asset/images/mybigasianwedding-logo.png') }}" class="img-fluid"></a></div>
               <div class="col-sm-6 text-center text-sm-right"><p><span class="m-3">Are you a Wedding Supplier?</span><a href="{{ url('/business-register') }}" class="btn btn-danger">Register Your Business</a></p></div>
           </div>
       </div>
@@ -29,7 +29,7 @@ if(Request::getRequestUri() == "/business-register"){ ?>
   <div class="bg-top-url bg-dark" style="background-image: url('{{ asset('web_asset/images/bg-header-business.jpg') }}');">
     <div class="container-fluid py-3">
       <div class="row text-light light-link">
-        <div class="col-sm-6 text-center text-sm-left"><img src="{{ asset('web_asset/images/mybigasianwedding-logo.png') }}" class="img-fluid"></div>
+        <div class="col-sm-6 text-center text-sm-left"><a href="{{ url('/') }}"><img src="{{ asset('web_asset/images/mybigasianwedding-logo.png') }}" class="img-fluid"></a></div>
         <div class="col-sm-6 text-center text-sm-right"><p><span class="m-3">Are you a Wedding Supplier?</span><a href="{{ url('/business-register') }}" class="btn btn-danger">Register Your Business</a></p></div>
       </div>
     </div>

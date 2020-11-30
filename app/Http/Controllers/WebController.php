@@ -58,7 +58,7 @@ class WebController extends Controller
   public function store_subscription_send_mail(Request $request)
   {
     $rules = array(
-      'fname' => 'required|regex:/^[a-zA-Z]+$/u|max:255|string',
+      'full_name' => 'required|max:255|string',
       'email' => 'required|regex:^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^|email'
     );
 
@@ -66,7 +66,7 @@ class WebController extends Controller
     if($error->fails()){
       return response()->json(['errors' => $error->errors()->all()]);
     }else{
-      Mail::to('mukeshkumarmalhi7731@gmail.com')->queue(new SubscribeEmail($request->all()));
+      Mail::to('omar@mybigasianwedding.co.uk')->queue(new SubscribeEmail($request->all()));
       if( count(Mail::failures()) > 0 ) {
         $failures_array = array();
         foreach(Mail::failures as $email_subscribe) {
@@ -82,7 +82,7 @@ class WebController extends Controller
   public function store_intrested_in_graphics_desgin_send_mail(Request $request)
   {
     $rules = array(
-      'fname' => 'required|regex:/^[a-zA-Z]+$/u|max:255|string',
+      'full_name' => 'required|max:255|string',
       'email' => 'required|regex:^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^|email',
       'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|numeric',
       'intrested_in' => 'required',
@@ -94,7 +94,7 @@ class WebController extends Controller
     if($error->fails()){
       return response()->json(['errors' => $error->errors()->all()]);
     }else{
-      Mail::to('mukeshkumarmalhi7731@gmail.com')->queue(new IntrestedInGraphicsDesignEmail($request->all()));
+      Mail::to('omar@mybigasianwedding.co.uk')->queue(new IntrestedInGraphicsDesignEmail($request->all()));
       if( count(Mail::failures()) > 0 ) {
         $failures_array = array();
         foreach(Mail::failures as $email_subscribe) {
@@ -332,11 +332,11 @@ class WebController extends Controller
 
 
 
-  public function preg_array_key_exists($pattern, $array) {
-    $keys = array_keys($array);
-    $item = preg_grep($pattern,$keys);
-    return $item;
-  }
+  // public function preg_array_key_exists($pattern, $array) {
+  //   $keys = array_keys($array);
+  //   $item = preg_grep($pattern,$keys);
+  //   return $item;
+  // }
 
   public function serach_sub_category_exists(Request $request) {
     $sub_categories = DB::table('categories')->where('parent_category_id', '=', $request->category_id)->get()->toArray();
@@ -441,6 +441,17 @@ class WebController extends Controller
           }
         }
       }
+      $details_id = uniqid();
+        $details_form_data = array(
+          'id' => $details_id,
+          'business_listing_id' => $id,
+          'created_user_id' => null,
+          'updated_user_id' => null,
+          'created_by_user' => 'Website User',
+          'updated_by_user' => null
+        );
+
+        $business_listing_details = BusinessListingDetail::create($details_form_data);
       return response()->json(['success' => 'Business registered successfully', 'business_listing_id' => $id], 200);
     }
   }

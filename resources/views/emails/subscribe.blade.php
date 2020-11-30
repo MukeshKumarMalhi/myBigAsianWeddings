@@ -5,7 +5,7 @@
   </head>
   <body>
     <h2>MyBigAsianWedding Subscription Email</h2>
-    <p>{{ $data['fname'] }}</p>
-    <p>{{ $data['email'] }}</p>
+    <p>Name: {{ $data['full_name'] }}</p>
+    <p>Email: {{ $data['email'] }}</p>
   </body>
 </html>
