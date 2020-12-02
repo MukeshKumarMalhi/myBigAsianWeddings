@@ -10,12 +10,12 @@
     <ul></ul>
   </div>
 </div>
-<div class="steps-box" style="min-height: 680px;">
+<div class="steps-box">
   <form method="post" role="form" class="form-horizontal" id="business-register-data" enctype="multipart/form-data" novalidate>
     @csrf
   <?php
     $step = 1;
-    $hard_code_array = array('Contact Details', 'Description', 'Upload Your Photos', 'Experience', 'Personal Message from the Manager');
+    $hard_code_array = array('Contact Details', 'Description', 'Upload Your Photos', 'Experience', 'Cultural Experience', 'Pricing', 'Social', 'Getting Here');
     foreach ($sections as $key => $value) {
       $class_active = "";
       if($value->section_name == "Contact Details"){
@@ -23,29 +23,29 @@
       }
 
       $class_step = "step".$step;
-      if($value->section_name == "Special Offers"){
+      if($value->section_name == "Personal Message from the Manager" || $value->section_name == "Special Offers"){
         $class_step = "";
       }
-      if($value->section_name == "Experience"){
-        echo "<div class='container py-3 $class_step $class_active'><div class='row'><div class='col-sm-6'>";
+      // if($value->section_name != "Personal Message from the Manager" || $value->section_name != "Special Offers"){
+      //   // echo "<div class='$class_active $class_step'>";
+      //   echo $class_step;
+      // }
+      // if (in_array($value->section_name, $hard_code_array)) {
+      //   echo "<div class='$class_active $class_step'>";
+      // }
+      if($value->section_name == "Experience" || $value->section_name == "Pricing"){
+        echo "<div class='bg-warning-l $class_step $class_active'><div class='container py-3'><div class='row'><div class='col-sm-6'>";
       }
-      if($value->section_name == "Special Offers"){
+      if($value->section_name == "Personal Message from the Manager" || $value->section_name == "Special Offers"){
         echo "<div class='col-sm-6'>";
       }
-      if($value->section_name != "Experience" || $value->section_name != "Special Offers") {
+      if($value->section_name != "Experience" || $value->section_name != "Pricing" || $value->section_name != "Personal Message from the Manager" || $value->section_name != "Special Offers") {
         echo "<div class='container py-3 $class_step $class_active'>";
       }
-      if($value->section_name == "Experience"){
+      if($value->section_name == "Experience" || $value->section_name == "Pricing"){
         echo "";
-      }
-      if($value->section_name == "Contact Details"){
-        echo "";
-      }
-      elseif($value->section_name == "Special Offers"){
-        echo "<div class='float-right ml-2 my-1' style='cursor: pointer;'><span class='step-previous'><i class='fal fa-long-arrow-left'></i> Back</span></div>";
-      }
-      else {
-        echo "<div class='form-group' style='cursor: pointer;'><div class='float-right ml-2 my-1'><span class='step-previous'><i class='fal fa-long-arrow-left'></i> Back</span> | <span class='StepSkip'>Skip <i class='fal fa-long-arrow-right'></i></span></div></div>";
+      }else {
+        echo "<div class='form-group'><div class='float-right ml-2 my-1'><span class='step-previous'><i class='fal fa-long-arrow-left'></i> Back</span> | <span class='StepSkip'>Skip <i class='fal fa-long-arrow-right'></i></span></div></div>";
       }
       echo "<div class='form-group'><h2 class='font-gotham-bold'>$value->section_name</h2></div>";
 
@@ -55,7 +55,7 @@
       $arr_names = array();
       foreach ($value->questions as $key => $val) {
         array_push($arr_names, $val->question_name);
-        if($value->section_name == "Experience" || $value->section_name == "Special Offers"){
+        if($value->section_name == "Experience" || $value->section_name == "Pricing" || $value->section_name == "Personal Message from the Manager" || $value->section_name == "Special Offers"){
           echo "<div class='form-group col-sm-12'>";
         }
         elseif ($value->section_name == "Social"){
@@ -97,6 +97,9 @@
         if($val->question_mandatory == true){
           $question_mandatory = 'required';
         }
+        // if($val->question_name == "photos"){
+        //   $images_multiple = 'multiple';
+        // }
         if($val->question_name == 'location'){
           $question_class = 'areaofuk';
         }
@@ -153,7 +156,7 @@
         if(($val->type == "text") && ($val->question_name == "address" || $val->question_name == "location" || $val->question_name == "postcode")){
           if($val->question_name == "address"){
             echo "</div>";
-            $category_dropbox = "<div class='form-group col-sm-6'><label class='font-gotham-medium'>Select Category</label><select class='form-control border-warning' name='category_id' id='category_id'><option value=''>Select Category</option>";
+            $category_dropbox = "<div class='form-group col-sm-6'><label class='font-gotham-medium'>Select Category</label><select class='form-control border-warning' name='category_id' id='category_id' required><option value=''>Select Category</option>";
             foreach ($categories as $key => $cat) {
               $category_dropbox .= "<option value='".$cat->id."'>".$cat->category_name."</option>";
             }
@@ -175,26 +178,27 @@
         }
       }
       echo "</div>";
-      if($value->section_name == "Experience"){
+      if($value->section_name == "Experience" || $value->section_name == "Pricing"){
         echo "";
-      }elseif($value->section_name == "Special Offers") {
-        echo "<div class='form-group float-right'><button type='submit' class='btn btn-danger font-weight-bold px-5 mb-2 mt-5'>Save</button></div>";
-      }else{
-        echo "<div class='form-group float-right'><button type='button' class='btn btn-danger font-weight-bold px-5 class_check mb-2 mt-5 step-next'>Next</button></div>";
+      }else {
+        echo "<div class='form-group float-right'><button type='button' class='btn btn-danger font-weight-bold px-5 mb-2 step-next'>Next</button></div>";
       }
       foreach($arr_names as $nname)
       {
         echo '<input type="hidden" name="all_names[]" value="'. $nname. '">';
       }
-      if($value->section_name == "Experience"){
+      if($value->section_name == "Experience" || $value->section_name == "Pricing"){
         echo "</div>";
       }
-      if($value->section_name == "Special Offers"){
-        echo "</div></div></div>";
+      if($value->section_name == "Personal Message from the Manager" || $value->section_name == "Special Offers"){
+        echo "</div></div></div></div>";
       }
-      if($value->section_name != "Experience" || $value->section_name != "Special Offers") {
+      if($value->section_name != "Experience" || $value->section_name != "Pricing" || $value->section_name != "Personal Message from the Manager" || $value->section_name != "Special Offers") {
         echo "</div>";
       }
+      // if (in_array($value->section_name, $hard_code_array)) {
+      //   echo "</div>";
+      // }
       $step++;
     }
 
@@ -261,83 +265,80 @@ $(document).ready(function() {
       $(".areaofuk").val(location_id.location_name);
     });
 
-    // $('#business-register-data').validate({
-    //   // errorElement: 'span',
-    //   errorClass: 'help-block',
-    //    highlight: function(element, errorClass, validClass) {
-    //      $(element).closest('.form-group').addClass("has-error");
-    //    },
-    //    unhighlight: function(element, errorClass, validClass) {
-    //      $(element).closest('.form-group').removeClass("has-error");
-    //    },
-    //   rules: {
-    //     business_name_answer_text: {
-    //       required: true
-    //     },
-    //     email_answer_text: {
-    //       required: true,
-    //       email: true
-    //     },
-    //     phone_number_answer_text: {
-    //       required: true,
-    //       digits: true
-    //       // minlength: 10
-    //     },
-    //   },
-    //
-    //   submitHandler: function(form) {
-    $('#business-register-data').on('submit', function(event){
-      event.preventDefault();
-
-      $.ajax({
-        url:"{{ url('store_business_register_data') }}",
-        type:"POST",
-        data:new FormData(this),
-        dataType:"JSON",
-        contentType:false,
-        cache:false,
-        processData:false,
-        success:function(data){
-          $('#append_errors ul').text('');
-          $('#append_success ul').text('');
-          if(data.errors)
-          {
-            $.each(data.errors, function(i, error){
-              if(data.errors[i] == "The business name answer text has already been taken."){
-                $('input[name=business_name_answer_text]').after('<label id="business_name_answer_text_already_exists-error" class="help-block" for="business_name_answer_text">Sorry... This Business name is already taken..</label>');
-              }else {
-                $('#append_errors').show();
-                $('#append_errors ul').append("<li>" + data.errors[i] + "</li>");
-              }
-            });
-          }else {
-            $('#append_errors').hide();
-            $('#append_success').show();
-            $('#append_success ul').append("<li>"+data.success+"</li>");
-            setTimeout(function(){ $('#append_success').hide(); },3000);
-            var url_redirect = "{{ url('/congratulations') }}";
-            window.location = url_redirect;
-            // var slug = $("input[name=slug_answer_text]").val();
-            // var selected_category = $("#category_id option:selected").text();
-            // var selected_sub_value = $("#sub_category_id option:selected").val();
-            // if (typeof selected_sub_value !== "undefined" && selected_sub_value != "") {
-            //   selected_category = $("#sub_category_id option:selected").text();
-            // }
-            // var sel_cat = spaceByhyphen(selected_category);
-            // if(slug == ""){
-            //   var business_name = $("input[name=business_name_answer_text]").val();
-            //   var slug = spaceByhyphen(business_name);
-            // }
-            // var url_web = "{{ url('/business-register-step2') }}";
-            // var url = url_web+'/wedding-'+sel_cat+'/'+slug+'/'+data.business_listing_id;
-            // console.log(url);
-            // return false;
-            // window.location = url;
-            // var url_redirect = "{{ url('/congratulations') }}";
-            // window.location = url_redirect+'/'+slug+;
-          }
+    $('#business-register-data').validate({
+      // errorElement: 'span',
+      errorClass: 'help-block',
+       highlight: function(element, errorClass, validClass) {
+         $(element).closest('.form-group').addClass("has-error");
+       },
+       unhighlight: function(element, errorClass, validClass) {
+         $(element).closest('.form-group').removeClass("has-error");
+       },
+      rules: {
+        business_name_answer_text: {
+          required: true
         },
-      });
+        email_answer_text: {
+          required: true,
+          email: true
+        },
+        phone_number_answer_text: {
+          required: true,
+          digits: true
+          // minlength: 10
+        },
+      },
+
+      submitHandler: function(form) {
+
+        $.ajax({
+          url:"{{ url('store_business_register_data') }}",
+          type:"POST",
+          data:new FormData(form),
+          dataType:"JSON",
+          contentType:false,
+          cache:false,
+          processData:false,
+          success:function(data){
+            $('#append_errors ul').text('');
+            $('#append_success ul').text('');
+            if(data.errors)
+            {
+              $.each(data.errors, function(i, error){
+                if(data.errors[i] == "The business name answer text has already been taken."){
+                  $('input[name=business_name_answer_text]').after('<label id="business_name_answer_text_already_exists-error" class="help-block" for="business_name_answer_text">Sorry... This Business name is already taken..</label>');
+                }else {
+                  $('#append_errors').show();
+                  $('#append_errors ul').append("<li>" + data.errors[i] + "</li>");
+                }
+              });
+            }else {
+              $('#append_errors').hide();
+              $('#append_success').show();
+              $('#append_success ul').append("<li>"+data.success+"</li>");
+              setTimeout(function(){ $('#append_success').hide(); },1000);
+              var slug = $("input[name=slug_answer_text]").val();
+              var selected_category = $("#category_id option:selected").text();
+              var selected_sub_value = $("#sub_category_id option:selected").val();
+              if (typeof selected_sub_value !== "undefined" && selected_sub_value != "") {
+                selected_category = $("#sub_category_id option:selected").text();
+              }
+              var sel_cat = spaceByhyphen(selected_category);
+              if(slug == ""){
+                var business_name = $("input[name=business_name_answer_text]").val();
+                var slug = spaceByhyphen(business_name);
+              }
+              var url_web = "{{ url('/business-register-step2') }}";
+              var url = url_web+'/wedding-'+sel_cat+'/'+slug+'/'+data.business_listing_id;
+              // console.log(url);
+              // return false;
+              window.location = url;
+              // var url_redirect = "{{ url('/congratulations') }}";
+              // window.location = url_redirect+'/'+slug+;
+            }
+          },
+        });
+      }
     });
 
     var question_name_state = false;
@@ -442,30 +443,30 @@ $(document).ready(function() {
                current_fs = $('.step3');
                next_fs = $('.step4');
              }
-             // else if($('.step4').is(":visible")){
-             //   current_fs = $('.step4');
-             //   next_fs = $('.step6');
-             // }
+             else if($('.step4').is(":visible")){
+               current_fs = $('.step4');
+               next_fs = $('.step6');
+             }
              // else if($('.step5').is(":visible")){
              //   current_fs = $('.step5');
              //   next_fs = $('.step6');
              // }
-             // else if($('.step6').is(":visible")){
-             //   current_fs = $('.step6');
-             //   next_fs = $('.step7');
-             // }
-             // else if($('.step7').is(":visible")){
-             //   current_fs = $('.step7');
-             //   next_fs = $('.step9');
-             // }
+             else if($('.step6').is(":visible")){
+               current_fs = $('.step6');
+               next_fs = $('.step7');
+             }
+             else if($('.step7').is(":visible")){
+               current_fs = $('.step7');
+               next_fs = $('.step9');
+             }
              // else if($('.step8').is(":visible")){
              //   current_fs = $('.step8');
              //   next_fs = $('.step9');
              // }
-             // else if($('.step9').is(":visible")){
-             //   current_fs = $('.step9');
-             //   next_fs = $('.step10');
-             // }
+             else if($('.step9').is(":visible")){
+               current_fs = $('.step9');
+               next_fs = $('.step10');
+             }
                next_fs.show();
                current_fs.hide();
                step_fs.addClass("active")
@@ -492,31 +493,31 @@ $(document).ready(function() {
        //     next_fs = $('.step4');
        //     step_prs_fs = $("#stepform-check li.step5-p");
        // }
-       // else if ($('.step6').is(":visible")){
-       //     current_fs = $('.step6');
-       //     next_fs = $('.step4');
-       //     step_prs_fs = $("#stepform-check li.step6-p");
-       // }
-       // else if ($('.step7').is(":visible")){
-       //     current_fs = $('.step7');
-       //     next_fs = $('.step6');
-       //     step_prs_fs = $("#stepform-check li.step7-p");
-       // }
+       else if ($('.step6').is(":visible")){
+           current_fs = $('.step6');
+           next_fs = $('.step4');
+           step_prs_fs = $("#stepform-check li.step6-p");
+       }
+       else if ($('.step7').is(":visible")){
+           current_fs = $('.step7');
+           next_fs = $('.step6');
+           step_prs_fs = $("#stepform-check li.step7-p");
+       }
        // else if ($('.step8').is(":visible")){
        //     current_fs = $('.step8');
        //     next_fs = $('.step7');
        //     step_prs_fs = $("#stepform-check li.step8-p");
        // }
-       // else if ($('.step9').is(":visible")){
-       //     current_fs = $('.step9');
-       //     next_fs = $('.step7');
-       //     step_prs_fs = $("#stepform-check li.step9-p");
-       // }
-       // else if ($('.step10').is(":visible")){
-       //     current_fs = $('.step10');
-       //     next_fs = $('.step9');
-       //     step_prs_fs = $("#stepform-check li.step10-p");
-       // }
+       else if ($('.step9').is(":visible")){
+           current_fs = $('.step9');
+           next_fs = $('.step7');
+           step_prs_fs = $("#stepform-check li.step9-p");
+       }
+       else if ($('.step10').is(":visible")){
+           current_fs = $('.step10');
+           next_fs = $('.step9');
+           step_prs_fs = $("#stepform-check li.step10-p");
+       }
        next_fs.show();
        current_fs.hide();
        step_prs_fs.removeClass("active")
@@ -534,30 +535,30 @@ $(document).ready(function() {
            current_fs = $('.step3');
            next_fs = $('.step4');
        }
-       // else if ($('.step4').is(":visible")){
-       //     current_fs = $('.step4');
-       //     next_fs = $('.step6');
-       // }
+       else if ($('.step4').is(":visible")){
+           current_fs = $('.step4');
+           next_fs = $('.step6');
+       }
        // else if ($('.step5').is(":visible")){
        //     current_fs = $('.step5');
        //     next_fs = $('.step6');
        // }
-       // else if ($('.step6').is(":visible")){
-       //     current_fs = $('.step6');
-       //     next_fs = $('.step7');
-       // }
-       // else if ($('.step7').is(":visible")){
-       //     current_fs = $('.step7');
-       //     next_fs = $('.step9');
-       // }
+       else if ($('.step6').is(":visible")){
+           current_fs = $('.step6');
+           next_fs = $('.step7');
+       }
+       else if ($('.step7').is(":visible")){
+           current_fs = $('.step7');
+           next_fs = $('.step9');
+       }
        // else if ($('.step8').is(":visible")){
        //     current_fs = $('.step8');
        //     next_fs = $('.step9');
        // }
-       // else if ($('.step9').is(":visible")){
-       //     current_fs = $('.step9');
-       //     next_fs = $('.step10');
-       // }
+       else if ($('.step9').is(":visible")){
+           current_fs = $('.step9');
+           next_fs = $('.step10');
+       }
        next_fs.show();
        current_fs.hide();
        step_prs_fs.removeClass("active")

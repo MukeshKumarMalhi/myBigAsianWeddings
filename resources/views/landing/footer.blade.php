@@ -6,7 +6,6 @@
                <p class="d-inline-block align-middle my-2 ml-md-2">© 2020 My Big Asian Wedding Ltd</p>
            </div>
            <div class="col-md-6 text-center text-md-right mb-3">
-               <p class="d-inline-block align-middle my-2 mr-md-2">Cookie Policy | Privacy Policy | Terms & Conditions </p>
                <div class="bs-socal-media text-center d-inline-block align-middle">
                    <a href="https://www.facebook.com/mybigasianwedding" target="_blank"><span class="fa-stack"><i class="fas fa-circle fa-stack-2x text-warning"></i><i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i></span></a>
                    <a href="https://www.instagram.com/mybigasianweddinguk/" target="_blank"><span class="fa-stack"><i class="fas fa-circle fa-stack-2x text-warning"></i><i class="fab fa-instagram fa-stack-1x fa-inverse"></i></span></a>

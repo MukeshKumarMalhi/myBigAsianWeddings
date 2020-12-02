@@ -2,32 +2,31 @@
 @section('title','Congatulations')
 
 @section('content')
-<div class="container py-5 text-center">
-    <p>We have over <span class="text-warning font-gotham-bold">10 years</span> of experience working in the wedding industry in the UK and as we develop one of the most powerful, artificial intelligence supported and completely FREE wedding planning tool, we want to make sure we provide one-stop wedding planning solution to our users with all the reliable wedding suppliers and vendors available on a single click.</p>
-</div>
-<div class="container pb-5">
-    <div class="bg-top-url text-light text-center p-4" style="background-image: url('web_asset/images/bg-congratulations.png');">
-        <div style="height:260px;"></div>
-        <h2 class="text-warning font-gotham-bold mb-4">Make An Impression On Your Clientele</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <p>While our users are our top priority, we do acknowledge that all the business suppliers and vendors need to be well-equipped with the creative visuals, strong social media presence, impractful website and other digital marketing tools to impress your potential clients and grow your business. For this very reason, we are offering you over <span class="text-warning font-gotham-bold">50%</span> discount for the next <span class="text-warning font-gotham-bold">7 days</span> to build and grow the digital presence of your business.</p>
-            </div>
-            <div class="col-md-6">
-                <h2 class="text-warning font-gotham-bold">Expand Your Business On Digital Platforms</h2>
-                <p><strong>Over <strong style="font-size: 20px;">50<sup>%</sup></strong> Discount On All Packages</strong><br>Discount Available For Next</p>
-
-                <div class="countdown countdown-light" data-Date='January 1, 2021'>
-                    <div class="countdown-running"></div>
-                    <div class="countdown-ending">
-                        <h3>Book closed</h3>
+<div class="overflow-hidden">
+    <div class="container py-5">
+        <div class="border px-4 mt-4 bg-discount-packages" style="margin: auto; max-width: 1200px;">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-8">
+                    <div class="py-4">
+                        <h2 class="text-warning font-gotham-bold mb-4">Make An Impression On Your Client</h2>
+                        <p>While our users are our top priority, we do acknowledge that all the business suppliers and vendors need to be well-equipped with the creative visuals, strong social media presence, impractful website and other digital marketing tools to impress your potential clients and grow your business. For this very reason, we are offering you over <span class="text-warning font-gotham-bold">50%</span> discount tools build and grow the digital presence of your business.</p>
                     </div>
                 </div>
-
+                <div class="col-md-6 col-lg-4">
+                    <div class="text-center">
+                        <img src="{{ asset('web_asset/images/Group 2080.png') }}" class="img-fluid margin-negetive" alt="50%Off Discount On All Packages">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<style type="text/css">
+    .margin-negetive{margin-top:-20px;margin-bottom:-20px;}
+    .bg-discount-packages{background-color: #ffffff; position:relative; width:90%;}
+    .bg-discount-packages:before{content:''; display:block;position:absolute; z-index: -1; transform: translate(-50%,-50%) rotate(-180deg); left:0;top:0; width: 140px; height: 75px;background-image: url(web_asset/images/group-2114.png); background-repeat:no-repeat;}
+    .bg-discount-packages:after{content:''; display:block;position:absolute; z-index: -1; transform: translate(-50%,-50%); left:100%;top:100%;width: 140px; height: 75px;background-image: url(web_asset/images/group-2114.png); background-repeat:no-repeat;}
+</style>
 
 <div class="container py-4">
     <h2 class="font-gotham-bold">Graphic Design</h2>
@@ -35,7 +34,7 @@
     <div class="row text-center">
         <div class="col-6 col-md-3">
             <div class="card rounded-0 border-0 bg-grey bs-product-box">
-                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/cogratz-img1.jpg');"></div>
+                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/Logo Design.jpg');"></div>
                 <div class="px-3 pt-3 pb-2">
                     <h4 class="font-gotham-medium">Logo Design</h4>
                     <p>Get a custom designed unique logo for your brand to stand out from the crowd.</p>
@@ -46,7 +45,7 @@
         </div>
         <div class="col-6 col-md-3">
             <div class="card rounded-0 border-0 bg-grey bs-product-box">
-                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/cogratz-img2.jpg');"></div>
+                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/Brand Identity Design.jpg');"></div>
                 <div class="px-3 pt-3 pb-2">
                     <h4 class="font-gotham-medium">Brand Identity Design</h4>
                     <p>Impress your customers with a complete set of professionally designed branding items</p>
@@ -57,11 +56,22 @@
         </div>
         <div class="col-6 col-md-3">
             <div class="card rounded-0 border-0 bg-grey bs-product-box">
-                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/cogratz-img3.jpg');"></div>
+                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/Leaflet  Flyer Design.jpg');"></div>
                 <div class="px-3 pt-3 pb-2">
                     <h4 class="font-gotham-medium">Leaflet / Flyer Design</h4>
                     <p>Promote your business through attention grabbing leaflet / flyer design to target local clientele.</p>
                     <h4 class="font-gotham-bold"><del>£120</del> <span style="color: #e41f25;">£50</span></h4>
+                </div>
+                <a href="#" class="btn btn-warning btn-block rounded-0" data-toggle="modal" data-target=".interested-popup">Interested</a>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card rounded-0 border-0 bg-grey bs-product-box">
+                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/Digital Brochure Design.jpg');"></div>
+                <div class="px-3 pt-3 pb-2">
+                    <h4 class="font-gotham-medium">Digital Brochure Design</h4>
+                    <p>Email or whatsapp your beautifully designed 6 page digital brochure to your potential clients to make an impression and make a sale.</p>
+                    <h4 class="font-gotham-bold"><del>£250</del> <span style="color: #e41f25;">£120</span></h4>
                 </div>
                 <a href="#" class="btn btn-warning btn-block rounded-0" data-toggle="modal" data-target=".interested-popup">Interested</a>
             </div>
@@ -71,49 +81,49 @@
 </div>
 
 <div class="container py-4">
-    <h2 class="font-gotham-bold">Photographers Price</h2>
-    <p>offers the largest directory of wedding suppliers in the UK. Search and find the perfect suppliers you’ve always dreamed about and build your wedding dream team exactly the way you envisioned it!</p>
+    <h2 class="font-gotham-bold">Website / Mobile App Development</h2>
+    <p>In this digital world you need to be equipped with all the assets to always stay ahead from your competitors. Our talented developers can develop user-friendly mobile-responsive websites or apps for your brand to put you in direct contact with your clientele.</p>
     <div class="row text-center">
         <div class="col-6 col-md-3">
             <div class="card rounded-0 border-0 bg-grey bs-product-box">
-                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/cogratz-img5.jpg');"></div>
+                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/Customisable Website.jpg');"></div>
                 <div class="px-3 pt-3 pb-2">
-                    <h4 class="font-gotham-medium">Lorem Ipsum</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <h4 class="font-gotham-bold"><del>£350</del> <span style="color: #e41f25;">£250</span></h4>
+                    <h4 class="font-gotham-medium">Customisable Website</h4>
+                    <p>We can design and develop a 5 page customisable mobile responsive and SEO friendly website for you to highlight your services and establish your online presence.</p>
+                    <h4 class="font-gotham-bold"><del>£500</del> <span style="color: #e41f25;">£250</span></h4>
                 </div>
                 <a href="#" class="btn btn-warning btn-block rounded-0" data-toggle="modal" data-target=".interested-popup">Interested</a>
             </div>
         </div>
         <div class="col-6 col-md-3">
             <div class="card rounded-0 border-0 bg-grey bs-product-box">
-                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/cogratz-img6.jpg');"></div>
+                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/Shopify eCommerce Website.jpg');"></div>
                 <div class="px-3 pt-3 pb-2">
-                    <h4 class="font-gotham-medium">Lorem Ipsum</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <h4 class="font-gotham-bold"><del>£350</del> <span style="color: #e41f25;">£250</span></h4>
+                    <h4 class="font-gotham-medium">Shopify eCommerce Website</h4>
+                    <p>Are you planning to sell your services or wedding related products online? Let us setup the most powerful eCommerce website for you to increase your online sales.</p>
+                    <h4 class="font-gotham-bold"><del>£800</del> <span style="color: #e41f25;">£400</span></h4>
                 </div>
                 <a href="#" class="btn btn-warning btn-block rounded-0" data-toggle="modal" data-target=".interested-popup">Interested</a>
             </div>
         </div>
         <div class="col-6 col-md-3">
             <div class="card rounded-0 border-0 bg-grey bs-product-box">
-                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/cogratz-img7.jpg');"></div>
+                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/Domain and Web Hosting.jpg');"></div>
                 <div class="px-3 pt-3 pb-2">
-                    <h4 class="font-gotham-medium">Lorem Ipsum</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <h4 class="font-gotham-bold"><del>£350</del> <span style="color: #e41f25;">£250</span></h4>
+                    <h4 class="font-gotham-medium">Domain and Web Hosting</h4>
+                    <p>We offer .co.uk and .com domain names along with web hosting space on UK's most powerful servers. Just tell us the domain and we'll register it for you to host your websites. *Annual fees</p>
+                    <h4 class="font-gotham-bold"><del>£180</del> <span style="color: #e41f25;">£90</span></h4>
                 </div>
                 <a href="#" class="btn btn-warning btn-block rounded-0" data-toggle="modal" data-target=".interested-popup">Interested</a>
             </div>
         </div>
         <div class="col-6 col-md-3">
             <div class="card rounded-0 border-0 bg-grey bs-product-box">
-                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/cogratz-img8.jpg');"></div>
+                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/Mobile App.jpg');"></div>
                 <div class="px-3 pt-3 pb-2">
-                    <h4 class="font-gotham-medium">Lorem Ipsum</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <h4 class="font-gotham-bold"><del>£350</del> <span style="color: #e41f25;">£250</span></h4>
+                    <h4 class="font-gotham-medium">Mobile App</h4>
+                    <p>We can design and develop iOS and Android mobile apps for your business to make sure your clients can do live chat, place orders and track their deliveries using their smartphones.</p>
+                    <h4 class="font-gotham-bold"><del>£1,500</del> <span style="color: #e41f25;">£750</span></h4>
                 </div>
                 <a href="#" class="btn btn-warning btn-block rounded-0" data-toggle="modal" data-target=".interested-popup">Interested</a>
             </div>
@@ -121,51 +131,49 @@
     </div>
 </div>
 <div class="container pt-4 pb-5">
-    <h2 class="font-gotham-bold">Catering Price</h2>
-    <p>offers the largest directory of wedding suppliers in the UK. Search and find the perfect suppliers you’ve always dreamed about and build your wedding dream team exactly the way you envisioned it!</p>
-
-
+    <h2 class="font-gotham-bold">Digital and Social Media Marketing</h2>
+    <p>Nothing sells on its own until you market it correctly in today's highly competitive world. Our digital marketing experts are at your service to make sure you can expand your online audience and use digital / social media platforms to sell your services and grow your business.</p>
     <div class="row text-center">
         <div class="col-6 col-md-3">
             <div class="card rounded-0 border-0 bg-grey bs-product-box">
-                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/cogratz-img9.jpg');"></div>
+                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/Social Media Posts Designs.jpg');"></div>
                 <div class="px-3 pt-3 pb-2">
-                    <h4 class="font-gotham-medium">Lorem Ipsum</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <h4 class="font-gotham-bold"><del>£350</del> <span style="color: #e41f25;">£250</span></h4>
+                    <h4 class="font-gotham-medium">Social Media Posts Designs</h4>
+                    <p>We'll do the research, develop the content and design one month social media content for you. Up to 24 social media posts included.</p>
+                    <h4 class="font-gotham-bold"><del>£300</del> <span style="color: #e41f25;">£150</span></h4>
                 </div>
                 <a href="#" class="btn btn-warning btn-block rounded-0" data-toggle="modal" data-target=".interested-popup">Interested</a>
             </div>
         </div>
         <div class="col-6 col-md-3">
             <div class="card rounded-0 border-0 bg-grey bs-product-box">
-                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/cogratz-img10.jpg');"></div>
+                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/Social Media Management.jpg');"></div>
                 <div class="px-3 pt-3 pb-2">
-                    <h4 class="font-gotham-medium">Lorem Ipsum</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <h4 class="font-gotham-bold"><del>£350</del> <span style="color: #e41f25;">£250</span></h4>
+                    <h4 class="font-gotham-medium">Social Media Management</h4>
+                    <p>Let the experts manage your social media accounts on monthly basis to make sure all the comments and messages are promptly responded.</p>
+                    <h4 class="font-gotham-bold"><del>£300</del> <span style="color: #e41f25;">£150</span></h4>
                 </div>
                 <a href="#" class="btn btn-warning btn-block rounded-0" data-toggle="modal" data-target=".interested-popup">Interested</a>
             </div>
         </div>
         <div class="col-6 col-md-3">
             <div class="card rounded-0 border-0 bg-grey bs-product-box">
-                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/cogratz-img11.jpg');"></div>
+                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/Google PPC Ads.jpg');"></div>
                 <div class="px-3 pt-3 pb-2">
-                    <h4 class="font-gotham-medium">Lorem Ipsum</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <h4 class="font-gotham-bold"><del>£350</del> <span style="color: #e41f25;">£250</span></h4>
+                    <h4 class="font-gotham-medium">Google PPC Ads</h4>
+                    <p>We can help you run paid Google PPC campaigns in your local area to make sure you budget is efficiently spent to get maximum leads.</p>
+                    <h4 class="font-gotham-bold"><del>£400</del> <span style="color: #e41f25;">£200</span></h4>
                 </div>
                 <a href="#" class="btn btn-warning btn-block rounded-0" data-toggle="modal" data-target=".interested-popup">Interested</a>
             </div>
         </div>
         <div class="col-6 col-md-3">
             <div class="card rounded-0 border-0 bg-grey bs-product-box">
-                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/cogratz-img12.jpg');"></div>
+                <div class="card-img-top bg-center-url" style="background-image: url('web_asset/images/Instagram  Facebook Campaigns.jpg');"></div>
                 <div class="px-3 pt-3 pb-2">
-                    <h4 class="font-gotham-medium">Lorem Ipsum</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <h4 class="font-gotham-bold"><del>£350</del> <span style="color: #e41f25;">£250</span></h4>
+                    <h4 class="font-gotham-medium">Instagram / Facebook Campaigns</h4>
+                    <p>We know what audience to target for social media boosting. Let us run your paid campaigns on Instagram and Facebook to capture new leads.</p>
+                    <h4 class="font-gotham-bold"><del>£400</del> <span style="color: #e41f25;">£200</span></h4>
                 </div>
                 <a href="#" class="btn btn-warning btn-block rounded-0" data-toggle="modal" data-target=".interested-popup">Interested</a>
             </div>
@@ -175,12 +183,12 @@
 <!-- Modal -->
 <!-- interested-popup -->
 <div class="modal fade interested-popup" tabindex="-1" role="dialog" aria-labelledby="Review-popupLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content bg-warning">
             <a class="close" data-dismiss="modal"><i class="fal fa-times"></i></a>
             <form method="post" id="intrested_in_graphics_design_form" role="form" class="form-horizontal">
               @csrf
-                <div class="p-3">
+                <div class="p-5">
                     <div class="form-group text-center">
                         <img src="web_asset/images/mybigasianwedding-logo.png" class="img-fluid">
                         <h2 class="font-gotham-medium">Discuss your project with us here</h2>
@@ -214,44 +222,84 @@
 
                     </div>
                     <div class="form-group">
-                        <label class="font-gotham-medium">Interested in</label>
+                        <label class="font-gotham-bold h4 mb-3">Interested in</label>
                         <div class="row bs-custom-checkbox border-light">
-                            <div class="form-group col-2 col-md-4">
+                            <div class="form-group col-3 col-md-3">
                                 <div class="form-check">
                                   <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Logo Design" value="Logo Design">
-                                  <label class="form-check-label" for="Logo Design">Logo Design</label>
+                                  <label class="form-check-label pl-1" for="Logo Design"> Logo Design</label>
                                 </div>
                             </div>
-                            <div class="form-group col-2 col-md-4">
+                            <div class="form-group col-3 col-md-3">
                                 <div class="form-check">
                                   <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Brand Identity Design" value="Brand Identity Design">
-                                  <label class="form-check-label" for="Brand Identity Design">Brand Identity Design</label>
+                                  <label class="form-check-label pl-1" for="Brand Identity Design">Brand Identity Design</label>
                                 </div>
                             </div>
-                            <div class="form-group col-2 col-md-4">
+                            <div class="form-group col-3 col-md-3">
                                 <div class="form-check">
                                   <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Leaflet / Flyer Design" value="Leaflet / Flyer Design">
-                                  <label class="form-check-label" for="Leaflet / Flyer Design">Leaflet / Flyer Design</label>
+                                  <label class="form-check-label pl-1" for="Leaflet / Flyer Design">Leaflet / Flyer Design</label>
                                 </div>
                             </div>
-                            <!-- <div class="form-group col-2 col-md-4">
+                            <div class="form-group col-3 col-md-3">
                                 <div class="form-check">
-                                  <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Lorem Ipsum1" value="Lorem Ipsum">
-                                  <label class="form-check-label" for="Lorem Ipsum1">Lorem Ipsum</label>
+                                  <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Digital Brochure Design" value="Digital Brochure Design">
+                                  <label class="form-check-label pl-1" for="Digital Brochure Design">Digital Brochure Design</label>
                                 </div>
                             </div>
-                            <div class="form-group col-2 col-md-4">
+                        <!-- </div>
+                        <div class="row bs-custom-checkbox border-light"> -->
+                            <div class="form-group col-3 col-md-3">
                                 <div class="form-check">
-                                  <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Lorem Ipsum1" value="Lorem Ipsum">
-                                  <label class="form-check-label" for="Lorem Ipsum1">Lorem Ipsum</label>
+                                  <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Customisable Website" value="Customisable Website">
+                                  <label class="form-check-label pl-1" for="Customisable Website">Customisable Website</label>
                                 </div>
                             </div>
-                            <div class="form-group col-2 col-md-4">
+                            <div class="form-group col-3 col-md-3">
                                 <div class="form-check">
-                                  <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Lorem Ipsum1" value="Lorem Ipsum">
-                                  <label class="form-check-label" for="Lorem Ipsum1">Lorem Ipsum</label>
+                                  <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Shopify eCommerce Website" value="Shopify eCommerce Website">
+                                  <label class="form-check-label pl-1" for="Shopify eCommerce Website">Shopify eCommerce Website</label>
                                 </div>
-                            </div> -->
+                            </div>
+                            <div class="form-group col-3 col-md-3">
+                                <div class="form-check">
+                                  <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Domain and Web Hosting" value="Domain and Web Hosting">
+                                  <label class="form-check-label pl-1" for="Domain and Web Hosting">Domain and Web Hosting</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-3 col-md-3">
+                                <div class="form-check">
+                                  <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Mobile App" value="Mobile App">
+                                  <label class="form-check-label pl-1" for="Mobile App">Mobile App</label>
+                                </div>
+                            </div>
+                        <!-- </div>
+                        <div class="row bs-custom-checkbox border-light"> -->
+                            <div class="form-group col-3 col-md-3">
+                                <div class="form-check">
+                                  <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Social Media Posts Designs" value="Social Media Posts Designs">
+                                  <label class="form-check-label pl-1" for="Social Media Posts Designs">Social Media Posts Designs</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-3 col-md-3">
+                                <div class="form-check">
+                                  <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Social Media Management" value="Social Media Management">
+                                  <label class="form-check-label pl-1" for="Social Media Management">Social Media Management</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-3 col-md-3">
+                                <div class="form-check">
+                                  <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Google PPC Ads" value="Google PPC Ads">
+                                  <label class="form-check-label pl-1" for="Google PPC Ads">Google PPC Ads</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-3 col-md-3">
+                                <div class="form-check">
+                                  <input class="form-check-input" name="intrested_in[]" type="checkbox" id="Instagram / Facebook Campaigns" value="Instagram / Facebook Campaigns">
+                                  <label class="form-check-label pl-1" for="Instagram / Facebook Campaigns">Instagram / Facebook Campaigns</label>
+                                </div>
+                            </div>
                         </div>
 
                     <div class="form-group text-center">
@@ -261,6 +309,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 <script type="text/javascript">
 $(document).ready(function() {

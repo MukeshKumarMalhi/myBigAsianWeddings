@@ -12,7 +12,7 @@
 
     <div class="container header-title-top pt-1 pt-responsive-1 pb-80 text-light link-light text-center align-self-end align-content-end justify-content-end">
         <h1 class="font-gotham-bold">UK’s Free Online <span class="txt-rotate text-warning" data-period="1000" data-rotate='[ "Asian", "Chinese", "Indian", "Pakistani" ]'></span>&nbsp;Wedding Planning Tool</h1>
-        <h3 class="font-gotham-bold text-warning">Let’s find the reliable local wedding suppliers nearest to you from <span class="text-light">{{ number_format($total_listings) }}</span> verified wedding suppliers.</h3>
+        <p class="font-gotham-bold text-warning">Let’s find the reliable local wedding suppliers nearest to you from <span class="text-light">{{ number_format($total_listings) }}</span> verified wedding suppliers.</p>
     </div>
 </div>
 <div class="pt-100 pb-50">
@@ -75,11 +75,11 @@
                             </div>
                             <div class="col-6">
                                 <div class="bs-image-with-text text-light text-center">
-                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-332@2x.png');"></div>
+                                    <div class="bg-center-url" style="background-image: url('web_asset/images/Mask Group -2.png');"></div>
                                     <div class="text-light p-2" style="background-color: #F6992D;">Accessories</div>
                                 </div>
                                 <div class="bs-image-with-text text-light text-center">
-                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-333@2x.png');"></div>
+                                    <div class="bg-center-url" style="background-image: url('web_asset/images/Mask Group 17.png');"></div>
                                     <div class="text-light p-2 text-center" style="background-color: #381C1C;">Wedding Cards</div>
                                 </div>
                                 <div class="bs-image-with-text text-light text-center">
@@ -97,13 +97,13 @@
                                     <div class="text-light p-2 text-center" style="background-color: #23919B;">Venues</div>
                                 </div>
                                 <div class="bs-image-with-text text-light text-center">
-                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-336@2x.png');"></div>
+                                    <div class="bg-center-url" style="background-image: url('web_asset/images/Mask Group -1.png');"></div>
                                     <div class="text-light p-2 text-center" style="background-color: #F6992D;">Photographer</div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="bs-image-with-text text-light text-center">
-                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-348@2x.png');"></div>
+                                    <div class="bg-center-url" style="background-image: url('web_asset/images/Mask Group 1.png');"></div>
                                     <div class="text-light p-2 text-center" style="background-color: #381C1C;">Catering</div>
                                 </div>
                                 <div class="bs-image-with-text text-light text-center">
@@ -111,8 +111,8 @@
                                     <div class="text-light p-2 text-center" style="background-color: #E41F25;">Giveaways</div>
                                 </div>
                                 <div class="bs-image-with-text text-light text-center">
-                                    <div class="bg-center-url" style="background-image: url('https://mybigasianwedding.co.uk/wp-content/uploads/2020/10/Group-350@2x.png');"></div>
-                                    <div class="text-light p-2 text-center" style="background-color: #23919B;">Honey Moon Package</div>
+                                    <div class="bg-center-url" style="background-image: url('web_asset/images/Mask Group 18.png');"></div>
+                                    <div class="text-light p-2 text-center" style="background-color: #23919B;">Honeymoon Package</div>
                                 </div>
                             </div>
                         </div>
@@ -206,64 +206,6 @@
     </div>
 </div>
 <!-- section 4 -->
-<div class="bg-light py-5">
-    <div class="container">
-        <div class="text-center mb-4 mx-auto" style="max-width:850px;">
-            <h2 class="font-gotham-bold">Heading Title</h2>
-            <p>Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Nam In Urna In Elit Tincidunt Elementum Efficitur Sed Massa. Pellentesque Habitant Morbi Tristique Senectus Et Netus Et Malesuada Fames Ac Turpis Egestas.</p>
-        </div>
-        <div class="row no-gutters-5 text-center text-light">
-            <div class="col-4 col-md-3 col-lg mb-3">
-                <div class="h-100 bg-danger p-3 rounded">
-                    <img src="web_asset/images/icons/search.png" class="img-fluid m-auto">
-                    <p class="mb-0">Search</p>
-                </div>
-            </div>
-            <div class="col-4 col-md-3 col-lg mb-3">
-                <div class="h-100 bg-danger p-3 rounded">
-                    <img src="web_asset/images/icons/planning-tools.png" class="img-fluid m-auto">
-                    <p class="mb-0">Planning Tools</p>
-                </div>
-            </div>
-            <div class="col-4 col-md-3 col-lg mb-3">
-                <div class="h-100 bg-danger p-3 rounded">
-                    <img src="web_asset/images/icons/guestlist.png" class="img-fluid m-auto">
-                    <p class="mb-0">Guestlist</p>
-                </div>
-            </div>
-            <div class="col-4 col-md-3 col-lg mb-3">
-                <div class="h-100 bg-danger p-3 rounded">
-                    <img src="web_asset/images/icons/checklist.png" class="img-fluid m-auto">
-                    <p class="mb-0">Checklist</p>
-                </div>
-            </div>
-            <div class="col-4 col-md-3 col-lg mb-3">
-                <div class="h-100 bg-danger p-3 rounded">
-                    <img src="web_asset/images/icons/budget.png" class="img-fluid m-auto">
-                    <p class="mb-0">Budget</p>
-                </div>
-            </div>
-            <div class="col-4 col-md-3 col-lg mb-3">
-                <div class="h-100 bg-danger p-3 rounded">
-                    <img src="web_asset/images/icons/shortlist.png" class="img-fluid m-auto">
-                    <p class="mb-0">Shortlist</p>
-                </div>
-            </div>
-            <div class="col-4 offset-2 offset-md-0 col-md-3 col-lg mb-3">
-                <div class="h-100 bg-danger p-3 rounded">
-                    <img src="web_asset/images/icons/advice.png" class="img-fluid m-auto">
-                    <p class="mb-0">Advice</p>
-                </div>
-            </div>
-            <div class="col-4 col-md-3 col-lg mb-3">
-                <div class="h-100 bg-danger p-3 rounded">
-                    <img src="web_asset/images/icons/gift-lists.png" class="img-fluid m-auto">
-                    <p class="mb-0">Gift Lists</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <script type="text/javascript">
 $(document).ready(function(){
 
