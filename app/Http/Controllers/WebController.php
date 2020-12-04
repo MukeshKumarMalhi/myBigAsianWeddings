@@ -356,8 +356,9 @@ class WebController extends Controller
   public function store_business_register_data(Request $request)
   {
     $rules = array(
-      'business_name_answer_text' => 'required|unique:business_listings,name|max:255'
-      // 'category_id' => 'required'
+      'business_name_answer_text' => 'required|unique:business_listings,name|max:255',
+      'email_answer_text' => 'required|string|email|max:255',
+      'password_answer_text' => 'required|min:6'
     );
 
     $error = Validator::make($request->all(), $rules);
@@ -375,6 +376,8 @@ class WebController extends Controller
         'category_id' => $category,
         'location_id' => $request->location_id,
         'name' => $request->business_name_answer_text,
+        'email' => $request->email_answer_text,
+        'password' => Hash::make($request->password_answer_text),
       );
 
       $business_liting = BusinessListing::create($form_data);

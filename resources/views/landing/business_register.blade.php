@@ -1,211 +1,124 @@
 @extends('layouts.l_app')
-@section('title','Business Register  Step 1')
+@section('title','Business Signup')
 
 @section('content')
-<div class="container py-3">
+<!-- <div class="container py-3">
   <div id="append_errors" style="width: 100%; color: #a94442; background-color: #f2dede; border-color: #ebccd1; border-radius: 5px; padding: 17px 0px 1px 0px; display: none;">
     <ul class="exists_error"></ul>
   </div>
   <div id="append_success" style="width: 100%; color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6; border-radius: 5px; padding: 17px 0px 1px 0px; display: none;">
     <ul></ul>
   </div>
-</div>
-<div class="steps-box" style="min-height: 680px;">
-  <form method="post" role="form" class="form-horizontal" id="business-register-data" enctype="multipart/form-data" novalidate>
-    @csrf
-  <?php
-    $step = 1;
-    $hard_code_array = array('Contact Details', 'Description', 'Upload Your Photos', 'Experience', 'Personal Message from the Manager');
-    foreach ($sections as $key => $value) {
-      $class_active = "";
-      if($value->section_name == "Contact Details"){
-        $class_active = "active";
-      }
-
-      $class_step = "step".$step;
-      if($value->section_name == "Special Offers"){
-        $class_step = "";
-      }
-      if($value->section_name == "Experience"){
-        echo "<div class='container py-3 $class_step $class_active'><div class='row'><div class='col-sm-6'>";
-      }
-      if($value->section_name == "Special Offers"){
-        echo "<div class='col-sm-6'>";
-      }
-      if($value->section_name != "Experience" || $value->section_name != "Special Offers") {
-        echo "<div class='container py-3 $class_step $class_active'>";
-      }
-      if($value->section_name == "Experience"){
-        echo "";
-      }
-      if($value->section_name == "Contact Details"){
-        echo "";
-      }
-      elseif($value->section_name == "Special Offers"){
-        echo "<div class='float-right ml-2 my-1' style='cursor: pointer;'><span class='step-previous'><i class='fal fa-long-arrow-left'></i> Back</span></div>";
-      }
-      else {
-        echo "<div class='form-group' style='cursor: pointer;'><div class='float-right ml-2 my-1'><span class='step-previous'><i class='fal fa-long-arrow-left'></i> Back</span> | <span class='StepSkip'>Skip <i class='fal fa-long-arrow-right'></i></span></div></div>";
-      }
-      echo "<div class='form-group'><h2 class='font-gotham-bold'>$value->section_name</h2></div>";
-
-      echo "<hr class='border-warning'>";
-      echo "<h4>$value->section_sub_heading</h4>";
-      echo "<div class='row'>";
-      $arr_names = array();
-      foreach ($value->questions as $key => $val) {
-        array_push($arr_names, $val->question_name);
-        if($value->section_name == "Experience" || $value->section_name == "Special Offers"){
-          echo "<div class='form-group col-sm-12'>";
-        }
-        elseif ($value->section_name == "Social"){
-          echo "<div class='form-group col-sm-3'>";
-        }
-        elseif ($val->type == "textarea"){
-          echo "<div class='form-group col-sm-12'>";
-        }
-        elseif ($val->type == "file" && $val->question_name == "featured_image"){
-          echo "<div class='form-group bs-upload-dropndrag col-sm-6 col-md-4'>";
-        }
-        elseif ($val->type == "file" && $val->question_name == "photos"){
-          echo "<div class='form-group bs-upload-thumbnails col-sm-6 col-md-8'>";
-        }
-        elseif (($val->type == "text") && ($val->question_name == "address" || $val->question_name == "location" || $val->question_name == "postcode")){
-          if($val->question_name == "location"){
-            echo "<div class='col-sm-12'><div class='row append_sub_category'><div class='form-group col-sm-6'>";
-          }else {
-            echo "<div class='col-sm-12'><div class='row'><div class='form-group col-sm-6'>";
-          }
-        }
-        else {
-          echo "<div class='form-group col-sm-6'>";
-        }
-
-        if((isset($val->question_label) || $val->question_label != "") && ($val->type != "radio")){
-          echo "<label class='font-gotham-medium'>$val->question_label"."</label>";
-        }elseif((isset($val->question_label) || $val->question_label != "") && ($val->type == "radio")){
-          echo "<label class='font-gotham-medium'>$val->question_label"."</label><br/>";
-        }else{
-          echo "";
-        }
-
-        $question_mandatory = '';
-        $question_class = '';
-        $exists_business_name = '';
-        $exists_business_name_convert_to_slug = '';
-        $slug_display_none = '';
-        if($val->question_mandatory == true){
-          $question_mandatory = 'required';
-        }
-        if($val->question_name == 'location'){
-          $question_class = 'areaofuk';
-        }
-        if($val->question_name == 'slug'){
-          $slug_display_none = "style='display: none;'";
-        }
-        if($val->question_name == 'business_name'){
-          $exists_business_name = 'business_name_exists';
-          $exists_business_name_convert_to_slug = "onkeyup='convertToSlug(this.value)'";
-        }
-        $select = "";
-        if($val->type == "text"){
-          echo "<input type='$val->type' name='$val->question_name"."_answer_text' class='form-control border-warning $question_class $exists_business_name' $exists_business_name_convert_to_slug $slug_display_none placeholder='$val->question_placeholder' $question_mandatory autocomplete='off'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
-
-        }
-        if($val->type == "file" && $val->question_name == "photos"){
-          echo "<br/><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
-        }
-        if($val->type == "file" && $val->question_name == "featured_image"){
-          echo "<br/><img id='blah' src='".asset('web_asset/images/drop-and-drag-img.png')."' class='img-fluid'><input type='$val->type' name='$val->question_name"."_answer_text[]' onchange='readURL(this);' class='form-control' accept='image/*' $question_mandatory><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
-        }
-        if($val->type == "textarea"){
-          echo "<textarea name='$val->question_name"."_answer_text' class='form-control border-warning' placeholder='$val->question_placeholder' rows='4' $question_mandatory></textarea><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'>";
-        }
-        if($val->type == "select"){
-          $select .= "<input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><select name='$val->question_name"."_answer_id' class='form-control appended_select' $question_mandatory><option value=''>Select $val->question_label</option>";
-        }
-        $options = "";
-        foreach ($val->answers as $key => $answer) {
-          if($val->type == "checkbox"){
-            if ($answer === reset($val->answers)) {
-              echo "<div class='bs-custom-checkbox'>";
-            }
-            echo "<div class='form-check d-inline-block mb-2 mr-2'><input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id[]' id='$answer->answer_id' value='$answer->answer_id' class='form-check-input'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> <label class='form-check-label' for='$answer->answer_id'>"."$answer->answer_name"."</label>&nbsp;&nbsp;</div>";
-            if ($answer === end($val->answers)) {
-              echo "</div>";
-            }
-          }
-          if($val->type == "radio"){
-            if ($answer === reset($val->answers)) {
-              echo "<div class='bs-custom-radio'>";
-            }
-            echo "<div class='form-check d-inline-block mb-2 mr-2'><input type='hidden' name='$val->question_name"."_answer_text'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='$val->type' name='$val->question_name"."_answer_id' value='$answer->answer_id' id='$answer->answer_id' class='form-check-input' $question_mandatory><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'> <label class='form-check-label' for='$answer->answer_id'>"."$answer->answer_name"."</label>&nbsp;&nbsp;</div>";
-            if ($answer === end($val->answers)) {
-              echo "</div>";
-            }
-          }
-          if($val->type == "select"){
-            $options .= "<option value='$answer->answer_id'>"."$answer->answer_name"."</option>";
-          }
-        }
-        $select .= $options;
-        echo "$select"."</select>";
-        if(($val->type == "text") && ($val->question_name == "address" || $val->question_name == "location" || $val->question_name == "postcode")){
-          if($val->question_name == "address"){
-            echo "</div>";
-            $category_dropbox = "<div class='form-group col-sm-6'><label class='font-gotham-medium'>Select Category</label><select class='form-control border-warning' name='category_id' id='category_id'><option value=''>Select Category</option>";
-            foreach ($categories as $key => $cat) {
-              $category_dropbox .= "<option value='".$cat->id."'>".$cat->category_name."</option>";
-            }
-            $category_dropbox .= "</select></div>";
-            echo $category_dropbox;
-            echo "</div></div>";
-          }
-          elseif($val->question_name == "location"){
-            echo "</div>";
-            $sub_category_dropbox = "<div class='form-group col-sm-6 sub_category_col' style='display: none;'><select class='form-control border-warning' name='sub_category_id' id='sub_category_id'></select></div>";
-            echo $sub_category_dropbox;
-            echo "</div></div>";
-          }
-          else {
-            echo "</div></div></div>";
-          }
-        }else {
-          echo "</div>";
-        }
-      }
-      echo "</div>";
-      if($value->section_name == "Experience"){
-        echo "";
-      }elseif($value->section_name == "Special Offers") {
-        echo "<div class='form-group float-right'><button type='submit' class='btn btn-danger font-weight-bold px-5 mb-2 mt-5'>Save</button></div>";
-      }else{
-        echo "<div class='form-group float-right'><button type='button' class='btn btn-danger font-weight-bold px-5 class_check mb-2 mt-5 step-next'>Next</button></div>";
-      }
-      foreach($arr_names as $nname)
-      {
-        echo '<input type="hidden" name="all_names[]" value="'. $nname. '">';
-      }
-      if($value->section_name == "Experience"){
-        echo "</div>";
-      }
-      if($value->section_name == "Special Offers"){
-        echo "</div></div></div>";
-      }
-      if($value->section_name != "Experience" || $value->section_name != "Special Offers") {
-        echo "</div>";
-      }
-      $step++;
-    }
-
-  ?>
-    <input type="hidden" name="location_id" id="location_id">
-    <div class="container py-3">
-      <!-- <div class="form-group text-center">
-        <button class="btn btn-danger class_check px-5">Next</button>
-      </div> -->
+</div> -->
+<!-- <div class="steps-box" style="min-height: 680px;"> -->
+<div class="bg-center-url min-vh-100">
+  <div class="container text-left py-4">
+    <div class="media align-items-center">
+    <div class="mr-2"><a href="{{ url('/') }}"><img src="{{ asset('web_asset/images/mybigasianwedding-logo.png') }}" class="img-fluid"></a></div>
+    <div class="media-body">
+    <h3 class="font-gotham-medium">UK's Biggest Wedding Suppliers Directory</h3>
+    <h2 class="font-feelin-sweet display-4">Wedding Suppliers Signup</h2>
     </div>
-  </form>
+  </div>
+
+    <div class="row no-gutters my-3">
+      <div class="col-10 col-md-8 bg-warning">
+        <form method="post" role="form" class="form-horizontal" id="business-register-data" enctype="multipart/form-data" novalidate>
+          @csrf
+          <?php
+            $step = 1;
+            foreach ($sections as $key => $value) {
+              echo "<div class='p-3 px-lg-5 py-lg-4'>";
+              echo "<h4 class='font-gotham-medium mb-3'>$value->section_name</h4>";
+              echo "<div class='row align-items-end'>";
+              $arr_names = array();
+              $count = 0;
+              foreach ($value->questions as $key => $val) {
+
+                array_push($arr_names, $val->question_name);
+
+                if (($val->type == "text") && ($val->question_name == "business_name" || $val->question_name == "email" || $val->question_name == "address")){
+                  echo "<div class='form-group col-sm-12'>";
+                }
+                else {
+                  echo "<div class='form-group col-sm-6'>";
+                }
+                if((isset($val->question_label) || $val->question_label != "")){
+                  echo "<label class='font-gotham-medium'>$val->question_label"."</label>";
+                }else{
+                  echo "";
+                }
+
+                $question_mandatory = '';
+                $question_class = '';
+                $exists_business_name = '';
+                $exists_business_name_convert_to_slug = '';
+                $slug_display_none = '';
+                if($val->question_mandatory == true){
+                  $question_mandatory = 'required';
+                }
+                if($val->question_name == 'location'){
+                  $question_class = 'areaofuk';
+                }
+                if($val->question_name == 'slug' || $val->question_name == 'accept_terms_conditions'){
+                  $slug_display_none = "style='display: none;'";
+                }
+                if($val->question_name == 'business_name'){
+                  $exists_business_name = 'business_name_exists';
+                  $exists_business_name_convert_to_slug = "onkeyup='convertToSlug(this.value)'";
+                }
+                if($val->type == "text"){
+                  echo "<div class='input-group' $slug_display_none><input type='$val->type' name='$val->question_name"."_answer_text' class='form-control border-right-0 $question_class $exists_business_name' $exists_business_name_convert_to_slug placeholder='$val->question_placeholder' $question_mandatory autocomplete='off'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'><div class='input-group-append'><span class='input-group-text bg-white pl-1'><i class='$val->question_icon text-warning'></i></span></div></div>";
+                }
+                if($val->type == "password"){
+                  echo "<div class='input-group'><input type='$val->type' id='$val->question_name"."_answer_text' name='$val->question_name"."_answer_text' class='form-control' placeholder='$val->question_placeholder' $question_mandatory autocomplete='off'><input type='hidden' name='$val->question_name"."_question_id' value='$val->id'><input type='hidden' name='$val->question_name"."_answer_id'><input type='hidden' name='$val->question_name"."_$val->type' value='$val->type'><div class='input-group-append'><span class='input-group-text bg-white pl-1'><i class='$val->question_icon text-warning'></i></span></div></div>";
+                }
+                if(($val->type == "text") && ($val->question_name == "business_name" || $val->question_name == "email" || $val->question_name == "address")){
+                  echo "</div>";
+                }else {
+                  echo "</div>";
+                }
+                $count++;
+              }
+              $category_dropbox = "<div class='form-group col-sm-12'><label class='font-gotham-medium'>Select Category</label><select class='form-control' name='category_id' id='category_id'><option value=''>Select Category</option>";
+              foreach ($categories as $key => $cat) {
+                $category_dropbox .= "<option value='".$cat->id."'>".$cat->category_name."</option>";
+              }
+              $category_dropbox .= "</select></div>";
+              echo $category_dropbox;
+              $sub_category_dropbox = "<div class='form-group col-sm-12 sub_category_col' style='display: none;'><select class='form-control' name='sub_category_id' id='sub_category_id'></select></div>";
+              echo $sub_category_dropbox;
+
+              foreach($arr_names as $nname){
+                echo '<input type="hidden" name="all_names[]" value="'. $nname. '">';
+              }
+              echo "</div>";
+          ?>
+          <div class="clear-fix">
+            <div class="form-group float-right text-right">
+              <div class="d-md-table-cell align-middle">
+                <button type="submit" class="btn btn-dark px-5 mr-1">Sign Up</button>
+              </div>
+            </div>
+            <div class="form-group float-left">
+              <div class="form-check bs-custom-checkbox border-dark mt-1">
+                <input type="checkbox" name="acceptcheckbox1" class="form-check-input" id="accept-checkbox1" value="I accept My Big Asian Wedding Terms of Use and Privacy Policy">
+                <label class="form-check-label d-inline" for="accept-checkbox1">I accept My Big Asian Wedding <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a></label>
+              </div>
+            </div>
+          </div>
+          <?php
+            }
+          ?>
+          <input type="hidden" name="location_id" id="location_id">
+        </div>
+        </form>
+      </div>
+      <div class="col-2 col-md-4 bg-white">
+        <div class="bg-center-url h-100" style="background-image: url(' {{ asset('web_asset/images/bg-hall-img1.png') }} ');"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
@@ -261,38 +174,47 @@ $(document).ready(function() {
       $(".areaofuk").val(location_id.location_name);
     });
 
-    // $('#business-register-data').validate({
-    //   // errorElement: 'span',
-    //   errorClass: 'help-block',
-    //    highlight: function(element, errorClass, validClass) {
-    //      $(element).closest('.form-group').addClass("has-error");
-    //    },
-    //    unhighlight: function(element, errorClass, validClass) {
-    //      $(element).closest('.form-group').removeClass("has-error");
-    //    },
-    //   rules: {
-    //     business_name_answer_text: {
-    //       required: true
-    //     },
-    //     email_answer_text: {
-    //       required: true,
-    //       email: true
-    //     },
-    //     phone_number_answer_text: {
-    //       required: true,
-    //       digits: true
-    //       // minlength: 10
-    //     },
-    //   },
-    //
-    //   submitHandler: function(form) {
-    $('#business-register-data').on('submit', function(event){
-      event.preventDefault();
+    $('#business-register-data').validate({
+      // errorElement: 'span',
+      errorClass: 'help-block2',
+       highlight: function(element, errorClass, validClass) {
+         $(element).closest('.form-group').addClass("has-error");
+       },
+       unhighlight: function(element, errorClass, validClass) {
+         $(element).closest('.form-group').removeClass("has-error");
+       },
+      rules: {
+        business_name_answer_text: {
+          required: true
+        },
+        email_answer_text: {
+          required: true,
+          email: true
+        },
+        phone_number_answer_text: {
+          required: true,
+          digits: true
+          // minlength: 10
+        },
+        password_answer_text : {
+          required: true,
+					minlength : 6
+				},
+				confirm_password_answer_text : {
+          required: true,
+					minlength : 6,
+					equalTo : "#password_answer_text"
+				}
+      },
+
+      submitHandler: function(form) {
+    // $('#business-register-data').on('submit', function(event){
+    //   event.preventDefault();
 
       $.ajax({
         url:"{{ url('store_business_register_data') }}",
         type:"POST",
-        data:new FormData(this),
+        data:new FormData(form),
         dataType:"JSON",
         contentType:false,
         cache:false,
@@ -317,27 +239,10 @@ $(document).ready(function() {
             setTimeout(function(){ $('#append_success').hide(); },3000);
             var url_redirect = "{{ url('/congratulations') }}";
             window.location = url_redirect;
-            // var slug = $("input[name=slug_answer_text]").val();
-            // var selected_category = $("#category_id option:selected").text();
-            // var selected_sub_value = $("#sub_category_id option:selected").val();
-            // if (typeof selected_sub_value !== "undefined" && selected_sub_value != "") {
-            //   selected_category = $("#sub_category_id option:selected").text();
-            // }
-            // var sel_cat = spaceByhyphen(selected_category);
-            // if(slug == ""){
-            //   var business_name = $("input[name=business_name_answer_text]").val();
-            //   var slug = spaceByhyphen(business_name);
-            // }
-            // var url_web = "{{ url('/business-register-step2') }}";
-            // var url = url_web+'/wedding-'+sel_cat+'/'+slug+'/'+data.business_listing_id;
-            // console.log(url);
-            // return false;
-            // window.location = url;
-            // var url_redirect = "{{ url('/congratulations') }}";
-            // window.location = url_redirect+'/'+slug+;
           }
         },
       });
+    }
     });
 
     var question_name_state = false;
@@ -398,169 +303,12 @@ $(document).ready(function() {
         }
       });
    });
-   var form2 = $('#business-register-data');
-       $(".step-next").click(function(){
-           form2.validate({
-             errorElement: 'span',
-             errorClass: 'help-block',
-             highlight: function(element, errorClass, validClass) {
-               $(element).closest('.form-group').addClass("has-error");
-             },
-             unhighlight: function(element, errorClass, validClass) {
-               $(element).closest('.form-group').removeClass("has-error");
-             },
-             rules: {
-                     phone: {
-                       number: true,
-                     },
-                     email: {
-                       email:true,
-                     },
-                },
-                messages: {
-                    name: "Name can not be blank ",
-                    email: {
-                        required: "Email can not be blank",
-                        email: "Your email address must be in the format of name@domain.com"
-                    },
-                    phone: {
-                        required: "Number can not be blank",
-                        number: "Please enter a number"
-                    },
-                },
-           });
-           if (form2.valid() === true){
-             if ($('.step1').is(":visible")){
-               current_fs = $('.step1');
-               next_fs = $('.step2');
-             }
-             else if($('.step2').is(":visible")){
-               current_fs = $('.step2');
-               next_fs = $('.step3');
-             }
-             else if($('.step3').is(":visible")){
-               current_fs = $('.step3');
-               next_fs = $('.step4');
-             }
-             // else if($('.step4').is(":visible")){
-             //   current_fs = $('.step4');
-             //   next_fs = $('.step6');
-             // }
-             // else if($('.step5').is(":visible")){
-             //   current_fs = $('.step5');
-             //   next_fs = $('.step6');
-             // }
-             // else if($('.step6').is(":visible")){
-             //   current_fs = $('.step6');
-             //   next_fs = $('.step7');
-             // }
-             // else if($('.step7').is(":visible")){
-             //   current_fs = $('.step7');
-             //   next_fs = $('.step9');
-             // }
-             // else if($('.step8').is(":visible")){
-             //   current_fs = $('.step8');
-             //   next_fs = $('.step9');
-             // }
-             // else if($('.step9').is(":visible")){
-             //   current_fs = $('.step9');
-             //   next_fs = $('.step10');
-             // }
-               next_fs.show();
-               current_fs.hide();
-               step_fs.addClass("active")
-           }
-   });
-   $('.step-previous').click(function(){
-       if($('.step2').is(":visible")){
-           current_fs = $('.step2');
-           next_fs = $('.step1');
-           step_prs_fs = $("#stepform-check li.step2-p");
-       }
-       else if ($('.step3').is(":visible")){
-           current_fs = $('.step3');
-           next_fs = $('.step2');
-           step_prs_fs = $("#stepform-check li.step3-p");
-       }
-       else if ($('.step4').is(":visible")){
-           current_fs = $('.step4');
-           next_fs = $('.step3');
-           step_prs_fs = $("#stepform-check li.step4-p");
-       }
-       // else if ($('.step5').is(":visible")){
-       //     current_fs = $('.step5');
-       //     next_fs = $('.step4');
-       //     step_prs_fs = $("#stepform-check li.step5-p");
-       // }
-       // else if ($('.step6').is(":visible")){
-       //     current_fs = $('.step6');
-       //     next_fs = $('.step4');
-       //     step_prs_fs = $("#stepform-check li.step6-p");
-       // }
-       // else if ($('.step7').is(":visible")){
-       //     current_fs = $('.step7');
-       //     next_fs = $('.step6');
-       //     step_prs_fs = $("#stepform-check li.step7-p");
-       // }
-       // else if ($('.step8').is(":visible")){
-       //     current_fs = $('.step8');
-       //     next_fs = $('.step7');
-       //     step_prs_fs = $("#stepform-check li.step8-p");
-       // }
-       // else if ($('.step9').is(":visible")){
-       //     current_fs = $('.step9');
-       //     next_fs = $('.step7');
-       //     step_prs_fs = $("#stepform-check li.step9-p");
-       // }
-       // else if ($('.step10').is(":visible")){
-       //     current_fs = $('.step10');
-       //     next_fs = $('.step9');
-       //     step_prs_fs = $("#stepform-check li.step10-p");
-       // }
-       next_fs.show();
-       current_fs.hide();
-       step_prs_fs.removeClass("active")
-   });
-   $('.StepSkip').click(function(){
-       if($('.step1').is(":visible")){
-           current_fs = $('.step1');
-           next_fs = $('.step2');
-       }
-       else if ($('.step2').is(":visible")){
-           current_fs = $('.step2');
-           next_fs = $('.step3');
-       }
-       else if ($('.step3').is(":visible")){
-           current_fs = $('.step3');
-           next_fs = $('.step4');
-       }
-       // else if ($('.step4').is(":visible")){
-       //     current_fs = $('.step4');
-       //     next_fs = $('.step6');
-       // }
-       // else if ($('.step5').is(":visible")){
-       //     current_fs = $('.step5');
-       //     next_fs = $('.step6');
-       // }
-       // else if ($('.step6').is(":visible")){
-       //     current_fs = $('.step6');
-       //     next_fs = $('.step7');
-       // }
-       // else if ($('.step7').is(":visible")){
-       //     current_fs = $('.step7');
-       //     next_fs = $('.step9');
-       // }
-       // else if ($('.step8').is(":visible")){
-       //     current_fs = $('.step8');
-       //     next_fs = $('.step9');
-       // }
-       // else if ($('.step9').is(":visible")){
-       //     current_fs = $('.step9');
-       //     next_fs = $('.step10');
-       // }
-       next_fs.show();
-       current_fs.hide();
-       step_prs_fs.removeClass("active")
+   $('#accept-checkbox1').on("change",function (){
+     var str = "";
+     $('#accept-checkbox1:checked').each(function(){
+       str+= $(this).val();
+     });
+     $('input[name=accept_terms_conditions_answer_text]').val(str.substring(0, str.length - 1));
    });
 });
 </script>
@@ -602,5 +350,8 @@ $(document).ready(function() {
   .has-error.form-group{margin-bottom: 25px;}
   .step1.active,.step2.active,.step3.active,.step4.active,.step4.active,.step5.active,.step6.active,.step7.active,.step8.active,.step9.active,.step10.active{display: block;}
 
+  .help-block2{border-bottom: 2px solid #F05574;position: absolute;left: 10px;bottom: -40px;background-color: #ffffff;box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.30); padding: 2px 5px;font-size: 12px;z-index: 1;}
+  .help-block2:before{border-left: 5px solid transparent;border-right: 5px solid transparent;border-bottom: 5px solid #F05574; position: absolute; top:-5px; left: 0px; content:'';}
+  .form-group{margin-bottom:15px}
 </style>
 @endsection

@@ -750,6 +750,7 @@ class BusinessController extends Controller
           'question_name' => $request->question_name,
           'question_label' => $request->question_label,
           'question_placeholder' => $request->question_placeholder,
+          'question_icon' => $request->question_icon,
           'question_mandatory' => $question_mandatory,
           'question_order' => $request->question_order,
           'question_status' => true,
@@ -881,6 +882,7 @@ class BusinessController extends Controller
         $data_question_id->question_name = $request->edit_question_name;
         $data_question_id->question_label = $request->edit_question_label;
         $data_question_id->question_placeholder = $request->edit_question_placeholder;
+        $data_question_id->question_icon = $request->edit_question_icon;
         $data_question_id->question_mandatory = $edit_question_mandatory;
         $data_question_id->question_order = $request->edit_question_order;
         $data_question_id->question_status = $edit_question_status;
@@ -971,8 +973,8 @@ class BusinessController extends Controller
       $id = uniqid();
       $form_data = array(
         'id' => $id,
-        'type' => "slider",
-        'html_tag' => "<div id='slider-range'></div>"
+        'type' => "password",
+        'html_tag' => "<input type='password' class='form-control'>"
       );
       $data_type_id = DataType::create($form_data);
       return "done";

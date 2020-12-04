@@ -42,6 +42,12 @@
                 </div>
               </div>
               <div class="form-group row add">
+                <label for="question_icon" class="control-label col-sm-3" style="font-weight: 600;">Question fa fa Icon :</label>
+                <div class="col-sm-9">
+                  <input type="text" name="question_icon" id="question_icon" style="border-radius: 5px;" class="form-control" placeholder="Enter Question fafa icon e.g. fa fa-user" autocomplete="off"/>
+                </div>
+              </div>
+              <div class="form-group row add">
                 <label for="data_type_id" class="control-label col-sm-3" style="font-weight: 600;">Question's Data Type :</label>
                 <div class="col-sm-9">
                   <select class="form-control data_type_id_add" id="data_type_id" style="border-radius: 5px;" name="data_type_id">
@@ -152,6 +158,12 @@
                   <label for="edit_question_placeholder" class="control-label col-sm-3" style="font-weight: 600;">Question Placeholder :</label>
                   <div class="col-sm-9">
                     <input type="text" name="edit_question_placeholder" id="edit_question_placeholder" style="border-radius: 5px;" class="form-control" placeholder="Enter Question Placeholder" autocomplete="off"/>
+                  </div>
+                </div>
+                <div class="form-group row add">
+                  <label for="edit_question_icon" class="control-label col-sm-3" style="font-weight: 600;">Question fafa Icon :</label>
+                  <div class="col-sm-9">
+                    <input type="text" name="edit_question_icon" id="edit_question_icon" style="border-radius: 5px;" class="form-control" placeholder="Enter Question fafa icon e.g. fa fa-user" autocomplete="off"/>
                   </div>
                 </div>
                 <div class="form-group row add">
@@ -312,7 +324,7 @@
                                </td>
                                <td><?php echo date('d M Y',strtotime($question->created_at)); ?></td>
                                <td class="px-2 text-nowrap">
-                                 <a href="#" class="edit_modal btn btn-sm btn-save" data-id="{{ $question->id }}" data-question_name="{{ $question->question_name }}" data-question_label="{{ $question->question_label }}" data-question_placeholder="{{ $question->question_placeholder }}" data-question_order="{{ $question->question_order }}" data-question_mandatory="{{ $question->question_mandatory }}" data-question_status="{{ $question->question_status }}" data-question_is_common="{{ $question->question_is_common }}" data-question_basic_search="{{ $question->question_basic_search }}" data-question_advance_search="{{ $question->question_advance_search }}" data-data_type_id="{{ $question->data_type_id }}" data-answers="<?php echo htmlspecialchars(json_encode($question->answers), ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#EditQuestionModal" data-whatever="@mdo"><i class='fa fa-pencil'></i></a>
+                                 <a href="#" class="edit_modal btn btn-sm btn-save" data-id="{{ $question->id }}" data-question_name="{{ $question->question_name }}" data-question_label="{{ $question->question_label }}" data-question_placeholder="{{ $question->question_placeholder }}" data-question_icon="{{ $question->question_icon }}" data-question_order="{{ $question->question_order }}" data-question_mandatory="{{ $question->question_mandatory }}" data-question_status="{{ $question->question_status }}" data-question_is_common="{{ $question->question_is_common }}" data-question_basic_search="{{ $question->question_basic_search }}" data-question_advance_search="{{ $question->question_advance_search }}" data-data_type_id="{{ $question->data_type_id }}" data-answers="<?php echo htmlspecialchars(json_encode($question->answers), ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#EditQuestionModal" data-whatever="@mdo"><i class='fa fa-pencil'></i></a>
                                  <a href="#" class="delete_modal btn btn-sm btn-danger" data-id="{{ $question->id }}" data-question_name="{{ $question->question_name }}" data-toggle="modal" data-target="#DeleteQuestionModal" data-whatever="@mdo"><i class='fa fa-trash'></i></a>
                                </td>
                              </tr>
@@ -485,6 +497,7 @@
 		$('#edit_question_name').val($(this).data('question_name'));
 		$('#edit_question_label').val($(this).data('question_label'));
 		$('#edit_question_placeholder').val($(this).data('question_placeholder'));
+		$('#edit_question_icon').val($(this).data('question_icon'));
 		$('#edit_question_order').val($(this).data('question_order'));
     $("#edit_data_type_id option[value='"+$(this).data('data_type_id')+"']").prop('selected', true);
     if($(this).data('data_type_id') == '5f68a1b5b923a' || $(this).data('data_type_id') == '5f68a1c980149' || $(this).data('data_type_id') == '5f68a1ed98c6c'){

@@ -1,6 +1,6 @@
 <?php
 if(Request::getRequestUri() == "/business-register"){ ?>
-  <div class="bg-top-url bg-dark" style="background-image: url('{{ asset('web_asset/images/bg-header-business.jpg') }}');">
+  <!-- <div class="bg-top-url bg-dark" style="background-image: url('{{ asset('web_asset/images/bg-header-business.jpg') }}');">
       <div class="container-fluid py-3">
           <div class="row text-light light-link">
               <div class="col-sm-6 text-center text-sm-left"><a href="{{ url('/') }}"><img src="{{ asset('web_asset/images/mybigasianwedding-logo.png') }}" class="img-fluid"></a></div>
@@ -11,7 +11,7 @@ if(Request::getRequestUri() == "/business-register"){ ?>
           <h1 class="font-gotham-bold">Business <span class="text-warning">Signup</span></h1>
           <p class="font-gotham-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when ..</p>
       </div>
-  </div>
+  </div> -->
 <?php }elseif (Request::getRequestUri() == "/congratulations") { ?>
   <div class="bg-top-url bg-dark" style="background-image: url('{{ asset('web_asset/images/bg-header4-2.png') }}');">
       <div class="container-fluid py-3">
