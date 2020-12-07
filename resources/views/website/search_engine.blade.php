@@ -24,7 +24,7 @@
     </div>
 </div>
 <!-- Results -->
-<div class="border-bottom">
+<!-- <div class="border-bottom">
     <div class="container pt-3">
         <div class="media">
             <div class="pr-2"><h3 class="d-inline-block">Results:</h3></div>
@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <div class="container py-4">
   <!-- columns 2 -->
   <div class="row">
@@ -313,8 +313,9 @@
         // console.log(qdata);
         // console.log(fdata);
         // return false;
-        var url_web = "{{ url('/view_data_submissions') }}";
-        var url = url_web+'/search/wedding-'+sel_cat+'/'+sel_loc+fdata+qdata;
+        // var url_web = "{{ url('/view_data_submissions') }}";
+        // var url = url_web+'/search/wedding-'+sel_cat+'/'+sel_loc+fdata+qdata;
+        var url = '/search/wedding-'+sel_cat+'/'+sel_loc+fdata+qdata;
         window.location = url;
     });
   });
