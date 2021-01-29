@@ -79,6 +79,14 @@ class WebController extends Controller
     }
   }
 
+  public function privacy_policy(){
+    view('website.privacy_policy');
+  }
+
+  public function terms_conditions(){
+    view('website.terms_conditions');
+  }
+
   public function store_intrested_in_graphics_desgin_send_mail(Request $request)
   {
     $rules = array(

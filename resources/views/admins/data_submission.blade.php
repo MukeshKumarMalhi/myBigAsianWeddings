@@ -37,7 +37,7 @@
                 <div class="form-group col-md-3">
                   <input type="text" name="location_name_searched" placeholder="Search location" class="form-control areaofuk rounded" value="{{ ($search_location == 'UK' ? '' : $search_location) }}" autocomplete="off">
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                   <select name='category_id_searched' class="form-control category_search_form filters custom-select rounded">
                     <option value="category" selected>Select Category</option>
                     @foreach ($cats as $key => $value)
@@ -45,7 +45,15 @@
                     @endforeach
                   </select>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
+                  <select name='ethnicity_id_searched' class="form-control ethnicity_search_form filters custom-select rounded">
+                    <option value="" selected>Select Ethnicity</option>
+                    @foreach ($ethnicities as $key => $value)
+                      <option value="{{ $value->ethnicity_name }}" <?php if($value->ethnicity_name == $ethnicity_search) echo "selected"; ?>>{{ $value->ethnicity_name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="form-group col-md-2">
                   <button type="button" class="btn btn-warning btn-block" id="form_submit" name="button">Search</button>
                 </div>
                 </div>
@@ -70,6 +78,10 @@
                 <div class="form-check d-inline-block mb-2 mr-2">
                   <input type="checkbox" id="location" name="location" class="form-check-input form-control unchecking" value="is_null" <?php $location_null = ($location_is_null == '' ? '' : 'checked'); echo $location_null;?>> &nbsp;
                   <label class="form-check-label" for="location">Location Is NULL</label>
+                </div>
+                <div class="form-check d-inline-block mb-2 mr-2">
+                  <input type="checkbox" id="ethnicity" name="ethnicity" class="form-check-input form-control unchecking" value="is_null" <?php $ethnicity_null = ($ethnicity_is_null == '' ? '' : 'checked'); echo $ethnicity_null;?>> &nbsp;
+                  <label class="form-check-label" for="location">Ethnicity Is NULL</label>
                 </div>
               </form>
             </div>
@@ -102,6 +114,7 @@
                             <th><span>Business Name</span></th>
                             <th><span>Category</span></th>
                             <th><span>Location</span></th>
+                            <th><span>Ethnicity</span></th>
                             <th><span>Created By (Date:)</span></th>
                             <th><span>Updated By (Date:)</span></th>
                             <th class="text-center" style="width:110px">Action</th>
@@ -138,6 +151,22 @@
                                <td>{{ $submission->category_name }}</td>
                                @endif
                                <td>{{ $submission->location_name }}</td>
+                               @if($submission->ethnicity_id == NULL)
+                               <td>
+                                 <div class="form-group add">
+                                   <select class="form-control parent_ethnicity_id" data-business_listing_id="{{ $submission->id }}" style="border-radius: 5px; width: 60%;" name="parent_ethnicity_id">
+                                     <option value="">Select Ethnicity</option>
+                                     <?php if(isset($ethnicities) && count($ethnicities) > 0){ ?>
+                                       @foreach($ethnicities as $ethnicity)
+                                       <option value="{{ $ethnicity->id }}">{{ $ethnicity->ethnicity_name }}</option>
+                                       @endforeach
+                                     <?php } ?>
+                                   </select>
+                                 </div>
+                               </td>
+                               @else
+                               <td>{{ $submission->ethnicity_name }}</td>
+                               @endif
                                <td>
                                  @if($submission->created_at != null)
                                   {{ $submission->created_by_user }} (<?php echo date('d M Y',strtotime($submission->created_at)); ?>)
@@ -326,6 +355,26 @@
           }
       });
     });
+
+    $('.parent_ethnicity_id').on('change', function(){
+  		event.preventDefault();
+  		var data = {
+  			'business_listing_id' : $(this).data('business_listing_id'),
+  			'ethnicity_id' : $(this).val()
+  		};
+
+      $.ajax({
+          type:'POST',
+          url:"{{ url('update_ethnicity_data_submission') }}",
+  				data:data,
+  				dataType:"json",
+          success:function(data){
+  					alert(data);
+            location.reload();
+          }
+      });
+    });
+
 
     $(document).on('click', '.delete_modal', function(){
   		$('.title').html($(this).data('name'));

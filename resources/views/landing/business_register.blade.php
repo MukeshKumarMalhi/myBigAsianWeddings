@@ -13,7 +13,7 @@
 <!-- <div class="steps-box" style="min-height: 680px;"> -->
 <div class="bg-center-url min-vh-100">
   <div class="container text-left py-4">
-    <div class="media align-items-center">
+    <div class="media media-signup align-items-center">
     <div class="mr-2"><a href="{{ url('/') }}"><img src="{{ asset('web_asset/images/mybigasianwedding-logo.png') }}" class="img-fluid"></a></div>
     <div class="media-body">
     <h3 class="font-gotham-medium">UK's Biggest Wedding Suppliers Directory</h3>
@@ -22,7 +22,7 @@
   </div>
 
     <div class="row no-gutters my-3">
-      <div class="col-10 col-md-8 bg-warning">
+      <div class="col-md-8 bg-warning">
         <form method="post" role="form" class="form-horizontal" id="business-register-data" enctype="multipart/form-data" novalidate>
           @csrf
           <?php
@@ -118,7 +118,7 @@
         </div>
         </form>
       </div>
-      <div class="col-2 col-md-4 bg-white">
+      <div class="col-md-4 bg-white d-none d-md-block">
         <div class="bg-center-url h-100" style="background-image: url(' {{ asset('web_asset/images/bg-hall-img1.png') }} ');"></div>
       </div>
     </div>

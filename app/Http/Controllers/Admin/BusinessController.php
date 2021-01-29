@@ -12,6 +12,7 @@ use Excel;
 use App\Country;
 use App\Location;
 use App\Category;
+use App\Ethnicity;
 use App\Feature;
 use App\Business;
 use App\BusinessGallery;
@@ -349,6 +350,97 @@ class BusinessController extends Controller
     {
       $category = Category::find($request->id)->delete();
       return response()->json("Category Deleted Succssfully", 200);
+    }
+
+    public function view_ethnicities()
+    {
+        $ethnicities = DB::table('ethnicities')
+        ->select('ethnicities.*')
+        ->orderBy('updated_at', 'DESC')
+        ->paginate(10);
+
+        if (request()->ajax()) {
+          $view = view('admins.ethnicities_listing', ['ethnicities' => $ethnicities]);
+          return Response()->json(['status' => 'ok', 'listing' => $view->render()]);
+        }
+        return view('admins.view_ethnicities', compact('ethnicities'));
+    }
+
+    public function store_ethnicity(Request $request)
+    {
+      $rules = array(
+        'ethnicity_name' => 'required',
+        'ethnicity_icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+      );
+
+      $error = Validator::make($request->all(), $rules);
+      if($error->fails()){
+        return response()->json(['errors' => $error->errors()->all()]);
+      }else{
+        $id = uniqid();
+        if($request->hasFile('ethnicity_icon')){
+          $file=$request->file('ethnicity_icon')->store('public');
+          $image=Storage::get($file);
+          Storage::put($file,$image);
+          $image_path=explode('/', $file);
+          $image_path=$image_path[1];
+        }
+        else{
+          $image_path="";
+        }
+        $form_data = array(
+          'id' => $id,
+          'ethnicity_name' => $request->ethnicity_name,
+          'ethnicity_icon' => $image_path
+        );
+        $ethnicity = Ethnicity::create($form_data);
+        // $category = DB::table('ethnicities')
+        // ->leftjoin('categories as parents', 'parents.id', '=', 'categories.parent_category_id')
+        // ->select('categories.*', 'parents.category_name as parent_category_name')
+        // ->where('categories.id', $category_id->id)
+        // ->first();
+        return response()->json($ethnicity, 200);
+      }
+    }
+
+    public function update_ethnicity(Request $request)
+    {
+      $rules = array(
+        'edit_ethnicity_name' => 'required'
+      );
+
+      $error = Validator::make($request->all(), $rules);
+      if($error->fails()){
+        return response()->json(['errors' => $error->errors()->all()]);
+      }else{
+        if($request->hasFile('edit_ethnicity_icon')){
+          $file=$request->file('edit_ethnicity_icon')->store('public');
+          $image=Storage::get($file);
+          Storage::put($file,$image);
+          $image_path=explode('/', $file);
+          $image_path=$image_path[1];
+          $ethnicity = Ethnicity::find($request->edit_fid);
+          $ethnicity->ethnicity_icon = $image_path;
+          $ethnicity->save();
+        }
+        $ethnicity = Ethnicity::find($request->edit_fid);
+        $ethnicity->ethnicity_name = $request->edit_ethnicity_name;
+        $ethnicity->save();
+
+        // $category = DB::table('categories')
+        // ->leftjoin('categories as parents', 'parents.id', '=', 'categories.parent_category_id')
+        // ->select('categories.*', 'parents.category_name as parent_category_name')
+        // ->where('categories.id', $category_id->id)
+        // ->first();
+
+        return response()->json($ethnicity, 200);
+      }
+    }
+
+    public function delete_ethnicity(Request $request)
+    {
+      $ethnicity = Ethnicity::find($request->id)->delete();
+      return response()->json("Ethnicity Deleted Succssfully", 200);
     }
 
     public function view_features()
@@ -1354,13 +1446,19 @@ class BusinessController extends Controller
       }
 
       $loc_for_search = "";
+      $eth_for_search = "";
       if(count($values) > 1){
         $loc_for_search = preg_replace('/(?<!\s)-(?!\s)/', ' ', $values[1]);
+      }
+
+      if(count($values) == 3){
+        $eth_for_search = preg_replace('/(?<!\s)-(?!\s)/', ' ', $values[2]);
       }
       $cat_for_search = trim($got_cat);
 
       $category_id = DB::table('categories')->where('category_name', '=', $cat_for_search)->first();
       $location_id = DB::table('locations')->where('location_name', '=', $loc_for_search)->first();
+      $ethnicity_id = DB::table('ethnicities')->where('ethnicity_name', '=', $eth_for_search)->first();
 
       $array_values = array();
       foreach ($values as $key => $value) {
@@ -1379,6 +1477,7 @@ class BusinessController extends Controller
       $business_is_null = "";
       $location_is_null = "";
       $category_is_null = "";
+      $ethnicity_is_null = "";
       $postcode_is_null = "";
 
       if(isset($request->postcode) && $request->postcode == "is_null"){
@@ -1393,18 +1492,23 @@ class BusinessController extends Controller
       if(isset($request->category) && $request->category == "is_null"){
         $category_is_null = $request->category;
       }
+      if(isset($request->ethnicity) && $request->ethnicity == "is_null"){
+        $ethnicity_is_null = $request->ethnicity;
+      }
 
       $submissions = DB::table('business_listings')
       ->leftJoin('categories', 'categories.id', '=', 'business_listings.category_id')
       ->leftJoin('locations', 'locations.id', '=', 'business_listings.location_id')
+      ->leftJoin('ethnicities', 'ethnicities.id', '=', 'business_listings.ethnicity_id')
       ->leftJoin('business_listing_details', 'business_listing_details.business_listing_id', '=', 'business_listings.id')
-      ->select('business_listings.*', 'categories.category_name', 'locations.location_name', 'business_listing_details.created_by_user', 'business_listing_details.updated_by_user');
+      ->select('business_listings.*', 'categories.category_name', 'locations.location_name', 'ethnicities.ethnicity_name', 'business_listing_details.created_by_user', 'business_listing_details.updated_by_user');
 
       $diff = DB::table('business_listings')
       ->leftJoin('categories', 'categories.id', '=', 'business_listings.category_id')
       ->leftJoin('locations', 'locations.id', '=', 'business_listings.location_id')
+      ->leftJoin('ethnicities', 'ethnicities.id', '=', 'business_listings.ethnicity_id')
       ->leftJoin('business_listing_details', 'business_listing_details.business_listing_id', '=', 'business_listings.id')
-      ->select('business_listings.*', 'categories.category_name', 'locations.location_name', 'business_listing_details.created_by_user', 'business_listing_details.updated_by_user')
+      ->select('business_listings.*', 'categories.category_name', 'locations.location_name', 'ethnicities.ethnicity_name', 'business_listing_details.created_by_user', 'business_listing_details.updated_by_user')
       ->orderBy('business_listings.updated_at', 'asc')->get()->toArray();
 
       if($category_id != null){
@@ -1412,6 +1516,9 @@ class BusinessController extends Controller
       }
       if($location_id != null){
         $submissions->where('business_listings.location_id', '=', $location_id->id);
+      }
+      if($ethnicity_id != null){
+        $submissions->where('business_listings.ethnicity_id', '=', $ethnicity_id->id);
       }
       if($keyword_for_search != ""){
         $submissions->leftJoin('business_listing_attributes', 'business_listing_attributes.business_listing_id', '=', 'business_listings.id')
@@ -1448,11 +1555,15 @@ class BusinessController extends Controller
       if($location_is_null != ""){
         $submissions->where('business_listings.location_id', '=', null);
       }
+      if($ethnicity_is_null != ""){
+        $submissions->where('business_listings.ethnicity_id', '=', null);
+      }
       if($postcode_is_null == ""){
         $submissions = $submissions->orderBy('business_listings.updated_at', 'desc')->get();
       }
 
       $cats = DB::table('categories')->where('parent_category_id', null)->get();
+      $ethnicities = Ethnicity::all();
 
       $count = count($submissions);
 
@@ -1464,17 +1575,19 @@ class BusinessController extends Controller
       $paginatedItems= new LengthAwarePaginator($currentPageItems , count($itemCollection), $perPage);
       $paginatedItems->setPath($request->url());
 
-
       return view('admins.data_submission', [
         'cats' => $cats,
         'count' => $count,
+        'ethnicities' => $ethnicities,
         'submissions' => $paginatedItems,
         'search_location' => $loc_for_search,
         'category_search' => $cat_for_search,
+        'ethnicity_search' => $eth_for_search,
         'keyword_search' => $keyword_for_search,
         'postcode_is_null' => $postcode_is_null,
         'category_is_null' => $category_is_null,
         'location_is_null' => $location_is_null,
+        'ethnicity_is_null' => $ethnicity_is_null,
         'business_is_null' => $business_is_null
       ]);
     }
@@ -1484,5 +1597,12 @@ class BusinessController extends Controller
       $update_category_business_listing->category_id = $request->category_id;
       $update_category_business_listing->save();
       return response()->json("Category Updated Succssfully", 200);
+    }
+
+    public function update_ethnicity_data_submission(Request $request){
+      $update_ethnicity_business_listing = BusinessListing::find($request->business_listing_id);
+      $update_ethnicity_business_listing->ethnicity_id = $request->ethnicity_id;
+      $update_ethnicity_business_listing->save();
+      return response()->json("Ethnicity Updated Succssfully", 200);
     }
 }

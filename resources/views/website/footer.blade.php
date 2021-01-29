@@ -49,6 +49,6 @@
                 </ul>
             </div>
         </div>
-        <div class="pt-3 text-center"> &copy; 2020 Copyright by Weddified. All rights reserved.</div>
+        <div class="pt-3 text-center"> &copy; 2021 Copyright by Weddified. All rights reserved.</div>
     </div>
 </footer>
