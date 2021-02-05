@@ -1100,7 +1100,7 @@ class BusinessController extends Controller
 
         $value->questions = $questions;
       }
-      // dd($sections);
+      dd($sections);
       return view('admins.fill_data_section', ['sections' => $sections]);
     }
 

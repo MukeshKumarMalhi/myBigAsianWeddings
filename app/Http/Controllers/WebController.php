@@ -42,6 +42,35 @@ class WebController extends Controller
     $this->middleware('guest')->except('logout');
   }
 
+  public function file_existance()
+  {
+    // $images_array = BusinessListingAttribute::where('data_question_id', '5f8d3be32c273')->get()->toArray();
+    $images_array = BusinessListingAttribute::where('data_question_id', '5f8d3be32c273')->orWhere('data_question_id', '5f8466a7bd776')->pluck('data_answer_text')->toArray();
+    foreach ($images_array as $key => $image) {
+      if(substr( $image, 0, 4 ) === "http"){
+        $exploded_image = explode('/',$image);
+        $exploded_image_year = $exploded_image[5];
+        $exploded_image_month = $exploded_image[6];
+        $exploded_image_name = $exploded_image[7];
+
+        $image_name_with_directory = 'wp-content/uploads/'.$exploded_image_year.'/'.$exploded_image_month.'/'.$exploded_image_name;
+        $image_name_with_new_directory = 'wp-content/uploads/'.$exploded_image_year.'/'.$exploded_image_month.'/'.'new/'.$exploded_image_name;
+        if(file_exists(public_path($image_name_with_directory))){
+          File::move(public_path($image_name_with_directory), public_path($image_name_with_new_directory));
+        }
+      }
+    }
+    dd('moved');
+    // dd(30801+10229);
+    // if(file_exists(public_path('wp-content/uploads/2020/01/3.jpg'))){
+    //   File::move(public_path('wp-content/uploads/2020/01/3.jpg'), public_path('wp-content/uploads/2020/01/new/3.jpg'));
+    //   // unlink(public_path('upload/bio.png'));
+    //   dd('Yes, File exists');
+    // }else{
+    //   dd('File does not exists.');
+    // }
+  }
+
   public function send_test_email()
   {
     $data = ['message' => '2nd Testing Email Sending', 'useremail' => 'mukeshkumarmalhi7731@gmail.com', 'username' => 'Qadir Khan', 'subject' => 'MyBigAsianWedding'];
@@ -118,7 +147,52 @@ class WebController extends Controller
   public function index()
   {
     $total_listings = BusinessListing::count();
-    return view('landing.index', ['total_listings' => $total_listings]);
+
+    $featured_listings = DB::table('business_listings')
+    ->leftJoin('categories', 'business_listings.category_id', '=', 'categories.id')
+    ->leftJoin('locations', 'business_listings.location_id', '=', 'locations.id')
+    ->leftJoin('business_listing_attributes', 'business_listing_attributes.business_listing_id', '=', 'business_listings.id')
+    ->select('business_listings.*', 'categories.category_name', 'locations.location_name')
+    ->where('business_listing_attributes.data_question_id', '=', '6019367f6c9df')
+    ->orderBy('business_listings.updated_at', 'desc')
+    ->groupBy('business_listings.id')
+    ->get()
+    ->toArray();
+
+    foreach ($featured_listings as $key => $listing) {
+      $business_listing_attributes = DB::table('business_listing_attributes')
+      ->select('business_listing_attributes.*')
+      ->where('business_listing_attributes.business_listing_id', '=', $listing->id)
+      ->get();
+
+      foreach ($business_listing_attributes as $key => $value) {
+        $listing_attribute = DB::table('business_listing_attributes')
+        ->leftJoin('data_answers', 'data_answers.id', 'business_listing_attributes.data_answer_id')
+        ->leftJoin('data_questions', 'data_questions.id', 'business_listing_attributes.data_question_id')
+        ->select('business_listing_attributes.*', 'data_answers.answer_name', 'data_questions.question_name')
+        ->where('business_listing_attributes.business_listing_id', '=', $listing->id)
+        ->where('business_listing_attributes.data_question_id', '=', $value->data_question_id)
+        ->get()
+        ->toArray();
+        if($value->data_answer_text == null && $value->data_answer_id != null){
+          $attribute_id = $listing_attribute[0]->question_name;
+          $array_answers = array();
+          foreach ($listing_attribute as $key => $value_attribute) {
+            $answer = DataAnswer::find($value_attribute->data_answer_id);
+            array_push($array_answers, $answer->answer_name);
+          }
+          $listing->$attribute_id = $array_answers;
+
+        }else {
+          $attribute_text = $listing_attribute[0]->question_name;
+          $listing->$attribute_text = $value->data_answer_text;
+        }
+      }
+    }
+    $categories = DB::table('categories')->where('parent_category_id', null)->orderBy('category_name','asc')->pluck('category_name')->toArray();
+    // return view('landing.index', ['total_listings' => $total_listings]);
+    return view('website.index', ['total_listings' => $total_listings, 'featured_listings' => $featured_listings, 'categories' => $categories]);
+
   }
   public function business_congratulations_page()
   {

@@ -38,6 +38,10 @@ Route::post('serach_sub_category', 'WebController@serach_sub_category_exists');
 //   dd($newString);
 // });
 
+Route::get('/file_exists', 'WebController@file_existance');
+
+
+
 
 Route::get('/show_section/{id}', 'Admin\BusinessController@show_section');
 

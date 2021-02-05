@@ -31,7 +31,7 @@
 
     <div class="bg-warning small">
         <div class="container-fluid clearfix py-1 text-center text-md-right text-light">
-            <strong>0255</strong> WEDDING SUPPLIERS
+            <strong>{{ number_format($total_listings) }}</strong> WEDDING SUPPLIERS
             <a href="#libs-your-business" class="btn btn-light btn-sm py-1 mx-2">Add Business</a>
             <a href="#business-login" class="btn btn-sm btn-light ">Business Login</a>
         </div>

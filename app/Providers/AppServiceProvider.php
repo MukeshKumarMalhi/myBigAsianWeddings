@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use DB;
+use App\BusinessListing;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
             'layouts.app',
             function ($view) {
                 $view->with('categories', DB::table('categories')->where('parent_category_id', null)->get());
+                $view->with('total_listings', BusinessListing::count());
             }
         );
         // view()->composer(
